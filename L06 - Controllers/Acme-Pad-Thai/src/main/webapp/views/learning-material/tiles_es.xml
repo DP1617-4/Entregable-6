@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles_es.xml
+ *
+ * Copyright (C) 2016 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+      
+<tiles-definitions>
+
+	<definition name="learning-material/list" extends="master.page">	
+		<put-attribute name="title" value="Listar materiales" />
+		<put-attribute name="body" value="/views/learning-material/list.jsp" />
+	</definition>
+	
+	<definition name="learning-material/editPresentation" extends="master.page">	
+		<put-attribute name="title" value="Editar material de presentación" />
+		<put-attribute name="body" value="/views/learning-material/editPresentation.jsp" />
+	</definition>
+	
+	<definition name="learning-material/editText" extends="master.page">	
+		<put-attribute name="title" value="Editar material de texto" />
+		<put-attribute name="body" value="/views/learning-material/editText.jsp" />
+	</definition>
+	
+	<definition name="learning-material/editVideo" extends="master.page">	
+		<put-attribute name="title" value="Editar material de vídeo" />
+		<put-attribute name="body" value="/views/learning-material/editVideo.jsp" />
+	</definition>
+	
+	<definition name="learning-material/select" extends="master.page">	
+		<put-attribute name="title" value="Elegir el tipo de material" />
+		<put-attribute name="body" value="/views/learning-material/select.jsp" />
+	</definition>
+	
+</tiles-definitions>
