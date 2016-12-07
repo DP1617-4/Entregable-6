@@ -21,7 +21,7 @@
 
 <security:authorize access="hasRole('USER')">
 	<div>
-		<a href="user/recipe/own/list.do"> <spring:message
+		<a href="recipe/user/listOwn.do"> <spring:message
 				code="recipe.user.list.own" />
 		</a>
 	</div>
@@ -47,7 +47,7 @@
 	<jstl:set var="recipeuser" value="${row.user}"/> 
 	<jstl:if test="${recipeuser.userAccount.id==loggedactor.id}">
 	<display:column>
-			<a href="recipe/edit.do?recipeId=${row.id}">
+			<a href="recipe/user/edit.do?recipeId=${row.id}">
 				<spring:message	code="recipe.edit" />
 			</a>
 	</display:column>
@@ -73,11 +73,7 @@
 	<display:column property="score" title="${scoreHeader}" sortable="false" />
 	
 	<display:column>
-		<a href="category/list.do?recipeId=${row.id}"><spring:message code="recipe.category.list"/></a>
-	</display:column>
-	
-	<display:column>
-		<a href="comment/list.do?recipeId=${row.id}"><spring:message code="recipe.comment.list"/></a>
+		<a href="comment/socialUser/list.do?recipeId=${row.id}"><spring:message code="recipe.comment.list"/></a>
 	</display:column>
 	
 	<display:column>
@@ -88,7 +84,7 @@
 
 <security:authorize access="hasRole('USER')">
 	<div>
-		<a href="recipe/create.do"> <spring:message
+		<a href="recipe/user/create.do"> <spring:message
 				code="recipe.create" />
 		</a>
 	</div>

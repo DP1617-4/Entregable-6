@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="recipe/edit.do" modelAttribute="recipe">
+<form:form action="recipe/user/edit.do" modelAttribute="recipe">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -50,6 +50,11 @@
 	<form:textarea path="summary" />
 	<form:errors cssClass="error" path="summary" />
 	<br />
+	
+	<form:select multiple="true" path="categories" >
+    	<form:options items="${categorylist}" itemValue="id"  itemLabel="name" />
+	</form:select>
+	<br/>
 	
 	<form:label path="hints">
 		<spring:message code="recipe.hints" />:
