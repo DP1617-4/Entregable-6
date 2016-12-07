@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="property/edit.do" modelAttribute="property">
+<form:form action="property/nutritionist/edit.do" modelAttribute="property">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />

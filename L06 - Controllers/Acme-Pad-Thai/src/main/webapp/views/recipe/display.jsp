@@ -19,6 +19,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
+<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
+<jstl:set var="recipeuser" value="${recipe.user}"/> 
+
 <h3><jstl:out value="${recipe.title}"/></h3>
 <br/>
 <p><jstl:out value="${recipe.summary}"/></P>
@@ -31,7 +34,7 @@
 <jstl:if test="${recipeuser.userAccount==loggedactor}">
 <form:label path="picture"><spring:message code="recipe.picture.url"/></form:label>
 <form:input path="picture" />
-<a href="recipe/picture/add.do?recipeId=${recipe.id}&picture=${picture}">
+<a href="recipe/user/picture/add.do?recipeId=${recipe.id}&picture=${picture}">
 	<spring:message	code="recipe.pictures.add" />
 </a>
 </jstl:if>
@@ -47,13 +50,11 @@
 <br/>
 
 <p><spring:message	code="recipe.ingredients" />
-<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
-<jstl:set var="recipeuser" value="${recipe.user}"/> 
 <jstl:if test="${recipeuser.userAccount==loggedactor}">
 	<form:select path="selectedIngredient" >
     	<form:options items="${ingredientlist}" itemValue="id"  itemLabel="name" />
 	</form:select>
-	<a href="recipe/addingredients.do?recipeId=${recipe.id}&ingredientId=${selectedIngredient}">
+	<a href="recipe/user/addingredients.do?recipeId=${recipe.id}&ingredientId=${selectedIngredient}">
 		<spring:message	code="recipe.addingredients" />
 	</a>
 </jstl:if>
@@ -63,9 +64,11 @@
 	name="ingredients" requestURI="${recipe.quantities}" id="row">
 	<!-- Attributes -->
 	
+	<security:authorize access="hasRole('NUTRITIONIST')">
 	<display:column sortable="true">
-		<a href="ingredient/display.do?ingredientId=${row.ingredient.id}">${row.ingredient.name}</a>
+		<a href="ingredient/nutritionist/display.do?ingredientId=${row.ingredient.id}">${row.ingredient.name}</a>
 	</display:column>
+	</security:authorize>
 	
 	<spring:message code="recipe.ingredient.quantity" var="quantityHeader" />
 	<display:column property="quantity" title="${quantityHeader}" sortable="false" />
@@ -75,7 +78,7 @@
 	
 	<jstl:if test="${recipeuser.userAccount==loggedactor}">
 	<display:column>
-		<a href="recipe/ingredient/remove.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
+		<a href="recipe/user/removeIngredient.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
 	</display:column>
 	</jstl:if>
 	
@@ -88,7 +91,7 @@
 <jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 <jstl:if test="${recipeuser.userAccount==loggedactor}">
-	<a href="recipe/addsteps.do?recipeId=${recipe.id}">
+	<a href="recipe/user/addsteps.do?recipeId=${recipe.id}">
 		<spring:message	code="recipe.addsteps" />
 	</a>
 </jstl:if>
@@ -109,7 +112,7 @@
 	
 	<jstl:if test="${recipeuser.userAccount==loggedactor}">
 	<display:column>
-		<a href="recipe/step/delete.do?stepId=${row.id}"><spring:message code="recipe.step.remove"/></a>
+		<a href="recipe/user/deleteStep.do?stepId=${row.id}"><spring:message code="recipe.step.remove"/></a>
 	</display:column>
 	</jstl:if>
 	
@@ -117,12 +120,12 @@
 
 <p><a href="comment/list.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.list"/></a></p>
 
-<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
-<p><a href="comment/add.do?stepId=${recipe.id}"><spring:message code="recipe.comment.do"/></a></p>
+<security:authorize access="hasAnyRole('USER', 'NUTRITIONIST')">
+<p><a href="comment/socialUser/add.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.do"/></a></p>
 </security:authorize>
 
 <jstl:if test="${recipeuser.userAccount==loggedactor}">
-<a href="recipe/delete.do?recipeId=${recipe.id}">
+<a href="recipe/user/delete.do?recipeId=${recipe.id}">
 	<spring:message	code="recipe.delete" />
 </a>
 </jstl:if>

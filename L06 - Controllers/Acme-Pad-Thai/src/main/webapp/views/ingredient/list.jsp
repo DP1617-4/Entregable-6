@@ -24,7 +24,7 @@
 	name="ingredient" requestURI="${requestURI}" id="row">
 	<security:authorize access="hasRole('NUTRITIONIST')">
 		<display:column>
-			<a href="ingredient/edit.do?ingredientId=${row.id}">
+			<a href="ingredient/nutritionist/edit.do?ingredientId=${row.id}">
 				<spring:message	code="ingredient.edit" />
 			</a>
 		</display:column>
@@ -46,7 +46,7 @@
 
 <security:authorize access="hasRole('NUTRITIONIST')">
 	<div>
-		<a href="ingredient/create.do"> <spring:message
+		<a href="ingredient/nutritionist/create.do"> <spring:message
 				code="ingredient.create" />
 		</a>
 	</div>

@@ -24,7 +24,7 @@
 	name="property" requestURI="${requestURI}" id="row">
 	<security:authorize access="hasRole('NUTRITIONIST')">
 		<display:column>
-			<a href="property/edit.do?propertyId=${row.id}">
+			<a href="property/nutritionist/edit.do?propertyId=${row.id}">
 				<spring:message	code="property.edit" />
 			</a>
 		</display:column>
@@ -39,7 +39,7 @@
 
 <security:authorize access="hasRole('NUTRITIONIST')">
 	<div>
-		<a href="property/create.do"> <spring:message
+		<a href="property/nutritionist/create.do"> <spring:message
 				code="property.create" />
 		</a>
 	</div>
