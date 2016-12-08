@@ -41,7 +41,7 @@ public class RecipeUserController extends AbstractController {
 
 	// Listing ----------------------------------------------------------------
 	
-	@RequestMapping(value = "/own", method = RequestMethod.GET)
+	@RequestMapping(value = "/listOwn", method = RequestMethod.GET)
 	public ModelAndView own() {
 		
 		ModelAndView result;
@@ -51,7 +51,7 @@ public class RecipeUserController extends AbstractController {
 
 		recipes = recipeService.findAllByUser(u);
 		
-		result = new ModelAndView("announcement/list");
+		result = new ModelAndView("recipe/list");
 		result.addObject("requestURI", "recipe/user/list.do");
 		result.addObject("recipes", recipes);
 		
