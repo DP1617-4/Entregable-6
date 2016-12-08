@@ -27,8 +27,5 @@ public interface MasterClassRepository extends JpaRepository<MasterClass, Intege
 
 	@Query("select a.enroled from Actor a where a.id = ?1")
 	Collection<MasterClass> findMasterClassesByActor (int id);
-
-	@Query("select m from MasterClass m where m.promoted = true")
-	Collection<MasterClass> findPromoted();
 	
 }

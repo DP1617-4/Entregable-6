@@ -34,8 +34,8 @@
 	
 	<form:input path="filter"/>
 	
-	<input type="submit" name="filter"
-	value ="<spring:message code="recipe.filter.button"/>" />
+	<input type="submit" name="type"
+	value ="<spring:message code="reipe.filter.button"/>" />
 
 </form:form>
 
