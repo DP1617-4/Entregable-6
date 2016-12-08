@@ -28,14 +28,14 @@
 <security:authorize access="hasRole('NUTRITIONIST')">
 <form:label path="picture"><spring:message code="ingregient.picture.url"/></form:label>
 <form:input path="picture" />
-<a href="ingredient/picture/add.do?recipeId=${ingredient.id}&picture=${picture}">
+<a href="ingredient/nutritionist/addpicture.do?recipeId=${ingredient.id}&picture=${picture}">
 	<spring:message	code="recipe.pictures.add" />
 </a>
 </security:authorize>
 
 </p>
 <ul>
-	<jstl:forEach var="picture" items="${recipe.pictures}" >
+	<jstl:forEach var="picture" items="${ingredient.pictures}" >
 		<li><img src="${picture}"/></li>
 	</jstl:forEach>
 </ul>
@@ -46,7 +46,7 @@
 	<form:select path="selectedProperty" >
     	<form:options items="${propertylist}" itemValue="id"  itemLabel="name" />
 	</form:select>
-	<a href="ingredient/addproperties.do?ingredientId=${ingredient.id}&propertytId=${selectedProperty}">
+	<a href="ingredient/nutritionist/addproperty.do?ingredientId=${ingredient.id}&propertytId=${selectedProperty}">
 		<spring:message	code="ingredient.addproperties" />
 	</a>
 </security:authorize>
@@ -64,14 +64,14 @@
 	
 	<security:authorize access="hasRole('NUTRITIONIST')">
 	<display:column>
-		<a href="ingredient/property/remove.do?valueId=${row.id}"><spring:message code="ingredient.property.remove"/></a>
+		<a href="ingredient/nutritionist/removeProperty.do?valueId=${row.id}"><spring:message code="ingredient.property.remove"/></a>
 	</display:column>
 	</security:authorize>
 	
 </display:table>
 
 <security:authorize access="hasRole('NUTRITIONIST')">
-<a href="ingredient/delete.do?ingredientId=${ingredient.id}">
+<a href="ingredient/nutritionist/delete.do?ingredientId=${ingredient.id}">
 	<spring:message	code="ingredient.delete" />
 </a>
 </security:authorize>

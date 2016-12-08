@@ -55,6 +55,12 @@ public class SocialUserService {
 				
 			}
 			
+			public Collection<User> findAllFollowed(SocialUser u){
+				
+				
+				return socialUserRepository.findAllUserFollowed(u.getId());
+			}
+			
 			public SocialUser findByPrincipal(){
 				
 				SocialUser socialUser = socialUserRepository.findOneByUserAccountId(loginService.getPrincipal().getId());
