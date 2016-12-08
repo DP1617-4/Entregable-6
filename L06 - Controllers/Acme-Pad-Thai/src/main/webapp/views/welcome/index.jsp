@@ -29,7 +29,7 @@
 <p><spring:message code="welcome.promoted.classes"/></p>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="masterclasses" requestURI="${requestURI}" id="row">
+	name="masterclassess" requestURI="${requestURI}" id="row">
 	<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
 	<jstl:set var="masterclasscook" value="${row.cook}"/> 
 	<jstl:if test="${masterclasscook.userAccount.id==loggedactor.id}">

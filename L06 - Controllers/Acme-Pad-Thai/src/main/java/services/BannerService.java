@@ -59,12 +59,6 @@ public class BannerService {
 		bannerRepository.delete(banner);
 	}
 	
-	public Banner findRandomStarBanner(){
-		Banner result;
-		result = bannerRepository.findRandomStarBanner();
-		return result;
-	}
-	
 	//Auxiliary methods ---------------------
 	
 	//Our other bussiness methods -----------

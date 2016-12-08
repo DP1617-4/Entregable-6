@@ -24,29 +24,8 @@
 		<value>/views/welcome/messages</value>
 		
 		<value>/views/administrator/messages</value>
-		<value>/views/banner/messages</value>
-		<value>/views/bill/messages</value>
-		<value>/views/campaign/messages</value>
-		<value>/views/category/messages</value>
-		<value>/views/comment/messages</value>
-		<value>/views/contest/messages</value>
-		<value>/views/cook/messages</value>
-		<value>/views/creditCard/messages</value>
-		<value>/views/curricula/messages</value>
-		<value>/views/endorser/messages</value>
-		<value>/views/folder/messages</value>
-		<value>/views/ingredient/messages</value>
-		<value>/views/learning-material/messages</value>
-		<value>/views/masterclass/messages</value>
-		<value>/views/message/messages</value>
-		<value>/views/nutritionist/messages</value>
-		<value>/views/property/messages</value>
-		<value>/views/recipe/messages</value>
-		<value>/views/social-identity/messages</value>
-		<value>/views/sponsor/messages</value>
-		<value>/views/step/messages</value>
-		<value>/views/systemConfiguration/messages</value>
-		<value>/views/user/messages</value>
+		<value>/views/customer/messages</value>
+		<value>/views/profile/messages</value>
 	</util:list>
 
 </beans>
