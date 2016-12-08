@@ -99,6 +99,12 @@ public class MasterClassService {
 		}
 	}
 	
+	public Collection<MasterClass> findPromoted(){
+		Collection<MasterClass> result;
+		result = masterClassRepository.findPromoted();
+		return result;
+	}
+	
 	public Collection<MasterClass> findAll(){
 		Collection<MasterClass> result;
 		result = masterClassRepository.findAll();
