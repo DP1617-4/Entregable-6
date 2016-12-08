@@ -17,6 +17,7 @@ import services.UserService;
 
 import controllers.AbstractController;
 import domain.Recipe;
+import domain.User;
 
 
 @Controller
@@ -45,8 +46,10 @@ public class RecipeUserController extends AbstractController {
 		
 		ModelAndView result;
 		Collection<Recipe> recipes;
+		
+		User u = userService.findByPrincipal();
 
-		recipes = recipeService.findAllNotDeleted();
+		recipes = recipeService.findAllByUser(u);
 		
 		result = new ModelAndView("announcement/list");
 		result.addObject("requestURI", "recipe/user/list.do");

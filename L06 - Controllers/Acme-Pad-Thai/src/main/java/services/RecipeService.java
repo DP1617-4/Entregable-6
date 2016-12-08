@@ -67,6 +67,11 @@ public class RecipeService {
 		return retrieved;
 	}
 	
+	public Collection<Recipe> findAllByUser(User u){
+		
+		return recipeRepository.findAllByUserId(u.getId());
+	}
+	
 	public Collection<Recipe> findAllByUserFollowed(SocialUser socialUser){
 		
 		User principal = userService.findByPrincipal(); 
@@ -75,13 +80,7 @@ public class RecipeService {
 		
 		for(User u : followed){
 			
-			for(Recipe r : u.getRecipes()){
-				
-				if(r.getDeleted()==false){
-					
-					result.add(r);
-				}
-			}
+			result.addAll(this.findAllByUser(u));
 		}
 		
 		return result;
