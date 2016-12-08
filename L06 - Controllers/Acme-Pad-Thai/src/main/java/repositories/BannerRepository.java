@@ -15,6 +15,6 @@ public interface BannerRepository extends JpaRepository<Banner, Integer> {
 	Collection<Banner> numberOfBanners(int id);
 
 	@Query("select b from Banner b where b.campaign.starred = true order by rand()")
-	Banner findRandomStarBanner();
+	Collection<Banner> findRandomStarBanner();
 	
 }

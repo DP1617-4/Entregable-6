@@ -61,7 +61,12 @@ public class BannerService {
 	
 	public Banner findRandomStarBanner(){
 		Banner result;
-		result = bannerRepository.findRandomStarBanner();
+		Collection<Banner> banners;
+		banners = bannerRepository.findRandomStarBanner();
+		if(banners.isEmpty())
+			result = null;
+		else
+			result = banners.iterator().next();
 		return result;
 	}
 	
