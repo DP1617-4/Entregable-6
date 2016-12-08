@@ -22,7 +22,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>{
 	@Query("select r.user from Recipe r group by r.user Order By avg(r.scores.size) DESC")
 	Collection<User> getUsersByAvgOfLikesAndDislikesOfRecipe();
 	
-	@Query("select r from Recipe r where r.user.id = ?1 and mc.deleted = FALSE")
+	@Query("select r from Recipe r where r.user.id = ?1 and r.deleted = FALSE")
 	Collection<Recipe> findAllByUserId(int userId);
 	
 

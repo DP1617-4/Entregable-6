@@ -110,6 +110,19 @@ public class RecipeService {
 		return recipeRepository.findAll();
 	}
 	
+	public Collection<Recipe> findAllFiltered(String filter){
+				
+		Collection<Recipe> result = new ArrayList<Recipe>();
+		Collection<Recipe> all = this.findAllNotDeleted();
+						
+		for(Recipe r:all){	
+			if(r.getTicker().contains(filter)||r.getTitle().contains(filter)||r.getSummary().contains(filter)){
+				result.add(r);
+			}
+		}
+		return result;
+	}
+	
 	//Auxiliary methods
 	public char randomLetter(){
 		char result;
