@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2016 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="5ce4d191fd14ac85a1469fb8c29b7a7b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="customer3" />
+		<property name="password" value="033f7f6121501ae98285ad77f216d5e7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Profiles -->	
+			
+	<bean id="profile1" class="domain.Profile">
+		<property name="name" value="Customer-1" />
+		<property name="email" value="customer-1@mail.com" />
+		<property name="picture" value="http://vignette4.wikia.nocookie.net/mortadelo-y-filemn/images/0/09/Rompetechos.gif/revision/latest?cb=20130501095418&amp;path-prefix=es" />
+		<property name="customer" ref="customer1" />
+		<property name="likers">
+			<list>
+				<ref bean="customer1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="profile2" class="domain.Profile">
+		<property name="name" value="Customer-2" />
+		<property name="email" value="customer-2@mail.com" />
+		<property name="picture" value="http://vignette3.wikia.nocookie.net/p__/images/b/bc/Filemon.gif/revision/latest?cb=20151220101211&amp;path-prefix=protagonist" />
+		<property name="customer" ref="customer2" />
+		<property name="likers">
+			<list>
+				<ref bean="customer2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="profile3" class="domain.Profile">
+		<property name="name" value="Customer-3" />
+		<property name="email" value="customer-3@mail.com" />
+		<property name="picture" value="http://2.bp.blogspot.com/-St8DQYzqlRg/UAPTFfPWL_I/AAAAAAAAAZU/zWz5AjmSI1o/s1600/Bugs+Bunny+Wallpaper+1.jpg" />
+		<property name="customer" ref="customer3" />
+		<property name="likers">
+			<list>
+				<ref bean="customer3" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Customers -->
+	
+	<bean id="customer1" class="domain.Customer">		
+		<property name="userAccount" ref="userAccount2" />
+		<property name="profile" ref="profile1" />
+		<property name="likes">
+			<list>
+				<ref bean="profile1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer2" class="domain.Customer">
+		<property name="userAccount" ref="userAccount3" />
+		<property name="profile" ref="profile2" />
+		<property name="likes">
+			<list>
+				<ref bean="profile2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="customer3" class="domain.Customer">
+		<property name="userAccount" ref="userAccount4" />
+		<property name="profile" ref="profile3" />
+		<property name="likes">
+			<list>
+				<ref bean="profile3" />
+			</list>
+		</property>
+	</bean>
+</beans>
