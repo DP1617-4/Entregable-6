@@ -42,6 +42,8 @@ public class RecipeService {
 	private QuantityService quantityService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private SocialUserService socialUserService;
 	
 	//Basic CRUD methods-------------------
 	
@@ -67,8 +69,9 @@ public class RecipeService {
 	
 	public Collection<Recipe> findAllByUserFollowed(SocialUser socialUser){
 		
+		User principal = userService.findByPrincipal(); 
 		Collection<Recipe> result = new ArrayList<Recipe>();
-		Collection<User> followed = recipeRepository.findAllUserFollowed();
+		Collection<User> followed = socialUserService.findAllFollowed(principal);
 		
 		for(User u : followed){
 			

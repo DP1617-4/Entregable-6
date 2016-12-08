@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import domain.MasterClass;
 import domain.Recipe;
 import domain.User;
 
@@ -21,8 +22,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>{
 	@Query("select r.user from Recipe r group by r.user Order By avg(r.scores.size) DESC")
 	Collection<User> getUsersByAvgOfLikesAndDislikesOfRecipe();
 	
-	@Query("select uf from SocialUser u join u.followed uf where uf.class= domain.User")
-	Collection<User> findAllUserFollowed();
+	@Query("select r from Recipe r where r.user.id = ?1 and mc.deleted = FALSE")
+	Collection<Recipe> findAllByUserId(int userId);
 	
 
 }

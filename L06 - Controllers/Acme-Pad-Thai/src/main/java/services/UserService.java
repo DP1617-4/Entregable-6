@@ -83,6 +83,7 @@ public class UserService {
 			
 		}
 		
+		
 		public User findByPrincipal(){
 			
 			User user = userRepository.findOneByUserAccountId(loginService.getPrincipal().getId());
