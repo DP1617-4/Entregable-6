@@ -50,7 +50,7 @@
 		<li><a class="fNiv"><spring:message code="master.page.users"/></a>
 			<ul>
 				<li class="arrow"></li>
-				<li><a href="user/list.do"><spring:message code="master.page.user.list"/></a></li>
+				<li><a href="user/list.do"><spring:message code="master.page.users.list"/></a></li>
 			</ul>
 		</li>	
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
@@ -88,7 +88,7 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="folder/list.do"><spring:message code="master.page.profile.folder" /></a></li>
+					<li><a href="folder/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
 					<li><a href="folder/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
 					<li><a href="socialidentity/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
 					<li><a href="socialidentity/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					

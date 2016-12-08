@@ -29,21 +29,23 @@
 <p><spring:message code="welcome.promoted.classes"/></p>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="masterclassess" requestURI="${requestURI}" id="row">
-	<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
-	<jstl:set var="masterclasscook" value="${row.cook}"/> 
-	<jstl:if test="${masterclasscook.userAccount.id==loggedactor.id}">
-		<display:column>
-			<a href="masterclass/edit.do?masterclassId=${row.id}">
-				<spring:message	code="welcome.masterclass.edit" />
-			</a>
-		</display:column>
-		<display:column>
-			<a href="learningmaterial/create.do?masterclassId=${row.id}">
-				<spring:message code="welcome.masterclass.add.material"/>
-			</a>
-		</display:column>
-	</jstl:if>
+	name="masterclasses" requestURI="${requestURI}" id="row">
+	<security:authorize access="isAuthenticated()">
+		<security:authentication property="principal.username" var ="loggedactor"/>
+		<jstl:set var="masterclasscook" value="${row.cook}"/> 
+		<jstl:if test="${masterclasscook.userAccount.username==loggedactor}">
+			<display:column>
+				<a href="masterclass/edit.do?masterclassId=${row.id}">
+					<spring:message	code="welcome.masterclass.edit" />
+				</a>
+			</display:column>
+			<display:column>
+				<a href="learningmaterial/create.do?masterclassId=${row.id}">
+					<spring:message code="welcome.masterclass.add.material"/>
+				</a>
+			</display:column>
+		</jstl:if>
+	</security:authorize>
 
 	
 	<!-- Attributes -->
