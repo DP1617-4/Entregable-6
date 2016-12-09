@@ -123,6 +123,12 @@ public class MasterClassService {
 		return result;
 	}
 	
+	public Collection<MasterClass> findPromoted(){
+		Collection<MasterClass> result;
+		result = masterClassRepository.findPromoted();
+		return result;
+	}
+	
 
 	//Business Methods
 	
