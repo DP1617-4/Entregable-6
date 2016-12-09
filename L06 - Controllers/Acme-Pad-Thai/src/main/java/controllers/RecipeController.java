@@ -58,6 +58,40 @@ public class RecipeController extends AbstractController {
  		return result;
  	}
 	
+	@RequestMapping(value = "/listQualified", method = RequestMethod.GET)
+ 	public ModelAndView listQualified(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllQualified(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listQualified.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
+	@RequestMapping(value = "/listWinners", method = RequestMethod.GET)
+ 	public ModelAndView listWinners(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllWinners(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listWinners.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int recipeId) {
 		
@@ -67,52 +101,38 @@ public class RecipeController extends AbstractController {
 
 		recipe = recipeService.findOne(recipeId);
 		
-		result = new ModelAndView("recipe/display");
+		result = new ModelAndView("recipe/display.do");
 		result.addObject("recipe", recipe);
 		result.addObject("ingredients", ingredientlist );
 		
 		return result;
 	}
 	
-	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filter")
+	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filterButton")
 	public ModelAndView filter(@Valid FilterString filterString, BindingResult binding) {
 		
 		ModelAndView result;
-		
+		Collection<Recipe> recipes;
+		String filter= filterString.getFilter();
 		if (binding.hasErrors()) {
 			result = new ModelAndView("redirect:list.do");
 		} else {
 
-		
-			result = new ModelAndView("redirect:filter.do?filter="+filterString.getFilter());
-			
+				try {
+					recipes = recipeService.findAllFiltered(filter);	
+					result = new ModelAndView("recipe/list");
+					result.addObject("requestURI", "recipe/list.do");
+					result.addObject("recipes", recipes);
+					result.addObject("filterString", filterString);
+					
+				} catch (Throwable oops) {
+					result = new ModelAndView("redirect:list.do");			
+			}
 		}
 			
 		return result;
 	}
 	
-	
-	@RequestMapping(value = "/filter", method = RequestMethod.GET)
-	public ModelAndView listFilter(@RequestParam String filter) {
-		ModelAndView result;
-		
- 		FilterString filter2 = new FilterString();
-		Collection<Recipe> recipes;
-		
-		try {
-			recipes = recipeService.findAllFiltered(filter);	
-			result = new ModelAndView("recipe/list");
-			result.addObject("requestURI", "recipe/filter.do?filter="+filter);
-			result.addObject("recipes", recipes);
-			result.addObject("filterString", filter2);
-			
-		} catch (Throwable oops) {
-			result = new ModelAndView("redirect:list.do");			
-		}
-		
-
-		return result;
-	}
 	
 	
  	
