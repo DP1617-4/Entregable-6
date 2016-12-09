@@ -99,9 +99,9 @@ public class MasterClassService {
 		}
 	}
 	
-	public Collection<MasterClass> findAll(){
+	public Collection<MasterClass> findAllNotDeleted(){
 		Collection<MasterClass> result;
-		result = masterClassRepository.findAll();
+		result = masterClassRepository.findAllNotDeleted();
 		return result;
 	}
 	
