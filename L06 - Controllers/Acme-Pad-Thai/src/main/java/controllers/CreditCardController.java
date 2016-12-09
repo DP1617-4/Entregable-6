@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.CreditCardService;
 import domain.CreditCard;
+import domain.Sponsor;
 
 @Controller
 @RequestMapping("/sponsor")
@@ -28,7 +30,19 @@ public class CreditCardController extends AbstractController {
 	// Listing ----------------------------------------------------------------
 
 	// Creation ---------------------------------------------------------------
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+//	@RequestMapping(value = "/create", method = RequestMethod.GET)
+//	public ModelAndView create() {
+//		ModelAndView result;
+//		CreditCard creditCard;
+//		Sponsor sponsor = creditCard.getSponsor(); // Que sponsor le meto?
+//		creditCard = creditCardService.create(sponsor);
+//		Assert.notNull(creditCard);
+//		result = createEditModelAndView(creditCard);
+//		result = new ModelAndView("redirect:/creditcard/create.do");
+//		return result;
+//	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid CreditCard creditCard, BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors()) {

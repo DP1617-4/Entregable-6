@@ -29,17 +29,18 @@ public class SponsorController extends AbstractController {
 	// Listing ----------------------------------------------------------------
 
 	// Creation ---------------------------------------------------------------
-//	@RequestMapping(value = "/register", method = RequestMethod.GET)
-//	public ModelAndView register() {
-//		ModelAndView result;
-//		Sponsor sponsor;
-//		sponsor = sponsorService.create();
-//		Assert.notNull(sponsor);
-//		result = createEditModelAndView(sponsor);
-//		return result;
-//	}
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+		ModelAndView result;
+		Sponsor sponsor;
+		sponsor = sponsorService.create();
+		Assert.notNull(sponsor);
+		result = createEditModelAndView(sponsor);
+		result = new ModelAndView("redirect:/creditcard/create.do");
+		return result;
+	}
 
-	
+	// Edition ----------------------------------------------------------------
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "continue")
 	public ModelAndView continueSubmit(@Valid Sponsor sponsor,
 			BindingResult binding) {
@@ -57,8 +58,6 @@ public class SponsorController extends AbstractController {
 		}
 		return result;
 	}
-
-	// Edition ----------------------------------------------------------------
 
 	// Ancillary methods ------------------------------------------------------
 	protected ModelAndView createEditModelAndView(Sponsor sponsor) {
