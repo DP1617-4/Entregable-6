@@ -24,38 +24,37 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-				<a href="contest/edit.do?contestId=${row.id}">
+				<a href="contest/admin/edit.do?contestId=${row.id}">
 					<spring:message	code="contest.edit" />
 				</a>
 		</display:column>
 	</security:authorize>
-	<display:column>
-		<a href="contest/qualify.do?contestId=${row.id}">
-			<spring:message	code="contest.qualify" />
-		</a>
-	</display:column>	
+	<security:authorize access="hasRole('USER')">
+		<display:column>
+			<a href="contest/user/qualify.do?contestId=${row.id}">
+				<spring:message	code="contest.qualify" />
+			</a>
+		</display:column>
+	</security:authorize>	
 	<!-- Attributes -->
 	
 	<spring:message code="contest.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
 	
 	<spring:message code="contest.openingTime" var="openingTimeHeader" />
-	<display:column title="${openingTimeHeader}" sortable="true" >
-		<fmt:formatDate value="${row.openingTime}"pattern ="dd/mm/yyyy"/>
-	</display:column>
+	<display:column title="${openingTimeHeader}" property="openingTime" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}"/>
+	
 	
 	<spring:message code="contest.closingTime" var="closingTimeHeader" />
-	<display:column title="${closingTimeHeader}" sortable="true" >
-		<fmt:formatDate value="${row.closingTime}"pattern ="dd/mm/yyyy"/>
-	</display:column>
+	<display:column title="${closingTimeHeader}" property="closingTime" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}" />
 	
 	<spring:message code="contest.qualified" var="qualifiedHeader"/>
 	<display:column title="${qualifiedHeader}">
-		<a href="contest/display.do?recipeId=${row.qualified.id}"><spring:message code="contest.qualified"/> </a>
+		<a href="recipe/listQualified.do?contestId=${row.id}"><spring:message code="contest.qualified"/> </a>
 	</display:column>
 	<spring:message code="contest.winners" var="winnersHeader"/>
 	<display:column title="${winnersHeader}">
-		<a href="contest/display.do?recipeId=${row.winners.id}"><spring:message code="contest.winners"/> </a>
+		<a href="recipe/listWinners.do?contestId=${row.id}"><spring:message code="contest.winners"/> </a>
 	</display:column>
 	
 </display:table>
@@ -63,7 +62,7 @@
 	<!-- Action links -->
 <security:authorize access="hasRole('ADMIN')">
 	<div>
-		<a href="contest/create.do"> <spring:message
+		<a href="contest/admin/create.do"> <spring:message
 				code="contest.create" />
 		</a>
 	</div>
