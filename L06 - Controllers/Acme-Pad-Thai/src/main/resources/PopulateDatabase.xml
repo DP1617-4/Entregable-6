@@ -1658,7 +1658,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="campaign1" class="domain.Campaign">
 		<property name="startDate" value="2016/10/28"/> <!-- en futuro -->
 		<property name="endDate" value="2017/01/06"/> <!-- en futuro -->
-		<property name="starred" value="true"/>
+		<property name="starred" value="false"/>
 		<property name="deleted" value="false"/>
 		<property name="sponsor" ref="sponsor1"/>
 	</bean>
@@ -1682,7 +1682,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="campaign4" class="domain.Campaign">
 		<property name="startDate" value="2016/10/20"/> <!-- en futuro -->
 		<property name="endDate" value="2016/11/06"/> <!-- en futuro -->
-		<property name="starred" value="true"/>
+		<property name="starred" value="false"/>
 		<property name="deleted" value="false"/>
 		<property name="sponsor" ref="sponsor2"/>
 	</bean>

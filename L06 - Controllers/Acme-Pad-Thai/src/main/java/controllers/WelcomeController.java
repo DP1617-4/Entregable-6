@@ -30,21 +30,23 @@ import services.MasterClassService;
 @RequestMapping("/welcome")
 public class WelcomeController extends AbstractController {
 
+	
+	// Services
+		
+		@Autowired
+		private BannerService bannerService;
+		
+		@Autowired
+		private MasterClassService masterClassService;
+		
+		
+	
 	// Constructors -----------------------------------------------------------
 	
 	public WelcomeController() {
 		super();
 	}
 		
-	// Services
-	
-	@Autowired
-	private BannerService bannerService;
-	
-	@Autowired
-	private MasterClassService masterClassService;
-	
-	
 	// Index ------------------------------------------------------------------		
 
 	@RequestMapping(value = "/index")
@@ -54,7 +56,6 @@ public class WelcomeController extends AbstractController {
 		String moment;
 		Banner banner;
 		Collection<MasterClass> masterClasses;
-		
 		
 		banner = bannerService.findRandomStarBanner();
 		masterClasses = masterClassService.findPromoted();

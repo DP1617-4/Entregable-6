@@ -111,15 +111,12 @@ public class RecipeService {
 	}
 	
 	public Collection<Recipe> findAllFiltered(String filter){
-		
+				
 		Collection<Recipe> result = new ArrayList<Recipe>();
 		Collection<Recipe> all = this.findAllNotDeleted();
-		
-		
-		for(Recipe r:all){
-			
+						
+		for(Recipe r:all){	
 			if(r.getTicker().contains(filter)||r.getTitle().contains(filter)||r.getSummary().contains(filter)){
-				
 				result.add(r);
 			}
 		}

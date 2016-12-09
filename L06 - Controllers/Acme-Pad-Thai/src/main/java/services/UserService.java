@@ -2,12 +2,10 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 import repositories.UserRepository;
 import security.Authority;
@@ -94,6 +92,23 @@ public class UserService {
 		public Collection<User> findAll(){
 			
 			return userRepository.findAll();
+		}
+		
+		public Collection<User> findAllFiltered(String filter){
+			
+			Collection<User> result = new ArrayList<User>();
+			Collection<User> all = this.findAll();
+			
+			
+			for(User u:all){
+				
+				if(u.getName().contains(filter)||u.getSurname().contains(filter)||u.getEmail().contains(filter)||u.getEnroled().contains(filter)
+						||u.getPhone().contains(filter)){
+					
+					result.add(u);
+				}
+			}
+			return result;
 		}
 		
 		//Auxiliary methods

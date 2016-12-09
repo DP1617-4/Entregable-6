@@ -16,7 +16,7 @@ public interface SocialUserRepository extends JpaRepository<SocialUser, Integer>
 	@Query("select u from SocialUser u where u.userAccount.id = ?1")
 	SocialUser findOneByUserAccountId(int userAccountId);
 	
-	@Query("select uf from SocialUser u where u.id=?1 join u.followed uf where uf.class= domain.User")
+	@Query("select u from SocialUser su, User u where su.id=?1 and u member of su.followed")
 	Collection<User> findAllUserFollowed(int userId);
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.IngredientService;
 import services.RecipeService;
 import services.SocialUserService;
 import services.UserService;
@@ -32,6 +33,8 @@ public class RecipeUserController extends AbstractController {
 	private UserService userService;	
 	@Autowired
 	private SocialUserService socialUserService;
+	@Autowired
+	private IngredientService ingredientService;
 	
 	// Constructors -----------------------------------------------------------
 	
