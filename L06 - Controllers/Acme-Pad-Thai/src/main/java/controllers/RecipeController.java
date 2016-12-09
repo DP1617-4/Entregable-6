@@ -58,6 +58,40 @@ public class RecipeController extends AbstractController {
  		return result;
  	}
 	
+	@RequestMapping(value = "/listQualified", method = RequestMethod.GET)
+ 	public ModelAndView listQualified(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllQualified(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listQualified.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
+	@RequestMapping(value = "/listWinners", method = RequestMethod.GET)
+ 	public ModelAndView listWinners(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllWinners(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listWinners.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int recipeId) {
 		
@@ -74,7 +108,7 @@ public class RecipeController extends AbstractController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filter")
+	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filterButton")
 	public ModelAndView filter(@Valid FilterString filterString, BindingResult binding) {
 		
 		ModelAndView result;
