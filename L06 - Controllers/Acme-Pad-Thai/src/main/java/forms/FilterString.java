@@ -16,5 +16,6 @@ public class FilterString {
 	public void setFilter(String filter) {
 		this.filter = filter;
 	}
+	
 
 }
