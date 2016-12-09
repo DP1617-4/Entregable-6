@@ -41,9 +41,9 @@
 		<li><a class="fNiv"><spring:message code="master.page.master.class"/></a>
 			<ul>
 				<li class="arrow"></li>
-				<li><a href="masterclass/list.do"><spring:message code="master.page.master.class.list"/></a></li>
+				<li><a href="masterClass/list.do"><spring:message code="master.page.master.class.list"/></a></li>
 				<security:authorize access="hasRole('COOK')">
-					<li><a href="cook/masterclass/create.do"><spring:message code="master.page.master.class.create"/></a> </li>
+					<li><a href="cook/masterClass/create.do"><spring:message code="master.page.master.class.create"/></a> </li>
 				</security:authorize>
 			</ul>
 		</li>	
