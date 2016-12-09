@@ -29,7 +29,7 @@
 <p><spring:message code="welcome.promoted.classes"/></p>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="masterclasses" requestURI="${requestURI}" id="row">
+	name="masterclasses" requestURI="welcome/index.do" id="row">
 	<security:authorize access="isAuthenticated()">
 		<security:authentication property="principal.username" var ="loggedactor"/>
 		<jstl:set var="masterclasscook" value="${row.cook}"/> 

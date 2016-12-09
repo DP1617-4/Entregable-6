@@ -123,6 +123,16 @@ public class RecipeService {
 		return result;
 	}
 	
+	public Collection<Recipe> findAllQualified(int contestId){
+		
+		return recipeRepository.findAllQualified(contestId);
+	}
+	
+	public Collection<Recipe> findAllWinners(int contestId){
+		
+		return recipeRepository.findAllWinners(contestId);
+	}
+	
 	//Auxiliary methods
 	public char randomLetter(){
 		char result;
@@ -265,14 +275,8 @@ public class RecipeService {
 	
 	public Collection<Recipe> findAllNotDeleted(){
 		
-		Collection<Recipe> notDeleted = new ArrayList<Recipe>();
-		for(Recipe r: recipeRepository.findAll()){
-			
-			if(r.getDeleted()==false){
-				
-				notDeleted.add(r);
-			}
-		}
+		Collection<Recipe> notDeleted = recipeRepository.findAllGrouped();
+		
 		
 		return notDeleted;
 	}

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,12 +46,48 @@ public class RecipeController extends AbstractController {
  		
  		ModelAndView result;
  		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
  
  		recipes = recipeService.findAllNotDeleted();
  		
 		result = new ModelAndView("recipe/list");
 		result.addObject("requestURI", "recipe/list.do");
  		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
+	@RequestMapping(value = "/listQualified", method = RequestMethod.GET)
+ 	public ModelAndView listQualified(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllQualified(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listQualified.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
+	@RequestMapping(value = "/listWinners", method = RequestMethod.GET)
+ 	public ModelAndView listWinners(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllWinners(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listWinners.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
  		
  		return result;
  	}
@@ -64,33 +101,40 @@ public class RecipeController extends AbstractController {
 
 		recipe = recipeService.findOne(recipeId);
 		
-		result = new ModelAndView("recipe/display");
-		result.addObject("requestURI", "recipe/display.do");
+		result = new ModelAndView("recipe/display.do");
 		result.addObject("recipe", recipe);
 		result.addObject("ingredients", ingredientlist );
 		
 		return result;
 	}
 	
-	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filter")
-	public ModelAndView save(@Valid FilterString filterString) {
+	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filterButton")
+	public ModelAndView filter(@Valid FilterString filterString, BindingResult binding) {
+		
 		ModelAndView result;
-		
 		Collection<Recipe> recipes;
-		
-		try {
-			recipes = recipeService.findAllFiltered(filterString.getFilter());	
-			result = new ModelAndView("recipe/list");
-			result.addObject("requestURI", "recipe/filter.do");
-			result.addObject("recipes", recipes);
-			
-		} catch (Throwable oops) {
-			result = new ModelAndView("redirect:list.do");			
-		}
-		
+		String filter= filterString.getFilter();
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:list.do");
+		} else {
 
+				try {
+					recipes = recipeService.findAllFiltered(filter);	
+					result = new ModelAndView("recipe/list");
+					result.addObject("requestURI", "recipe/list.do");
+					result.addObject("recipes", recipes);
+					result.addObject("filterString", filterString);
+					
+				} catch (Throwable oops) {
+					result = new ModelAndView("redirect:list.do");			
+			}
+		}
+			
 		return result;
 	}
+	
+	
+	
  	
  
 }
