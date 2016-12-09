@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
+<security:authentication property="principal.id" var ="loggedactor"/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 
 <h3><jstl:out value="${recipe.title}"/></h3>
@@ -31,7 +31,7 @@
 <p><spring:message code="recipe.pictures"/></p>
 <p>
 
-<jstl:if test="${recipeuser.userAccount==loggedactor}">
+<jstl:if test="${recipeuser.userAccount.id==loggedactor}">
 <form:label path="picture"><spring:message code="recipe.picture.url"/></form:label>
 <form:input path="picture" />
 <a href="recipe/user/picture/add.do?recipeId=${recipe.id}&picture=${picture}">
@@ -50,7 +50,7 @@
 <br/>
 
 <p><spring:message	code="recipe.ingredients" />
-<jstl:if test="${recipeuser.userAccount==loggedactor}">
+<jstl:if test="${recipeuser.userAccount.id==loggedactor}">
 	<form:select path="selectedIngredient" >
     	<form:options items="${ingredientlist}" itemValue="id"  itemLabel="name" />
 	</form:select>
@@ -61,7 +61,7 @@
 </p>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="ingredients" requestURI="${recipe.quantities}" id="row">
+	name="ingredients" requestURI="recipe/display.do" id="row">
 	<!-- Attributes -->
 	
 	<security:authorize access="hasRole('NUTRITIONIST')">
@@ -98,7 +98,7 @@
 </p>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="ingredients" requestURI="${recipe.steps}" id="row">
+	name="ingredients" requestURI="recipe/display.do" id="row">
 	<!-- Attributes -->
 	
 	<spring:message code="recipe.step.description" var="descriptionHeader" />
@@ -124,7 +124,7 @@
 <p><a href="comment/socialUser/add.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.do"/></a></p>
 </security:authorize>
 
-<jstl:if test="${recipeuser.userAccount==loggedactor}">
+<jstl:if test="${recipeuser.userAccount.id==loggedactor}">
 <a href="recipe/user/delete.do?recipeId=${recipe.id}">
 	<spring:message	code="recipe.delete" />
 </a>
