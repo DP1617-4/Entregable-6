@@ -67,7 +67,7 @@ public class RecipeController extends AbstractController {
 
 		recipe = recipeService.findOne(recipeId);
 		
-		result = new ModelAndView("recipe/display");
+		result = new ModelAndView("recipe/display.do");
 		result.addObject("recipe", recipe);
 		result.addObject("ingredients", ingredientlist );
 		
@@ -78,41 +78,27 @@ public class RecipeController extends AbstractController {
 	public ModelAndView filter(@Valid FilterString filterString, BindingResult binding) {
 		
 		ModelAndView result;
-		
+		Collection<Recipe> recipes;
+		String filter= filterString.getFilter();
 		if (binding.hasErrors()) {
 			result = new ModelAndView("redirect:list.do");
 		} else {
 
-		
-			result = new ModelAndView("redirect:filter.do?filter="+filterString.getFilter());
-			
+				try {
+					recipes = recipeService.findAllFiltered(filter);	
+					result = new ModelAndView("recipe/list");
+					result.addObject("requestURI", "recipe/list.do");
+					result.addObject("recipes", recipes);
+					result.addObject("filterString", filterString);
+					
+				} catch (Throwable oops) {
+					result = new ModelAndView("redirect:list.do");			
+			}
 		}
 			
 		return result;
 	}
 	
-	
-	@RequestMapping(value = "/filter", method = RequestMethod.GET)
-	public ModelAndView listFilter(@RequestParam String filter) {
-		ModelAndView result;
-		
- 		FilterString filter2 = new FilterString();
-		Collection<Recipe> recipes;
-		
-		try {
-			recipes = recipeService.findAllFiltered(filter);	
-			result = new ModelAndView("recipe/list");
-			result.addObject("requestURI", "recipe/filter.do?filter="+filter);
-			result.addObject("recipes", recipes);
-			result.addObject("filterString", filter2);
-			
-		} catch (Throwable oops) {
-			result = new ModelAndView("redirect:list.do");			
-		}
-		
-
-		return result;
-	}
 	
 	
  	
