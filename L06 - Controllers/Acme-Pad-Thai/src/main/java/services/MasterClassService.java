@@ -99,12 +99,6 @@ public class MasterClassService {
 		}
 	}
 	
-	public Collection<MasterClass> findPromoted(){
-		Collection<MasterClass> result;
-		result = masterClassRepository.findPromoted();
-		return result;
-	}
-	
 	public Collection<MasterClass> findAll(){
 		Collection<MasterClass> result;
 		result = masterClassRepository.findAll();
@@ -126,6 +120,12 @@ public class MasterClassService {
 		cook = cookService.findByPrincipal();
 
 		result = masterClassRepository.findAllByCookId(cook.getId());
+		return result;
+	}
+	
+	public Collection<MasterClass> findPromoted(){
+		Collection<MasterClass> result;
+		result = masterClassRepository.findPromoted();
 		return result;
 	}
 	

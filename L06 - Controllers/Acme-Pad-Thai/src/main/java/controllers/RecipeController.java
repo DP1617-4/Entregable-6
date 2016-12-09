@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,19 +41,19 @@ public class RecipeController extends AbstractController {
 	// Listing ----------------------------------------------------------------
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
-		
-		ModelAndView result;
-		Collection<Recipe> recipes;
-
-		recipes = recipeService.findAllNotDeleted();
-		
+ 	public ModelAndView list() {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 
+ 		recipes = recipeService.findAllNotDeleted();
+ 		
 		result = new ModelAndView("recipe/list");
 		result.addObject("requestURI", "recipe/list.do");
-		result.addObject("recipes", recipes);
-		
-		return result;
-	}
+ 		result.addObject("recipes", recipes);
+ 		
+ 		return result;
+ 	}
 	
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int recipeId) {
@@ -92,5 +91,6 @@ public class RecipeController extends AbstractController {
 
 		return result;
 	}
-	
+ 	
+ 
 }
