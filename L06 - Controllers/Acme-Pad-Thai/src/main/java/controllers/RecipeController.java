@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,12 +46,14 @@ public class RecipeController extends AbstractController {
  		
  		ModelAndView result;
  		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
  
  		recipes = recipeService.findAllNotDeleted();
  		
 		result = new ModelAndView("recipe/list");
 		result.addObject("requestURI", "recipe/list.do");
  		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
  		
  		return result;
  	}
@@ -65,7 +68,6 @@ public class RecipeController extends AbstractController {
 		recipe = recipeService.findOne(recipeId);
 		
 		result = new ModelAndView("recipe/display");
-		result.addObject("requestURI", "recipe/display.do");
 		result.addObject("recipe", recipe);
 		result.addObject("ingredients", ingredientlist );
 		
@@ -73,16 +75,36 @@ public class RecipeController extends AbstractController {
 	}
 	
 	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filter")
-	public ModelAndView save(@Valid FilterString filterString) {
+	public ModelAndView filter(@Valid FilterString filterString, BindingResult binding) {
+		
 		ModelAndView result;
 		
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:list.do");
+		} else {
+
+		
+			result = new ModelAndView("redirect:filter.do?filter="+filterString.getFilter());
+			
+		}
+			
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/filter", method = RequestMethod.GET)
+	public ModelAndView listFilter(@RequestParam String filter) {
+		ModelAndView result;
+		
+ 		FilterString filter2 = new FilterString();
 		Collection<Recipe> recipes;
 		
 		try {
-			recipes = recipeService.findAllFiltered(filterString.getFilter());	
+			recipes = recipeService.findAllFiltered(filter);	
 			result = new ModelAndView("recipe/list");
-			result.addObject("requestURI", "recipe/filter.do");
+			result.addObject("requestURI", "recipe/filter.do?filter="+filter);
 			result.addObject("recipes", recipes);
+			result.addObject("filterString", filter2);
 			
 		} catch (Throwable oops) {
 			result = new ModelAndView("redirect:list.do");			
@@ -91,6 +113,8 @@ public class RecipeController extends AbstractController {
 
 		return result;
 	}
+	
+	
  	
  
 }
