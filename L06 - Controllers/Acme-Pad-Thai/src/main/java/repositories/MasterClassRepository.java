@@ -31,4 +31,7 @@ public interface MasterClassRepository extends JpaRepository<MasterClass, Intege
 	@Query("select m from MasterClass m where m.promoted = true")
 	Collection<MasterClass> findPromoted();
 	
+	@Query("select mc from MasterClass mc where mc.deleted = FALSE")
+	Collection<MasterClass> findAllNotDeleted();
+	
 }
