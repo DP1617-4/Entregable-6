@@ -83,15 +83,11 @@
 	<form:errors cssClass="error" path="companyName" />
 	<br />
 	
-	<input type="submit" name="continue"
+	<input type="submit" name="save"
 		value="<spring:message code="sponsor.save" />" /> &nbsp;
 <!-- 		onclick="javascript: relativeRedir('creditCard/edit.do');" /> &nbsp; -->
 		
 	<jstl:if test="${sponsor.id != 0}">
-		<input type="submit" name="delete"
-		value="<spring:message code="sponsor.delete" />"
-		onclick="return confirm('<spring:message code="sponsor.confirm.delete" />')" />&nbsp;
-		
 		<input type="button" name="cancel"
 		value="<spring:message code="sponsor.cancel" />"
 		onclick="javascript: relativeRedir('sponsor/display.do');" />

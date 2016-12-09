@@ -15,7 +15,7 @@ import domain.CreditCard;
 import domain.Sponsor;
 
 @Controller
-@RequestMapping("/sponsor")
+@RequestMapping("/creditcard")
 public class CreditCardController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
@@ -42,7 +42,7 @@ public class CreditCardController extends AbstractController {
 //		return result;
 //	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "save")
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid CreditCard creditCard, BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors()) {
@@ -71,7 +71,7 @@ public class CreditCardController extends AbstractController {
 	protected ModelAndView createEditModelAndView(CreditCard creditCard,
 			String message) {
 		ModelAndView result;
-		result = new ModelAndView("creditCard/edit");
+		result = new ModelAndView("creditcard/edit");
 		result.addObject("creditCard", creditCard);
 		result.addObject("message", message);
 		return result;

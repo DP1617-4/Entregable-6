@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CreditCardService;
 import services.SponsorService;
+import domain.CreditCard;
 import domain.Sponsor;
 
 @Controller
@@ -21,6 +23,9 @@ public class SponsorController extends AbstractController {
 	@Autowired
 	private SponsorService sponsorService;
 
+	@Autowired
+	private CreditCardService creditCardService;
+	
 	// Constructors -----------------------------------------------------------
 	public SponsorController() {
 		super();
@@ -35,22 +40,27 @@ public class SponsorController extends AbstractController {
 		Sponsor sponsor;
 		sponsor = sponsorService.create();
 		Assert.notNull(sponsor);
-		result = createEditModelAndView(sponsor);
-		result = new ModelAndView("redirect:/creditcard/create.do");
+		result = new ModelAndView("sponsor/edit");
+		result.addObject("sponsor", sponsor);
 		return result;
 	}
 
 	// Edition ----------------------------------------------------------------
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "continue")
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView continueSubmit(@Valid Sponsor sponsor,
 			BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(sponsor);
+			result = new ModelAndView("redirect:create.do");
 		} else {
 			try {
-				sponsorService.save(sponsor);
-				result = new ModelAndView("redirect:../creditCard/edit.do");
+				Sponsor saved= sponsorService.save(sponsor);
+				if(saved.getCreditCard() == null){
+					CreditCard credit = creditCardService.create(saved);
+					result = new ModelAndView("creditcard/edit");
+					result.addObject("creditCard", credit);
+				}
+				result = new ModelAndView("redirect:../creditcard/edit.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(sponsor,
 						"sponsor.registration.error");
