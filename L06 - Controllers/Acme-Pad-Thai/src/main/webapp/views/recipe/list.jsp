@@ -88,7 +88,7 @@
 	
 </display:table>
 
-${loggedactor }
+${loggedactor}
 ${recipeuser.userAccount.username}
 
 <security:authorize access="hasRole('USER')">
