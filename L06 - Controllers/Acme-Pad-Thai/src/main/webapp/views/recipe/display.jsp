@@ -22,21 +22,24 @@
 <security:authentication property="principal" var ="loggedactor"/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 
-<h3>${recipe.title}</h3>
-<br/>
-<p>${recipe.summary}</P>
-<p>${recipe.ticker}</P>
-<P><spring:message code="recipe.authored"/>${recipe.authored}</P>
-<P><spring:message code="recipe.updated"/>${recipe.updated}</p>
+<h2>${recipe.title}</h2>
+<h3>${recipe.summary}</h3>
+<p><b>ticker: </b>${recipe.ticker}</P>
+<P><b><spring:message code="recipe.authored"/>:</b> ${recipe.authored}</P>
+<P><b><spring:message code="recipe.updated"/>:</b> ${recipe.updated}</p>
 <p><spring:message code="recipe.pictures"/></p>
 <p>
 
-<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
-<form:label path="picture"><spring:message code="recipe.picture.url"/></form:label>
-<form:input path="picture" />
-<a href="recipe/user/picture/add.do?recipeId=${recipe.id}&picture=${picture}">
-	<spring:message	code="recipe.pictures.add" />
-</a>
+<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
+<form:form action="recipe/user/addPicture.do" modelAttribute="filterString">
+
+	<form:input path="filter"/>
+	<form:errors cssClass="error" path="filter" />
+	
+	<input type="submit" name="addImage"
+	value ="<spring:message code="recipe.pictures.add"/>" />
+
+</form:form>
 </jstl:if>
 
 </p>
@@ -45,12 +48,12 @@
 		<li><img src="${picture}"/></li>
 	</jstl:forEach>
 </ul>
-<p>${recipe.hints}"</p>
-<p>${recipe.score}"</p>
+<p>${recipe.hints}</p>
+<p>${recipe.score}</p>
 <br/>
 
 <p><spring:message	code="recipe.ingredients" />
-<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
+<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	<form:select path="selectedIngredient" >
     	<form:options items="${ingredients}" itemValue="id"  itemLabel="name" />
 	</form:select>
@@ -64,11 +67,10 @@
 	name="quantities" requestURI="recipe/display.do" id="row">
 	<!-- Attributes -->
 	
-	<security:authorize access="hasRole('NUTRITIONIST')">
+	
 	<display:column sortable="true">
 		<a href="ingredient/nutritionist/display.do?ingredientId=${row.ingredient.id}">${row.ingredient.name}</a>
 	</display:column>
-	</security:authorize>
 	
 	<spring:message code="recipe.ingredient.quantity" var="quantityHeader" />
 	<display:column property="quantity" title="${quantityHeader}" sortable="false" />
@@ -76,11 +78,15 @@
 	<spring:message code="recipe.ingredient.unit" var="unitHeader" />
 	<display:column property="unit" title="${unitHeader}" sortable="false" />
 	
-	<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
+	
 	<display:column>
-		<a href="recipe/user/removeIngredient.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
+	<jstl:choose>
+		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
+			<a href="recipe/user/removeIngredient.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
+		</jstl:when>
+	</jstl:choose>
 	</display:column>
-	</jstl:if>
+
 	
 	
 </display:table>
@@ -89,7 +95,7 @@
 
 <p><spring:message	code="recipe.steps" />
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
-<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
+<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	<a href="recipe/user/addsteps.do?recipeId=${recipe.id}">
 		<spring:message	code="recipe.addsteps" />
 	</a>
@@ -109,11 +115,12 @@
 	<spring:message code="recipe.step.pictures" var="picturesHeader" />
 	<display:column property="pictures" title="${picturesHeader}" sortable="false" />
 	
-	<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
 	<display:column>
+	<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 		<a href="recipe/user/deleteStep.do?stepId=${row.id}"><spring:message code="recipe.step.remove"/></a>
-	</display:column>
 	</jstl:if>
+	</display:column>
+
 	
 </display:table>
 
@@ -123,7 +130,7 @@
 <p><a href="comment/socialUser/add.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.do"/></a></p>
 </security:authorize>
 
-<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
+<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 <a href="recipe/user/delete.do?recipeId=${recipe.id}">
 	<spring:message	code="recipe.delete" />
 </a>
