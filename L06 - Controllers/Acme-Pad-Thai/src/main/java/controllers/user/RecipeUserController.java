@@ -18,6 +18,7 @@ import services.RecipeService;
 import services.SocialUserService;
 import services.UserService;
 import controllers.AbstractController;
+import controllers.RecipeController;
 import domain.Ingredient;
 import domain.Quantity;
 import domain.Recipe;
@@ -72,14 +73,14 @@ public class RecipeUserController extends AbstractController {
 
 	
 	@RequestMapping(value = "/addPicture", method = RequestMethod.POST, params = "addImage")
-	public ModelAndView filter(@Valid AddPicture addPicture, BindingResult binding) {
+	public ModelAndView addPicture(@Valid AddPicture addPicture, BindingResult binding) {
 		
 		ModelAndView result;
 		Recipe recipe = recipeService.findOne(addPicture.getId());
 		String picture= addPicture.getPicture();
 		
 		if (binding.hasErrors()) {
-			result = new ModelAndView("redirect:/recipe/display.do?recipeId="+addPicture.getPicture());
+			result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
 		} else {
 
 				try {
@@ -90,7 +91,7 @@ public class RecipeUserController extends AbstractController {
 					AddIngredient addIngredient = new AddIngredient();
 					Collection<Ingredient> ingredientlist = ingredientService.findAllNotDeleted();
 					
-					result = new ModelAndView("recipe/display");
+					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
 					result.addObject("recipe", recipe);
 					result.addObject("ingredients", ingredientlist );
 					result.addObject("quantities", quantities );
@@ -101,7 +102,7 @@ public class RecipeUserController extends AbstractController {
 					
 					
 				} catch (Throwable oops) {
-					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+addPicture.getPicture());			
+					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());			
 			}
 		}
 			

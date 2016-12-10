@@ -46,11 +46,9 @@
 </security:authorize>
 
 </p>
-<ul>
 	<jstl:forEach var="thisPicture" items="${recipe.pictures}" >
-		<li><img src="${thisPicture}" alt="${thisPicture}"></li>
+		<img src="${thisPicture}" alt="${thisPicture}" height="150"><br/>
 	</jstl:forEach>
-</ul>
 <p>${recipe.hints}</p>
 <p><b><spring:message code="recipe.score"/>: </b>${recipe.score}</p>
 <br/>
