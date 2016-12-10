@@ -991,7 +991,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="deleted" value="false" />
 		<property name="pictures" >
 			<list>
-				<value>"http://www.xn--recetalasaa-beb.com/ImagenesRecetaLasana/ImagenesTop/lasana_carne.jpg"</value>
+				<value>http://www.xn--recetalasaa-beb.com/ImagenesRecetaLasana/ImagenesTop/lasana_carne.jpg</value>
 			</list>
 		</property>
 		<property name="hints" value="Hace falta carne, tomate y bechamel." />
@@ -1037,7 +1037,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="deleted" value="false" />
 		<property name="pictures" >
 			<list>
-				<value>"http://www.recetasdiarias.com/wp-content/uploads/2010/01/pizza-peperoni.jpg"</value>
+				<value>http://www.recetasdiarias.com/wp-content/uploads/2010/01/pizza-peperoni.jpg</value>
 			</list>
 		</property>
 		<property name="hints" value="Precalienta el horno 10 minutos antes a 220º." />
@@ -1083,7 +1083,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="deleted" value="false" />
 		<property name="pictures" >
 			<list>
-				<value>"http://www.recetasdiarias.com/wp-content/uploads/2010/01/pizza-peperoni.jpg"</value>
+				<value>http://www.recetasdiarias.com/wp-content/uploads/2010/01/pizza-peperoni.jpg</value>
 			</list>
 		</property>
 		<property name="hints" value="Precalienta el horno 10 minutos antes a 220º." />

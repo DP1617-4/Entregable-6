@@ -18,7 +18,11 @@ import services.IngredientService;
 import services.RecipeService;
 import controllers.AbstractController;
 import domain.Ingredient;
+import domain.Quantity;
 import domain.Recipe;
+import domain.Step;
+import forms.AddIngredient;
+import forms.AddPicture;
 import forms.FilterString;
 
 
@@ -58,6 +62,40 @@ public class RecipeController extends AbstractController {
  		return result;
  	}
 	
+	@RequestMapping(value = "/listQualified", method = RequestMethod.GET)
+ 	public ModelAndView listQualified(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllQualified(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listQualified.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
+	@RequestMapping(value = "/listWinners", method = RequestMethod.GET)
+ 	public ModelAndView listWinners(@RequestParam int contestId) {
+ 		
+ 		ModelAndView result;
+ 		Collection<Recipe> recipes;
+ 		FilterString filter = new FilterString();
+ 
+ 		recipes = recipeService.findAllWinners(contestId);
+ 		
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/listWinners.do");
+ 		result.addObject("recipes", recipes);
+ 		result.addObject("filterString", filter);
+ 		
+ 		return result;
+ 	}
+	
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int recipeId) {
 		
@@ -66,15 +104,24 @@ public class RecipeController extends AbstractController {
 		Collection<Ingredient> ingredientlist = ingredientService.findAllNotDeleted();
 
 		recipe = recipeService.findOne(recipeId);
+		Collection<Quantity> quantities = recipe.getQuantities();
+		Collection<Step> steps = recipe.getSteps();
+		AddPicture addPicture = new AddPicture();
+		AddIngredient addIngredient = new AddIngredient();
 		
-		result = new ModelAndView("recipe/display.do");
+		result = new ModelAndView("recipe/display");
 		result.addObject("recipe", recipe);
 		result.addObject("ingredients", ingredientlist );
+		result.addObject("quantities", quantities );
+		result.addObject("steps", steps );
+		result.addObject("addIngredient", addIngredient);
+		result.addObject("addPicture", addPicture);
+		
 		
 		return result;
 	}
 	
-	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filter")
+	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filterButton")
 	public ModelAndView filter(@Valid FilterString filterString, BindingResult binding) {
 		
 		ModelAndView result;
