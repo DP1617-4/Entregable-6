@@ -1,15 +1,16 @@
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Actor;
-import domain.MasterClass;
-
 import repositories.ActorRepository;
 import security.LoginService;
 import security.UserAccount;
+import domain.Actor;
+import domain.MasterClass;
 
 @Service
 @Transactional
@@ -46,6 +47,13 @@ public class ActorService {
 		
 		userAccount = loginService.getPrincipal();
 		result = findByUserAccount(userAccount);
+		return result;
+	}
+	
+	public Collection<Actor> findAll(){
+		Collection<Actor> result;
+		
+		result = actorRepository.findAll();
 		return result;
 	}
 	//Business Methods

@@ -43,23 +43,25 @@ public class MessageService {
 	
 	//CRUD
 	
-	public Message create(Actor recipient){
+	public Message create(){
 		Message result = new Message();
 		Actor sender;
 		sender = actorService.findByPrincipal();
 		result.setMoment(new Date());
-		result.setReceiver(recipient);
 		result.setSender(sender);
 		result.setPriority("NEUTRAL"); //By default neutral
 		return result;
 	}
 	
-	//Not needed
-//	public Message findOne(int messageId){
-//		
-//		
-//		return null;
-//	}
+	
+	//Welp, it was needed
+	public Message findOne(int messageId){
+		Message result;
+		
+		result = messageRepository.findOne(messageId);
+		
+		return result;
+	}
 	
 	public Collection<Message> findAllByFolder(int folderId){
 		Collection<Message> result;
