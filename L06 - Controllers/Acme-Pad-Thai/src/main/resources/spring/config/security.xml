@@ -45,7 +45,10 @@
 		
 		<security:intercept-url pattern="/recipe/list.do" access="permitAll" />  
 		<security:intercept-url pattern="/recipe/display.do" access="permitAll" />  
-		<security:intercept-url pattern="/recipe/user/own.do" access="hasRole('USER')" />  
+		
+		<security:intercept-url pattern="/recipe/user/listOwn.do" access="hasRole('USER')" /> 
+		<security:intercept-url pattern="/recipe/user/addPicture.do" access="hasRole('USER')" />  
+		 
 		<security:intercept-url pattern="/recipe/filter.do" access="permitAll" />
 		<security:intercept-url pattern="/recipe/listQualified.do" access="permitAll" />
 		<security:intercept-url pattern="/recipe/listWinners.do" access="permitAll" /> 

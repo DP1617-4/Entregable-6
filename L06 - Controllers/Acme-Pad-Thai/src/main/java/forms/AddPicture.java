@@ -1,5 +1,7 @@
 package forms;
 
+import org.hibernate.validator.constraints.URL;
+
 
 public class AddPicture {
 	
@@ -10,6 +12,7 @@ public class AddPicture {
 	private String picture;
 	private int id;
 	
+	@URL
 	public String getPicture() {
 		return picture;
 	}
