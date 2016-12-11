@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ContestService;
 import domain.Contest;
-import forms.FilterString;
 
 @Controller
 @RequestMapping("/contest")

@@ -69,7 +69,7 @@ public class SponsorServiceTest extends AbstractTest{
 		sponsor.setCompanyName(null);
 		sponsor.setCreditCard(null);
 		try {
-			Sponsor saved = sponsorService.save(sponsor);
+			sponsorService.save(sponsor);
 		}
 		catch(Exception e) {
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

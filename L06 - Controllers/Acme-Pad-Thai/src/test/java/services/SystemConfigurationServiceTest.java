@@ -55,7 +55,7 @@ public class SystemConfigurationServiceTest extends AbstractTest{
 		SystemConfiguration system = systemConfigurationService.findOne(127);
 		system.setFee(-1.0);
 		try {
-			SystemConfiguration saved = systemConfigurationService.save(system);
+			systemConfigurationService.save(system);
 		} catch(Exception e) {
 			Assert.isInstanceOf(IllegalArgumentException.class, e);
 		}

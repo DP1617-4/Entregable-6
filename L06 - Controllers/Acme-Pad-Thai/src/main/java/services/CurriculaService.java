@@ -12,7 +12,6 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Curricula;
 import domain.Endorser;
-import domain.Nutritionist;
 
 @Service
 @Transactional
