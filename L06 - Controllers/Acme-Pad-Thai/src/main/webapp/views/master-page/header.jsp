@@ -14,7 +14,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." /> <a href="?language=en">en</a> | <a href="?language=es">es</a>
+	<a href="welcome/index.do">
+	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." height="180"/> <a href="?language=en">en</a> | <a href="?language=es">es</a>
+	</a>
 </div>
 
 <div>
@@ -25,7 +27,7 @@
 				<li class="arrow"></li>
 				<li><a href="recipe/list.do"><spring:message code="master.page.recipe.list"/></a>
 				<security:authorize access="hasRole('USER')">
-					<li><a href="user/recipe/create.do"><spring:message code="master.page.recipe.create"/></a> </li>
+					<li><a href="recipe/user/create.do"><spring:message code="master.page.recipe.create"/></a> </li>
 				</security:authorize>
 			</ul>
 		</li>

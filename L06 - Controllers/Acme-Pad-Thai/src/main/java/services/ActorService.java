@@ -3,8 +3,10 @@ package services;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import repositories.ActorRepository;
 import security.LoginService;
@@ -64,5 +66,15 @@ public class ActorService {
 		actor = findByPrincipal();
 		actor.getEnroled().add(masterClass);
 		actorRepository.save(actor);
+	}
+	
+	public String findNamePrincipal(){
+		
+		String result="John Doe";
+		
+		Actor actor = this.findByPrincipal();
+		result = actor.getName()+" "+actor.getSurname();
+		
+		return result;
 	}
 }
