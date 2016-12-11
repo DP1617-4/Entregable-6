@@ -22,6 +22,17 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
+		<bean class="converters.ActorToStringConverter" />
+		<bean class="converters.StringToActorConverter" />
+		
+		<bean class="converters.RecipeToStringConverter" />
+		<bean class="converters.StringToRecipeConverter" />
+		
+		<bean class="converters.MasterClassToStringConverter" />
+		<bean class="converters.StringToMasterClassConverter" />
+		
+		<bean class="converters.CookToStringConverter" />
+		<bean class="converters.StringToCookConverter" />
 	</util:list>
 	
 </beans>

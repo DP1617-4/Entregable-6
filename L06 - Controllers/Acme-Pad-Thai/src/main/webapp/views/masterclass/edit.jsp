@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="masterclass/edit.do" modelAttribute="masterclass">
+<form:form action="masterClass/edit.do" modelAttribute="masterClass">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -26,33 +26,53 @@
 	<form:hidden path="actors"/>
 	<form:hidden path="deleted"/>
 	<form:hidden path="promoted"/>
-
+	
 	<form:label path="title">
 		<spring:message code="masterclass.title" />:
 	</form:label>
-	<form:input path="title" />
+	<jstl:choose>
+		<jstl:when test="${display}">
+			${masterClass.title}
+		</jstl:when>
+		<jstl:otherwise>
+			<form:input path="title" />
+		</jstl:otherwise>
+	</jstl:choose>
 	<form:errors cssClass="error" path="title" />
 	<br />
 	
-	<form:label path="description">
-		<spring:message code="masterclass.description" />:
-	</form:label>
-	<form:textarea path="description" />
+	<jstl:choose>
+		<jstl:when test="${display}">
+			<fieldset>
+			<legend><spring:message code="masterclass.description" /></legend>
+			${masterClass.title}
+			</fieldset>
+		</jstl:when>
+		<jstl:otherwise>
+			<form:label path="description">
+				<spring:message code="masterclass.description" />:
+			</form:label>
+			<form:textarea path="description" />
+		</jstl:otherwise>
+	</jstl:choose>
 	<form:errors cssClass="error" path="description" />
 	<br />
 	
-	
-	<input type="submit" name="save"
-	value="<spring:message code="masterclass.save" />"  />&nbsp; 
-			
-	<jstl:if test="${masterclass.id != 0}">
+	<security:authorize access="hasRole('COOK')">
+	<security:authentication property="principal.username" var ="loggedactor"/>
+	<jstl:set var="masterclasscook" value="${row.cook}"/> 
+	<jstl:if test="${masterclass.id != 0} && ${masterclasscook.userAccount.id==loggedactor.id}">
+		<input type="submit" name="save"
+			value="<spring:message code="masterclass.save" />"  />&nbsp; 	
 		<input type="submit" name="delete"
 			value="<spring:message code="masterclass.delete" />"
 			onclick="return confirm('<spring:message code="masterclass.confirm.delete" />')" />&nbsp;
 	</jstl:if>
+	</security:authorize>
+	
 	<input type="button" name="cancel"
 		value="<spring:message code="masterclass.cancel" />"
-		onclick="javascript: relativeRedir('masterclass/list.do');" />&nbsp;
+		onclick="javascript: window.location.replace('${cancelURI}');" />&nbsp;
 	<br />
 
 	
