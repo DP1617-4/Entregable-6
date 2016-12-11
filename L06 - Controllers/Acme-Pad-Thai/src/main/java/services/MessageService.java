@@ -53,6 +53,17 @@ public class MessageService {
 		return result;
 	}
 	
+	public Message create(Actor receiver){
+		Message result = new Message();
+		Actor sender;
+		sender = actorService.findByPrincipal();
+		result.setMoment(new Date());
+		result.setSender(sender);
+		result.setReceiver(receiver);
+		result.setPriority("NEUTRAL"); //By default neutral
+		return result;
+	}
+	
 	
 	//Welp, it was needed
 	public Message findOne(int messageId){
@@ -96,7 +107,6 @@ public class MessageService {
 	public Message send(Message message){
 		checkPrincipalSender(message);
 		Message result;
-		Message copy;
 		Boolean spam;
 		Folder outbox;
 		Folder recipientFolder;
@@ -113,7 +123,7 @@ public class MessageService {
 		
 		outbox = folderService.findSystemFolder(message.getSender(), "outbox");
 		message.setFolder(outbox);
-		copy = messageRepository.save(message);
+		messageRepository.save(message);
 		return result;
 	}
 	

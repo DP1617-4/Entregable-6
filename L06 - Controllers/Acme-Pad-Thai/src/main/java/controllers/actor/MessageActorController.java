@@ -32,6 +32,8 @@ public class MessageActorController extends AbstractController{
 	private ActorService actorService;
 	
 	
+	
+	
 	//Contructor
 	
 	public MessageActorController(){
@@ -83,7 +85,7 @@ public class MessageActorController extends AbstractController{
 		} else {
 			try {
 				messageService.send(message);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:list.do?folderId="+message.getFolder().getId());
 			} catch (Throwable oops) {
 				result = createEditModelAndView(message, "message.commit.error");				
 			}
@@ -92,21 +94,65 @@ public class MessageActorController extends AbstractController{
 		return result;
 	}
 	
+	//TODO Cuando lanza la excepción a dónde lo mando?
 	@RequestMapping(value="/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam int messageId){
 		ModelAndView result;
 		
 		Message message;
 		
+		try{
+			message = messageService.findOne(messageId);
+			messageService.delete(message);
+			result = new ModelAndView("redirect:list.do?folderId="+message.getFolder().getId());
+		}catch(Throwable oops){
+			result = new ModelAndView("redirect:/welcome/index.do");
+			result.addObject("errorMessage", "message.commit.error");
+		}
+		
+		return result;
+	}
+	
+	//TODO lo mismo que arriba
+	@RequestMapping(value="/move", method = RequestMethod.GET)
+	public ModelAndView move(@RequestParam int messageId){
+		ModelAndView result;
+		
+		Message message;
+		
 		message = messageService.findOne(messageId);
-				
-		messageService.delete(message);
+		if(message == null){
+			result = new ModelAndView("redirect:/welcome/index.do");
+			result.addObject("errorMessage" , "message.missing");
+		}	else
+			result = createMoveModelAndView(message, null);
 		
 		
 		return result;
 	}
 	
+	@RequestMapping(value="/move", method = RequestMethod.POST, params = "save")
+	public ModelAndView move(@Valid Message message, BindingResult binding){
+		ModelAndView result;
+		
+		
+		if(binding.hasErrors())
+			result = createMoveModelAndView(message, null);
+		else{
+			try{
+				messageService.move(message, message.getFolder());
+				result = new ModelAndView("redirect:list.do?folderId="+message.getFolder().getId());
+			}catch(Throwable oops){
+				result = createMoveModelAndView(message, "message.commit.error");
+			}
+		}
+		
+		return result;
+	}
+	
 	// Ancillary methods ------------------------------------------------------
+	
+		
 	
 		protected ModelAndView createEditModelAndView(Message message) {
 			ModelAndView result;
@@ -130,6 +176,20 @@ public class MessageActorController extends AbstractController{
 
 			return result;
 		}
-	
+		
+		protected ModelAndView createMoveModelAndView(Message msg, String message) {
+			ModelAndView result;
+			Collection<Actor> actors;
+		
+			actors = actorService.findAll();
+			
+			
+			result = new ModelAndView("message/edit");
+			result.addObject("errorMessage", message);
+			result.addObject("message", msg);
+			result.addObject("actors", actors);
+
+			return result;
+		}
 
 }

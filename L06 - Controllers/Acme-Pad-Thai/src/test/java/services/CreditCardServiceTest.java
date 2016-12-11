@@ -1,8 +1,5 @@
 package services;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -13,11 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import domain.Bill;
-import domain.Campaign;
 import domain.CreditCard;
-import domain.Folder;
-import domain.SocialIdentity;
 import domain.Sponsor;
 
 //TODO: this file provides an incomplete template; complete it with the appropriate annotations and method implementations.
@@ -117,7 +110,7 @@ public class CreditCardServiceTest extends AbstractTest{
 		creditCard.setExpirationYear(19);
 		creditCard.setCVV(842);
 		try {
-			CreditCard saved = creditCardService.save(creditCard);
+			creditCardService.save(creditCard);
 		}
 		catch(Exception e) {
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

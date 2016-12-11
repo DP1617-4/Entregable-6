@@ -24,13 +24,6 @@ public class CookServiceTest extends AbstractTest {
 	@Autowired
 	private CookService cookService;
 	
-	@Autowired
-	private FolderService folderService;
-	
-	@Autowired
-	private AdministratorService adminService;
-	
-	
 	@Test
 	public void testCreate(){
 		authenticate("admin1");
@@ -43,7 +36,6 @@ public class CookServiceTest extends AbstractTest {
 	public void testSave(){
 		authenticate("admin1");
 		Cook cook;
-		Cook result;
 		cook = cookService.create();
 		cook.setEmail("cook@email.com");
 		cook.setName("CookT");
@@ -53,13 +45,12 @@ public class CookServiceTest extends AbstractTest {
 		cook.getUserAccount().setUsername("CookT");
 		cook.getUserAccount().setPassword("TPass");
 		
-		result = cookService.save(cook);
+		cookService.save(cook);
 	}
 	@Test
 	public void testSaveNegative(){
 		authenticate("admin1");
 		Cook cook;
-		Cook result;
 		cook = cookService.create();
 		cook.setEmail("cook@email.com");
 		cook.setName("CookT");
@@ -68,7 +59,7 @@ public class CookServiceTest extends AbstractTest {
 		cook.getUserAccount().setUsername("CookT");
 		cook.getUserAccount().setPassword("TPass");
 		try{
-		result = cookService.save(cook);
+		cookService.save(cook);
 		}
 		catch(Exception e){
 			System.out.println("Success saveN");
@@ -105,9 +96,8 @@ public class CookServiceTest extends AbstractTest {
 	@Test
 	public void testFindOneNegative(){
 		authenticate("cook2");
-		Cook cook;
 		try{
-			cook = cookService.findOneToEdit(24);
+			cookService.findOneToEdit(24);
 		}catch(Exception e){
 			System.out.println("Success FindOneN");
 		}

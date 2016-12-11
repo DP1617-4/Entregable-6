@@ -3,11 +3,8 @@ package services;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
 import repositories.ActorRepository;
 import security.LoginService;
 import security.UserAccount;
@@ -28,11 +25,7 @@ public class ActorService {
 	
 	@Autowired
 	private ActorRepository actorRepository;
-	
-	//Auxiliary Services
-	
-	@Autowired
-	private LoginService loginService;
+
 	
 	//CRUD
 	
@@ -47,7 +40,7 @@ public class ActorService {
 		Actor result;
 		UserAccount userAccount;
 		
-		userAccount = loginService.getPrincipal();
+		userAccount = LoginService.getPrincipal();
 		result = findByUserAccount(userAccount);
 		return result;
 	}

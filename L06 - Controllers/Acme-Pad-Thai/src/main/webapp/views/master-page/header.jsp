@@ -15,8 +15,8 @@
 
 <div>
 	<a href="welcome/index.do">
-	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." height="180"/> <a href="?language=en">en</a> | <a href="?language=es">es</a>
-	</a>
+	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." height="180"/> </a><a href="?language=en">en</a> | <a href="?language=es">es</a>
+	
 </div>
 
 <div>
