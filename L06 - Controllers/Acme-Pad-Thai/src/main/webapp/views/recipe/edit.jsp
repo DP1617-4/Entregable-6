@@ -33,35 +33,41 @@
 	<form:hidden path="contest"/>
 	<form:hidden path="wonContest"/>
 	<form:hidden path="comments"/>
-	<form:hidden path="categories"/>
 	<form:hidden path="quantities"/>
 	<form:hidden path="pictures"/>
 
 	<form:label path="title">
-		<spring:message code="recipe.title" />:
+		<b><spring:message code="recipe.title" />:</b>
 	</form:label>
+	<br/>
 	<form:input path="title" />
 	<form:errors cssClass="error" path="title" />
-	<br />
+	<br /><br />
 	
 	<form:label path="summary">
-		<spring:message code="recipe.summary" />:
+		<b><spring:message code="recipe.summary" />:</b>
 	</form:label>
+	<br/>
 	<form:textarea path="summary" />
 	<form:errors cssClass="error" path="summary" />
-	<br />
+	<br /><br />
 	
-	<form:select multiple="true" path="categories" >
-    	<form:options items="${categorylist}" itemValue="id"  itemLabel="name" />
-	</form:select>
+	<form:label path="categories">
+		<b><spring:message code="recipe.category.list" />:</b>
+	</form:label>
 	<br/>
+	<form:select multiple="true" path="categories" >
+    	<form:options items="${categoryList}" itemValue="id"  itemLabel="name" />
+	</form:select>
+	<br/><br />
 	
 	<form:label path="hints">
-		<spring:message code="recipe.hints" />:
+		<b><spring:message code="recipe.hints" />:</b>
 	</form:label>
-	<form:input path="hints" />
+	<br/>
+	<form:textarea path="hints" />
 	<form:errors cssClass="error" path="hints" />
-	<br />
+	<br /><br />
 
 	<input type="submit" name="save"
 	value="<spring:message code="recipe.save" />" />&nbsp; 
@@ -71,7 +77,8 @@
 			value="<spring:message code="recipe.delete" />"/>&nbsp;
 	</jstl:if>
 	<input type="button" name="cancel"
-		value="<spring:message code="recipe.cancel" />"/>&nbsp;
+		value="<spring:message code="recipe.cancel" />"
+		onclick="location.href = 'recipe/list.do';" />&nbsp;
 	<br />
 
 	

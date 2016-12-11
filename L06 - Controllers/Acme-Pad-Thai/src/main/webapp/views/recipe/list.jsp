@@ -87,10 +87,6 @@
 	</display:column>
 	
 </display:table>
-
-${loggedactor}
-${recipeuser.userAccount.username}
-
 <security:authorize access="hasRole('USER')">
 	<div>
 		<a href="recipe/user/create.do"> <spring:message
@@ -98,3 +94,4 @@ ${recipeuser.userAccount.username}
 		</a>
 	</div>
 </security:authorize>
+
