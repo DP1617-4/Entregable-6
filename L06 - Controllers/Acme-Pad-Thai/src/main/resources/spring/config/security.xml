@@ -46,8 +46,17 @@
 		<security:intercept-url pattern="/recipe/list.do" access="permitAll" />  
 		<security:intercept-url pattern="/recipe/display.do" access="permitAll" />  
 		
-		<security:intercept-url pattern="/recipe/user/listOwn.do" access="hasRole('USER')" /> 
-		<security:intercept-url pattern="/recipe/user/addPicture.do" access="hasRole('USER')" />  
+		<security:intercept-url pattern="/recipe/user/**" access="hasRole('USER')" /> 
+		
+		<security:intercept-url pattern="/recipe/administrator/**" access="hasRole('ADMIN')" />  
+		
+		<security:intercept-url pattern="/recipe/nutritionist/**" access="hasRole('NUTRITIONIST')" />
+		
+		<security:intercept-url pattern="/recipe/cook/**" access="hasRole('COOK')" /> 
+		 
+		<security:intercept-url pattern="/recipe/sponsor/**" access="hasRole('SPONSOR')" /> 
+		
+		<security:intercept-url pattern="/recipe/socialuser/**" access="hasAnyRole('USER', 'NUTRITIONIST')" />
 		 
 		<security:intercept-url pattern="/recipe/filter.do" access="permitAll" />
 		<security:intercept-url pattern="/recipe/listQualified.do" access="permitAll" />

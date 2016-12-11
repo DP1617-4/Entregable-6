@@ -47,7 +47,7 @@
 
 </p>
 	<jstl:forEach var="thisPicture" items="${recipe.pictures}" >
-		<img src="${thisPicture}" alt="${thisPicture}" height="150"><br/>
+		<img src="${thisPicture}" alt="${thisPicture}" height="150"> &nbsp;
 	</jstl:forEach>
 <p>${recipe.hints}</p>
 <p><b><spring:message code="recipe.score"/>: </b>${recipe.score}</p>
