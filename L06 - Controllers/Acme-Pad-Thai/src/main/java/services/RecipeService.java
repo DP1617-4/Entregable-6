@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import domain.Category;
 import domain.Comment;
 import domain.Contest;
 import domain.Quantity;
@@ -56,6 +57,8 @@ public class RecipeService {
 		created.setAuthored(moment);
 		created.setDeleted(false);
 		created.setUser(principal);
+		String ticker = this.createTicker();
+		created.setTicker(ticker);
 		
 		return created;
 	}
@@ -91,9 +94,7 @@ public class RecipeService {
 		Recipe saved, toSave;
 		toSave = recipe;
 		Date moment = new Date(System.currentTimeMillis()-100);
-		String ticker = this.createTicker();
 		toSave.setUpdated(moment);
-		toSave.setTicker(ticker);
 		saved = recipeRepository.save(recipe);
 		return saved;
 		
