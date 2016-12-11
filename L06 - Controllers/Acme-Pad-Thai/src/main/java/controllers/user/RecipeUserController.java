@@ -8,23 +8,20 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.IngredientService;
+import services.CategoryService;
 import services.RecipeService;
-import services.SocialUserService;
 import services.UserService;
 import controllers.AbstractController;
-import controllers.RecipeController;
-import domain.Ingredient;
-import domain.Quantity;
+import domain.Category;
 import domain.Recipe;
-import domain.Step;
 import domain.User;
-import forms.AddIngredient;
 import forms.AddPicture;
 import forms.FilterString;
 
@@ -40,9 +37,8 @@ public class RecipeUserController extends AbstractController {
 	@Autowired
 	private UserService userService;	
 	@Autowired
-	private SocialUserService socialUserService;
-	@Autowired
-	private IngredientService ingredientService;
+	private CategoryService categoryService;
+
 	
 	// Constructors -----------------------------------------------------------
 	
@@ -85,27 +81,104 @@ public class RecipeUserController extends AbstractController {
 
 				try {
 					recipe.getPictures().add(picture);
-					Collection<Quantity> quantities = recipe.getQuantities();
-					Collection<Step> steps = recipe.getSteps();
-					addPicture = new AddPicture();
-					AddIngredient addIngredient = new AddIngredient();
-					Collection<Ingredient> ingredientlist = ingredientService.findAllNotDeleted();
+					recipe = recipeService.save(recipe);
 					
-					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
-					result.addObject("recipe", recipe);
-					result.addObject("ingredients", ingredientlist );
-					result.addObject("quantities", quantities );
-					result.addObject("steps", steps );
-					result.addObject("addIngredient", addIngredient);
-					result.addObject("addPicture", addPicture);
-					
-					
+					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());		
 					
 				} catch (Throwable oops) {
 					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());			
 			}
 		}
 			
+		return result;
+	}
+	
+	
+	protected ModelAndView createEditModelAndView(Recipe recipe) {
+		ModelAndView result;
+
+		result = createEditModelAndView(recipe, null);
+		
+		return result;
+	}	
+	
+	
+	
+	protected ModelAndView createEditModelAndView(Recipe recipe, String message) {
+		ModelAndView result;
+		Collection<Category> categories = categoryService.findAllNotDeleted();
+		
+		result = new ModelAndView("recipe/edit");
+		result.addObject("recipe", recipe);
+		result.addObject("message", message);
+		result.addObject("categoryList", categories);
+
+		return result;
+	}
+	
+	
+	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+		
+		ModelAndView result;
+		Recipe recipe = recipeService.create();
+		
+		result = createEditModelAndView(recipe);
+		result.addObject("recipe", recipe);
+		
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam int recipeId) {
+		ModelAndView result;
+		Recipe recipe;
+
+		recipe = recipeService.findOne(recipeId);		
+		Assert.notNull(recipe);
+		result = createEditModelAndView(recipe);
+
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView edit(@Valid Recipe recipe, BindingResult binding) {
+		
+		ModelAndView result;
+		
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:/recipe/user/edit.do?recipeId="+recipe.getId());
+		} else {
+
+				try {
+					recipeService.save(recipe);
+					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
+					
+					
+					
+				} catch (Throwable oops) {
+					result = createEditModelAndView(recipe, "recipe.commit.error");			
+			}
+		}
+			
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(Recipe recipe, BindingResult binding) {
+		ModelAndView result;
+
+		try {			
+			recipeService.delete2(recipe);
+			result = new ModelAndView("redirect:/recipe/list.do");						
+		} catch (Throwable oops) {
+			result = createEditModelAndView(recipe, "recipe.commit.error");
+		}
+
 		return result;
 	}
 	
