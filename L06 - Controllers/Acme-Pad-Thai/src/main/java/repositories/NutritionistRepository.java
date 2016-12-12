@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Nutritionist;
-import domain.SocialUser;
 
 @Repository
 public interface NutritionistRepository extends JpaRepository<Nutritionist, Integer> {
