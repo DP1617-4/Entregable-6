@@ -104,7 +104,7 @@
 <h2><spring:message	code="recipe.steps" /></h2>
 <security:authorize access="hasRole('USER')">
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
-	<a href="recipe/user/addsteps.do?recipeId=${recipe.id}">
+	<a href="step/user/create.do?recipeId=${recipe.id}">
 		<b><spring:message	code="recipe.addsteps" /></b>
 	</a>
 </jstl:if>

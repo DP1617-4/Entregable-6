@@ -25,16 +25,12 @@
 	<!-- Action links -->
 
 	<display:column>
-		<a href="message/actor/move.do?messageId=${row.id}">
+		<a href="message/move.do?messageId=${row.id}">
 			<spring:message	code="message.move" />
 		</a>
 	</display:column>		
+
 	
-	<display:column>
-		<a href="message/actor/delete.do?messageId=${row.id}">
-			<spring:message code="message.delete" />
-		</a>
-	</display:column>
 	
 	<!-- Attributes -->
 	

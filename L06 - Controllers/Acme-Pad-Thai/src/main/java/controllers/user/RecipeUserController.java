@@ -149,12 +149,12 @@ public class RecipeUserController extends AbstractController {
 		
 		ModelAndView result;
 		
-		if (binding.hasErrors()) {
+		if (binding.hasErrors()){
 			result = new ModelAndView("redirect:/recipe/user/edit.do?recipeId="+recipe.getId());
 		} else {
 
 				try {
-					recipeService.save(recipe);
+					recipe = recipeService.save(recipe);
 					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
 					
 					

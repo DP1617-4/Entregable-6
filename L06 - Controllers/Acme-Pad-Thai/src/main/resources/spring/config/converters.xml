@@ -33,6 +33,36 @@
 		
 		<bean class="converters.CookToStringConverter" />
 		<bean class="converters.StringToCookConverter" />
+		
+		<bean class="converters.QuantityToStringConverter" />
+		<bean class="converters.StringToQuantityConverter" />
+		
+		<bean class="converters.IngredientToStringConverter" />
+		<bean class="converters.StringToIngredientConverter" />
+		
+		<bean class="converters.ValueToStringConverter" />
+		<bean class="converters.StringToValueConverter" />
+		
+		<bean class="converters.PropertyToStringConverter" />
+		<bean class="converters.StringToPropertyConverter" />
+		
+		<bean class="converters.ScoreToStringConverter" />
+		<bean class="converters.StringToScoreConverter" />
+		
+		<bean class="converters.CommentToStringConverter" />
+		<bean class="converters.StringToCommentConverter" />
+		
+		<bean class="converters.UserToStringConverter" />
+		<bean class="converters.StringToUserConverter" />
+		
+		<bean class="converters.ContestToStringConverter" />
+		<bean class="converters.StringToContestConverter" />
+		
+		<bean class="converters.StepToStringConverter" />
+		<bean class="converters.StringToStepConverter" />
+		
+		<bean class="converters.CategoryToStringConverter" />
+		<bean class="converters.StringToCategoryConverter" />
 	</util:list>
 	
 </beans>

@@ -25,7 +25,6 @@
 	<form:hidden path="user"/>
 	<form:hidden path="ticker"/>
 	<form:hidden path="deleted"/>
-	<form:hidden path="score"/>
 	<form:hidden path="authored"/>
 	<form:hidden path="updated"/>
 	<form:hidden path="scores"/>
@@ -35,7 +34,6 @@
 	<form:hidden path="comments"/>
 	<form:hidden path="quantities"/>
 	<form:hidden path="pictures"/>
-	<form:hidden path="categories"/>
 
 	<form:label path="title">
 		<b><spring:message code="recipe.title" />:</b>
@@ -53,15 +51,14 @@
 	<form:errors cssClass="error" path="summary" />
 	<br /><br />
 	
-<%-- 	<form:label path="categories">
+	<form:label path="categories">
 		<b><spring:message code="recipe.category.list" />:</b>
 	</form:label>
 	<br/>
-	<form:select multiple="true" path="categories">
+	<form:select multiple="true" path="categories" >
     	<form:options items="${categoryList}" itemValue="id"  itemLabel="name" />
 	</form:select>
-	<form:errors cssClass="error" path="categories" />
-	<br/><br /> --%>
+	<br/><br />
 	
 	<form:label path="hints">
 		<b><spring:message code="recipe.hints" />:</b>

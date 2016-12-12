@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="masterClass/list" extends="master.page">	
-		<put-attribute name="title" value="List Master Classess" />
+		<put-attribute name="title" value="List Master Classes" />
 		<put-attribute name="body" value="/views/masterClass/list.jsp" />
 	</definition>
 	
