@@ -98,8 +98,8 @@
 					<li class="arrow"></li>
 					<li><a href="folder/actor/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
 					<li><a href="folder/actor/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
-					<li><a href="socialidentity/actor/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
-					<li><a href="socialidentity/actor/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
+					<li><a href="socialIdentity/actor/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
+					<li><a href="socialIdentity/actor/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
 					<li><a href="message/actor/create.do"><spring:message code="master.page.profile.message.create" /></a></li>
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a><spring:message	code="master.page.administrator" /></a>

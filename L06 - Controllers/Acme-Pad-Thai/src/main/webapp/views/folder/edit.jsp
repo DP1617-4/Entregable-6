@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="folder/edit.do" modelAttribute="folder">
+<form:form action="folder/actor/edit.do" modelAttribute="folder">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -44,7 +44,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="folder.cancel" />"
-		onclick="javascript: relativeRedir('folder/list.do');" />
+		onclick="javascript: relativeRedir('folder/actor/list.do');" />
 	<br />
 
 	
