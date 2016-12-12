@@ -26,10 +26,6 @@ public class AdministratorService {
 	@Autowired
 	private AdministratorRepository adminRepository;
 	
-	//Auxiliary Services
-	@Autowired
-	private LoginService loginService;
-	
 	@Autowired
 	private FolderService folderService;
 	
@@ -46,7 +42,7 @@ public class AdministratorService {
 	
 	public void checkAdministrator(){
 		UserAccount userAccount;
-		userAccount = loginService.getPrincipal();
+		userAccount = LoginService.getPrincipal();
 		Boolean checker = false;
 		userAccount = LoginService.getPrincipal();
 		for(Authority a: userAccount.getAuthorities()){

@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="socialIdentities" requestURI="socialidentity/list.do" id="row">
+	name="socialIdentities" requestURI="socialidentity/actor/list.do" id="row">
 	<display:column>
 		<a href="socialidentity/edit.do?socialidentityId=${row.id}">
 			<spring:message	code="socialidentity.edit" />

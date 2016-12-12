@@ -94,7 +94,7 @@ public class QuantityServiceTest extends AbstractTest {
 		Quantity quantity =  quantityService.create();
 		quantity.setUnit("no valido");
 		try{
-			Quantity saved = quantityService.save(quantity);
+			quantityService.save(quantity);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);
