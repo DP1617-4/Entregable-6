@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -38,6 +39,7 @@ public class Contest extends DomainEntity {
 		this.title = title;
 	}
 	@NotNull
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
 	public Date getOpeningTime() {
 		return openingTime;
 	}
@@ -45,6 +47,7 @@ public class Contest extends DomainEntity {
 		this.openingTime = openingTime;
 	}
 	@NotNull
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
 	public Date getClosingTime() {
 		return closingTime;
 	}

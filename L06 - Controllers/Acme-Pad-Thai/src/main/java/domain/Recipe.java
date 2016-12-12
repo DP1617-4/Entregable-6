@@ -1,5 +1,6 @@
 package domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Collection;
 
@@ -20,6 +21,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -73,6 +75,7 @@ public class Recipe extends DomainEntity {
 	
 	@Past
 	@NotNull
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
 	public Date getAuthored() {
 		return authored;
 	}
@@ -82,6 +85,7 @@ public class Recipe extends DomainEntity {
 	
 	@Past
 	@NotNull
+	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
 	public Date getUpdated() {
 		return updated;
 	}
