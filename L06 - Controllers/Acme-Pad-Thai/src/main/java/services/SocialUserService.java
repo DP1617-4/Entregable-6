@@ -6,12 +6,8 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
 import repositories.SocialUserRepository;
 import security.LoginService;
-import security.UserAccount;
-import domain.Comment;
 import domain.Recipe;
 import domain.Score;
 import domain.SocialUser;
@@ -25,9 +21,6 @@ public class SocialUserService {
 			@Autowired
 			private SocialUserRepository socialUserRepository;
 			
-			//supporting services-------------------
-			@Autowired
-			private LoginService loginService;
 			@Autowired
 			private ScoreService scoreService;
 			
@@ -63,7 +56,7 @@ public class SocialUserService {
 			
 			public SocialUser findByPrincipal(){
 				
-				SocialUser socialUser = socialUserRepository.findOneByUserAccountId(loginService.getPrincipal().getId());
+				SocialUser socialUser = socialUserRepository.findOneByUserAccountId(LoginService.getPrincipal().getId());
 				return socialUser;
 			}
 			

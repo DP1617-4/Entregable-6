@@ -1,8 +1,5 @@
 package services;
 
-import static org.junit.Assert.fail;
-
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -80,7 +77,7 @@ public class RecipeServiceTest extends AbstractTest {
 		super.authenticate("user1");
 		Recipe recipe =  recipeService.create();
 		try{
-			Recipe saved = recipeService.save(recipe);
+			recipeService.save(recipe);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

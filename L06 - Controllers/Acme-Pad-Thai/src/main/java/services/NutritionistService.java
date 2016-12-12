@@ -7,19 +7,14 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-
 import repositories.NutritionistRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import domain.Comment;
-import domain.Cook;
-import domain.Curricula;
 import domain.Folder;
 import domain.MasterClass;
 import domain.Nutritionist;
-import domain.Recipe;
 import domain.Score;
 import domain.SocialIdentity;
 import domain.SocialUser;
@@ -33,12 +28,7 @@ public class NutritionistService {
 			@Autowired
 			private NutritionistRepository nutritionistRepository;
 			
-			//supporting services-------------------
-			@Autowired
-			private LoginService loginService;
 			
-			@Autowired
-			private AdministratorService adminService;
 			
 			//Basic CRUD methods-------------------
 			
@@ -73,7 +63,7 @@ public class NutritionistService {
 			
 			public Nutritionist findByPrincipal(){
 				
-			    UserAccount userAccount = loginService.getPrincipal();
+			    UserAccount userAccount = LoginService.getPrincipal();
 			    Nutritionist nutritionist;
 				nutritionist = nutritionistRepository.findOneByUserAccountId(userAccount.getId());
 				return nutritionist;

@@ -11,7 +11,6 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Curricula;
-import domain.Nutritionist;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={
@@ -69,7 +68,7 @@ public class CurriculaServiceTest extends AbstractTest{
 			authenticate("nutritionist1");
 			Curricula curricula = curriculaService.findOne(107);
 			curriculaService.delete(curricula);
-			Nutritionist nutritionist = nutritionistService.findByPrincipal();
+			nutritionistService.findByPrincipal();
 //			System.out.println(nutritionist);
 //			System.out.println(nutritionist.getCurricula());
 			try{
