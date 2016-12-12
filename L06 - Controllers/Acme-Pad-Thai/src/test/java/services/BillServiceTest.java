@@ -34,7 +34,7 @@ public class BillServiceTest extends AbstractTest{
 	public void testCreate() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		Bill created = billService.create(sponsor);
+		billService.create(sponsor);
 		unauthenticate();
 	}
 	
@@ -57,7 +57,7 @@ public class BillServiceTest extends AbstractTest{
 		Bill bill = billService.create(sponsor);
 		bill.setDescription(null);
 		try {
-			Bill saved = billService.save(bill);
+			billService.save(bill);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);
