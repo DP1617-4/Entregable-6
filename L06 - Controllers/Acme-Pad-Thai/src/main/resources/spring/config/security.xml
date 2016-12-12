@@ -71,8 +71,10 @@
 		<security:intercept-url pattern="/ingredient/display.do" access="permitAll" />
 		
 		<security:intercept-url pattern="/user/create.do" access="isAnonymous()" />
+<!-- 		<security:intercept-url pattern="/sponsor/**" access="permitAll" /> -->
 		<security:intercept-url pattern="/sponsor/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/nutritionist/create.do" access="isAnonymous()" />
+		
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

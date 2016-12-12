@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import repositories.SponsorRepository;
@@ -65,8 +66,14 @@ public class SponsorService {
 	}
 
 	public Sponsor save(Sponsor sponsor) {
-		Sponsor saved;
-		saved = sponsorRepository.save(sponsor);
+		// Creamos un codificador de hash para la password.
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		// Convertimos la pass del usuario a hash.
+		String pass = encoder.encodePassword(sponsor.getUserAccount()
+				.getPassword(), null);
+		// Creamos una nueva cuenta y le pasamos los parametros.
+		sponsor.getUserAccount().setPassword(pass);
+		Sponsor saved = sponsorRepository.save(sponsor);
 		if(sponsor.getId() <= 0)
 			folderService.initFolders(saved);
 		return saved;

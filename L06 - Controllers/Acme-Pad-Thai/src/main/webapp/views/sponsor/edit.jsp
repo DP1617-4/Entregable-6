@@ -23,19 +23,20 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="creditCard" />
 	<form:hidden path="enroled" />
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
 	
 	<form:label path="userAccount.username">
-      <spring:message code="consumer.username" />
+      <spring:message code="sponsor.username" />
     </form:label>
     <form:input path="userAccount.username"/>
     <form:errors cssClass="error" path="userAccount.username"/>
     <br />
     
     <form:label path="userAccount.password">
-      <spring:message code="consumer.password" />
+      <spring:message code="sponsor.password" />
     </form:label>
     <form:password path="userAccount.password"/>
     <form:errors cssClass="error" path="userAccount.password"/>
@@ -84,8 +85,8 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="sponsor.save" />" /> &nbsp;
-<!-- 		onclick="javascript: relativeRedir('creditCard/edit.do');" /> &nbsp; -->
+		value="<spring:message code="sponsor.save" />" 
+ 		onclick ="javascript: relativeRedir('creditCard/edit.do');" /> &nbsp;
 		
 	<jstl:if test="${sponsor.id != 0}">
 		<input type="button" name="cancel"

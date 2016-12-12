@@ -33,6 +33,12 @@
 		
 		<bean class="converters.CookToStringConverter" />
 		<bean class="converters.StringToCookConverter" />
+		
+		<bean class="converters.SponsorToStringConverter" />
+		<bean class="converters.StringToSponsorConverter" />
+		
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.StringToCreditCardConverter" />
 	</util:list>
 	
 </beans>
