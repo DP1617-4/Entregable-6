@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -10,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import domain.Comment;
+import domain.Recipe;
 import domain.SocialUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,7 +28,11 @@ public class SocialUserServiceTest extends AbstractTest{
 		@Autowired
 		private SocialUserService socialUserService;
 		
+		@Autowired
+		private CommentService commentService;
 		
+		@Autowired
+		private RecipeService recipeService;
 		
 		//Tests---------------
 		

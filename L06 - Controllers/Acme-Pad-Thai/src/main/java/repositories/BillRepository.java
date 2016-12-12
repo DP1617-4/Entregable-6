@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Bill;
+import domain.MasterClass;
 
 @Repository
 public interface BillRepository extends JpaRepository<Bill, Integer> {

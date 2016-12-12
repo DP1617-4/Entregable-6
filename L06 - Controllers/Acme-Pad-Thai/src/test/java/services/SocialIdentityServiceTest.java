@@ -45,14 +45,16 @@ public class SocialIdentityServiceTest extends AbstractTest {
 	@Test
 	public void testSave(){
 		authenticate("user1");
+		Actor actor;
 		SocialIdentity socialId;
-		actorService.findByPrincipal();
+		SocialIdentity result;
+		actor = actorService.findByPrincipal();
 		socialId = socialIdService.create();
 		socialId.setNick("userNick");
 		socialId.setSocialNetworkLink("http://www.linkedin.com");
 		socialId.setSocialNetworkName("LinkedIn");
 		socialId.setPicture("http://www.gyazo.com/isudnf");
-		socialIdService.save(socialId);
+		result = socialIdService.save(socialId);
 		
 		unauthenticate();
 
@@ -61,8 +63,10 @@ public class SocialIdentityServiceTest extends AbstractTest {
 	@Test
 	public void testSaveNegative(){
 		authenticate("user1");
+		Actor actor;
 		SocialIdentity socialId;
-		actorService.findByPrincipal();
+		SocialIdentity result;
+		actor = actorService.findByPrincipal();
 		socialId = socialIdService.create();
 		socialId.setNick("userNick");
 		socialId.setSocialNetworkLink("http://www.linkedin.com");
@@ -70,7 +74,7 @@ public class SocialIdentityServiceTest extends AbstractTest {
 		socialId.setPicture("http://www.gyazo.com/isudnf");
 		authenticate("user2");
 		try{
-		socialIdService.save(socialId);
+		result = socialIdService.save(socialId);
 		} catch (Exception e){
 			System.out.println("Success testSaveNegative");
 		}
@@ -80,9 +84,10 @@ public class SocialIdentityServiceTest extends AbstractTest {
 	@Test
 	public void testDelete(){
 		authenticate("user1");
+		Actor actor;
 		SocialIdentity socialId;
 		Collection<SocialIdentity> socialIds;
-		actorService.findByPrincipal();
+		actor = actorService.findByPrincipal();
 		socialIds = socialIdService.findAllByPrincipal();
 		socialId = socialIds.iterator().next();
 		socialIdService.delete(socialId);

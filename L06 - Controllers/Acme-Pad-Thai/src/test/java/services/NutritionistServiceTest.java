@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -10,7 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import domain.Curricula;
 import domain.Nutritionist;
+import domain.Recipe;
+import domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={
@@ -24,7 +29,8 @@ public class NutritionistServiceTest extends AbstractTest{
 		@Autowired
 		private NutritionistService nutritionistService;
 		
-		
+		@Autowired
+		private CurriculaService curriculaService;
 		
 		//Tests---------------
 		
