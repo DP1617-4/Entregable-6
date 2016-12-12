@@ -1,15 +1,15 @@
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import domain.Actor;
-import domain.MasterClass;
-
 import repositories.ActorRepository;
 import security.LoginService;
 import security.UserAccount;
+import domain.Actor;
+import domain.MasterClass;
 
 @Service
 @Transactional
@@ -25,11 +25,7 @@ public class ActorService {
 	
 	@Autowired
 	private ActorRepository actorRepository;
-	
-	//Auxiliary Services
-	
-	@Autowired
-	private LoginService loginService;
+
 	
 	//CRUD
 	
@@ -44,8 +40,15 @@ public class ActorService {
 		Actor result;
 		UserAccount userAccount;
 		
-		userAccount = loginService.getPrincipal();
+		userAccount = LoginService.getPrincipal();
 		result = findByUserAccount(userAccount);
+		return result;
+	}
+	
+	public Collection<Actor> findAll(){
+		Collection<Actor> result;
+		
+		result = actorRepository.findAll();
 		return result;
 	}
 	//Business Methods
@@ -56,5 +59,15 @@ public class ActorService {
 		actor = findByPrincipal();
 		actor.getEnroled().add(masterClass);
 		actorRepository.save(actor);
+	}
+	
+	public String findNamePrincipal(){
+		
+		String result="John Doe";
+		
+		Actor actor = this.findByPrincipal();
+		result = actor.getName()+" "+actor.getSurname();
+		
+		return result;
 	}
 }

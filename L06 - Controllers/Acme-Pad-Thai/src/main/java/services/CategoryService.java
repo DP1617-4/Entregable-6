@@ -1,6 +1,5 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -71,14 +70,7 @@ public class CategoryService {
 			
 			public Collection<Category> findAllNotDeleted(){
 				
-				Collection<Category> notDeleted = new ArrayList<Category>();
-				for(Category c: categoryRepository.findAll()){
-					
-					if(c.getDeleted()==false){
-						
-						notDeleted.add(c);
-					}
-				}
+				Collection<Category> notDeleted = categoryRepository.findAllNotDeleted();
 				
 				return notDeleted;
 			}

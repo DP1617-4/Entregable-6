@@ -18,7 +18,11 @@ import services.IngredientService;
 import services.RecipeService;
 import controllers.AbstractController;
 import domain.Ingredient;
+import domain.Quantity;
 import domain.Recipe;
+import domain.Step;
+import forms.AddIngredient;
+import forms.AddPicture;
 import forms.FilterString;
 
 
@@ -100,10 +104,19 @@ public class RecipeController extends AbstractController {
 		Collection<Ingredient> ingredientlist = ingredientService.findAllNotDeleted();
 
 		recipe = recipeService.findOne(recipeId);
+		Collection<Quantity> quantities = recipe.getQuantities();
+		Collection<Step> steps = recipe.getSteps();
+		AddPicture addPicture = new AddPicture();
+		AddIngredient addIngredient = new AddIngredient();
 		
-		result = new ModelAndView("recipe/display.do");
+		result = new ModelAndView("recipe/display");
 		result.addObject("recipe", recipe);
 		result.addObject("ingredients", ingredientlist );
+		result.addObject("quantities", quantities );
+		result.addObject("steps", steps );
+		result.addObject("addIngredient", addIngredient);
+		result.addObject("addPicture", addPicture);
+		
 		
 		return result;
 	}

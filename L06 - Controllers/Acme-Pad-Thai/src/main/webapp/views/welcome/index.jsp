@@ -21,10 +21,15 @@
 	<img src="${banner.URL}"/>
 </jstl:if>
 
+<security:authorize access="isAnonymous()">
+	<p><b><spring:message code="welcome.greeting.anonymous" /> </b></p>
+</security:authorize>
 
-<p><spring:message code="welcome.greeting.prefix" /> ${name}<spring:message code="welcome.greeting.suffix" /></p>
+<security:authorize access="isAuthenticated()">
+	<p><b><spring:message code="welcome.greeting.prefix" /> ${name}<spring:message code="welcome.greeting.suffix" /></b></p>
+</security:authorize>
 
-<p><spring:message code="welcome.greeting.current.time" /> ${moment}</p> 
+<p><b><spring:message code="welcome.greeting.current.time" /></b> ${moment}</p> 
 
 <p><spring:message code="welcome.promoted.classes"/></p>
 
@@ -66,7 +71,5 @@
 	<display:column>
 		<a href="masterclass/enrol.do"><spring:message code="welcome.masterclass.enroll"/></a>
 	</display:column>
-	
-	
-	
+
 </display:table>

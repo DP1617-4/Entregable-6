@@ -19,41 +19,51 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<h3><jstl:out value="${ingredient.name}"/></h3>
-<br/>
-<p><jstl:out value="${ingredient.description}"/></P>
-<p><spring:message code="ingredient.pictures"/></p>
+<h2>${ingredient.name}</h2>
+<h3>${ingredient.description}</h3>
+<h4><spring:message code="ingredient.pictures"/></h4>
 <p>
 
 <security:authorize access="hasRole('NUTRITIONIST')">
-<form:label path="picture"><spring:message code="ingregient.picture.url"/></form:label>
-<form:input path="picture" />
-<a href="ingredient/nutritionist/addpicture.do?recipeId=${ingredient.id}&picture=${picture}">
-	<spring:message	code="recipe.pictures.add" />
-</a>
+<form:form action="ingredient/nutritionist/addPicture.do" modelAttribute="addPicture">
+
+	<form:hidden path="id" value="${ingredient.id}"/>
+	
+	<form:input path="picture"/>
+	<form:errors cssClass="error" path="picture" />
+	
+	<input type="submit" name="addImage"
+	value ="<spring:message code="ingredient.pictures.add"/>" />
+
+</form:form>
 </security:authorize>
 
 </p>
 <ul>
-	<jstl:forEach var="picture" items="${ingredient.pictures}" >
-		<li><img src="${picture}"/></li>
+	<jstl:forEach var="thisPicture" items="${ingredient.pictures}" >
+		<li><img src="${thisPicture}" alt="${thisPicture}"/></li>
 	</jstl:forEach>
 </ul>
 <br/>
 
-<p><spring:message	code="ingredient.properties" />
+<h2><spring:message	code="ingredient.properties" /></h2>
 <security:authorize access="hasRole('NUTRITIONIST')">
-	<form:select path="selectedProperty" >
-    	<form:options items="${propertylist}" itemValue="id"  itemLabel="name" />
+	<form:form action="ingredient/nutritionist/addProperty.do" modelAttribute="addIngredient">
+
+	<form:hidden path="recipeId" value="${ingredient.id}"/>
+	
+	<form:select path="ingredientId" >
+    	<form:options items="${properties}" itemValue="id"  itemLabel="name" />
 	</form:select>
-	<a href="ingredient/nutritionist/addproperty.do?ingredientId=${ingredient.id}&propertytId=${selectedProperty}">
-		<spring:message	code="ingredient.addproperties" />
-	</a>
+	
+	<input type="submit" name="addProperty"
+	value ="<spring:message code="ingredient.addproperties"/>" />
+
+</form:form>
 </security:authorize>
-</p>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="properties" requestURI="${ingredient.values}" id="row">
+	name="values" requestURI="ingredient/display.do" id="row">
 	<!-- Attributes -->
 	
 	<spring:message code="ingredient.property.name" var="propertyHeader" />

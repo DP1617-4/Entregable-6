@@ -35,9 +35,6 @@ public class CookService {
 	//Auxiliary Services
 	
 	@Autowired
-	private LoginService loginService;
-	
-	@Autowired
 	private FolderService folderService;
 	
 	@Autowired
@@ -108,7 +105,7 @@ public class CookService {
 	public Cook findByPrincipal(){
 		Cook result;
 		UserAccount userAccount;
-		userAccount = loginService.getPrincipal();
+		userAccount = LoginService.getPrincipal();
 		result = findByUserAccount(userAccount);
 		return result;
 	}

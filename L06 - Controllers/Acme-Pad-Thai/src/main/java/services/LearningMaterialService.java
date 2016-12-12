@@ -26,8 +26,7 @@ public class LearningMaterialService {
 	
 	//AuxiliaryServices
 	
-	@Autowired
-	private MasterClassService masterClassService;
+	
 	
 	
 
