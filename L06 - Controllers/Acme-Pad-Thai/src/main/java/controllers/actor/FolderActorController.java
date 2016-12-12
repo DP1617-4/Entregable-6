@@ -83,7 +83,8 @@ public class FolderActorController extends AbstractController {
 
 			return result;
 		}
-
+		
+		//Needs further testing
 		@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 		public ModelAndView save(@Valid Folder folder, BindingResult binding) {
 			ModelAndView result;

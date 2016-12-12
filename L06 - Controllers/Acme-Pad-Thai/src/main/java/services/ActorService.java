@@ -70,6 +70,14 @@ public class ActorService {
 		return result;
 	}
 	
+	public Actor findOne(int id){
+		Actor result;
+		
+		result = actorRepository.findOne(id);
+		
+		return result;
+	}
+	
 	public Collection<Actor> findAll(){
 		Collection<Actor> result;
 				

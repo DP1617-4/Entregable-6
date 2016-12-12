@@ -16,4 +16,7 @@ public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	
 	@Query("select a from Actor a join a.enroled mc where mc.id = ?1")
 	Collection<Actor> findAllByMasterClassId(int masterClassId);
+	
+	@Query("select a from Actor a where a.id = ?1")
+	Actor findOne(int id);
 }
