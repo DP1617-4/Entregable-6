@@ -44,14 +44,19 @@
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 	name="recipes" requestURI="${requestURI}" id="row">
 	<security:authentication property="principal" var ="loggedactor"/>
-	<jstl:set var="recipeuser" value="${row.user}"/> 
-	<jstl:if test="${recipeuser.userAccount.username==loggedactor}">
+	<security:authorize access="hasRole('USER')">
 	<display:column>
+	<jstl:set var="recipeuser" value="${row.user}"/> 
+	<jstl:choose>
+		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
 			<a href="recipe/user/edit.do?recipeId=${row.id}">
 				<spring:message	code="recipe.edit" />
 			</a>
+		</jstl:when>
+	</jstl:choose>
 	</display:column>
-	</jstl:if>
+	</security:authorize>
+
 	
 	<!-- Attributes -->
 	
@@ -82,7 +87,6 @@
 	</display:column>
 	
 </display:table>
-
 <security:authorize access="hasRole('USER')">
 	<div>
 		<a href="recipe/user/create.do"> <spring:message
@@ -90,3 +94,4 @@
 		</a>
 	</div>
 </security:authorize>
+

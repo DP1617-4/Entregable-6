@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import domain.Curricula;
 import domain.Endorser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,9 +20,6 @@ import domain.Endorser;
 public class EndorserServiceTest extends AbstractTest{
 	
 	//Service under test---------------
-		
-		@Autowired
-		private CurriculaService curriculaService;
 		
 		@Autowired
 		private NutritionistService nutritionistService;

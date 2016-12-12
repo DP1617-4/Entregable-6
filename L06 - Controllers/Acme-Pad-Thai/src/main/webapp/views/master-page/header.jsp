@@ -14,7 +14,9 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." /> <a href="?language=en">en</a> | <a href="?language=es">es</a>
+	<a href="welcome/index.do">
+	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." height="180"/> </a><a href="?language=en">en</a> | <a href="?language=es">es</a>
+	
 </div>
 
 <div>
@@ -25,7 +27,7 @@
 				<li class="arrow"></li>
 				<li><a href="recipe/list.do"><spring:message code="master.page.recipe.list"/></a>
 				<security:authorize access="hasRole('USER')">
-					<li><a href="user/recipe/create.do"><spring:message code="master.page.recipe.create"/></a> </li>
+					<li><a href="recipe/user/create.do"><spring:message code="master.page.recipe.create"/></a> </li>
 				</security:authorize>
 			</ul>
 		</li>
@@ -88,11 +90,11 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="folder/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
-					<li><a href="folder/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
-					<li><a href="socialidentity/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
-					<li><a href="socialidentity/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
-					<li><a href="message/create.do"><spring:message code="master.page.profile.message.create" /></a></li>
+					<li><a href="folder/actor/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
+					<li><a href="folder/actor/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
+					<li><a href="socialidentity/actor/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
+					<li><a href="socialidentity/actor/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
+					<li><a href="message/actor/create.do"><spring:message code="master.page.profile.message.create" /></a></li>
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a><spring:message	code="master.page.administrator" /></a>
 							<ul>
