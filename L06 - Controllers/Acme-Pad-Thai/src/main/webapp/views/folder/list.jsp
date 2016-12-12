@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="folders" requestURI="folder/actor/list.do" id="row">
+	name="folders" requestURI="${requestURI}" id="row">
 	<display:column>
 		<jstl:if test="${!row.systemFolder}">
 			<a href="folder/edit.do?folderId=${row.id}">

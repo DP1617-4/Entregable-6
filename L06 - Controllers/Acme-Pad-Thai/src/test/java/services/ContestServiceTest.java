@@ -35,7 +35,7 @@ public class ContestServiceTest extends AbstractTest {
 	@Test
 	public void testCreatePositive() {
 		super.authenticate("admin1");
-		contestService.create();
+		Contest contest =  contestService.create();
 		
 	}
 	
@@ -77,7 +77,7 @@ public class ContestServiceTest extends AbstractTest {
 		super.authenticate("admin1");
 		Contest contest =  contestService.create();
 		try{
-			contestService.save(contest);
+			Contest saved = contestService.save(contest);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

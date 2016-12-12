@@ -1,5 +1,8 @@
 package services;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -9,6 +12,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
+import repositories.UserRepository;
+import security.UserAccount;
+
+import domain.Comment;
+import domain.Folder;
+import domain.MasterClass;
+import domain.Recipe;
+import domain.Score;
+import domain.SocialIdentity;
+import domain.SocialUser;
 import domain.User;
 
 import utilities.AbstractTest;
@@ -26,7 +39,8 @@ public class UserServiceTest extends AbstractTest{
 		@Autowired
 		private UserService userService;
 		
-		
+		@Autowired
+		private RecipeService recipeService;
 		
 		//Tests---------------
 		

@@ -47,6 +47,13 @@ public class VideoMaterialService {
 		VideoMaterial result;
 		result = videoMaterialRepository.findOne(id);
 		Assert.notNull(result);
+		return result;
+	}
+	
+	public VideoMaterial findOneToEdit(int id){
+		VideoMaterial result;
+		result = videoMaterialRepository.findOne(id);
+		Assert.notNull(result);
 		checkPrincipal(result);
 		return result;
 	}

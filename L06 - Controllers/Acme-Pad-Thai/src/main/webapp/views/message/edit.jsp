@@ -60,12 +60,12 @@
 	<form:errors cssClass="error" path="priority" />
 	<br />
 	
-	<form:label path="receiver">
+	<form:label path="recipient">
 		<spring:message code="message.recipient" />:
 	</form:label>
-	<form:select id="actors" path="receiver" >
+	<form:select id="users" path="recipient" >
 		<form:option value="0" label="----"/>
-		<form:options items="${actors}" itemValue="id" itemLabel="name"/>
+		<form:options items="${users}" itemValue="id" itemLabel="name"/>
 	</form:select>
 	<form:errors cssClass="error" path="priority" />
 	<br />

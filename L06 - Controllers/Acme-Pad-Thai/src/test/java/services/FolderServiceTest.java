@@ -61,12 +61,15 @@ public class FolderServiceTest extends AbstractTest {
 	public void testDelete(){
 		authenticate("user1");
 		Actor actor;
+		Collection<Folder> folders;
+		Collection<Folder> end;
 		Folder folder;
+		Folder result;
 		actor = actorService.findByPrincipal();
 		folder = folderService.create(actor);
-		folderService.findAllByPrincipal();
+		folders = folderService.findAllByPrincipal();
 		folder.setName("TestFolder");
-		folderService.save(folder);
+		result = folderService.save(folder);
 		
 		unauthenticate();
 	}

@@ -24,17 +24,13 @@ public class LearningMaterialService {
 	@Autowired
 	private LearningMaterialRepository learningMaterialRepository;
 	
-	//AuxiliaryServices
-	
-	
-	
 	
 
 	//Other Methods --------------------------------------------------------
 	
 	public Collection<LearningMaterial> findAllByMasterClass(int masterClassId){
 
-		Collection<LearningMaterial> learningMaterial = new ArrayList<LearningMaterial>();;
+		Collection<LearningMaterial> learningMaterial = new ArrayList<LearningMaterial>();
 		learningMaterial = learningMaterialRepository.findAllByMasterClass(masterClassId); 
 		
 		return learningMaterial;
