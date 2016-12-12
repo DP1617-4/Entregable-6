@@ -59,7 +59,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="step.cancel" />"
-		onclick="javascript: relativeRedir('recipe/list.do');" />
+		onclick="javascript: relativeRedir('recipe/display.do');" />
 	<br />
 
 </form:form>
