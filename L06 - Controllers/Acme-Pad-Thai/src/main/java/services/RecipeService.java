@@ -56,6 +56,9 @@ public class RecipeService {
 		created.setAuthored(moment);
 		created.setDeleted(false);
 		created.setUser(principal);
+		String ticker = this.createTicker();
+		created.setTicker(ticker);
+		created.setUpdated(moment);
 		
 		return created;
 	}
@@ -91,9 +94,7 @@ public class RecipeService {
 		Recipe saved, toSave;
 		toSave = recipe;
 		Date moment = new Date(System.currentTimeMillis()-100);
-		String ticker = this.createTicker();
 		toSave.setUpdated(moment);
-		toSave.setTicker(ticker);
 		saved = recipeRepository.save(recipe);
 		return saved;
 		
