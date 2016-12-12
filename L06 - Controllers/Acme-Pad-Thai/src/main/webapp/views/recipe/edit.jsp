@@ -25,7 +25,6 @@
 	<form:hidden path="user"/>
 	<form:hidden path="ticker"/>
 	<form:hidden path="deleted"/>
-	<form:hidden path="score"/>
 	<form:hidden path="authored"/>
 	<form:hidden path="updated"/>
 	<form:hidden path="scores"/>

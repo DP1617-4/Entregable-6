@@ -1007,8 +1007,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="step1"></ref>
 			</list>
 		</property>
-		<property name="contest"> <null/> </property>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1053,8 +1051,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="step2"></ref>
 			</list>
 		</property>
-		<property name="contest"> <null/> </property>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1099,8 +1095,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="step3"></ref>
 			</list>
 		</property>
-		<property name="contest"> <null/> </property>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1487,7 +1481,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			</list>
 		</property>
 		<property name="contest" ref ="contest1"/>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1531,7 +1524,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			</list>
 		</property>
 		<property name="contest" ref ="contest1"/>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
