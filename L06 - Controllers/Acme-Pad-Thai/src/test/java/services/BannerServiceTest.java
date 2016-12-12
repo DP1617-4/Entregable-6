@@ -38,7 +38,7 @@ public class BannerServiceTest extends AbstractTest{
 	public void testCreate() {
 		authenticate("sponsor1");
 		Campaign campaign = campaignService.findOne(115);
-		Banner created = bannerService.create(campaign);
+		bannerService.create(campaign);
 		unauthenticate();
 	}
 	
@@ -62,7 +62,7 @@ public class BannerServiceTest extends AbstractTest{
 		Banner banner = bannerService.create(campaign);
 		banner.setURL(null);
 		try {
-			Banner saved = bannerService.save(banner);
+			bannerService.save(banner);
 		}
 		catch(Exception e) {
 			Assert.isInstanceOf(IllegalArgumentException.class, e);
