@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import domain.Administrator;
-
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
@@ -27,7 +26,8 @@ public class AdministratorService {
 	@Autowired
 	private AdministratorRepository adminRepository;
 	
-	
+	@Autowired
+	private FolderService folderService;
 	
 	//CRUD
 	
@@ -52,5 +52,13 @@ public class AdministratorService {
 			}
 		}
 		Assert.isTrue(checker); 
+	}
+	
+	public Administrator save(Administrator administrator){
+		Administrator result;
+		result = adminRepository.save(administrator);
+		if(administrator.getId() <= 0)
+			folderService.initFolders(result);
+		return result;
 	}
 }

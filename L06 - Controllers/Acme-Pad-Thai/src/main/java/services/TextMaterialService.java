@@ -50,7 +50,6 @@ public class TextMaterialService {
 		TextMaterial result;
 		result = textMaterialRepository.findOne(id);
 		Assert.notNull(result);
-		checkPrincipal(result);
 		return result;
 	}
 	
@@ -81,6 +80,14 @@ public class TextMaterialService {
 		Cook cook;
 		cook = cookService.findByPrincipal();
 		Assert.isTrue(textMaterial.getMasterClass().getCook().equals(cook), "Dear user, you must be the teacher of the master class to edit its materials.");
+	}
+
+	public TextMaterial findOneToEdit(int textMaterialId) {
+		TextMaterial result;
+		result = textMaterialRepository.findOne(textMaterialId);
+		Assert.notNull(result);
+		checkPrincipal(result);
+		return result;
 	}
 	
 }

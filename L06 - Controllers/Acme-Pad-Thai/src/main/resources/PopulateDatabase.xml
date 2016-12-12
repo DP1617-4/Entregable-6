@@ -172,6 +172,18 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="system" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 <!-- DESDE AQUÍ AÑADIR 2 O 3 DE CADA CLASE MÁS. CUIDADO CON LAS CLASES A LAS QUE ASOCIAIS. SI OS HABÉIS REPARTIDO EL TRABAJO,
 COMPENETRAD COMO VAIS A HACERLO CADA UNO Y MANTENED EL FORMATO PARA MENOS PROBLEMAS.
@@ -368,6 +380,19 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount12" />
+	</bean>
+	
+	<bean id="system" class="domain.Administrator">
+		<property name="name" value="System" />
+		<property name="surname" value="System" />
+		<property name="email" value="system@gmail.com" />
+		<property name="phone" value="H000" />
+		<property name="postalAddress" value="None" />
+		<property name="folders">
+			<list>
+			</list>
+		</property>
+		<property name="userAccount" ref="userAccount13" />
 	</bean>
 	
 	<!-- SPONSORS -->	
@@ -574,6 +599,17 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
+	<bean id="spam12" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="deleted" value="false" />
+		<property name="actor" ref="system" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- TRASH -->
 	<bean id="trash1" class="domain.Folder">
 		<property name="name" value="trashbox" />
@@ -690,6 +726,17 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
 		<property name="actor" ref="admin2" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trash12" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="deleted" value="false" />
+		<property name="actor" ref="system" />
 		<property name="messages">
 			<list>
 			</list>
@@ -818,6 +865,17 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
+	<bean id="inbox12" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="deleted" value="false" />
+		<property name="actor" ref="system" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- OUTBOX -->	
 	<bean id="outbox1" class="domain.Folder">
 		<property name="name" value="outbox" />
@@ -940,6 +998,17 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
+	<bean id="outbox12" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="deleted" value="false" />
+		<property name="actor" ref="system" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- MESSAGE -->	
 	<bean id="message1Sent" class="domain.Message">
 		<property name="title" value="Message1" />
@@ -1007,8 +1076,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="step1"></ref>
 			</list>
 		</property>
-		<property name="contest"> <null/> </property>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1053,8 +1120,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="step2"></ref>
 			</list>
 		</property>
-		<property name="contest"> <null/> </property>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1099,8 +1164,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="step3"></ref>
 			</list>
 		</property>
-		<property name="contest"> <null/> </property>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1487,7 +1550,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			</list>
 		</property>
 		<property name="contest" ref ="contest1"/>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>
@@ -1531,7 +1593,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			</list>
 		</property>
 		<property name="contest" ref ="contest1"/>
-		<property name="wonContest"> <null/> </property>
 		<property name="comments" >
 			<list>
 				<ref bean="comment1"></ref>

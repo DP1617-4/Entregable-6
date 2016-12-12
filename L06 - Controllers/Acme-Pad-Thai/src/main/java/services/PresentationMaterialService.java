@@ -44,6 +44,13 @@ public class PresentationMaterialService {
 		PresentationMaterial result;
 		result = presentationMaterialRepository.findOne(id);
 		Assert.notNull(result);
+		return result;
+	}
+	
+	public PresentationMaterial findOneToEdit(int id){
+		PresentationMaterial result;
+		result = presentationMaterialRepository.findOne(id);
+		Assert.notNull(result);
 		checkPrincipal(result);
 		return result;
 	}

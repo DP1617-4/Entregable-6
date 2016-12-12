@@ -58,6 +58,7 @@ public class RecipeService {
 		created.setUser(principal);
 		String ticker = this.createTicker();
 		created.setTicker(ticker);
+		created.setUpdated(moment);
 		
 		return created;
 	}

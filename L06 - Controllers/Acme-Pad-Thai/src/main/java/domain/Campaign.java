@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -30,6 +32,7 @@ public class Campaign extends DomainEntity{
 			private Boolean deleted;
 			
 			@NotNull
+			@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
 			public Date getStartDate() {
 				return startDate;
 			}
@@ -37,6 +40,7 @@ public class Campaign extends DomainEntity{
 				this.startDate = startDate;
 			}
 			
+			@DateTimeFormat(pattern="dd/MM/yyyy HH:mm")
 			@NotNull
 			public Date getEndDate() {
 				return endDate;
