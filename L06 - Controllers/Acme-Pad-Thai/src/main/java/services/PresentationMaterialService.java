@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import domain.Cook;
 import domain.MasterClass;
 import domain.PresentationMaterial;
 
@@ -73,8 +72,6 @@ public class PresentationMaterialService {
 	//Business methods
 	
 	public void checkPrincipal(PresentationMaterial presentationMaterial){
-		Cook cook;
-		cook = cookService.findByPrincipal();
-//		Assert.isTrue(presentationMaterial.getMasterClass().getCook().equals(cook), "Dear user, you must be the teacher of the master class to edit its materials.");
+		cookService.findByPrincipal();
 	}
 }
