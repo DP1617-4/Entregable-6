@@ -42,6 +42,17 @@ public class MessageService {
 	private SystemConfigurationService sysConfService;
 	
 	//CRUD
+
+
+	public Message create(){
+		Message result = new Message();
+		Actor sender;
+		sender = actorService.findByPrincipal();
+		result.setMoment(new Date());
+		result.setSender(sender);
+		result.setPriority("NEUTRAL"); //By default neutral
+		return result;
+	}
 	
 	public Message create(Actor recipient){
 		Message result = new Message();
