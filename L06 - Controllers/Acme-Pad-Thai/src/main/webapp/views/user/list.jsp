@@ -11,12 +11,12 @@
 
 
 <spring:message code="user.filter"/>
-<form:form action="user/filter.do" modelAttribute="FilterString">
+<form:form action="user/filter.do" modelAttribute="filterString">
 
-	
 	<form:input path="filter"/>
+	<form:errors cssClass="error" path="filter" />
 	
-	<input type="submit" name="type"
+	<input type="submit" name="filter"
 	value ="<spring:message code="user.filter.button"/>" />
 
 </form:form>
