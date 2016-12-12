@@ -13,22 +13,22 @@
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 name="user" requestURI="${requestURI}" id="row">
 
-	<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
+	<security:authentication property="principal" var ="loggedactor"/>
 	<jstl:set var="user" value="${row}"/> 
 
-	<spring:message code="user.name" var=nameHeader/>
+	<spring:message code="user.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="user.surname" var=surnameHeader/>
+	<spring:message code="user.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="user.email" var=emailHeader/>
+	<spring:message code="user.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="user.phone" var=phoneHeader/>
+	<spring:message code="user.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="user.postalAddress" var=postalAddressHeader/>
+	<spring:message code="user.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 	
 	<display:column>
@@ -36,7 +36,7 @@ name="user" requestURI="${requestURI}" id="row">
 			code="user.recipes.list" />
 		</a>
 	</display:column>
-	<jstl:if test="${loggedactor == user.userAccount.username }">
+	<jstl:if test="${loggedactor == row.userAccount }">
 		<display:column>
 			<a href="user/edit.do?userId=${row.id}"> <spring:message
 					code="user.edit" />
@@ -45,6 +45,7 @@ name="user" requestURI="${requestURI}" id="row">
 	</jstl:if>
 </display:table>
 <br/>
+
 
 	
 
