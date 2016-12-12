@@ -15,8 +15,8 @@
 
 <div>
 	<a href="welcome/index.do">
-	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." height="180"/> </a><a href="?language=en">en</a> | <a href="?language=es">es</a>
-	
+	<img src="images/logo.png" alt="Acme Pad-Thai Co., Inc." height="180"/> <a href="?language=en">en</a> | <a href="?language=es">es</a>
+	</a>
 </div>
 
 <div>
@@ -43,9 +43,15 @@
 		<li><a class="fNiv"><spring:message code="master.page.master.class"/></a>
 			<ul>
 				<li class="arrow"></li>
-				<li><a href="masterClass/list.do"><spring:message code="master.page.master.class.list"/></a></li>
+				<security:authorize access="isAnonymous()">
+					<li><a href="masterClass/list.do"><spring:message code="master.page.master.class.list"/></a></li>
+				</security:authorize>
+				<security:authorize access="isAuthenticated()">
+					<li><a href="masterClass/actor/list.do"><spring:message code="master.page.master.class.list"/></a></li>
+				</security:authorize>
 				<security:authorize access="hasRole('COOK')">
 					<li><a href="cook/masterClass/create.do"><spring:message code="master.page.master.class.create"/></a> </li>
+					<li><a href="masterClass/cook/listOwn.do"><spring:message code="master.page.master.class.list.own"/></a></li>
 				</security:authorize>
 			</ul>
 		</li>	
@@ -90,11 +96,11 @@
 				</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="folder/actor/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
-					<li><a href="folder/actor/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
-					<li><a href="socialidentity/actor/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
-					<li><a href="socialidentity/actor/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
-					<li><a href="message/actor/create.do"><spring:message code="master.page.profile.message.create" /></a></li>
+					<li><a href="folder/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
+					<li><a href="folder/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
+					<li><a href="socialidentity/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
+					<li><a href="socialidentity/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
+					<li><a href="message/create.do"><spring:message code="master.page.profile.message.create" /></a></li>
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a><spring:message	code="master.page.administrator" /></a>
 							<ul>

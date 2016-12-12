@@ -1,5 +1,5 @@
 <%--
- * list.jsp
+ * edit.jsp
  *
  * Copyright (C) 2016 Universidad de Sevilla
  * 
@@ -18,29 +18,19 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="folders" requestURI="${requestURI}" id="row">
-	<display:column>
-		<jstl:if test="${!row.systemFolder}">
-			<a href="folder/edit.do?folderId=${row.id}">
-				<spring:message	code="folder.edit" />
-			</a>
-		</jstl:if>
-	</display:column>
-	<display:column>
-		<a href="message/list.do?folderId=${row.id}"><spring:message code="folder.message.list"/></a>
-	</display:column>
-	
-	<!-- Attributes -->
-	
-	<spring:message code="folder.name" var="nameHeader" />
-	<display:column property="name" title="${nameHeader}" sortable="true" />
+
+<spring:message code="learningMaterial.select.header"/>
+<form:form action="learningMaterial/select.do" modelAttribute="SelectMaterial">
 
 	
-</display:table>
+	<form:select path="selected">
+		<form:option value="0" label="---"/>
+		<form:option value="1" label="Presentation"/>
+		<form:option value="2" label="Text"/>
+		<form:option value="3" label="Video"/>
+	</form:select>
+	
+	<input type="submit" name="type"
+	value ="<spring:message code="learningMaterial.select"/>" />
 
-<div>
-	<a href="folder/create.do"> <spring:message
-			code="folder.create" />
-	</a>
-</div>
+</form:form>

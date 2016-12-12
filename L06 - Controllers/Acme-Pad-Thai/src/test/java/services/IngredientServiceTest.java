@@ -1,5 +1,7 @@
 package services;
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -63,7 +65,7 @@ public class IngredientServiceTest extends AbstractTest {
 	public void testSaveNegative() {
 		Ingredient ingredient =  ingredientService.create();
 		try{
-			ingredientService.save(ingredient);
+			Ingredient saved = ingredientService.save(ingredient);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

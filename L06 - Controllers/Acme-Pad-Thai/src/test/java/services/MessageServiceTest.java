@@ -81,6 +81,9 @@ public class MessageServiceTest extends AbstractTest {
 	public void testSaveNegative(){
 		authenticate("user1");
 		Message result;
+		Message sent;
+		Folder outbox;
+		Collection<Message> sents;
 		Actor recipient;
 		Actor sender;
 		recipient = actorService.findByPrincipal();
@@ -90,7 +93,7 @@ public class MessageServiceTest extends AbstractTest {
 		Assert.isTrue(result.getReceiver().equals(recipient));
 		Assert.isTrue(result.getSender().equals(sender));
 		try{
-			messageService.send(result);
+			sent = messageService.send(result);
 		}catch(Exception e){
 			System.out.println("Validation exception caught Successfully");
 		}
@@ -136,6 +139,7 @@ public class MessageServiceTest extends AbstractTest {
 	public void testFindAllByFolder(){
 		authenticate("user1");
 		Collection<Message> result;
+		Folder folder;
 		result = messageService.findAllByFolder(59);
 		Assert.notEmpty(result);
 		unauthenticate();
@@ -143,8 +147,9 @@ public class MessageServiceTest extends AbstractTest {
 	@Test
 	public void testFindAllByFolderNegative(){
 		authenticate("user2");
+		Collection<Message> result;
 		try{
-			messageService.findAllByFolder(59);
+			result = messageService.findAllByFolder(59);
 		}catch(Exception e){
 			System.out.println("Success testFindAllByFolderNegative");
 		}
@@ -171,6 +176,7 @@ public class MessageServiceTest extends AbstractTest {
 	public void testMoveNegative(){
 		authenticate("user1");
 		Message message;
+		Message result;
 		Actor actor;
 		Folder destiny;
 		Collection<Message> messages;
@@ -180,7 +186,7 @@ public class MessageServiceTest extends AbstractTest {
 		actor= actorService.findByPrincipal();
 		try{
 		destiny = folderService.findSystemFolder(actor, "trashbox");
-		messageService.move(message, destiny);
+		result = messageService.move(message, destiny);
 		}catch(Exception e){
 			System.out.println("Success MoveNegative");
 		}

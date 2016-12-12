@@ -121,7 +121,7 @@ public class Actor extends DomainEntity {
 	}
 	
 	@Valid
-	@ManyToMany()
+	@ManyToMany(cascade = CascadeType.ALL)
 	public Collection<MasterClass> getEnroled() {
 		return enroled;
 	}

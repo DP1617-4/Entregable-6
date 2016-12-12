@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import services.LearningMaterialService;
 import services.MasterClassService;
 import controllers.AbstractController;
-import domain.LearningMaterial;
 import domain.MasterClass;
 
 
@@ -26,9 +23,6 @@ public class MasterClassController extends AbstractController {
 
 	@Autowired
 	private MasterClassService masterClassService;
-	
-	@Autowired
-	private LearningMaterialService learningMaterialService;
 	
 	// Constructors -----------------------------------------------------------
 	
@@ -59,12 +53,11 @@ public class MasterClassController extends AbstractController {
 		ModelAndView result;
 		MasterClass masterClass;
 		masterClass = masterClassService.findOne(masterClassId);
-		Collection<LearningMaterial> learningMaterials = learningMaterialService.findAllByMasterClass(masterClass.getId());
 		
 		result = new ModelAndView("masterClass/edit");
 		result.addObject("requestURI", "masterClass/display.do");
+		result.addObject("cancelURI", "masterClass/list.do");
 		result.addObject("masterClass", masterClass);
-		result.addObject("learningMaterials", learningMaterials );
 		result.addObject("display", true);
 		result.addObject("cancelURI", "masterClass/list.do");
 		

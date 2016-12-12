@@ -68,7 +68,7 @@ public class StepServiceTest extends AbstractTest {
 		Recipe recipe = recipeService.findOne(76);
 		Step step =  stepService.create(recipe);
 		try{
-			stepService.save(step);
+			Step saved = stepService.save(step);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);
