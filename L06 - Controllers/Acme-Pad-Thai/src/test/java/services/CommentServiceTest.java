@@ -30,6 +30,8 @@ public class CommentServiceTest extends AbstractTest {
 	//supporting services-------------------
 	
 	@Autowired
+	private UserService userService;
+	@Autowired
 	private RecipeService recipeService;
 	
 	//Tests---------------
@@ -66,7 +68,7 @@ public class CommentServiceTest extends AbstractTest {
 		Recipe recipe = recipeService.findOne(74);
 		Comment comment =  commentService.create(recipe);
 		try{
-			commentService.save(comment);
+			Comment saved = commentService.save(comment);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

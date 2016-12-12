@@ -18,10 +18,9 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-
 <security:authorize access="hasRole('COOK')">
 	<div>
-		<a href="masterClass/own/list.do"> <spring:message
+		<a href="masterClass/cook/listOwn.do"> <spring:message
 				code="masterClass.cook.list.own" />
 		</a>
 	</div>
@@ -29,27 +28,29 @@
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 	name="masterClasses" requestURI="${requestURI}" id="row">
+	<jstl:set var="masterClasscook" value="${row.cook}"/> 
 	
-	<display:column>
-		<a href="masterClass/display.do?masterClassId=${row.id}">
-			<spring:message	code="masterClass.view" />
-		</a>
-	</display:column>
+	<security:authorize access="isAuthenticated()">
+			<display:column>
+				<a href="masterClass/actor/display.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.view" />
+				</a>
+			</display:column>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
+			<display:column>
+				<a href="masterClass/display.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.view" />
+				</a>
+			</display:column>
+	</security:authorize>
 	
 	<security:authorize access="hasRole('COOK')">
 	<security:authentication property="principal.username" var ="loggedactor"/>
-	<jstl:set var="masterClasscook" value="${row.cook}"/> 
 		<display:column>
 			<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
-				<a href="masterClass/edit.do?masterClassId=${row.id}">
+				<a href="masterClass/cook/edit.do?masterClassId=${row.id}">
 					<spring:message	code="masterClass.edit" />
-				</a>
-			</jstl:if>
-		</display:column>
-		<display:column>
-			<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
-				<a href="learningmaterial/create.do?masterClassId=${row.id}">
-					<spring:message code="masterClass.add.material"/>
 				</a>
 			</jstl:if>
 		</display:column>
@@ -68,25 +69,41 @@
 	<display:column property="promoted" title="${promotedHeader}" sortable="true" />
 	
 	<security:authorize access="isAuthenticated()">
+	<security:authentication property="principal.username" var ="loggedactor"/>
 		<display:column>
-			<a href="learningMaterial/list.do?masterClassId=${row.id}"><spring:message code="masterClass.materials.list"/></a>
+			<jstl:set var="canEnrol" value="true"/> 
+			<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
+				<jstl:set var="canEnrol" value="false"/> 
+			</jstl:if>
+			<jstl:forEach items="${actor.enroled}" var="masterClass">
+				<jstl:if test="${masterClass.id==row.id}">
+					<jstl:set var="canEnrol" value="false"/> 
+				</jstl:if>
+			</jstl:forEach>
+			<jstl:if test="${canEnrol}">
+				<a href="masterClass/actor/enrol.do?masterClassId=${row.id}"><spring:message code="masterClass.enroll"/></a>
+			</jstl:if>
+		</display:column>
+		
+		<display:column>
+			<jstl:if test="${!canEnrol}">
+				<a href="learningMaterial/actor/list.do?masterClassId=${row.id}"><spring:message code="masterClass.materials.list"/></a>
+			</jstl:if>
 		</display:column>
 	
-	
-		<display:column>
-			<a href="masterClass/enrol.do"><spring:message code="masterClass.enroll"/></a>
-		</display:column>
 	</security:authorize>
 	
 	
 </display:table>
+<jstl:if test="${error!=null}">
+	<spring:message code="${error}"/>
+</jstl:if>
 
 <security:authorize access="hasRole('COOK')">
 	<div>
-		<a href="cook/masterClass/create.do"> <spring:message
-				code="masterClass.create" />
-		</a>
+		<input type="button" name="cancel"
+			value="<spring:message code="masterClass.create" />"
+			onclick="javascript: window.location.replace('masterClass/cook/create.do');" />&nbsp;
+		<br />
 	</div>
 </security:authorize>
-
-${masterClasscook.userAccount.id}

@@ -59,7 +59,7 @@ public class CategoryServiceTest extends AbstractTest {
 		super.authenticate("admin1");
 		Category category =  categoryService.create(null);
 		try{
-			categoryService.save(category);
+			Category saved = categoryService.save(category);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);

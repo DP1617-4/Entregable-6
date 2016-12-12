@@ -1,5 +1,7 @@
 package services;
 
+import static org.junit.Assert.fail;
+
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -56,7 +58,7 @@ public class PropertyServiceTest extends AbstractTest {
 	public void testSaveNegative() {
 		Property property =  propertyService.create();
 		try{
-			propertyService.save(property);
+			Property saved = propertyService.save(property);
 		}
 		catch(Exception e){
 			Assert.isInstanceOf(IllegalArgumentException.class, e);
