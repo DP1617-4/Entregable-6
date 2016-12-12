@@ -17,6 +17,7 @@ import security.Authority;
 import security.UserAccount;
 import services.CreditCardService;
 import services.SponsorService;
+import domain.CreditCard;
 import domain.Sponsor;
 
 @Controller
@@ -29,7 +30,7 @@ public class SponsorController extends AbstractController {
 
 	@Autowired
 	private CreditCardService creditCardService;
-	
+
 	// Constructors -----------------------------------------------------------
 	public SponsorController() {
 		super();
@@ -55,13 +56,12 @@ public class SponsorController extends AbstractController {
 			result = createEditModelAndView(sponsor);
 		} else {
 			try {
-				// Creamos un codificador de hash para convertir la contraseña en hash.
+				// Creamos un codificador de hash para la password.
 				Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-				
 				// Convertimos la pass del usuario a hash.
-				String pass = encoder.encodePassword(sponsor.getUserAccount().getPassword(), null);
-				
-				// Creamos una nueva cuenta y le pasamos los parametros de usuario
+				String pass = encoder.encodePassword(sponsor.getUserAccount()
+						.getPassword(), null);
+				// Creamos una nueva cuenta y le pasamos los parametros.
 				UserAccount user = new UserAccount();
 				user.setId(sponsor.getUserAccount().getId());
 				user.setVersion(sponsor.getUserAccount().getVersion());
@@ -73,26 +73,20 @@ public class SponsorController extends AbstractController {
 				a.setAuthority(Authority.SPONSOR);
 				authorities.add(a);
 				user.setAuthorities(authorities);
-				
 				// Sobreescribimos la cuenta de usuario
 				sponsor.setUserAccount(user);
-				sponsorService.save(sponsor);
-				
-				result = new ModelAndView("redirect:security/login.do");
+				Sponsor saved = sponsorService.save(sponsor);
+				// Si no tiene tarjeta asignada aun.
+				if (saved.getCreditCard() == null) {
+					CreditCard credit = creditCardService.create(saved);
+					result = new ModelAndView("creditcard/edit");
+					result.addObject("creditCard", credit);
+				}
+				result = new ModelAndView("redirect:../creditcard/edit.do");
+
 			} catch (Throwable Oops) {
-				result = createEditModelAndView(sponsor, "sponsor.commit.error");
+				result = createEditModelAndView(sponsor, "sponsor.registrarion.error");
 			}
-//				Sponsor saved= sponsorService.save(sponsor);
-//				if(saved.getCreditCard() == null){
-//					CreditCard credit = creditCardService.create(saved);
-//					result = new ModelAndView("creditcard/edit");
-//					result.addObject("creditCard", credit);
-//				}
-//				result = new ModelAndView("redirect:../creditcard/edit.do");
-//			} catch (Throwable oops) {
-//				result = createEditModelAndView(sponsor,
-//						"sponsor.registration.error");
-//			}
 		}
 		return result;
 	}
