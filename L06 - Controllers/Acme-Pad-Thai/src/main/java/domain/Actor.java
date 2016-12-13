@@ -6,6 +6,8 @@ import javax.persistence.Access;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.AccessType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -100,7 +102,7 @@ public abstract class Actor extends DomainEntity {
 	
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy= "actor", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy= "actor")
 	public Collection<Folder> getFolders() {
 		return folders;
 	}

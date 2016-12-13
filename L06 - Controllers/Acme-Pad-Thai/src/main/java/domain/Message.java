@@ -93,7 +93,7 @@ public class Message extends DomainEntity {
 	
 	@Valid
 	@NotNull
-	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity= domain.Actor.class)
 	public Actor getSender() {
 		return sender;
 	}
@@ -102,7 +102,7 @@ public class Message extends DomainEntity {
 	}
 	@Valid
 	@NotNull
-	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity= domain.Actor.class)
 	public Actor getReceiver() {
 		return receiver;
 	}
