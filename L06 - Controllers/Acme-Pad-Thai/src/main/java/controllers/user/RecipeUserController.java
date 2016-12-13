@@ -14,12 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
+import services.IngredientService;
+import services.QuantityService;
 import services.RecipeService;
 import services.UserService;
 import controllers.AbstractController;
 import domain.Category;
+import domain.Ingredient;
+import domain.Quantity;
 import domain.Recipe;
 import domain.User;
+import forms.AddIngredient;
 import forms.AddPicture;
 import forms.FilterString;
 
@@ -35,6 +40,10 @@ public class RecipeUserController extends AbstractController {
 	private UserService userService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private IngredientService ingredientService;
+	@Autowired
+	private QuantityService quantityService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -173,5 +182,86 @@ public class RecipeUserController extends AbstractController {
 
 		return result;
 	}
+	
+	@RequestMapping(value = "/addCategory", method = RequestMethod.POST, params = "addCategory")
+	public ModelAndView addCategory(@Valid AddIngredient addIngredient,
+			BindingResult binding) {
+
+		ModelAndView result;
+		Recipe recipe = recipeService.findOne(addIngredient.getRecipeId());
+		Category category = categoryService.findOne(addIngredient.getIngredientId());
+
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:/recipe/display.do?recipeId="
+					+ recipe.getId());
+		} else {
+
+			try {
+				recipe.getCategories().add(category);
+				recipe = recipeService.save(recipe);
+
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+
+			} catch (Throwable oops) {
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+			}
+		}
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/addIngredient", method = RequestMethod.POST, params = "addIngredient")
+	public ModelAndView addIngredient(@Valid AddIngredient addIngredient,
+			BindingResult binding) {
+
+		ModelAndView result;
+		Recipe recipe = recipeService.findOne(addIngredient.getRecipeId());
+		Ingredient ingredient = ingredientService.findOne(addIngredient.getIngredientId());
+
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:/recipe/display.do?recipeId="
+					+ recipe.getId());
+		} else {
+
+			try {
+				
+				Quantity quantity = quantityService.create();
+				quantity.setIngredient(ingredient);
+				quantity.setRecipe(recipe);
+
+				result = createQuantityModelAndView(quantity);
+
+			} catch (Throwable oops) {
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+			}
+		}
+
+		return result;
+	}
+	
+	protected ModelAndView createQuantityModelAndView(Quantity quantity) {
+		ModelAndView result;
+
+		result = createQuantityModelAndView(quantity, null);
+
+		return result;
+	}
+
+	protected ModelAndView createQuantityModelAndView(Quantity quantity, String message) {
+		ModelAndView result;
+
+		result = new ModelAndView("recipe/addingredients");
+		result.addObject("quantity", quantity);
+		result.addObject("message", message);
+
+		return result;
+	}
+
 
 }

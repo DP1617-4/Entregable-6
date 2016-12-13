@@ -33,10 +33,10 @@
 	
 	<form:form action="recipe/user/addCategory.do" modelAttribute="addIngredient">
 
-	<form:hidden path="id" value="${recipe.id}"/>
+	<form:hidden path="recipeId" value="${recipe.id}"/>
 	
-	<form:select path="ingredient" items="${categoryList}" itemValue="id" itemLabel="name"/>
-	<form:errors cssClass="error" path="ingredient" />
+	<form:select path="ingredientId" items="${categoryList}" itemValue="id" itemLabel="name"/>
+	<form:errors cssClass="error" path="ingredientId" />
 	
 	<input type="submit" name="addCategory"
 	value ="<spring:message code="recipe.category.add"/>" />
@@ -175,8 +175,8 @@
 <a href="comment/list.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.list"/></a>
 
 <security:authorize access="hasAnyRole('USER', 'NUTRITIONIST')">
-	<a href="rate/socialUser/like.do?recipeId=${recipe.id}"><spring:message code="recipe.like"/></a>&nbsp;&nbsp;
-	<a href="rate/socialUser/dislike.do?recipeId=${recipe.id}"><spring:message code="recipe.dislike"/></a></br>
+	<a href="score/socialUser/like.do?recipeId=${recipe.id}"><spring:message code="recipe.like"/></a>&nbsp;&nbsp;
+	<a href="score/socialUser/dislike.do?recipeId=${recipe.id}"><spring:message code="recipe.dislike"/></a><br/>
 </security:authorize>
 <security:authorize access="hasRole('USER')">
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
