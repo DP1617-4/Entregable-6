@@ -19,9 +19,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="socialIdentities" requestURI="socialidentity/actor/list.do" id="row">
+	name="socialIdentities" requestURI="socialIdentity/actor/list.do" id="row">
 	<display:column>
-		<a href="socialidentity/edit.do?socialidentityId=${row.id}">
+		<a href="socialIdentity/actor/edit.do?socialidentityId=${row.id}">
 			<spring:message	code="socialidentity.edit" />
 		</a>
 	</display:column>
@@ -48,7 +48,7 @@
 </display:table>
 
 <div>
-	<a href="socialidentity/create.do"> <spring:message
+	<a href="socialidentity/actor/create.do"> <spring:message
 			code="socialidentity.create" />
 	</a>
 </div>

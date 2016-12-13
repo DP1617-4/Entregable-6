@@ -19,12 +19,17 @@ public class StringToFolderConverter implements Converter<String,Folder> {
 	public Folder convert(String text) {
 		Folder result;
 		int id;
-
+		
+		if(text == ""){
+			result = null;
+		}
+		else{
 		try {
 			id = Integer.valueOf(text);
 			result = folderRepository.findOne(id);
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);
+		}
 		}
 
 		return result;
