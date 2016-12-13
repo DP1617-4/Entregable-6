@@ -108,7 +108,7 @@ public class StepUserController extends AbstractController {
 		ModelAndView result;
 		try {			
 			stepService.delete(step);
-			result = new ModelAndView("/recipe/display.do?recipeId="+step.getRecipe().getId());						
+			result = new ModelAndView("redirect:/recipe/display.do?recipeId="+step.getRecipe().getId());						
 		} catch (Throwable oops) {
 			result = createEditModelAndView(step, "step.commit.error");
 		}
