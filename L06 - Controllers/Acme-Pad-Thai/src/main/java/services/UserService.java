@@ -29,9 +29,7 @@ public class UserService {
 		@Autowired
 		private UserRepository userRepository;
 		
-		//supporting services-------------------
-		@Autowired
-		private LoginService loginService;
+		
 		
 		//Basic CRUD methods-------------------
 		
@@ -84,7 +82,7 @@ public class UserService {
 		
 		public User findByPrincipal(){
 			
-			User user = userRepository.findOneByUserAccountId(loginService.getPrincipal().getId());
+			User user = userRepository.findOneByUserAccountId(LoginService.getPrincipal().getId());
 			return user;
 
 		}

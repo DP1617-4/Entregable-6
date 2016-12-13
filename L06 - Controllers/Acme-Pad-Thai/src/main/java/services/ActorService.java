@@ -50,8 +50,7 @@ public class ActorService {
 	
 	//Auxiliary Services
 	
-	@Autowired
-	private LoginService loginService;
+	
 	
 	//CRUD
 	
@@ -66,8 +65,23 @@ public class ActorService {
 		Actor result;
 		UserAccount userAccount;
 		
-		userAccount = loginService.getPrincipal();
+		userAccount = LoginService.getPrincipal();
 		result = findByUserAccount(userAccount);
+		return result;
+	}
+	
+	public Actor findOne(int id){
+		Actor result;
+		
+		result = actorRepository.findOne(id);
+		
+		return result;
+	}
+	
+	public Collection<Actor> findAll(){
+		Collection<Actor> result;
+				
+		result = actorRepository.findAll();
 		return result;
 	}
 	//Business Methods

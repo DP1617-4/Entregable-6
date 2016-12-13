@@ -25,12 +25,16 @@
 	<!-- Action links -->
 
 	<display:column>
-		<a href="message/move.do?messageId=${row.id}">
+		<a href="message/actor/move.do?messageId=${row.id}">
 			<spring:message	code="message.move" />
 		</a>
 	</display:column>		
-
 	
+	<display:column>
+		<a href="message/actor/delete.do?messageId=${row.id}">
+			<spring:message code="message.delete" />
+		</a>
+	</display:column>
 	
 	<!-- Attributes -->
 	
@@ -46,22 +50,25 @@
 	<spring:message code="message.priority" var="priorityHeader"/>
 	<display:column property="priority" title="${priorityHeader}" sortable="true"/>
 	
+	
 	<spring:message code="message.sender" var="senderHeader"/>
 	<display:column title="${senderHeader}">
-		<a href="user/display.do?userId=${row.sender.id}"><spring:message code="message.profile.access"/> </a>
+		<a href="user/display.do?userId=${row.sender.id}"> ${row.sender.name} ${row.sender.surname} </a>
 	</display:column>
+	
 	
 	<spring:message code="message.recipient" var="recipientHeader"/>
 	<display:column title="${recipientHeader}">
-		<a href="user/display.do?userId=${row.recipient.id}"><spring:message code="message.profile.access"/> </a>
-	</display:column>
+		<a href="user/display.do?userId=${row.receiver.id}"> ${row.receiver.name} ${row.receiver.surname} </a>
+	</display:column> 
+	
 
 </display:table>
 
 <!-- Action links -->
 
 <div>
-	<a href="message/create.do"> <spring:message
+	<a href="message/actor/create.do"> <spring:message
 			code="message.create" />
 	</a>
 </div>
