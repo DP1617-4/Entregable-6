@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CategoryService;
 import services.IngredientService;
 import services.RecipeService;
 import controllers.AbstractController;
@@ -37,6 +38,8 @@ public class RecipeController extends AbstractController {
 	private RecipeService recipeService;	
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private CategoryService categoryService;
 	
 	// Constructors -----------------------------------------------------------
 	
@@ -110,6 +113,7 @@ public class RecipeController extends AbstractController {
 		AddPicture addPicture = new AddPicture();
 		AddIngredient addIngredient = new AddIngredient();
 		Collection<Category> categories = recipe.getCategories();
+		Collection<Category> categoryList = categoryService.findAllNotDeleted();
 		
 		result = new ModelAndView("recipe/display");
 		result.addObject("recipe", recipe);
@@ -119,6 +123,7 @@ public class RecipeController extends AbstractController {
 		result.addObject("addIngredient", addIngredient);
 		result.addObject("addPicture", addPicture);
 		result.addObject("categories", categories);
+		result.addObject("categoryList", categoryList);
 		
 		return result;
 	}
