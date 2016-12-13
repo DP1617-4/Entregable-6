@@ -65,7 +65,8 @@
 			
 	<jstl:if test="${recipe.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="recipe.delete" />"/>&nbsp;
+			value="<spring:message code="recipe.delete" />"
+			onclick="return confirm('<spring:message code="step.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="recipe.cancel" />"

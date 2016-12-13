@@ -47,6 +47,7 @@
 		<security:intercept-url pattern="/recipe/display.do" access="permitAll" />  
 		
 		<security:intercept-url pattern="/recipe/user/**" access="hasRole('USER')" /> 
+		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" /> 
 		
 		<security:intercept-url pattern="/recipe/administrator/**" access="hasRole('ADMIN')" />  
 		

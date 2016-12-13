@@ -336,5 +336,25 @@ public class RecipeUserController extends AbstractController {
 		return result;
 	}
 
+	@RequestMapping(value = "/removeIngredient", method = RequestMethod.GET)
+	public ModelAndView removeIngredient(@RequestParam int quantityId) {
+
+		ModelAndView result;
+		Quantity quantity = quantityService.findOne(quantityId);
+		Recipe recipe = quantity.getRecipe();
+		quantityService.delete(quantity);
+		result = new ModelAndView("redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+		return result;
+	}
+	
+	@RequestMapping(value = "/editQuantity", method = RequestMethod.GET)
+	public ModelAndView editQuantity(@RequestParam int quantityId) {
+
+		ModelAndView result;
+		Quantity quantity = quantityService.findOne(quantityId);
+		result = createQuantityModelAndView(quantity);
+		return result;
+	}
 
 }
