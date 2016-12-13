@@ -133,6 +133,7 @@
 	</security:authorize>
 	
 </display:table>
+<br/><br/>
 
 <a href="comment/list.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.list"/></a>
 

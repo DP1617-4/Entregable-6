@@ -11,12 +11,12 @@
 
 
 <spring:message code="user.filter"/>
-<form:form action="user/filter.do" modelAttribute="FilterString">
+<form:form action="user/filter.do" modelAttribute="filterString">
 
-	
 	<form:input path="filter"/>
+	<form:errors cssClass="error" path="filter" />
 	
-	<input type="submit" name="type"
+	<input type="submit" name="filterButton"
 	value ="<spring:message code="user.filter.button"/>" />
 
 </form:form>
@@ -26,42 +26,53 @@
 	
 	<!-- Action links -->
 
-	<jstl:set var="loggedactor" value=<security:authentication property="principal.username" />/>
+	<security:authentication property="principal" var ="loggedactor"/>
 	<display:column>
-		<jstl:if test="${user.userAccount!=loggedactor}">
-			<jstl:set var="contains" value="false" />
-				<jstl:forEach var=user items="${loggedactor.followed}">
- 					<jstl:if test="${user.id == followed.id}">
-    					<jstl:set var="contains" value="true" />
- 					</jstl:if>
-				</jstl:forEach>
-				<jstl:if test="${contains == true}">
-    					<input type="button" name="unfollow"
-						value="<spring:message code="user.unfollow" />"/>
- 				</jstl:if>
- 				<jstl:if test="${contains == false}">
-    					<input type="button" name="follow"
-						value="<spring:message code="user.follow" />"/>
- 				</jstl:if>
-		</jstl:if>
-	</display:column>
+	<jstl:set var="user" value="${row.id}"/> 
 	
+			<a href="user/display.do?userId=${row.id}">
+				<spring:message	code="user.display" />
+			</a>
+	
+	</display:column>
+
+	<security:authorize access="hasAnyRole('NUTRITIONIST', 'USER')">
+	 <display:column>	
+		<jstl:if test="${loggedactor != row.userAccount }">		
+			<jstl:choose>
+				<jstl:when test="${followed.contains(row)}">
+					<spring:message code="user.unfollow"/>.
+					<a href="user/unfollow.do?userId=${row.id}">
+						<spring:message code="user.unfollow.change"/>
+					</a> 
+				</jstl:when>
+				<jstl:otherwise>
+					<spring:message code="user.follow"/>.					
+					<a href="user/follow.do?userId=${row.id}">
+						<spring:message code="user.follow.change"/>
+					</a>	
+				</jstl:otherwise>
+			</jstl:choose>
+		</jstl:if>					
+	</display:column> 
+	</security:authorize>
 	
 	<!-- Attributes -->
 	
-	<spring:message code="user.name" var=nameHeader/>
+	<spring:message code="user.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="user.surname" var=surnameHeader/>
+	<spring:message code="user.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="user.email" var=emailHeader/>
+	<spring:message code="user.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="user.phone" var=phoneHeader/>
+	<spring:message code="user.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="user.postalAddress" var=postalAddressHeader/>
+	<spring:message code="user.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 
 </display:table>
+ 

@@ -42,7 +42,7 @@
 		<value>/views/nutritionist/tiles.xml</value>
 		<value>/views/property/tiles.xml</value>
 		<value>/views/recipe/tiles.xml</value>
-		<value>/views/social-identity/tiles.xml</value>
+		<value>/views/socialIdentity/tiles.xml</value>
 		<value>/views/sponsor/tiles.xml</value>
 		<value>/views/step/tiles.xml</value>
 		<value>/views/systemConfiguration/tiles.xml</value>

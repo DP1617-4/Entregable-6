@@ -85,7 +85,7 @@ public class MessageActorController extends AbstractController{
 		} else {
 			try {
 				messageService.send(message);
-				result = new ModelAndView("redirect:list.do?folderId="+message.getFolder().getId());
+				result = new ModelAndView("redirect: /message/actor/list.do?folderId="+message.getFolder().getId());
 			} catch (Throwable oops) {
 				result = createEditModelAndView(message, "message.commit.error");				
 			}
