@@ -43,6 +43,13 @@ public class ActorServiceTest extends AbstractTest {
 		unauthenticate();
 	}
 	
+	
+	@Test
+	public void testFindOne(){
+		Actor actor = actorService.findOne(14);
+		System.out.println(actor.getName());
+	}
+	
 	@Test
 	public void testRegister(){
 		authenticate("cook1");

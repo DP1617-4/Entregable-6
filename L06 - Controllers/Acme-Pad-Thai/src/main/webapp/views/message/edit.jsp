@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<form:form action="message/edit.do" modelAttribute="message">
+<form:form action="message/actor/edit.do" modelAttribute="message">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -45,7 +45,7 @@
 	<form:label path="moment">
 		<spring:message code="message.moment" />:
 	</form:label>
-	<form:input path="moment" readonly="true"/>
+	<form:input path="moment" readonly="true" />
 	<form:errors cssClass="error" path="moment" />
 	<br />
 	
@@ -54,7 +54,7 @@
 	</form:label>
 	<form:select path="priority" >
 		<form:option value="LOW" label="Low"/>
-		<form:option value="NORMAL" label="Normal"/>
+		<form:option value="NEUTRAL" label="Neutral"/>
 		<form:option value="HIGH" label="High"/>
 	</form:select>
 	<form:errors cssClass="error" path="priority" />

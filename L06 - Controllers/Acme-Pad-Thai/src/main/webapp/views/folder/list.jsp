@@ -22,13 +22,13 @@
 	name="folders" requestURI="${requestURI}" id="row">
 	<display:column>
 		<jstl:if test="${!row.systemFolder}">
-			<a href="folder/edit.do?folderId=${row.id}">
+			<a href="folder/actor/edit.do?folderId=${row.id}">
 				<spring:message	code="folder.edit" />
 			</a>
 		</jstl:if>
 	</display:column>
 	<display:column>
-		<a href="message/list.do?folderId=${row.id}"><spring:message code="folder.message.list"/></a>
+		<a href="message/actor/list.do?folderId=${row.id}"><spring:message code="folder.message.list"/></a>
 	</display:column>
 	
 	<!-- Attributes -->
@@ -40,7 +40,7 @@
 </display:table>
 
 <div>
-	<a href="folder/create.do"> <spring:message
+	<a href="folder/actor/create.do"> <spring:message
 			code="folder.create" />
 	</a>
 </div>
