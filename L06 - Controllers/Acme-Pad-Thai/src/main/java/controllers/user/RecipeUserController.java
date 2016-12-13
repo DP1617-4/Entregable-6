@@ -139,8 +139,15 @@ public class RecipeUserController extends AbstractController {
 		Recipe recipe;
 
 		recipe = recipeService.findOne(recipeId);
-		Assert.notNull(recipe);
-		result = createEditModelAndView(recipe);
+		if(recipe.getContest().equals(null)){
+			Assert.notNull(recipe);
+			result = createEditModelAndView(recipe);
+		}
+		else{
+			
+			result = new ModelAndView("redirect:/recipe/list.do");
+			result.addObject("message", "recipe.error.access");
+		}
 
 		return result;
 	}
@@ -197,8 +204,51 @@ public class RecipeUserController extends AbstractController {
 		} else {
 
 			try {
-				recipe.getCategories().add(category);
-				recipe = recipeService.save(recipe);
+				if(!(recipe.getCategories().contains(category))){
+					
+					recipe.getCategories().add(category);
+					category.getRecipes().add(recipe);
+					categoryService.save(category);
+					recipeService.save(recipe);
+				}
+
+
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+
+			} catch (Throwable oops) {
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+			}
+		}
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/removeCategory", method = RequestMethod.POST, params = "removeCategory")
+	public ModelAndView removeCategory(@Valid AddIngredient addIngredient,
+			BindingResult binding) {
+
+		ModelAndView result;
+		Recipe recipe = recipeService.findOne(addIngredient.getRecipeId());
+		Category category = categoryService.findOne(addIngredient.getIngredientId());
+
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:/recipe/display.do?recipeId="
+					+ recipe.getId());
+		} else {
+
+			try {
+				if(recipe.getCategories().contains(category)){
+					
+					recipe.getCategories().remove(category);
+					category.getRecipes().remove(recipe);
+					categoryService.save(category);
+					recipeService.save(recipe);
+				}
+
 
 				result = new ModelAndView(
 						"redirect:/recipe/display.do?recipeId="
@@ -259,6 +309,29 @@ public class RecipeUserController extends AbstractController {
 		result = new ModelAndView("recipe/addingredients");
 		result.addObject("quantity", quantity);
 		result.addObject("message", message);
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/addingredients", method = RequestMethod.POST, params = "save")
+	public ModelAndView editQuantity(@Valid Quantity quantity, BindingResult binding) {
+
+		ModelAndView result;
+		if (binding.hasErrors()) {
+			result = createQuantityModelAndView(quantity);
+		} else {
+
+			try {
+				quantity = quantityService.save(quantity);
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ quantity.getRecipe().getId());
+
+			} catch (Throwable oops) {
+				result = createQuantityModelAndView(quantity, "recipe.commit.error");
+				result.addObject("quantity", quantity);
+			}
+		}
 
 		return result;
 	}

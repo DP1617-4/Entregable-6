@@ -31,7 +31,7 @@
 
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	
-	<form:form action="recipe/user/addCategory.do" modelAttribute="addIngredient">
+<form:form action="recipe/user/addCategory.do" modelAttribute="addIngredient">
 
 	<form:hidden path="recipeId" value="${recipe.id}"/>
 	
@@ -62,6 +62,20 @@
 	
 	<spring:message code="recipe.category.tag" var="tagHeader" />
 	<display:column property="tag" title="${tagHeader}" sortable="false" />	
+	
+	<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
+	<display:column>
+		<form:form action="recipe/user/removeCategory.do" modelAttribute="addIngredient">
+	
+		<form:hidden path="recipeId" value="${recipe.id}"/>
+		<form:hidden path="ingredientId" value="${row.id }"/>
+		
+		<input type="submit" name="removeCategory"
+		value ="<spring:message code="recipe.category.remove"/>" />
+	
+		</form:form>
+	</display:column>
+	</jstl:if>
 </display:table>
 </P>
 <h4><spring:message code="recipe.pictures"/></h4>
