@@ -1,5 +1,3 @@
-
-
 package controllers.user;
 
 import java.util.Collection;
@@ -25,161 +23,155 @@ import domain.User;
 import forms.AddPicture;
 import forms.FilterString;
 
-
 @Controller
 @RequestMapping("/recipe/user")
 public class RecipeUserController extends AbstractController {
-	
+
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private RecipeService recipeService;	
+	private RecipeService recipeService;
 	@Autowired
-	private UserService userService;	
+	private UserService userService;
 	@Autowired
 	private CategoryService categoryService;
 
-	
 	// Constructors -----------------------------------------------------------
-	
+
 	public RecipeUserController() {
 		super();
 	}
 
 	// Listing ----------------------------------------------------------------
-	
+
 	@RequestMapping(value = "/listOwn", method = RequestMethod.GET)
 	public ModelAndView own() {
-		
+
 		ModelAndView result;
 		Collection<Recipe> recipes;
 		FilterString filter = new FilterString();
-		
+
 		User u = userService.findByPrincipal();
 
 		recipes = recipeService.findAllByUser(u);
-		
+
 		result = new ModelAndView("recipe/list");
 		result.addObject("requestURI", "recipe/user/listOwn.do");
 		result.addObject("recipes", recipes);
- 		result.addObject("filterString", filter);
-		
+		result.addObject("filterString", filter);
+
 		return result;
 	}
 
-	
 	@RequestMapping(value = "/addPicture", method = RequestMethod.POST, params = "addImage")
-	public ModelAndView addPicture(@Valid AddPicture addPicture, BindingResult binding) {
-		
+	public ModelAndView addPicture(@Valid AddPicture addPicture,
+			BindingResult binding) {
+
 		ModelAndView result;
 		Recipe recipe = recipeService.findOne(addPicture.getId());
-		String picture= addPicture.getPicture();
-		
+		String picture = addPicture.getPicture();
+
 		if (binding.hasErrors()) {
-			result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
+			result = new ModelAndView("redirect:/recipe/display.do?recipeId="
+					+ recipe.getId());
 		} else {
 
-				try {
-					recipe.getPictures().add(picture);
-					recipe = recipeService.save(recipe);
-					
-					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());		
-					
-				} catch (Throwable oops) {
-					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());			
+			try {
+				recipe.getPictures().add(picture);
+				recipe = recipeService.save(recipe);
+
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+
+			} catch (Throwable oops) {
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
 			}
 		}
-			
+
 		return result;
 	}
-	
-	
+
 	protected ModelAndView createEditModelAndView(Recipe recipe) {
 		ModelAndView result;
 
 		result = createEditModelAndView(recipe, null);
-		
-		return result;
-	}	
-	
-	
-	
-	protected ModelAndView createEditModelAndView(Recipe recipe, String message) {
-		ModelAndView result;
-		Collection<Category> categories = categoryService.findAllNotDeleted();
-		
-		result = new ModelAndView("recipe/edit");
-		result.addObject("recipe", recipe);
-		result.addObject("message", message);
-		result.addObject("categoryList", categories);
 
 		return result;
 	}
-	
-	
-	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
-		
+
+	protected ModelAndView createEditModelAndView(Recipe recipe, String message) {
 		ModelAndView result;
-		Recipe recipe = recipeService.create();
-		
-		result = createEditModelAndView(recipe);
+
+		result = new ModelAndView("recipe/edit");
 		result.addObject("recipe", recipe);
-		
+		result.addObject("message", message);
+
 		return result;
 	}
-	
-	
+
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+
+		ModelAndView result;
+		Recipe recipe = recipeService.create();
+
+		result = createEditModelAndView(recipe);
+		result.addObject("recipe", recipe);
+
+		return result;
+	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam int recipeId) {
 		ModelAndView result;
 		Recipe recipe;
 
-		recipe = recipeService.findOne(recipeId);		
+		recipe = recipeService.findOne(recipeId);
 		Assert.notNull(recipe);
 		result = createEditModelAndView(recipe);
 
 		return result;
 	}
-	
-	
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView edit(@Valid Recipe recipe, BindingResult binding) {
-		
+
 		ModelAndView result;
-		
-		if (binding.hasErrors()){
-			result = new ModelAndView("redirect:/recipe/user/edit.do?recipeId="+recipe.getId());
+		recipe.getCategories();
+		if (binding.hasErrors()) {
+			result = createEditModelAndView(recipe);
 		} else {
 
-				try {
-					recipe = recipeService.save(recipe);
-					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+recipe.getId());
-					
-					
-					
-				} catch (Throwable oops) {
-					result = createEditModelAndView(recipe, "recipe.commit.error");			
+			try {
+				recipe = recipeService.save(recipe);
+				result = new ModelAndView(
+						"redirect:/recipe/display.do?recipeId="
+								+ recipe.getId());
+
+			} catch (Throwable oops) {
+				result = createEditModelAndView(recipe, "recipe.commit.error");
+				result.addObject("recipe", recipe);
 			}
 		}
-			
+
 		return result;
 	}
-	
-	
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(Recipe recipe, BindingResult binding) {
 		ModelAndView result;
 
-		try {			
+		try {
 			recipeService.delete2(recipe);
-			result = new ModelAndView("redirect:/recipe/list.do");						
+			result = new ModelAndView("redirect:/recipe/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(recipe, "recipe.commit.error");
 		}
 
 		return result;
 	}
-	
+
 }

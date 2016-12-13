@@ -27,6 +27,27 @@
 <p><b>ticker: </b>${recipe.ticker}</P>
 <P><b><spring:message code="recipe.authored"/>:</b> ${recipe.authored}</P>
 <P><b><spring:message code="recipe.updated"/>:</b> ${recipe.updated}</p>
+<P><b><spring:message code="recipe.category.list"/>:</b> 
+<display:table pagesize="10" class="displaytag" keepStatus="true"
+	name="categories" requestURI="recipe/display.do" id="row">
+	<!-- Attributes -->
+	
+	
+	<spring:message code="recipe.category.name" var="nameHeader" />
+	<display:column property="name" title="${nameHeader}" sortable="true" />
+	
+	<spring:message code="recipe.category.description" var="descHeader" />
+	<display:column property="description" title="${descHeader}" sortable="false" />
+	
+	<spring:message code="recipe.category.picture" var="unitHeader" />
+	<display:column title="${unitHeader}" sortable="false" >
+		<img src="${row.picture}" alt="${row.picture}" height="150">
+	</display:column>
+	
+	<spring:message code="recipe.category.tag" var="tagHeader" />
+	<display:column property="tag" title="${tagHeader}" sortable="false" />	
+</display:table>
+</P>
 <h4><spring:message code="recipe.pictures"/></h4>
 <p>
 <security:authorize access="hasRole('USER')">
@@ -47,8 +68,12 @@
 
 </p>
 	<jstl:forEach var="thisPicture" items="${recipe.pictures}" >
-		<img src="${thisPicture}" alt="${thisPicture}" height="150"> &nbsp;
+		<img src="${thisPicture}" alt="${thisPicture}" height="150"> &nbsp; 
+		<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">	
+			<a href="recipe/user/removePicture.do?pictureUrl=${thisPicture}&recipeId=${recipe.id}"><spring:message code="recipe.picture.remove"/></a>&nbsp;
+		</jstl:if>
 	</jstl:forEach>
+<h4><spring:message code="recipe.step.hints"/></h4>
 <p>${recipe.hints}</p>
 <p><b><spring:message code="recipe.score"/>: </b>${recipe.score}</p>
 <br/>

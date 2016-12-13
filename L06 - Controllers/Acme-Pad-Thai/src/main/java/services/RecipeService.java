@@ -94,6 +94,10 @@ public class RecipeService {
 		Recipe saved, toSave;
 		toSave = recipe;
 		Date moment = new Date(System.currentTimeMillis()-100);
+		if(toSave.getId()==0){
+			
+			toSave.setAuthored(moment);
+		}
 		toSave.setUpdated(moment);
 		saved = recipeRepository.save(recipe);
 		return saved;

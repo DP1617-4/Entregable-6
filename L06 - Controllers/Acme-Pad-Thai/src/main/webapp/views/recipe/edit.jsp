@@ -34,6 +34,7 @@
 	<form:hidden path="comments"/>
 	<form:hidden path="quantities"/>
 	<form:hidden path="pictures"/>
+	<form:hidden path="categories"/>
 
 	<form:label path="title">
 		<b><spring:message code="recipe.title" />:</b>
@@ -50,15 +51,6 @@
 	<form:textarea path="summary" />
 	<form:errors cssClass="error" path="summary" />
 	<br /><br />
-	
-	<form:label path="categories">
-		<b><spring:message code="recipe.category.list" />:</b>
-	</form:label>
-	<br/>
-	<form:select multiple="true" path="categories" >
-    	<form:options items="${categoryList}" itemValue="id"  itemLabel="name" />
-	</form:select>
-	<br/><br />
 	
 	<form:label path="hints">
 		<b><spring:message code="recipe.hints" />:</b>

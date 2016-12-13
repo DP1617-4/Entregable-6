@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.IngredientService;
 import services.RecipeService;
 import controllers.AbstractController;
+import domain.Category;
 import domain.Ingredient;
 import domain.Quantity;
 import domain.Recipe;
@@ -108,6 +109,7 @@ public class RecipeController extends AbstractController {
 		Collection<Step> steps = recipe.getSteps();
 		AddPicture addPicture = new AddPicture();
 		AddIngredient addIngredient = new AddIngredient();
+		Collection<Category> categories = recipe.getCategories();
 		
 		result = new ModelAndView("recipe/display");
 		result.addObject("recipe", recipe);
@@ -116,7 +118,7 @@ public class RecipeController extends AbstractController {
 		result.addObject("steps", steps );
 		result.addObject("addIngredient", addIngredient);
 		result.addObject("addPicture", addPicture);
-		
+		result.addObject("categories", categories);
 		
 		return result;
 	}
