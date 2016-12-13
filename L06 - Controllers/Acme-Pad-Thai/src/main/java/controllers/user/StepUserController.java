@@ -90,15 +90,11 @@ public class StepUserController extends AbstractController {
 		ModelAndView result;
 		
 		if (binding.hasErrors()){
-			result = new ModelAndView("redirect:/step/user/edit.do?recipeId="+step.getRecipe().getId());
-		} else {
-
+			result = createEditModelAndView(step); 
+			} else {
 				try {
 					step = stepService.save(step);
 					result = new ModelAndView("redirect:/recipe/display.do?recipeId="+step.getRecipe().getId());
-					
-					
-					
 				} catch (Throwable oops) {
 					result = createEditModelAndView(step, "step.commit.error");			
 			}
@@ -110,7 +106,6 @@ public class StepUserController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView delete(Step step, BindingResult binding) {
 		ModelAndView result;
-
 		try {			
 			stepService.delete(step);
 			result = new ModelAndView("/recipe/display.do?recipeId="+step.getRecipe().getId());						

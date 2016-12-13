@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="step/edit.do" modelAttribute="step">
+<form:form action="step/user/edit.do" modelAttribute="step">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -53,7 +53,7 @@
 	<input type="submit" name="save"
 		value="<spring:message code="step.save" />" />&nbsp; 
 		
-	<jstl:if test="${category.id != 0}">
+	<jstl:if test="${step.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="step.delete" />"
 			onclick="return confirm('<spring:message code="step.confirm.delete" />')" />&nbsp;
