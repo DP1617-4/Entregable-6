@@ -52,14 +52,16 @@
 
 	<input type="submit" name="save"
 		value="<spring:message code="step.save" />" />&nbsp; 
+		
 	<jstl:if test="${category.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="step.delete" />"
 			onclick="return confirm('<spring:message code="step.confirm.delete" />')" />&nbsp;
 	</jstl:if>
+	
 	<input type="button" name="cancel"
 		value="<spring:message code="step.cancel" />"
-		onclick="javascript: relativeRedir('recipe/display.do');" />
+		onclick="location.href = 'recipe/display.do?recipeId=${step.recipe.id}';" />&nbsp;
 	<br />
 
 </form:form>
