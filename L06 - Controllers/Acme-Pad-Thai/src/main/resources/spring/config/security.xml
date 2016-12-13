@@ -49,6 +49,9 @@
 		<security:intercept-url pattern="/recipe/user/**" access="hasRole('USER')" /> 
 		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" /> 
 		
+		<security:intercept-url pattern="/ingredient/nutritionist/**" access="hasRole('USER')" /> 
+		
+		
 		<security:intercept-url pattern="/recipe/administrator/**" access="hasRole('ADMIN')" />  
 		
 		<security:intercept-url pattern="/recipe/nutritionist/**" access="hasRole('NUTRITIONIST')" />
