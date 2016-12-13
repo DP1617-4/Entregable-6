@@ -145,6 +145,13 @@
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
+	<display:column>
+	<jstl:choose>
+		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
+			<a href="recipe/user/editQuantity.do?quantityId=${row.id}"><spring:message code="recipe.quantity.edit"/></a>
+		</jstl:when>
+	</jstl:choose>
+	</display:column>
 	</security:authorize>
 	
 	
@@ -173,7 +180,13 @@
 	<display:column property="hints" title="${hintsHeader}" sortable="true" />
 	
 	<spring:message code="recipe.step.pictures" var="picturesHeader" />
-	<display:column property="pictures" title="${picturesHeader}" sortable="false" />
+	<display:column title="${picturesHeader}" sortable="false" >
+		<jstl:forEach var="stepPicture" items="${row.pictures}" >
+			<a href="${stepPicture }" target="_blank">
+				<img src="${stepPicture}" alt="${stepPicture}" height="80"> &nbsp; 
+			</a>
+		</jstl:forEach>
+	</display:column>
 	
 	<security:authorize access="hasRole('USER')">
 	<display:column>
