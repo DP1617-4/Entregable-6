@@ -19,9 +19,9 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-
+<h2><spring:message	code="ingredient.properties" /></h2>
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="ingredient" requestURI="${requestURI}" id="row">
+	name="ingredients" requestURI="${requestURI}" id="row">
 	<security:authorize access="hasRole('NUTRITIONIST')">
 		<display:column>
 			<a href="ingredient/nutritionist/edit.do?ingredientId=${row.id}">
@@ -51,3 +51,36 @@
 		</a>
 	</div>
 </security:authorize>
+<br/><br/>
+
+<h2><spring:message	code="ingredient.ingredients" /></h2>
+
+<security:authorize access="hasRole('NUTRITIONIST')">
+	<div>
+		<form:form action="ingredient" modelAttribute="filterString">
+
+			<form:input path="filter"/>
+			<form:errors cssClass="error" path="filter" />
+			
+			<input type="submit" name="createProperty"
+			value ="<spring:message code="ingredient.create"/>" />
+
+		</form:form>
+	</div>
+</security:authorize>
+<display:table pagesize="10" class="displaytag" keepStatus="true"
+	name="properties" requestURI="${requestURI}" id="row">
+	<security:authorize access="hasRole('NUTRITIONIST')">
+		<display:column>
+			<a href="ingredient/nutritionist/deleteProperty.do?propertytId=${row.id}">
+				<spring:message	code="ingredient.property.remove" />
+			</a>
+		</display:column>
+	</security:authorize>
+	
+	<!-- Attributes -->
+	
+	<spring:message code="ingredient.name" var="nameHeader" />
+	<display:column property="name" title="${nameHeader}" sortable="true" />
+	
+</display:table>
