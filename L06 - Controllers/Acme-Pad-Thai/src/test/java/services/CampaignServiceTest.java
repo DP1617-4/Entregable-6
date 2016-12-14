@@ -38,7 +38,7 @@ public class CampaignServiceTest extends AbstractTest{
 	public void testCreate() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		campaignService.create(sponsor);
+		campaignService.create();
 		unauthenticate();
 	}
 	
@@ -56,7 +56,7 @@ public class CampaignServiceTest extends AbstractTest{
 	public void testSaveNegative() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		Campaign campaign =  campaignService.create(sponsor);
+		Campaign campaign =  campaignService.create();
 		try{
 			campaignService.save(campaign);
 		}

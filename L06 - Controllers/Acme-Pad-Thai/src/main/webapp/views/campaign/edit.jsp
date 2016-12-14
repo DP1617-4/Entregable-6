@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="campaign/edit.do" modelAttribute="campaign">
+<form:form action="campaign/sponsor/edit.do" modelAttribute="campaign">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -30,12 +30,12 @@
 	<form:errors cssClass="error" path="endDate" />
 	<br />
 	
-<!--	<form:label path="starred">
+	<form:label path="starred">
 		<spring:message code="campaign.starred" />:
 	</form:label>
 	<form:input path="starred" />
 	<form:errors cssClass="error" path="starred" />
-	<br /> -->
+	<br />
 	
 	<input type="submit" name="save"
 		value="<spring:message code="campaign.save" />" />&nbsp; 
