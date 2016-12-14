@@ -32,7 +32,7 @@ name="creditcard" requestURI="${requestURI}" id="row">
 	<display:column property="CVVHeader" title="${CVVHeader}"/>
 	
 	<display:column>
-		<a href="creditcard/edit.do?${row.id}"><spring:message code="creditCard.edit" /></a>
+		<a href="creditcard/sponsor/edit.do?${row.id}"><spring:message code="creditCard.edit" /></a>
 	</display:column>
 	
 </display:table>

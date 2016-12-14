@@ -37,6 +37,12 @@
 		<bean class="converters.SponsorToStringConverter" />
 		<bean class="converters.StringToSponsorConverter" />
 		
+		<bean class="converters.CampaignToStringConverter" />
+		<bean class="converters.StringToCampaignConverter" />
+		
+		<bean class="converters.BannerToStringConverter" />
+		<bean class="converters.StringToBannerConverter" />
+		
 		<bean class="converters.CreditCardToStringConverter" />
 		<bean class="converters.StringToCreditCardConverter" />
 

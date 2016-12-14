@@ -15,6 +15,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Bill;
 import domain.Campaign;
+import domain.CreditCard;
 import domain.Folder;
 import domain.SocialIdentity;
 import domain.Sponsor;
@@ -33,16 +34,20 @@ public class SponsorService {
 	
 	@Autowired
 	private LoginService loginService;
+	
 
 	// Basic CRUD methods --------------------
 	public Sponsor create() {
 		Sponsor sponsor = new Sponsor();
+		UserAccount userAccount = new UserAccount();
 		sponsor.setFolders(new ArrayList<Folder>());
 		sponsor.setSocialIdentities(new ArrayList<SocialIdentity>());
 		sponsor.setCampaigns(new ArrayList<Campaign>());
 		sponsor.setBills(new ArrayList<Bill>());
-
-		UserAccount userAccount = new UserAccount();
+		// Creo una creditCard predeterminada
+		CreditCard credit = new CreditCard();
+		sponsor.setCreditCard(credit);
+		
 		Authority authority = new Authority();
 		authority.setAuthority(Authority.SPONSOR);
 		Collection<Authority> authorities = new ArrayList<Authority>();
@@ -50,6 +55,7 @@ public class SponsorService {
 		userAccount.setAuthorities(authorities);
 
 		sponsor.setUserAccount(userAccount);
+		
 		return sponsor;
 	}
 

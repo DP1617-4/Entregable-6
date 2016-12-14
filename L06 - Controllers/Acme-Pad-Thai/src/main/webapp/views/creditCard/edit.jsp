@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="creditCard/edit.do" modelAttribute="creditCard">
+<form:form action="creditCard/sponsor/edit.do" modelAttribute="creditCard">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />

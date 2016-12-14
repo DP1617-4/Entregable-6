@@ -86,20 +86,19 @@
 	
 	<input type="submit" name="save"
 		value="<spring:message code="sponsor.save" />" 
- 		onclick ="javascript: relativeRedir('creditCard/edit.do');" /> &nbsp;
+		onclick="location.href ='creditCard/edit.do';" /> &nbsp;
 		
 	<jstl:if test="${sponsor.id != 0}">
 		<input type="button" name="cancel"
 		value="<spring:message code="sponsor.cancel" />"
-		onclick="javascript: relativeRedir('sponsor/display.do');" />
+		onclick="location.href ='sponsor/display.do';" />
 	</jstl:if>
 		
 	<jstl:if test="${sponsor.id == 0}">
 		<input type="button" name="cancel"
 		value="<spring:message code="sponsor.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = 'welcome/index.do';" />
 	</jstl:if>
 	<br />
-	
 	
 </form:form>
