@@ -55,21 +55,21 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="user.save" />" />&nbsp; 
+		value="<spring:message code="user.save" />" 
+		onclick="location.href = 'user/display.do';" />&nbsp; 
+		
 		
 	<jstl:if test="${user.id != 0}">
-		<input type="submit" name="delete"
-		value="<spring:message code="user.delete" />"
-		onclick="return confirm('<spring:message code="user.confirm.delete" />')" />&nbsp;
 		<input type="button" name="cancel"
 		value="<spring:message code="user.cancel" />"
-		onclick="javascript: relativeRedir('user/display.do');" />
+		onclick="location.href = 'user/display.do';" />&nbsp;
+	<br />
 	</jstl:if>
 	
 	<jstl:if test="${user.id == 0}">
-		<input type="button" name="cancel"
+	<input type="button" name="cancel"
 		value="<spring:message code="user.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = 'welcome/index.do';" />&nbsp;
 	</jstl:if>
 	<br />
 	
