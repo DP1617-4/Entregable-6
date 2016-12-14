@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
+import services.FolderService;
 import services.MessageService;
 import controllers.AbstractController;
 import domain.Actor;
+import domain.Folder;
 import domain.Message;
 
 
@@ -31,6 +33,8 @@ public class MessageActorController extends AbstractController{
 	@Autowired
 	private ActorService actorService;
 	
+	@Autowired
+	private FolderService folderService;
 	
 	
 	
@@ -179,15 +183,15 @@ public class MessageActorController extends AbstractController{
 		
 		protected ModelAndView createMoveModelAndView(Message msg, String message) {
 			ModelAndView result;
-			Collection<Actor> actors;
+			Collection<Folder> folders;
 		
-			actors = actorService.findAll();
+			folders = folderService.findAllByPrincipal();
 			
 			
 			result = new ModelAndView("message/move");
 			result.addObject("errorMessage", message);
 			result.addObject("message", msg);
-			result.addObject("actors", actors);
+			result.addObject("folders", folders);
 
 			return result;
 		}
