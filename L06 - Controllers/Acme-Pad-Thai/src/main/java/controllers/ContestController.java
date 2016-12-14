@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ContestService;
+import services.RecipeService;
 import domain.Contest;
+import domain.Recipe;
+import forms.AddRecipe;
 
 @Controller
 @RequestMapping("/contest")
@@ -18,7 +21,9 @@ public class ContestController extends AbstractController {
 	// Services ---------------------------------------------------------------
 
 	@Autowired
-	private ContestService contestService;	
+	private ContestService contestService;
+	@Autowired
+	private RecipeService recipeService;
 	
 	// Constructors -----------------------------------------------------------
 	
@@ -35,10 +40,15 @@ public class ContestController extends AbstractController {
  		Collection<Contest> contests;
  
  		contests = contestService.findAllNotDeleted();
+ 		AddRecipe addRecipe = new AddRecipe();
+ 		Collection<Recipe> recipes = recipeService.findAllNotQualifiedPrincipal();
+ 		
  		
 		result = new ModelAndView("contest/list");
 		result.addObject("requestURI", "contest/list.do");
  		result.addObject("contests", contests);
+ 		result.addObject("addRecipe", addRecipe);
+ 		result.addObject("recipes", recipes);
  		
  		return result;
  	}
