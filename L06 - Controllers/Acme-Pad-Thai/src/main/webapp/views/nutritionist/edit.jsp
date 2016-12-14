@@ -16,7 +16,24 @@
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
 	<form:hidden path="enroled" />
-	<form:hidden path="userAccount" />
+	<form:hidden path="comments" />
+	<form:hidden path="followers" />
+	<form:hidden path="followed" />
+	<form:hidden path="userAccount.authorities" />
+	
+	<form:label path="userAccount.username">
+      <spring:message code="sponsor.username" />
+    </form:label>
+    <form:input path="userAccount.username"/>
+    <form:errors cssClass="error" path="userAccount.username"/>
+    <br />
+    
+    <form:label path="userAccount.password">
+      <spring:message code="sponsor.password" />
+    </form:label>
+    <form:password path="userAccount.password"/>
+    <form:errors cssClass="error" path="userAccount.password"/>
+    <br />
 	
 	<form:label path="name">
 		<spring:message code="nutritionist.name" />:

@@ -25,6 +25,9 @@
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.StringToActorConverter" />
 		
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		
 		<bean class="converters.BannerToStringConverter" />
 		<bean class="converters.StringToBannerConverter" />
 		
@@ -72,6 +75,9 @@
 		
 		<bean class="converters.SocialIdentityToStringConverter" />
 		<bean class="converters.StringToSocialIdentityConverter" />
+		
+		<bean class="converters.SocialUserToStringConverter" />
+		<bean class="converters.StringToSocialUserConverter" />
 		
 		<bean class="converters.SponsorToStringConverter" />
 		<bean class="converters.StringToSponsorConverter" />
