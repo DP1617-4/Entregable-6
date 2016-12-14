@@ -25,62 +25,69 @@
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.StringToActorConverter" />
 		
-		<bean class="converters.RecipeToStringConverter" />
-		<bean class="converters.StringToRecipeConverter" />
-		
-		<bean class="converters.MasterClassToStringConverter" />
-		<bean class="converters.StringToMasterClassConverter" />
-		
-		<bean class="converters.CookToStringConverter" />
-		<bean class="converters.StringToCookConverter" />
-		
-		<bean class="converters.SponsorToStringConverter" />
-		<bean class="converters.StringToSponsorConverter" />
+		<bean class="converters.BannerToStringConverter" />
+		<bean class="converters.StringToBannerConverter" />
 		
 		<bean class="converters.CampaignToStringConverter" />
 		<bean class="converters.StringToCampaignConverter" />
 		
-		<bean class="converters.BannerToStringConverter" />
-		<bean class="converters.StringToBannerConverter" />
-		
-		<bean class="converters.CreditCardToStringConverter" />
-		<bean class="converters.StringToCreditCardConverter" />
-
-		<bean class="converters.IngredientToStringConverter" />
-		<bean class="converters.StringToIngredientConverter" />
-		
-		<bean class="converters.ValueToStringConverter" />
-		<bean class="converters.StringToValueConverter" />
-		
-		<bean class="converters.PropertyToStringConverter" />
-		<bean class="converters.StringToPropertyConverter" />
-		
-		<bean class="converters.ScoreToStringConverter" />
-		<bean class="converters.StringToScoreConverter" />
+		<bean class="converters.CategoryToStringConverter" />
+		<bean class="converters.StringToCategoryConverter" />
 		
 		<bean class="converters.CommentToStringConverter" />
 		<bean class="converters.StringToCommentConverter" />
 		
-		<bean class="converters.UserToStringConverter" />
-		<bean class="converters.StringToUserConverter" />
-		
 		<bean class="converters.ContestToStringConverter" />
 		<bean class="converters.StringToContestConverter" />
 		
-		<bean class="converters.StepToStringConverter" />
-		<bean class="converters.StringToStepConverter" />
+		<bean class="converters.CookToStringConverter" />
+		<bean class="converters.StringToCookConverter" />
 		
-		<bean class="converters.CategoryToStringConverter" />
-		<bean class="converters.StringToCategoryConverter" />
+		<bean class="converters.CreditCardToStringConverter" />
+		<bean class="converters.StringToCreditCardConverter" />
 		
 		<bean class="converters.FolderToStringConverter" />
 		<bean class="converters.StringToFolderConverter" />
 		
+		<bean class="converters.IngredientToStringConverter" />
+		<bean class="converters.StringToIngredientConverter" />
+		
+		<bean class="converters.MasterClassToStringConverter" />
+		<bean class="converters.StringToMasterClassConverter" />
+		
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.StringToMessageConverter" />
 		
+		<bean class="converters.PropertyToStringConverter" />
+		<bean class="converters.StringToPropertyConverter" />
+		
+		<bean class="converters.QuantityToStringConverter" />
+		<bean class="converters.StringToQuantityConverter" />
+		
+		<bean class="converters.RecipeToStringConverter" />
+		<bean class="converters.StringToRecipeConverter" />
+		
+		<bean class="converters.ScoreToStringConverter" />
+		<bean class="converters.StringToScoreConverter" />
+		
 		<bean class="converters.SocialIdentityToStringConverter" />
 		<bean class="converters.StringToSocialIdentityConverter" />
+		
+		<bean class="converters.SponsorToStringConverter" />
+		<bean class="converters.StringToSponsorConverter" />
+		
+		<bean class="converters.StepToStringConverter" />
+		<bean class="converters.StringToStepConverter" />
+		
+		<bean class="converters.UserAccountToStringConverter" />
+		<bean class="converters.StringToUserAccountConverter" />
+		
+		<bean class="converters.UserToStringConverter" />
+		<bean class="converters.StringToUserConverter" />
+		
+		<bean class="converters.ValueToStringConverter" />
+		<bean class="converters.StringToValueConverter" />
+			
 	</util:list>
 	
 </beans>
