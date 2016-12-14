@@ -57,28 +57,38 @@
 		
 
 		<security:intercept-url pattern="/contest/list.do" access="permitAll" />
-		
-		<security:intercept-url pattern="/user/list.do" access="permitAll" />
-		
+
 		
 		<security:intercept-url pattern="/ingredient/display.do" access="permitAll" />
+		<security:intercept-url pattern="/ingredient/nutritionist/**" access="hasRole('NUTRITIONIST')" /> 
+		
 		
 		<security:intercept-url pattern="/user/create.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/sponsor/**" access="permitAll" />
-		<security:intercept-url pattern="/sponsor/create.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/creditCard/edit.do" access="isAnonymous()" />
-		<security:intercept-url pattern="/nutritionist/create.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/user/create.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/user/list.do" access="permitAll" /> 
+		<security:intercept-url pattern="/user/filter.do" access="permitAll" /> 
+		<security:intercept-url pattern="/user/display.do" access="permitAll" /> 
+		<security:intercept-url pattern="/user/follow.do" access="hasAnyRole('USER', 'NUTRITIONIST')" /> 
+		<security:intercept-url pattern="/user/unfollow.do" access="hasAnyRole('USER', 'NUTRITIONIST')" /> 
 		
-		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" />
+		<security:intercept-url pattern="/ingredient/display.do" access="permitAll" />
 		
 		<security:intercept-url pattern="/folder/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/socialIdentity/actor/**" access="isAuthenticated()" />
 		
+		<security:intercept-url pattern="/sponsor/**" access="permitAll" />
+		<security:intercept-url pattern="/sponsor/create.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/creditCard/edit.do" access="isAnonymous()" />
+		<security:intercept-url pattern="/nutritionist/create.do" access="isAnonymous()" />
 		
 		<security:intercept-url pattern="/masterClass/list.do" access="permitAll" />  
 		<security:intercept-url pattern="/masterClass/display.do**" access="permitAll" /> 
 	
+		<security:intercept-url pattern="/step/**" access="hasRole('USER')" /> 
+		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" /> 
+		
+
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />
 
 		<security:form-login 

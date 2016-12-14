@@ -129,10 +129,14 @@ public class FolderActorController extends AbstractController {
 		
 		protected ModelAndView createEditModelAndView(Folder folder, String message) {
 			ModelAndView result;
+			Collection<Folder> folders;
+			
+			folders = folderService.findAllByPrincipal();
 
 
 			result = new ModelAndView("folder/edit");
 			result.addObject("folder", folder);
+			result.addObject("folders", folders);
 			result.addObject("message", message);
 
 			return result;
