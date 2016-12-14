@@ -45,7 +45,7 @@
 	<display:column property="moment" title="${momentHeader}" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}" />
 
 	<spring:message code="message.body" var="bodyHeader" />
-	<display:column property="body" title="${descriptionHeader}" sortable="false" />
+	<display:column property="body" title="${bodyHeader}" sortable="false" />
 	
 	<spring:message code="message.priority" var="priorityHeader"/>
 	<display:column property="priority" title="${priorityHeader}" sortable="true"/>

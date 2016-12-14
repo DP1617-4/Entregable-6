@@ -83,7 +83,7 @@ public class Message extends DomainEntity {
 
 	@Valid
 	@NotNull
-	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(optional =false)
 	public Folder getFolder() {
 		return folder;
 	}
@@ -93,16 +93,17 @@ public class Message extends DomainEntity {
 	
 	@Valid
 	@NotNull
-	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity= domain.Actor.class)
+	@ManyToOne(optional =false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	public Actor getSender() {
 		return sender;
 	}
 	public void setSender(Actor sender) {
 		this.sender = sender;
 	}
+	
 	@Valid
 	@NotNull
-	@ManyToOne(optional =false, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity= domain.Actor.class)
+	@ManyToOne(optional =false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	public Actor getReceiver() {
 		return receiver;
 	}

@@ -811,7 +811,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="user2" />
 		<property name="messages">
 			<list>
-				<ref bean="message1Received"/>
+				
 			</list>
 		</property>
 	</bean>
@@ -1069,19 +1069,19 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="priority" value="LOW" />
 		<property name="folder" ref="outbox1" />
 		<property name="sender" ref="user1" />
-		<property name="receiver" ref="user2" />
+		<property name="receiver" ref="cook1" />
 	</bean>
-	
+ <!--  
 	<bean id="message1Received" class="domain.Message">
 		<property name="title" value="Message1" />
 		<property name="body" value="Very important message" />
 		<property name="moment" value="2016/10/27 22:00" />
 		<property name="priority" value="LOW" />
-		<property name="folder" ref="inbox2" />
+		<property name="folder" ref="inbox8" />
 		<property name="sender" ref="user1" />
-		<property name="receiver" ref="user2" />
+		<property name="receiver" ref="cook1" />
 	</bean>
-	
+ -->	
 	<bean id="message2Sent" class="domain.Message">
 		<property name="title" value="Message2" />
 		<property name="body" value="Very unimportant message sex" />

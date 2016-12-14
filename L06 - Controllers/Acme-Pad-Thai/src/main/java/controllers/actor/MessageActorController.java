@@ -56,7 +56,7 @@ public class MessageActorController extends AbstractController{
 			result.addObject("requestURI", requestURI);
 		}catch(Throwable oops){
 			
-			result = new ModelAndView("redirect:/Acme-Pad-Thai/folder/actor/list.do");
+			result = new ModelAndView("redirect:/folder/actor/list.do");
 			result.addObject("message", "message.folder.wrong");
 			
 		}
@@ -85,7 +85,7 @@ public class MessageActorController extends AbstractController{
 		} else {
 			try {
 				messageService.send(message);
-				result = new ModelAndView("redirect:/Acme-Pad-Thai/message/actor/list.do?folderId="+message.getFolder().getId());
+				result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
 			} catch (Throwable oops) {
 				result = createEditModelAndView(message, "message.commit.error");				
 			}
@@ -104,7 +104,7 @@ public class MessageActorController extends AbstractController{
 		try{
 			message = messageService.findOne(messageId);
 			messageService.delete(message);
-			result = new ModelAndView("redirect:/Acme-Pad-Thai/message/actor/list.do?folderId="+message.getFolder().getId());
+			result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
 		}catch(Throwable oops){
 			result = new ModelAndView("redirect:/welcome/index.do");
 			result.addObject("errorMessage", "message.commit.error");
@@ -141,7 +141,7 @@ public class MessageActorController extends AbstractController{
 		else{
 			try{
 				messageService.move(message, message.getFolder());
-				result = new ModelAndView("redirect:/Acme-Pad-Thai/message/actor/list.do?folderId="+message.getFolder().getId());
+				result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
 			}catch(Throwable oops){
 				result = createMoveModelAndView(message, "message.commit.error");
 			}
