@@ -44,6 +44,14 @@ public class CreditCardService {
 		return retrieved;
 	}
 	
+	public CreditCard findOneToEdit(int creditCardId) {
+		CreditCard res;
+		res = creditCardRepository.findOne(creditCardId);
+		Assert.notNull(res, "That creditcard does not exist");
+		checkPrincipal(res);
+		return res;
+	}
+	
 	public Collection<CreditCard> findAll() {
 		return creditCardRepository.findAll();
 	}
@@ -76,6 +84,19 @@ public class CreditCardService {
 	}
 	
 	//Our other bussiness methods -----------
+	public CreditCard findCreditCardByPrincipal() {
+		Sponsor sponsor;
+		CreditCard res;
+		sponsor = sponsorService.findByPrincipal();
+		res = creditCardRepository.findCreditCardBySponsor(sponsor.getId());
+		return res;
+	}
+	
+	public void checkPrincipal(CreditCard c){
+		Sponsor sponsor = sponsorService.findByPrincipal();
+		Assert.isTrue(sponsor.equals(c.getSponsor()), "Dear User, you can't edit a creditcard that doesn't belong to you");
+	}
+	
 	public CreditCard save2(CreditCard creditCard) { // Requirement 33.2
 		UserAccount sponsor;
 		sponsor = LoginService.getPrincipal();

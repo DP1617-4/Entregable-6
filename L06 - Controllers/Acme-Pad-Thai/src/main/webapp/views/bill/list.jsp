@@ -21,7 +21,7 @@
 
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="bills" requestURI="bill/list.do" id="row">
+	name="bills" requestURI="bill/sponsor/list.do" id="row">
 	<jstl:set var="loggedsponsor" value=<security:authentication property="principal.username" /> />
 	<jstl:set var="billsponsor" value="${row.user}"/>
 	 

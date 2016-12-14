@@ -18,10 +18,11 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="creditCard/edit.do" modelAttribute="creditCard">
+<form:form action="creditCard/sponsor/edit.do" modelAttribute="creditCard">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="sponsor" />
 	
 	<form:label path="holderName">
 		<spring:message code="creditCard.holderName" />:
@@ -69,7 +70,6 @@
 		value="<spring:message code="creditCard.save" />" />&nbsp; 
 		
 	<jstl:if test="${creditCard.id != 0}">
-		
 		<input type="button" name="cancel"
 		value="<spring:message code="creditCard.cancel" />"
 		onclick="javascript: relativeRedir('sponsor/display.do');" />
