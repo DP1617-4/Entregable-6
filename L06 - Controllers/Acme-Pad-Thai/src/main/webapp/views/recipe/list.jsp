@@ -49,9 +49,12 @@
 	<jstl:set var="recipeuser" value="${row.user}"/> 
 	<jstl:choose>
 		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
+			<jstl:set value="${row.contest}" var="cont"/>
+			<jstl:if test="${empty cont}">
 			<a href="recipe/user/edit.do?recipeId=${row.id}">
 				<spring:message	code="recipe.edit" />
 			</a>
+			</jstl:if>
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
@@ -59,6 +62,7 @@
 
 	
 	<!-- Attributes -->
+	<display:column property="ticker" title="Ticker" sortable="false" />
 	
 	<spring:message code="recipe.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />

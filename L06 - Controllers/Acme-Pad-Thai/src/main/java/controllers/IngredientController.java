@@ -41,26 +41,7 @@ public class IngredientController extends AbstractController {
 	}
 
 	// Listing ----------------------------------------------------------------
-	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
- 	public ModelAndView list() {
- 		
- 		ModelAndView result;
- 		Collection<Recipe> recipes;
- 		FilterString filter = new FilterString();
- 
- 		recipes = recipeService.findAllNotDeleted();
- 		
-		result = new ModelAndView("recipe/list");
-		result.addObject("requestURI", "recipe/list.do");
- 		result.addObject("recipes", recipes);
- 		result.addObject("filterString", filter);
- 		
- 		return result;
- 	}
-	
-
-	
+		
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam int ingredientId) {
 		
