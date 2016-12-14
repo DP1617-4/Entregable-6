@@ -22,13 +22,18 @@
 <security:authentication property="principal" var ="loggedactor"/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 
-<h2>${recipe.title}</h2>
+<h2>${recipe.title}</h2>	
+<div style="float: right;">
+	<b><spring:message code="recipe.banner"/></b>
+	<img src="${banner.URL}" alt="${banner.URL}" height="300">
+</div>
 <h3>${recipe.summary}</h3>
 <p><b>ticker: </b>${recipe.ticker}</P>
 <P><b><spring:message code="recipe.authored"/>:</b> ${recipe.authored}</P>
 <P><b><spring:message code="recipe.updated"/>:</b> ${recipe.updated}</p>
 <P><b><spring:message code="recipe.category.list"/>:</b> 
 
+<security:authorize access="hasRole('USER')">
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	
 <form:form action="recipe/user/addCategory.do" modelAttribute="addIngredient">
@@ -44,6 +49,7 @@
 </form:form>
 	
 </jstl:if>
+</security:authorize>
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 	name="categories" requestURI="recipe/display.do" id="row">
 	<!-- Attributes -->
@@ -63,6 +69,7 @@
 	<spring:message code="recipe.category.tag" var="tagHeader" />
 	<display:column property="tag" title="${tagHeader}" sortable="false" />	
 	
+	<security:authorize access="hasRole('USER')">
 	<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	<display:column>
 		<form:form action="recipe/user/removeCategory.do" modelAttribute="addIngredient">
@@ -76,6 +83,7 @@
 		</form:form>
 	</display:column>
 	</jstl:if>
+	</security:authorize>
 </display:table>
 </P>
 <h4><spring:message code="recipe.pictures"/></h4>
