@@ -20,8 +20,8 @@
 
 <security:authorize access="hasRole('SPONSOR')">
 	<div>
-		<a href="sponsor/campaign/list.do"> 
-			<spring:message code="campaign.list.own" />
+		<a href="campaign/sponsor/list.do"> 
+			<spring:message code="campaign.sponsor.list" />
 		</a>
 	</div>
 </security:authorize>
@@ -29,14 +29,14 @@
 <p><spring:message code="campaign.banners" />
 </p>
 
-<display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="campaigns" requestURI="campaign/list.do" id="row">
+<display:table pagesize="10" class="displaytag" keepStatus="true"
+	name="campaigns" requestURI="campaign/sponsor/list.do" id="row">
 	<jstl:set var="loggedsponsor" value=<security:authentication property="principal.username" /> />
 	<jstl:set var="campaignsponsor" value="${row.user}"/>
-	 
+	
 	<display:column>
 		<jstl:if test="${campaignsponsor.userAccount==loggedsponsor}">
-			<a href="campaign/edit.do?campaignId=${row.id}">
+			<a href="campaign/sponsor/edit.do?campaignId=${row.id}">
 				<spring:message	code="campaign.edit" />
 			</a>
 		</jstl:if>
@@ -44,7 +44,7 @@
 	
 	<display:column>
 		<jstl:if test="${campaignsponsor.userAccount==loggedsponsor}">
-			<a href="banner/create.do?campaignId=${row.id}">
+			<a href="banner/sponsor/create.do?campaignId=${row.id}">
 				<spring:message	code="campaign.addbanners" />
 			</a>
 		</jstl:if>

@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import repositories.SponsorRepository;
@@ -14,6 +15,7 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Bill;
 import domain.Campaign;
+import domain.CreditCard;
 import domain.Folder;
 import domain.SocialIdentity;
 import domain.Sponsor;
@@ -32,16 +34,20 @@ public class SponsorService {
 	
 	@Autowired
 	private LoginService loginService;
+	
 
 	// Basic CRUD methods --------------------
 	public Sponsor create() {
 		Sponsor sponsor = new Sponsor();
+		UserAccount userAccount = new UserAccount();
 		sponsor.setFolders(new ArrayList<Folder>());
 		sponsor.setSocialIdentities(new ArrayList<SocialIdentity>());
 		sponsor.setCampaigns(new ArrayList<Campaign>());
 		sponsor.setBills(new ArrayList<Bill>());
-
-		UserAccount userAccount = new UserAccount();
+		// Creo una creditCard predeterminada
+		CreditCard credit = new CreditCard();
+		sponsor.setCreditCard(credit);
+		
 		Authority authority = new Authority();
 		authority.setAuthority(Authority.SPONSOR);
 		Collection<Authority> authorities = new ArrayList<Authority>();
@@ -49,6 +55,7 @@ public class SponsorService {
 		userAccount.setAuthorities(authorities);
 
 		sponsor.setUserAccount(userAccount);
+		
 		return sponsor;
 	}
 
@@ -65,8 +72,14 @@ public class SponsorService {
 	}
 
 	public Sponsor save(Sponsor sponsor) {
-		Sponsor saved;
-		saved = sponsorRepository.save(sponsor);
+		// Creamos un codificador de hash para la password.
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		// Convertimos la pass del usuario a hash.
+		String pass = encoder.encodePassword(sponsor.getUserAccount()
+				.getPassword(), null);
+		// Creamos una nueva cuenta y le pasamos los parametros.
+		sponsor.getUserAccount().setPassword(pass);
+		Sponsor saved = sponsorRepository.save(sponsor);
 		if(sponsor.getId() <= 0)
 			folderService.initFolders(saved);
 		return saved;
