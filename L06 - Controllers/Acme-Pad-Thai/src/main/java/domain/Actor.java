@@ -100,7 +100,7 @@ public abstract class Actor extends DomainEntity {
 	
 	@Valid
 	@NotNull
-	@OneToMany(mappedBy= "actor", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy= "actor")
 	public Collection<Folder> getFolders() {
 		return folders;
 	}

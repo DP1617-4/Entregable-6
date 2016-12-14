@@ -28,12 +28,13 @@ public class CampaignService {
 	private SponsorService sponsorService;
 	
 	//Basic CRUD methods --------------------
-	public Campaign create(Sponsor sponsor) { 
+	public Campaign create() { 
 		Campaign created = new Campaign();
+		Sponsor sponsor = sponsorService.findByPrincipal();
 		created.setSponsor(sponsor);
-//		Date moment = new Date(System.currentTimeMillis()-100);
-//		Assert.isTrue(moment.before(created.getStartDate()));
-//		Assert.isTrue(created.getStartDate().before(created.getEndDate()));
+		Date moment = new Date(System.currentTimeMillis()-100);
+		Assert.isTrue(moment.before(created.getStartDate()));
+		Assert.isTrue(created.getStartDate().before(created.getEndDate()));
 		created.setDeleted(false);
 		created.setStarred(false);
 		created.setBanners(new ArrayList<Banner>());
@@ -71,6 +72,11 @@ public class CampaignService {
 	}
 	
 	//Auxiliary methods ---------------------
+	public Collection<Campaign> allCampaigns() {
+		Collection<Campaign> res = campaignRepository.findAll();
+		return res;
+	}
+	
 	public boolean activeCampaign(Campaign c) {
 		boolean res = false;
 		Date moment = new Date();
@@ -96,6 +102,14 @@ public class CampaignService {
 	}
 	
 	//Our other bussiness methods -----------
+	public Collection<Campaign> findCampaignsByPrincipal(){
+		Sponsor sponsor;
+		Collection<Campaign> result;
+		sponsor = sponsorService.findByPrincipal();
+		result = campaignRepository.findAllBySponsorId(sponsor.getId());
+		return result;
+	}
+	
 	public Campaign save2(Campaign campaign) { // Requirement 33.1
 		Sponsor sponsor = sponsorService.findByPrincipal();
 		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");

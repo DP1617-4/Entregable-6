@@ -55,6 +55,14 @@ public class BillService {
 		retrieved = billRepository.findOne(billId);
 		return retrieved;
 	}
+	
+	public Bill findOneToEdit(int id){
+		Bill res;
+		res = billRepository.findOne(id);
+		Assert.notNull(res);
+		checkPrincipalSponsor(res);
+		return res;
+	}
 
 	public Collection<Bill> findAll() {
 		Collection<Bill> bills;
@@ -77,6 +85,12 @@ public class BillService {
 	// Auxiliary methods ---------------------
 
 	// Our other bussiness methods -----------
+	public void checkPrincipalSponsor(Bill b){
+		Sponsor sponsor;
+		sponsor = sponsorService.findByPrincipal();
+		Assert.isTrue(b.getSponsor().equals(sponsor));
+	}
+	
 	public Double[][][] calculateAvgDevPaidAndUnpaidBills() {
 		return billRepository.calculateAvgDevPaidAndUnpaidBills();
 	}
@@ -137,7 +151,6 @@ public class BillService {
 		Sponsor sponsor = sponsorService.findByPrincipal();
 		Assert.notNull(sponsor, "Dear user, you are not a sponsor.");
 		Collection<Bill> bills;
-		sponsor = sponsorService.findByPrincipal();
 		bills = billRepository.findBillBySponsor(sponsor.getId());
 		return bills;
 	}

@@ -44,7 +44,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="folder.cancel" />"
-		onclick="javascript: relativeRedir('folder/actor/list.do');" />
+		onclick="location.href = ('folder/actor/list.do');" />
 	<br />
 
 	

@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
+import services.FolderService;
 import services.MessageService;
 import controllers.AbstractController;
 import domain.Actor;
+import domain.Folder;
 import domain.Message;
 
 
@@ -31,6 +33,8 @@ public class MessageActorController extends AbstractController{
 	@Autowired
 	private ActorService actorService;
 	
+	@Autowired
+	private FolderService folderService;
 	
 	
 	
@@ -56,7 +60,7 @@ public class MessageActorController extends AbstractController{
 			result.addObject("requestURI", requestURI);
 		}catch(Throwable oops){
 			
-			result = new ModelAndView("redirect: /folder/actor/list.do");
+			result = new ModelAndView("redirect:/folder/actor/list.do");
 			result.addObject("message", "message.folder.wrong");
 			
 		}
@@ -85,7 +89,7 @@ public class MessageActorController extends AbstractController{
 		} else {
 			try {
 				messageService.send(message);
-				result = new ModelAndView("redirect: /message/actor/list.do?folderId="+message.getFolder().getId());
+				result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
 			} catch (Throwable oops) {
 				result = createEditModelAndView(message, "message.commit.error");				
 			}
@@ -104,7 +108,7 @@ public class MessageActorController extends AbstractController{
 		try{
 			message = messageService.findOne(messageId);
 			messageService.delete(message);
-			result = new ModelAndView("redirect:list.do?folderId="+message.getFolder().getId());
+			result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
 		}catch(Throwable oops){
 			result = new ModelAndView("redirect:/welcome/index.do");
 			result.addObject("errorMessage", "message.commit.error");
@@ -141,7 +145,7 @@ public class MessageActorController extends AbstractController{
 		else{
 			try{
 				messageService.move(message, message.getFolder());
-				result = new ModelAndView("redirect:list.do?folderId="+message.getFolder().getId());
+				result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
 			}catch(Throwable oops){
 				result = createMoveModelAndView(message, "message.commit.error");
 			}
@@ -179,15 +183,15 @@ public class MessageActorController extends AbstractController{
 		
 		protected ModelAndView createMoveModelAndView(Message msg, String message) {
 			ModelAndView result;
-			Collection<Actor> actors;
+			Collection<Folder> folders;
 		
-			actors = actorService.findAll();
+			folders = folderService.findAllByPrincipal();
 			
 			
-			result = new ModelAndView("message/edit");
+			result = new ModelAndView("message/move");
 			result.addObject("errorMessage", message);
 			result.addObject("message", msg);
-			result.addObject("actors", actors);
+			result.addObject("folders", folders);
 
 			return result;
 		}

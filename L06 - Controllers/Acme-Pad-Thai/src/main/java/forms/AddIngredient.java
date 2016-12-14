@@ -19,7 +19,6 @@ public class AddIngredient {
 	}
 	
 	public int getRecipeId(){
-		
 		return recipeId;
 	}
 	
