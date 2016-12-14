@@ -53,13 +53,13 @@
 	
 	<spring:message code="message.sender" var="senderHeader"/>
 	<display:column title="${senderHeader}">
-		<a href="user/display.do?userId=${row.sender.id}"> ${row.folder.actor.name} ${row.sender.surname} </a>
+		<a href="user/display.do?userId=damm"> vbdgfdg </a>
 	</display:column>
 	
 	
 	<spring:message code="message.recipient" var="recipientHeader"/>
 	<display:column title="${recipientHeader}">
-		<a href="user/display.do?userId=${row.receiver.id}"> ${row.receiver.name} ${row.receiver.surname} </a>
+		<a href="user/display.do?userId=lmao"> sgdsdfgsdg </a>
 	</display:column> 
 	
 

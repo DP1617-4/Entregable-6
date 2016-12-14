@@ -1071,7 +1071,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="sender" ref="user1" />
 		<property name="receiver" ref="cook1" />
 	</bean>
- <!--  
+ 
 	<bean id="message1Received" class="domain.Message">
 		<property name="title" value="Message1" />
 		<property name="body" value="Very important message" />
@@ -1081,7 +1081,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="sender" ref="user1" />
 		<property name="receiver" ref="cook1" />
 	</bean>
- -->	
+ 
 	<bean id="message2Sent" class="domain.Message">
 		<property name="title" value="Message2" />
 		<property name="body" value="Very unimportant message sex" />
