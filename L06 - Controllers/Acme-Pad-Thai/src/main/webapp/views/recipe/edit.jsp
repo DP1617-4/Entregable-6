@@ -34,6 +34,7 @@
 	<form:hidden path="comments"/>
 	<form:hidden path="quantities"/>
 	<form:hidden path="pictures"/>
+	<form:hidden path="categories"/>
 
 	<form:label path="title">
 		<b><spring:message code="recipe.title" />:</b>
@@ -51,15 +52,6 @@
 	<form:errors cssClass="error" path="summary" />
 	<br /><br />
 	
-	<form:label path="categories">
-		<b><spring:message code="recipe.category.list" />:</b>
-	</form:label>
-	<br/>
-	<form:select multiple="true" path="categories" >
-    	<form:options items="${categoryList}" itemValue="id"  itemLabel="name" />
-	</form:select>
-	<br/><br />
-	
 	<form:label path="hints">
 		<b><spring:message code="recipe.hints" />:</b>
 	</form:label>
@@ -73,7 +65,8 @@
 			
 	<jstl:if test="${recipe.id != 0}">
 		<input type="submit" name="delete"
-			value="<spring:message code="recipe.delete" />"/>&nbsp;
+			value="<spring:message code="recipe.delete" />"
+			onclick="return confirm('<spring:message code="step.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="recipe.cancel" />"
