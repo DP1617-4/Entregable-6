@@ -49,8 +49,8 @@ public class CampaignSponsorController extends AbstractController {
 
 		campaigns = campaignService.findCampaignsByPrincipal();
 
-		result = new ModelAndView("campaigns/list");
-		result.addObject("requestURI", "campaigns/list.do");
+		result = new ModelAndView("campaign/list");
+		result.addObject("requestURI", "campaign/sponsor/list.do");
 		result.addObject("campaigns", campaigns);
 		result.addObject("sponsor", sponsor);
 
@@ -94,7 +94,7 @@ public class CampaignSponsorController extends AbstractController {
 			result = createEditModelAndView(campaign);
 		} else {
 			try {
-				campaignService.save(campaign);
+				campaignService.save2(campaign);
 				result = new ModelAndView("redirect:/campaign/sponsor/list.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(campaign,
@@ -115,11 +115,11 @@ public class CampaignSponsorController extends AbstractController {
 		try {
 			if (campaignService.activeCampaign(campaign) == false
 					&& campaignService.campaignPassed(campaign) == false) {
-				campaignService.delete(campaign);
+				campaignService.delete2(campaign);
 				result = new ModelAndView("redirect:/campaign/sponsor/list.do");
 			}
 			result = new ModelAndView("redirect:/campaign/sponsor/list.do");
-			
+
 		} catch (Throwable oops) {
 			result = createEditModelAndView(campaign, "campaign.commit.error");
 

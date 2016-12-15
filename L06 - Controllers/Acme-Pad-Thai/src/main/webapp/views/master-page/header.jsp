@@ -60,9 +60,9 @@
 				<ul>
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
-						<li><a href="sponsor/campaign/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+						<li><a href="campaign/sponsor/create.do"><spring:message code="master.page.campaign.create" /></a></li>
 					</security:authorize>	
-					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
+					<li><a href="campaign/sponsor/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
 								
 				</ul>
 			</li>
