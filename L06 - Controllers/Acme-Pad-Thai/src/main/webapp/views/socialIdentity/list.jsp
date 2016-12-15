@@ -21,7 +21,7 @@
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="socialIdentities" requestURI="socialIdentity/actor/list.do" id="row">
 	<display:column>
-		<a href="socialIdentity/actor/edit.do?socialidentityId=${row.id}">
+		<a href="socialIdentity/actor/edit.do?socialIdentityId=${row.id}">
 			<spring:message	code="socialidentity.edit" />
 		</a>
 	</display:column>
@@ -34,7 +34,7 @@
 
 	<spring:message code="socialidentity.picture" var="pictureHeader" />
 	<display:column title="${pictureHeader}" sortable="false">
-		<img src="${row.picture}" />
+		<img src="${row.picture}" height="150px" width="150px" />
 	</display:column>
 
 	<spring:message code="socialidentity.network.link" var="linkHeader" />
@@ -48,7 +48,7 @@
 </display:table>
 
 <div>
-	<a href="socialidentity/actor/create.do"> <spring:message
+	<a href="socialIdentity/actor/create.do"> <spring:message
 			code="socialidentity.create" />
 	</a>
 </div>

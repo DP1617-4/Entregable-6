@@ -301,5 +301,12 @@ public class RecipeService {
 		return saved;
 	}
 	
+	public Collection<Recipe> findAllNotQualifiedPrincipal(){
+		User user = userService.findByPrincipal();
+		Collection<Recipe> result;
+		result= recipeRepository.findAllNotQualifiedUser(user);
+		
+		return result;
+	}
 	
 }

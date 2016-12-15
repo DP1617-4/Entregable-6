@@ -45,7 +45,7 @@
 	<display:column property="moment" title="${momentHeader}" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}" />
 
 	<spring:message code="message.body" var="bodyHeader" />
-	<display:column property="body" title="${descriptionHeader}" sortable="false" />
+	<display:column property="body" title="${bodyHeader}" sortable="false" />
 	
 	<spring:message code="message.priority" var="priorityHeader"/>
 	<display:column property="priority" title="${priorityHeader}" sortable="true"/>
@@ -53,13 +53,13 @@
 	
 	<spring:message code="message.sender" var="senderHeader"/>
 	<display:column title="${senderHeader}">
-		<a href="user/display.do?userId=${row.sender.id}"> ${row.sender.name} ${row.sender.surname} </a>
+		<a href="user/display.do?userId=damm"> vbdgfdg </a>
 	</display:column>
 	
 	
 	<spring:message code="message.recipient" var="recipientHeader"/>
 	<display:column title="${recipientHeader}">
-		<a href="user/display.do?userId=${row.receiver.id}"> ${row.receiver.name} ${row.receiver.surname} </a>
+		<a href="user/display.do?userId=lmao"> sgdsdfgsdg </a>
 	</display:column> 
 	
 

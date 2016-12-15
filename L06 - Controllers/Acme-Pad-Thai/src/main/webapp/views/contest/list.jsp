@@ -31,9 +31,24 @@
 	</security:authorize>
 	<security:authorize access="hasRole('USER')">
 		<display:column>
-			<a href="contest/user/qualify.do?contestId=${row.id}">
-				<spring:message	code="contest.qualify" />
-			</a>
+			<form:form action="contest/user/qualify.do" modelAttribute="addRecipe">
+
+				<form:hidden path="contestId" value="${row.id}"/>
+
+				<form:label path="recipeId">
+					<spring:message code="contest.qualify.recipe" />:
+				</form:label>
+				<form:select id="recipes" path="recipeId" >
+					<form:option value="0" label="----"/>
+					<form:options items="${recipes}" itemValue="id" itemLabel="title"/>
+				</form:select>
+				<form:errors cssClass="error" path="recipeId" />
+				<input type="submit" name="recipeToQualify"
+					value="<spring:message code="contest.save" />" />&nbsp;
+
+	
+
+			</form:form>
 		</display:column>
 	</security:authorize>	
 	<!-- Attributes -->
