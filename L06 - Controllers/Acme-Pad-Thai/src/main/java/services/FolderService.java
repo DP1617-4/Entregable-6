@@ -94,7 +94,7 @@ public class FolderService {
 		Folder folder;
 		folder = folderRepository.findOne(folderId);
 		Actor actor = actorService.findByPrincipal();
-		Assert.isTrue(actor.equals(folder.getActor()), "Dear User, you can't edit a folder that doesn't belong to you");
+		Assert.isTrue(actor.getFolders().contains(folder), "Dear User, you can't edit a folder that doesn't belong to you");
 	}
 	
 	public void checkSysFolder(Folder folder){

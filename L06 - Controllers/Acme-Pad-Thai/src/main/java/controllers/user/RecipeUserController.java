@@ -140,7 +140,6 @@ public class RecipeUserController extends AbstractController {
 
 		recipe = recipeService.findOne(recipeId);
 		if(recipe.getContest().equals(null)){
-			Assert.notNull(recipe);
 			result = createEditModelAndView(recipe);
 		}
 		else{

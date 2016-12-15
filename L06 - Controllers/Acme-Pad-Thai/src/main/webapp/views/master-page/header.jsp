@@ -68,6 +68,29 @@
 			</li>
 		</security:authorize>
 		
+		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
+			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<security:authorize access="hasRole('SPONSOR')">
+						<li><a href="sponsor/campaign/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+					</security:authorize>	
+					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
+								
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasAnyRole('NUTRITIONIST')">
+			<li><a class="fNiv"><spring:message	code="master.page.ingredient" /></a>
+				<ul>
+					<li><a href="ingredient/nutritionist/create.do"><spring:message code="master.page.ingredient.create" /></a></li>
+					<li><a href="ingredient/nutritionist/list.do"><spring:message code="master.page.ingredient.list" /></a></li>	
+								
+				</ul>
+			</li>
+		</security:authorize>
+		
 		
 		
 		<security:authorize access="isAnonymous()">
@@ -92,14 +115,14 @@
 					<li class="arrow"></li>
 					<li><a href="folder/actor/list.do"><spring:message code="master.page.profile.folder.list" /></a></li>
 					<li><a href="folder/actor/create.do"><spring:message code="master.page.profile.folder.create" /></a></li>					
-					<li><a href="socialidentity/actor/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
-					<li><a href="socialidentity/actor/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
+					<li><a href="socialIdentity/actor/list.do"><spring:message code="master.page.profile.social.identity.list"/></a></li>					
+					<li><a href="socialIdentity/actor/create.do"><spring:message code="master.page.profile.social.identity.create"/></a></li>					
 					<li><a href="message/actor/create.do"><spring:message code="master.page.profile.message.create" /></a></li>
 					<security:authorize access="hasRole('ADMIN')">
 						<li><a><spring:message	code="master.page.administrator" /></a>
 							<ul>
 								<li class="arrow"></li>
-								<li><a href="administrator/cook/create.do"><spring:message code="master.page.cook.create" /></a></li>
+								<li><a href="cook/administrator/create.do"><spring:message code="master.page.cook.create" /></a></li>
 								<li><a href="administrator/display.do"><spring:message code="master.page.administrator.display" /></a></li>
 								<li><a href="administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 							</ul>
@@ -114,8 +137,8 @@
 								<li><a><spring:message code = "master.page.curricula"/></a>
 									<ul>
 										<li class="arrow"></li>
-										<li><a href="nutritionist/curricula/display.do"><spring:message code="master.page.curricula.display" /></a></li>
-										<li><a href="nutritionist/curricula/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
+										<li><a href="curricula/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
+										<li><a href="curricula/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
 									</ul>
 								</li>	
 							</ul>
@@ -134,8 +157,8 @@
 						<li><a><spring:message	code="master.page.sponsor" /></a>
 							<ul>
 								<li class="arrow"></li>
-								<li><a href="sponsor/creditcard/display.do"><spring:message code="master.page.creditcard.display" /></a></li>
-								<li><a href="sponsor/creditcard/create.do"><spring:message code="master.page.creditcard.create" /></a></li>
+								<li><a href="creditcard/sponsor/display.do"><spring:message code="master.page.creditcard.display" /></a></li>
+								<li><a href="creditcard/sponsor/create.do"><spring:message code="master.page.creditcard.create" /></a></li>
 								<li><a href="sponsor/display.do"><spring:message code="master.page.sponsor.display" /></a></li>
 								<li><a href="sponsor/edit.do"><spring:message code="master.page.sponsor.edit" /></a></li>
 							</ul>

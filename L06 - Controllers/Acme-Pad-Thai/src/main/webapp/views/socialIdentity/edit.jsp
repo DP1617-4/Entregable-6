@@ -57,7 +57,7 @@
 
 	<input type="submit" name="save"
 		value="<spring:message code="socialidentity.save" />" />&nbsp; 
-	<jstl:if test="${socialidentity.id != 0}">
+	<jstl:if test="${socialIdentity.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="socialidentity.delete" />"
 			onclick="return confirm('<spring:message code="socialidentity.confirm.delete" />')" />&nbsp;

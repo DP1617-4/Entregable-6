@@ -40,7 +40,7 @@
 
 <br/>
 
-<a href="banner/create.do"> <spring:message
+<a href="banner/sponsor/create.do"> <spring:message
 code="banner.create" />
 </a>
 

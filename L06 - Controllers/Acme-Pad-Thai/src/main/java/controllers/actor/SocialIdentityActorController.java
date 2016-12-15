@@ -41,12 +41,12 @@ public class SocialIdentityActorController extends AbstractController {
 		public ModelAndView list(){
 			ModelAndView result;
 			
-			Collection<SocialIdentity> socialIdentitys;
+			Collection<SocialIdentity> socialIdentities;
 			
-			socialIdentitys = socialIdentityService.findAllByPrincipal();
+			socialIdentities = socialIdentityService.findAllByPrincipal();
 			
 			result = new ModelAndView("socialIdentity/list");
-			result.addObject("socialIdentitys", socialIdentitys);
+			result.addObject("socialIdentities", socialIdentities);
 			
 			return result;
 		}

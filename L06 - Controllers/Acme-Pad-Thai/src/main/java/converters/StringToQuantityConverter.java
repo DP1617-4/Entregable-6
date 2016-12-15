@@ -19,7 +19,7 @@ public class StringToQuantityConverter implements Converter<String, Quantity> {
 	public Quantity convert(String text) {
 		Quantity result;
 		int id;
-
+		
 		try {
 			id = Integer.valueOf(text);
 			result = quantityRepository.findOne(id);
