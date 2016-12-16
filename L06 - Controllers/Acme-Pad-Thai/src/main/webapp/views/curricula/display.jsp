@@ -11,18 +11,18 @@
 
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-name="user data" requestURI="${requestURI}" id="row">
+name="curricula" requestURI="${requestURI}" id="row">
 
-	<spring:message code="curricula.picture" var=pictureHeader/>
+	<spring:message code="curricula.picture" var="pictureHeader"/>
 	<display:column property="picture" title="${pictureHeader}"/>
 	
-	<spring:message code="curricula.education" var=educationHeader/>
+	<spring:message code="curricula.education" var="educationHeader"/>
 	<display:column property="education" title="${educationHeader}"/>
 	
-	<spring:message code="curricula.experience" var=experienceHeader/>
+	<spring:message code="curricula.experience" var="experienceHeader"/>
 	<display:column property="experience" title="${experienceHeader}"/>
 	
-	<spring:message code="curricula.hobbies" var=hobbiesHeader/>
+	<spring:message code="curricula.hobbies" var="hobbiesHeader"/>
 	<display:column property="hobbies" title="${hobbiesHeader}"/>
 	
 </display:table>

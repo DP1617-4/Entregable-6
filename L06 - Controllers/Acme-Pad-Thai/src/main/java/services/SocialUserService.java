@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repositories.SocialUserRepository;
 import security.LoginService;
+import security.UserAccount;
+import domain.Actor;
 import domain.Recipe;
 import domain.Score;
 import domain.SocialUser;
@@ -54,10 +56,20 @@ public class SocialUserService {
 				return socialUserRepository.findAllUserFollowed(u.getId());
 			}
 			
-			public SocialUser findByPrincipal(){
+			public SocialUser findByUserAccount(UserAccount userAccount){
+				SocialUser result;
+				result = socialUserRepository.findOneByUserAccountId(userAccount.getId());
 				
-				SocialUser socialUser = socialUserRepository.findOneByUserAccountId(LoginService.getPrincipal().getId());
-				return socialUser;
+				return result;
+			}
+			
+			public SocialUser findByPrincipal(){
+				SocialUser result;
+				UserAccount userAccount;
+				
+				userAccount = LoginService.getPrincipal();
+				result = findByUserAccount(userAccount);
+				return result;
 			}
 			
 			public Collection<SocialUser> findAll(){
