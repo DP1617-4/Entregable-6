@@ -21,6 +21,8 @@
 	<form:hidden path="followed" />
 	<form:hidden path="userAccount.authorities" />
 	
+	
+	
 	<form:label path="userAccount.username">
       <spring:message code="sponsor.username" />
     </form:label>

@@ -78,7 +78,7 @@
 	
 	<security:authorize access="hasRole('NUTRITIONIST')">
 	<display:column>
-		<a href="recipe/user/editValue.do?valueId=${row.id}"><spring:message code="ingredient.edit"/></a>
+		<a href="ingredient/nutritionist/editValue.do?valueId=${row.id}"><spring:message code="ingredient.edit"/></a>
 	</display:column>
 	</security:authorize>
 	
