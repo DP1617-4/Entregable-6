@@ -48,7 +48,7 @@
 
 	<input type="submit" name="save"
 		value="<spring:message code="contest.save" />" />&nbsp; 
-	<jstl:if test="${category.id != 0}">
+	<jstl:if test="${contest.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="contest.delete" />"
 			onclick="return confirm('<spring:message code="contest.confirm.delete" />')" />&nbsp;

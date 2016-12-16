@@ -1,10 +1,11 @@
 package domain;
 
-import java.util.Date;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
@@ -69,7 +70,7 @@ public class Contest extends DomainEntity {
 	private Collection<Recipe> winners;
 
 	@Valid
-	@OneToMany(mappedBy = "contest")
+	@OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
 	public Collection<Recipe> getQualified() {
 		return qualified;
 	}

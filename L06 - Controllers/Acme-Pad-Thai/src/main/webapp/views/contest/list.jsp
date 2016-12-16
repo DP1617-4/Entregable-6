@@ -43,7 +43,7 @@
 					<form:options items="${recipes}" itemValue="id" itemLabel="title"/>
 				</form:select>
 				<form:errors cssClass="error" path="recipeId" />
-				<input type="submit" name="recipeToQualify"
+				<input type="submit" name="save"
 					value="<spring:message code="contest.save" />" />&nbsp;
 
 	
