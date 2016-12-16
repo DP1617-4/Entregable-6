@@ -36,7 +36,7 @@
 
 	<spring:message code="comment.socialUser" var="socialUserHeader" />
 	<display:column title="${socialUserHeader}">
-		<a href="socialUser/display.do?socialUserId=${row.socialUser.id}"><spring:message
+		<a href="user/display.do?userId=${row.socialUser.id}"><spring:message
 				code="comment.socialUser"/> </a>
 	</display:column>
 	
