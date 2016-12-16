@@ -69,7 +69,7 @@ public class ContestUserController extends AbstractController {
 	}
 	
 	
-	@RequestMapping(value = "/qualify", method = RequestMethod.POST, params = "recipeToQualify")
+	@RequestMapping(value = "/qualify", method = RequestMethod.POST, params = "save")
 	public ModelAndView addRecipe(@Valid AddRecipe addRecipe,
 			BindingResult binding) {
 
@@ -84,9 +84,7 @@ public class ContestUserController extends AbstractController {
 			try {
 				
 				recipeToQualify = recipeService.createCopyForContest(recipeToQualify);
-				recipeToQualify = recipeService.save(recipeToQualify);
-				contest.getQualified().add(recipeToQualify);
-				contestService.save(contest);
+				contestService.setQualified(contest, recipeToQualify);
 				result = new ModelAndView(
 						"redirect:/contest/list.do");
 
