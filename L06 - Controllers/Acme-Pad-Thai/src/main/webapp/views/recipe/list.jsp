@@ -83,7 +83,7 @@
 	<display:column property="score" title="${scoreHeader}" sortable="false" />
 	
 	<display:column>
-		<a href="comment/socialUser/list.do?recipeId=${row.id}"><spring:message code="recipe.comment.list"/></a>
+		<a href="comment/list.do?recipeId=${row.id}"><spring:message code="recipe.comment.list"/></a>
 	</display:column>
 	
 	<display:column>

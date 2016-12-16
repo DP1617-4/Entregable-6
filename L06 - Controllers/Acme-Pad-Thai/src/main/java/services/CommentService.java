@@ -45,6 +45,13 @@ public class CommentService {
 			return retrieved;
 		}
 
+		public Collection<Comment> findAllByRecipeId(int recipeId){
+			
+			Collection<Comment> result;
+			result = commentRepository.findAllByRecipeId(recipeId);
+			return result;
+		}
+		
 		public Collection<Comment> findAll(){
 			
 			return commentRepository.findAll();
