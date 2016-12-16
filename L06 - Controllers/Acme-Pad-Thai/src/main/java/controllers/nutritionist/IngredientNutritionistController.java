@@ -137,7 +137,8 @@ public class IngredientNutritionistController extends AbstractController {
 
 		try {
 			ingredientService.delete2(ingredient);
-			result = new ModelAndView("redirect:/ingredient/list.do");
+			
+			result = new ModelAndView("redirect:/ingredient/nutritionist/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(ingredient, "ingredient.commit.error");
 		}
