@@ -54,7 +54,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="curricula.cancel" />"
-		onclick="javascript: relativeRedir('nutritionist/display.do');" />
+		onclick="location.href = 'curricula/display.do';" />&nbsp;
 	<br />
 	
 	

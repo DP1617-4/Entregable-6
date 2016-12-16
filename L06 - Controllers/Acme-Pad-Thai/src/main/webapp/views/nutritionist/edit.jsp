@@ -71,23 +71,22 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="nutritionist.save" />" />&nbsp; 
+		value="<spring:message code="nutritionist.save" />" 
+		onclick="location.href = 'nutritionist/display.do';" />&nbsp; 
+		
 		
 	<jstl:if test="${nutritionist.id != 0}">
-		<input type="submit" name="delete"
-		value="<spring:message code="nutritionist.delete" />"
-		onclick="return confirm('<spring:message code="nutritionist.confirm.delete" />')" />&nbsp;
 		<input type="button" name="cancel"
 		value="<spring:message code="nutritionist.cancel" />"
-		onclick="javascript: relativeRedir('nutritionist/display.do');" />
+		onclick="location.href = 'nutritionist/display.do';" />&nbsp;
+	<br />
 	</jstl:if>
-		
+	
 	<jstl:if test="${nutritionist.id == 0}">
-		<input type="button" name="cancel"
+	<input type="button" name="cancel"
 		value="<spring:message code="nutritionist.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = 'welcome/index.do';" />&nbsp;
 	</jstl:if>
 	<br />
-	
 	
 </form:form>
