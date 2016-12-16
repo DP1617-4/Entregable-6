@@ -71,9 +71,9 @@ public class UserController extends AbstractController {
 		result.addObject("filterString", filter);
 		Object access = SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-		if (access != "anonymousUser") {
+		if (access instanceof  SocialUser) {
 
-			User principal = userService.findByPrincipal();
+			SocialUser principal = socialUserService.findByPrincipal();
 			followed = principal.getFollowed();
 			result.addObject("followed", followed);
 		}
