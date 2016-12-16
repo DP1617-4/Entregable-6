@@ -5,24 +5,24 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.QuantityRepository;
-import domain.Quantity;
+import repositories.SocialUserRepository;
+import domain.SocialUser;
 
 @Component
 @Transactional
-public class StringToQuantityConverter implements Converter<String, Quantity> {
+public class StringToSocialUserConverter implements Converter<String, SocialUser> {
 
 	@Autowired
-	QuantityRepository quantityRepository;
+	SocialUserRepository socialUserRepository;
 
 	@Override
-	public Quantity convert(String text) {
-		Quantity result;
+	public SocialUser convert(String text) {
+		SocialUser result;
 		int id;
-		
+
 		try {
 			id = Integer.valueOf(text);
-			result = quantityRepository.findOne(id);
+			result = socialUserRepository.findOne(id);
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);
 		}

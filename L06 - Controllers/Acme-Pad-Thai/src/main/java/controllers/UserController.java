@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,9 +71,9 @@ public class UserController extends AbstractController {
 		result.addObject("filterString", filter);
 		Object access = SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal();
-		if (access != "anonymousUser") {
+		if (access instanceof  SocialUser) {
 
-			User principal = userService.findByPrincipal();
+			SocialUser principal = socialUserService.findByPrincipal();
 			followed = principal.getFollowed();
 			result.addObject("followed", followed);
 		}
@@ -170,7 +171,39 @@ public class UserController extends AbstractController {
 
 		return result;
 	}
+		
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
+		ModelAndView result;
+		User user;
 
+		user = userService.findByPrincipal();		
+		result = createEditModelAndView(user);
+		
+		result.addObject("user", user);
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid User user, BindingResult binding) {
+		ModelAndView result;
+		if(binding.hasErrors()){
+			result = createEditModelAndView(user);
+		}
+		else{
+			try{
+				userService.save(user);
+				result = new ModelAndView(
+						"redirect:user/display.do?userId="
+								+ user.getId());
+			} catch (Throwable oops){
+				result = createEditModelAndView(user, "user.commit.error");
+			}
+		}
+		return result;
+	}
+	
 	protected ModelAndView createEditModelAndView(User user) {
 		ModelAndView result;
 
@@ -180,81 +213,11 @@ public class UserController extends AbstractController {
 	}
 	protected ModelAndView createEditModelAndView(User user, String message) {
 		ModelAndView result;
-		UserAccount userAccount;
-		Collection<Folder> folders;
-		Collection<SocialIdentity> socialIdentities;
-		Collection<MasterClass> enroled;
-		Collection<Recipe> recipes;
-		Collection<SocialUser> followed;
-		Collection<SocialUser> followers;
-		Collection<Score> scores;
-		Collection<Comment> comments;
-
-		if (user.getUserAccount() == null) {
-			userAccount = null;
-		} else {
-			userAccount = user.getUserAccount();
-		}
-
-		if (user.getFolders() == null) {
-			folders = null;
-		} else {
-			folders = user.getFolders();
-		}
-
-		if (user.getSocialIdentities() == null) {
-			socialIdentities = null;
-		} else {
-			socialIdentities = user.getSocialIdentities();
-		}
-
-		if (user.getEnroled() == null) {
-			enroled = null;
-		} else {
-			enroled = user.getEnroled();
-		}
-
-		if (user.getRecipes() == null) {
-			recipes = null;
-		} else {
-			recipes = user.getRecipes();
-		}
-
-		if (user.getFollowed() == null) {
-			followed = null;
-		} else {
-			followed = user.getFollowed();
-		}
-
-		if (user.getFollowers() == null) {
-			followers = null;
-		} else {
-			followers = user.getFollowers();
-		}
-
-		if (user.getComments() == null) {
-			comments = null;
-		} else {
-			comments = user.getComments();
-		}
-
-		if (user.getScores() == null) {
-			scores = null;
-		} else {
-			scores = user.getScores();
-		}
 
 		result = new ModelAndView("user/edit");
-		result.addObject("userAccount", userAccount);
-		result.addObject("folders", folders);
-		result.addObject("socialIdentities", socialIdentities);
-		result.addObject("enroled", enroled);
-		result.addObject("recipes", recipes);
-		result.addObject("followed", followed);
-		result.addObject("followers", followers);
-		result.addObject("comments", comments);
-		result.addObject("scores", scores);
-
+		result.addObject("user", user);
+		result.addObject("message", message);
+		
 		return result;
 	}
 

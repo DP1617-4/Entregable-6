@@ -22,9 +22,9 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="quantity"/>
+	<form:hidden path="quantities"/>
 	<form:hidden path="deleted"/>
-	<form:hidden path="value"/>
+	<form:hidden path="values"/>
 	<form:hidden path="pictures"/>
 
 	<form:label path="name">
@@ -49,7 +49,8 @@
 			value="<spring:message code="ingredient.delete" />"/>&nbsp;
 	</jstl:if>
 	<input type="button" name="cancel"
-		value="<spring:message code="ingredient.cancel" />"/>&nbsp;
+		value="<spring:message code="ingredient.cancel" />"
+		onclick="location.href = 'ingredient/list.do';" />&nbsp;
 	<br />
 
 	
