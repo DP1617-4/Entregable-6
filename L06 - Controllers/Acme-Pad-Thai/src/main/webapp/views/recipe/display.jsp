@@ -149,7 +149,7 @@
 	<display:column>
 	<jstl:choose>
 		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
-			<a href="recipe/user/removeIngredient.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
+			<a href="recipe/user/removeIngredient.do?valueId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
