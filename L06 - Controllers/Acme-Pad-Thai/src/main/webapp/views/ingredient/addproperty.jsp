@@ -37,7 +37,8 @@
 
 	
 	<input type="button" name="cancel"
-		value="<spring:message code="recipe.cancel" />"/>&nbsp;
+		value="<spring:message code="recipe.cancel" />"
+		onclick="location.href = 'ingredient/display.do?ingredientId=${value.ingredient.id}';" />&nbsp;
 	<br />
 
 	
