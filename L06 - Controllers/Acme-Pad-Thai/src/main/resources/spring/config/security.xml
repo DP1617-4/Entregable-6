@@ -87,6 +87,7 @@
 		<security:intercept-url pattern="/masterClass/user/**" access="hasRole('USER')" />  
 		
 		<security:intercept-url pattern="/learningMaterial/cook/**" access="hasRole('COOK')" />
+		<security:intercept-url pattern="/learningMaterial/actor/**" access="isAuthenticated()" />
 	
 		<security:intercept-url pattern="/step/**" access="hasRole('USER')" /> 
 		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" /> 

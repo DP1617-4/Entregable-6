@@ -177,16 +177,20 @@ public class MessageService {
 	
 	public void checkPrincipalSender(Message message){
 		Actor actor = actorService.findByPrincipal();
+		Actor mActor = actorService.findSenderFromMessage(message.getId());
 		Assert.isTrue(actor.equals(message.getSender()));
 	}
 	
 	public void checkPrincipalReceiver(Message message){
 		Actor actor = actorService.findByPrincipal();
-		Assert.isTrue(actor.equals(message.getReceiver()));
+		Actor mActor = actorService.findReceiverFromMessage(message.getId());
+		Assert.isTrue(actor.equals(mActor));
 	}
 	
 	public void checkPrincipal(Message message){
 		Actor actor = actorService.findByPrincipal();
-		Assert.isTrue(actor.equals(message.getReceiver()) || actor.equals(message.getSender()));
+		Actor sActor = actorService.findReceiverFromMessage(message.getId());
+		Actor rActor = actorService.findSenderFromMessage(message.getId());
+		Assert.isTrue(actor.equals(rActor) || actor.equals(sActor));
 	}
 }
