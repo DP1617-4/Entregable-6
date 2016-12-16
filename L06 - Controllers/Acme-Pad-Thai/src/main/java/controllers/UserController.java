@@ -16,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import security.UserAccount;
+import services.ActorService;
 import services.SocialUserService;
 import services.UserService;
 
 import controllers.AbstractController;
+import domain.Actor;
 import domain.Comment;
 import domain.Folder;
 import domain.Ingredient;
@@ -43,6 +45,9 @@ public class UserController extends AbstractController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ActorService actorService;
 	
 	@Autowired
 	private SocialUserService socialUserService;
@@ -73,9 +78,11 @@ public class UserController extends AbstractController {
 				.getPrincipal();
 		if (access != "anonymousUser") {
 
-			User principal = userService.findByPrincipal();
-			followed = principal.getFollowed();
-			result.addObject("followed", followed);
+			Actor principal = actorService.findByPrincipal();
+			if(principal instanceof SocialUser){
+				followed = ((SocialUser) principal).getFollowed();
+				result.addObject("followed", followed);
+			}
 		}
 
 		return result;
@@ -193,7 +200,7 @@ public class UserController extends AbstractController {
 		}
 		else{
 			try{
-				userService.save(user);
+				user = userService.save(user);
 				result = new ModelAndView(
 						"redirect:user/display.do?userId="
 								+ user.getId());

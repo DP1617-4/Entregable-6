@@ -71,7 +71,8 @@ public class NutritionistService {
 
 			public Nutritionist save(Nutritionist nutritionist){
 				
-				Nutritionist saved = nutritionistRepository.save(nutritionist);
+				Nutritionist saved;
+				saved = nutritionistRepository.save(nutritionist);
 				
 				return saved;
 				
