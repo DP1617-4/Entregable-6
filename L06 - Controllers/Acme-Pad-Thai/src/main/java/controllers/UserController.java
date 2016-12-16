@@ -7,34 +7,18 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import security.LoginService;
-import security.UserAccount;
 import services.ActorService;
 import services.SocialUserService;
 import services.UserService;
-
-import controllers.AbstractController;
 import domain.Actor;
-import domain.Comment;
-import domain.Folder;
-import domain.Ingredient;
-import domain.MasterClass;
-import domain.Quantity;
-import domain.Recipe;
-import domain.Score;
-import domain.SocialIdentity;
 import domain.SocialUser;
-import domain.Step;
 import domain.User;
-import forms.AddIngredient;
-import forms.AddPicture;
 import forms.FilterString;
 
 @Controller

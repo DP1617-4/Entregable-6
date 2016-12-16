@@ -13,7 +13,6 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Campaign;
-import domain.Sponsor;
 
 //TODO: this file provides an incomplete template; complete it with the appropriate annotations and method implementations.
 //TODO: do not forget to add appropriate sectioning comments, e.g., "System under test" and "Tests".
@@ -37,7 +36,7 @@ public class CampaignServiceTest extends AbstractTest{
 	@Test
 	public void testCreate() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 		campaignService.create();
 		unauthenticate();
 	}
@@ -55,7 +54,7 @@ public class CampaignServiceTest extends AbstractTest{
 	@Test
 	public void testSaveNegative() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 		Campaign campaign =  campaignService.create();
 		try{
 			campaignService.save(campaign);
