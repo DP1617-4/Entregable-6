@@ -86,6 +86,20 @@ public class ActorService {
 	}
 	//Business Methods
 	
+	public Actor findSenderFromMessage(int messageId){
+		Actor result;
+		
+		result = actorRepository.findSenderFromMessage(messageId);
+		return result;
+	}
+	
+	public Actor findReceiverFromMessage(int messageId){
+		Actor result;
+		
+		result = actorRepository.findReceiverFromMessage(messageId);
+		return result;
+	}
+	
 	//Maybe in MasterClassService makes more sense, but it is mapped by "Actor" so...
 	public void register (MasterClass masterClass){
 		Actor actor;

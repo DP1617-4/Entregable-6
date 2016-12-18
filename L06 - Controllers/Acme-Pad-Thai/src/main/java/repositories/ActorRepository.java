@@ -19,4 +19,10 @@ public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	
 	@Query("select a from Actor a where a.id = ?1")
 	Actor findOne(int id);
+	
+	@Query("select m.sender from Message m where m.id = ?1")
+	Actor findSenderFromMessage(int messageId);
+	
+	@Query("select m.receiver from Message m where m.id = ?1")
+	Actor findReceiverFromMessage(int messageId);
 }

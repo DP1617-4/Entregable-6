@@ -78,6 +78,8 @@
 		
 		<security:intercept-url pattern="/nutritionist/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/nutritionist/nutritionist/**" access="hasRole('NUTRITIONIST')" />
+		<security:intercept-url pattern="/nutritionist/**" access="hasRole('NUTRITIONIST')" />
+		
 		
 		<security:intercept-url pattern="/masterClass/**" access="permitAll" />
 		<security:intercept-url pattern="/masterClass/cook/**" access="hasRole('COOK')" />  
@@ -85,9 +87,13 @@
 		<security:intercept-url pattern="/masterClass/user/**" access="hasRole('USER')" />  
 		
 		<security:intercept-url pattern="/learningMaterial/cook/**" access="hasRole('COOK')" />
+		<security:intercept-url pattern="/learningMaterial/actor/**" access="isAuthenticated()" />
 	
 		<security:intercept-url pattern="/step/**" access="hasRole('USER')" /> 
 		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" /> 
+		
+		<security:intercept-url pattern="/comment/**" access="permitAll" />
+		<security:intercept-url pattern="/comment/socialUser/**" access="hasAnyRole('USER', 'NUTRITIONIST')" /> 
 		
 
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />

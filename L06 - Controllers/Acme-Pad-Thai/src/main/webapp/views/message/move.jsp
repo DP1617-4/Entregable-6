@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<form:form action="message/actor/edit.do" modelAttribute="message">
+<form:form action="message/actor/move.do" modelAttribute="message">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />

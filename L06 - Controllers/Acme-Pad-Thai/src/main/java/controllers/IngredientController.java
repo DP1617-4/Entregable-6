@@ -11,14 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.IngredientService;
 import services.PropertyService;
-import services.RecipeService;
 import domain.Ingredient;
 import domain.Property;
-import domain.Recipe;
 import domain.Value;
 import forms.AddIngredient;
 import forms.AddPicture;
-import forms.FilterString;
 
 
 @Controller
@@ -27,8 +24,6 @@ public class IngredientController extends AbstractController {
 	
 	// Services ---------------------------------------------------------------
 
-	@Autowired
-	private RecipeService recipeService;	
 	@Autowired
 	private IngredientService ingredientService;
 	@Autowired
