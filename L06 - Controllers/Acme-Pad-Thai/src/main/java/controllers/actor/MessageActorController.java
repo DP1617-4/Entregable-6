@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
+import security.UserAccount;
 import services.ActorService;
 import services.FolderService;
 import services.MessageService;
@@ -31,10 +33,10 @@ public class MessageActorController extends AbstractController{
 	private MessageService messageService;
 	
 	@Autowired
-	private ActorService actorService;
-	
-	@Autowired
 	private FolderService folderService;
+
+	@Autowired
+	private ActorService actorService;
 	
 	
 	
@@ -52,12 +54,15 @@ public class MessageActorController extends AbstractController{
 		ModelAndView result;
 		Collection<Message> messages;
 		String requestURI = "message/actor/list.do?folderId="+folderId;
+		Folder folder;
+		folder = folderService.findOneToEdit(folderId);
 		
 		try{
 			messages = messageService.findAllByFolder(folderId);
 			result = new ModelAndView("message/list");
 			result.addObject("messages", messages);
 			result.addObject("requestURI", requestURI);
+			result.addObject("folder", folder);
 		}catch(Throwable oops){
 			
 			result = new ModelAndView("redirect:/folder/actor/list.do");
@@ -83,13 +88,14 @@ public class MessageActorController extends AbstractController{
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params ="save")
 	public ModelAndView save(@Valid Message message, BindingResult binding){
 		ModelAndView result;
+		Message sent;
 		
 		if (binding.hasErrors()) {
 			result = createEditModelAndView(message);
 		} else {
 			try {
-				messageService.send(message);
-				result = new ModelAndView("redirect:/message/actor/list.do?folderId="+message.getFolder().getId());
+				sent = messageService.send(message);
+				result = new ModelAndView("redirect:/message/actor/list.do?folderId="+sent.getFolder().getId());
 			} catch (Throwable oops) {
 				result = createEditModelAndView(message, "message.commit.error");				
 			}

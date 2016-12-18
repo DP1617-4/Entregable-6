@@ -87,6 +87,14 @@ public class UserService {
 
 		}
 		
+		
+		public User findByUserAccountId(int userAccountId){
+			
+			User user = userRepository.findOneByUserAccountId(userAccountId);
+			return user;
+
+		}
+		
 		public Collection<User> findAll(){
 			
 			return userRepository.findAll();

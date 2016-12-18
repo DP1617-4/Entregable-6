@@ -878,6 +878,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="cook1" />
 		<property name="messages">
 			<list>
+				<ref bean="message1Received"/>
 			</list>
 		</property>
 	</bean>
@@ -934,7 +935,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="user1" />
 		<property name="messages">
 			<list>
-				<ref bean="message1Sent"/>
+			 	<ref bean="message1Sent"/>
 			</list>
 		</property>
 	</bean>
@@ -946,7 +947,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="user2" />
 		<property name="messages">
 			<list>
-				<ref bean="message2Sent"/>
+				<ref bean="message2Sent"/> 
 			</list>
 		</property>
 	</bean>
@@ -1062,14 +1063,15 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<!-- MESSAGE -->	
+	
 	<bean id="message1Sent" class="domain.Message">
 		<property name="title" value="Message1" />
 		<property name="body" value="Very important message" />
 		<property name="moment" value="2016/10/27 22:00" />
 		<property name="priority" value="LOW" />
 		<property name="folder" ref="outbox1" />
-		<property name="sender" ref="user1" />
-		<property name="receiver" ref="cook1" />
+		<property name="sender" ref="userAccount2" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
  
 	<bean id="message1Received" class="domain.Message">
@@ -1078,8 +1080,8 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="moment" value="2016/10/27 22:00" />
 		<property name="priority" value="LOW" />
 		<property name="folder" ref="inbox8" />
-		<property name="sender" ref="user1" />
-		<property name="receiver" ref="cook1" />
+		<property name="sender" ref="userAccount2" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
  
 	<bean id="message2Sent" class="domain.Message">
@@ -1088,8 +1090,8 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="moment" value="2016/10/28 21:00" />
 		<property name="priority" value="HIGH" />
 		<property name="folder" ref="outbox2" />
-		<property name="sender" ref="user2" />
-		<property name="receiver" ref="cook1" />
+		<property name="sender" ref="userAccount7" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
 	
 	<bean id="message2Received" class="domain.Message">
@@ -1098,10 +1100,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="moment" value="2016/10/28 21:00" />
 		<property name="priority" value="HIGH" />
 		<property name="folder" ref="spam8" />
-		<property name="sender" ref="user2" />
-		<property name="receiver" ref="cook1" />
+		<property name="sender" ref="userAccount7" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
-
+ 
 	<!-- RECIPE -->
 	<bean id="recipe1" class="domain.Recipe">
 		<property name="ticker" value="123456-gitG" />
