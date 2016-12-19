@@ -43,7 +43,6 @@ name="category" requestURI="${requestURI}" id="row">
 <br/>
 
 	<a href="category/edit.do"><spring:message code="category.edit"/></a>
-	
 <br />
 
 <input type="button" name="list"

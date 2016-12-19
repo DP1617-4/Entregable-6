@@ -53,7 +53,10 @@
 		<security:intercept-url pattern="/recipe/cook/**" access="hasRole('COOK')" /> 
 		<security:intercept-url pattern="/recipe/sponsor/**" access="hasRole('SPONSOR')" /> 
 		<security:intercept-url pattern="/recipe/socialuser/**" access="hasAnyRole('USER', 'NUTRITIONIST')" />
+		
 		<security:intercept-url pattern="/campaign/**" access="hasRole('SPONSOR')" /> 
+		
+		<security:intercept-url pattern="/banner/**" access="hasRole('SPONSOR')" />
 		
 
 		<security:intercept-url pattern="/contest/list.do" access="permitAll" />
@@ -71,6 +74,8 @@
 		
 		
 		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" />
+		
+		<security:intercept-url pattern="/category/administrator/**" access="hasRole('ADMIN')" />
 		
 		<security:intercept-url pattern="/folder/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
