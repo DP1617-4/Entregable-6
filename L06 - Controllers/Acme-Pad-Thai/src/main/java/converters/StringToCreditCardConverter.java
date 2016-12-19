@@ -20,7 +20,8 @@ import domain.CreditCard;
 
 @Component
 @Transactional
-public class StringToCreditCardConverter implements Converter<String, CreditCard> {
+public class StringToCreditCardConverter implements
+		Converter<String, CreditCard> {
 
 	@Autowired
 	CreditCardRepository creditCardRepository;
@@ -31,12 +32,8 @@ public class StringToCreditCardConverter implements Converter<String, CreditCard
 		int id;
 
 		try {
-			if (text == "") {
-				result = null;
-			} else {
-				id = Integer.valueOf(text);
-				result = creditCardRepository.findOne(id);
-			}
+			id = Integer.valueOf(text);
+			result = creditCardRepository.findOne(id);
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);
 		}

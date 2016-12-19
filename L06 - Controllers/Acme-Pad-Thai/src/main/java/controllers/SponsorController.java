@@ -33,57 +33,23 @@ public class SponsorController extends AbstractController {
 		ModelAndView result;
 		
 		Sponsor sponsor = sponsorService.create();
+		
 		result = createEditModelAndView(sponsor);
 		
 		return result;
 	}
 
 	// Edition ----------------------------------------------------------------
-//	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-//	public ModelAndView edit(@Valid Sponsor sponsor,
-//			BindingResult binding) {
-//		ModelAndView result;
-//		boolean bindingError;
-//		
-//		if (binding.hasFieldErrors("creditCard")) {
-//			result = createEditModelAndView(sponsor);
-//		} else {
-//			try {
-//				sponsorService.save(sponsor);
-//				// Si no tiene tarjeta asignada aun.
-////				if (sponsor.getCreditCard() == null) {
-////					CreditCard credit = creditCardService.create(saved);
-////					result = createEditModelAndView(credit);
-////					result.addObject("creditCard", credit);
-////					result = new ModelAndView("redirect:sponsor/creditCard/edit.do");			
-////				}
-//				result = new ModelAndView("redirect:creditCard/edit.do");
-//			} catch (Throwable Oops) {
-//				result = createEditModelAndView(sponsor, "sponsor.registrarion.error");
-//				result.addObject("sponsor", sponsor);
-//			}
-//		}
-//		return result;
-//	}
-	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView edit (@Valid Sponsor sponsor, BindingResult binding) {
 		ModelAndView result;
-		boolean bindingError;
 		
-		if (binding.hasFieldErrors("creditCard")) {
-			bindingError = binding.getErrorCount() > 1;
-		}else{
-			bindingError = binding.getErrorCount() > 0;
-		}
-		
-		if(bindingError){
+		if(binding.hasErrors()){
 			result = createEditModelAndView(sponsor);
 		} else {
 			try {
 				sponsorService.save(sponsor);
 				result = new ModelAndView("redirect:../security/login.do");
-				result.addObject("messageStatus", "sponsor.commit.ok");
 			} catch (Throwable oops){
 				result = createEditModelAndView(sponsor, "sponsor.commit.error");
 			}
@@ -95,6 +61,8 @@ public class SponsorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Sponsor sponsor) {
 		ModelAndView result;
 		result = createEditModelAndView(sponsor, null);
+		result.addObject("requestURI", "security/login.do");
+		result.addObject("cancelURI", "welcome/index.do");
 		return result;
 	}
 
@@ -104,6 +72,8 @@ public class SponsorController extends AbstractController {
 		result = new ModelAndView("sponsor/edit");
 		result.addObject("sponsor", sponsor);
 		result.addObject("message", message);
+		result.addObject("requestURI", "security/login.do");
+		result.addObject("cancelURI", "welcome/index.do");
 		return result;
 	}
 }
