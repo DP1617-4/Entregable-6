@@ -15,7 +15,6 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Bill;
 import domain.Campaign;
-import domain.CreditCard;
 import domain.Folder;
 import domain.SocialIdentity;
 import domain.Sponsor;
@@ -31,23 +30,20 @@ public class SponsorService {
 	// supporting services -------------------
 	@Autowired
 	private FolderService folderService;
-	
+
 	@Autowired
 	private LoginService loginService;
-	
 
 	// Basic CRUD methods --------------------
 	public Sponsor create() {
 		Sponsor sponsor = new Sponsor();
 		UserAccount userAccount = new UserAccount();
+
 		sponsor.setFolders(new ArrayList<Folder>());
 		sponsor.setSocialIdentities(new ArrayList<SocialIdentity>());
 		sponsor.setCampaigns(new ArrayList<Campaign>());
 		sponsor.setBills(new ArrayList<Bill>());
-		// Creo una creditCard predeterminada
-		CreditCard credit = new CreditCard();
-		sponsor.setCreditCard(credit);
-		
+
 		Authority authority = new Authority();
 		authority.setAuthority(Authority.SPONSOR);
 		Collection<Authority> authorities = new ArrayList<Authority>();
@@ -55,7 +51,7 @@ public class SponsorService {
 		userAccount.setAuthorities(authorities);
 
 		sponsor.setUserAccount(userAccount);
-		
+
 		return sponsor;
 	}
 
@@ -64,8 +60,8 @@ public class SponsorService {
 		retrieved = sponsorRepository.findOne(sponsorId);
 		return retrieved;
 	}
-	
-	public Collection<Sponsor> findAll(){
+
+	public Collection<Sponsor> findAll() {
 		Collection<Sponsor> result;
 		result = sponsorRepository.findAll();
 		return result;
@@ -80,7 +76,7 @@ public class SponsorService {
 		// Creamos una nueva cuenta y le pasamos los parametros.
 		sponsor.getUserAccount().setPassword(pass);
 		Sponsor saved = sponsorRepository.save(sponsor);
-		if(sponsor.getId() <= 0)
+		if (sponsor.getId() <= 0)
 			folderService.initFolders(saved);
 		return saved;
 	}
@@ -90,12 +86,12 @@ public class SponsorService {
 	}
 
 	// Auxiliary methods ---------------------
-	public Sponsor findByUserAccount(UserAccount userAccount){
+	public Sponsor findByUserAccount(UserAccount userAccount) {
 		Sponsor result;
 		result = sponsorRepository.findByPrincipal(userAccount.getId());
 		return result;
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public Sponsor findByPrincipal() {
 		Sponsor result;
@@ -104,7 +100,7 @@ public class SponsorService {
 		result = findByUserAccount(userAccount);
 		return result;
 	}
-	
+
 	// Our other bussiness methods -----------
 	public Double[][][] calculateMinAvgMaxFromCampaignsOfSponsors() {
 		return sponsorRepository.calculateMinAvgMaxFromCampaignsOfSponsors();
@@ -123,7 +119,7 @@ public class SponsorService {
 		return sponsorRepository.findCompaniesNameOfSponsorsByBills();
 	}
 
-	public 	Collection<Sponsor> findInnactiveSponsorInThreeMonths() {
+	public Collection<Sponsor> findInnactiveSponsorInThreeMonths() {
 		return sponsorRepository.findInnactiveSponsorInThreeMonths();
 	}
 

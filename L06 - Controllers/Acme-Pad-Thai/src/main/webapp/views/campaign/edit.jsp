@@ -16,6 +16,10 @@
 	<form:hidden path="sponsor"/>
 	<form:hidden path="starred"/>
 	
+	
+	<div><b><em><spring:message code="campaign.date.format" /></em></b></div>
+	<br />
+
 	<form:label path="startDate">
 		<spring:message code="campaign.startDate" />:
 	</form:label>
@@ -39,14 +43,17 @@
 	
 	<input type="submit" name="save"
 		value="<spring:message code="campaign.save" />" />&nbsp; 
+		
 	<jstl:if test="${campaign.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="campaign.delete" />"
 			onclick="return confirm('<spring:message code="campaign.confirm.delete" />')" />&nbsp;
 	</jstl:if>
-	<input type="button" name="cancel"
+	
+	<jstl:if test="${sponsor.id != 0}">
+		<input type="button" name="cancel"
 		value="<spring:message code="campaign.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
-	<br />
+		onclick="location.href ='campaign/sponsor/list.do';" />
+	</jstl:if>
 	
 </form:form>

@@ -29,12 +29,10 @@ public class CampaignService {
 	
 	//Basic CRUD methods --------------------
 	public Campaign create() { 
-		Campaign created = new Campaign();
+		Campaign created;
 		Sponsor sponsor = sponsorService.findByPrincipal();
+		created = new Campaign();
 		created.setSponsor(sponsor);
-		Date moment = new Date(System.currentTimeMillis()-100);
-		Assert.isTrue(moment.before(created.getStartDate()));
-		Assert.isTrue(created.getStartDate().before(created.getEndDate()));
 		created.setDeleted(false);
 		created.setStarred(false);
 		created.setBanners(new ArrayList<Banner>());
@@ -77,24 +75,6 @@ public class CampaignService {
 		return res;
 	}
 	
-	public boolean activeCampaign(Campaign c) {
-		boolean res = false;
-		Date moment = new Date();
-		if(moment.after(c.getStartDate()) && moment.before(c.getEndDate())) {
-			res = true;
-		}
-		return res;
-	}
-	
-	public boolean campaignPassed(Campaign c) {
-		boolean res = false;
-		Date moment = new Date();
-		if(moment.after(c.getEndDate())) {
-			res = true;
-		}
-		return res;
-	}
-	
 	public void checkPrincipalSponsor(Campaign campaign){
 		Sponsor sponsor;
 		sponsor = sponsorService.findByPrincipal();
@@ -127,6 +107,24 @@ public class CampaignService {
 		campaign.setDeleted(true);
 		Campaign saved = this.save(campaign);
 		return saved;
+	}
+	
+	public boolean activeCampaign(Campaign c) {
+		boolean res = false;
+		Date moment = new Date();
+		if(moment.after(c.getStartDate()) && moment.before(c.getEndDate())) {
+			res = true;
+		}
+		return res;
+	}
+	
+	public boolean campaignPassed(Campaign c) {
+		boolean res = false;
+		Date moment = new Date();
+		if(moment.after(c.getEndDate())) {
+			res = true;
+		}
+		return res;
 	}
 	
 }
