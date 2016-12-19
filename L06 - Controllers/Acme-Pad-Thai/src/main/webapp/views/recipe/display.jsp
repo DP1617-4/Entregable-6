@@ -22,7 +22,9 @@
 <security:authentication property="principal" var ="loggedactor"/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 
-<img src="${banner.URL}" alt="${banner.URL}" height="300">
+<jstl:if test="${banner != null}">
+	<img src="${banner.URL}" alt="${banner.URL}" height="300">
+</jstl:if>
 
 <h2>${recipe.title}</h2>	
 <h3>${recipe.summary}</h3>
