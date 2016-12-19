@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Comment;
-import domain.Recipe;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
