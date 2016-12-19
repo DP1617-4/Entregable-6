@@ -11,15 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Curricula;
-import domain.Recipe;
-
-import services.CategoryService;
 import services.CurriculaService;
-import services.IngredientService;
 import services.NutritionistService;
-import services.QuantityService;
-import services.RecipeService;
-import services.UserService;
 
 @Controller
 @RequestMapping("/curricula/nutritionist")

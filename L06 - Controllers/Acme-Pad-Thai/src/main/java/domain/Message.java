@@ -4,9 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -15,6 +13,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import security.UserAccount;
 
 
 @Entity
@@ -78,8 +78,8 @@ public class Message extends DomainEntity {
 	// Relationships
 	
 	private Folder folder;
-	private Actor sender;
-	private Actor receiver;
+	private UserAccount sender;
+	private UserAccount recipient;
 
 	@Valid
 	@NotNull
@@ -95,10 +95,10 @@ public class Message extends DomainEntity {
 	@NotNull
 	@ManyToOne(optional =false)
 //	@NotFound(action = NotFoundAction.IGNORE)
-	public Actor getSender() {
+	public UserAccount getSender() {
 		return sender;
 	}
-	public void setSender(Actor sender) {
+	public void setSender(UserAccount sender) {
 		this.sender = sender;
 	}
 	
@@ -106,11 +106,11 @@ public class Message extends DomainEntity {
 	@NotNull
 	@ManyToOne(optional =false)
 //	@NotFound(action = NotFoundAction.IGNORE)
-	public Actor getReceiver() {
-		return receiver;
+	public UserAccount getRecipient() {
+		return recipient;
 	}
-	public void setReceiver(Actor receiver) {
-		this.receiver = receiver;
+	public void setRecipient(UserAccount recipient) {
+		this.recipient = recipient;
 	}
 	
 

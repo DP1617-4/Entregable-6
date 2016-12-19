@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import repositories.SocialUserRepository;
 import security.LoginService;
 import security.UserAccount;
-import domain.Actor;
 import domain.Recipe;
 import domain.Score;
 import domain.SocialUser;

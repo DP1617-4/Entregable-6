@@ -60,14 +60,16 @@
 	<form:errors cssClass="error" path="priority" />
 	<br />
 	
-	<form:label path="receiver">
+	<form:label path="recipient">
 		<spring:message code="message.recipient" />:
 	</form:label>
-	<form:select id="actors" path="receiver" >
+	<form:select id="actors" path="recipient" >
 		<form:option value="0" label="----"/>
-		<form:options items="${actors}" itemValue="id" itemLabel="name"/>
+		<jstl:forEach items="${actors}" var="actor">
+			<form:option value="${actor.userAccount.id}" label="${actor.surname}, ${actor.name}" />
+		</jstl:forEach>
 	</form:select>
-	<form:errors cssClass="error" path="priority" />
+	<form:errors cssClass="error" path="recipient" />
 	<br />
 
 
