@@ -1771,7 +1771,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="campaign1" class="domain.Campaign">
 		<property name="startDate" value="2016/10/28"/> <!-- en futuro -->
 		<property name="endDate" value="2017/01/06"/> <!-- en futuro -->
-		<property name="starred" value="false"/>
+		<property name="starred" value="true"/>
 		<property name="deleted" value="false"/>
 		<property name="sponsor" ref="sponsor1"/>
 	</bean>
@@ -1795,14 +1795,14 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="campaign4" class="domain.Campaign">
 		<property name="startDate" value="2016/10/20"/> <!-- en futuro -->
 		<property name="endDate" value="2016/11/06"/> <!-- en futuro -->
-		<property name="starred" value="false"/>
+		<property name="starred" value="true"/>
 		<property name="deleted" value="false"/>
 		<property name="sponsor" ref="sponsor2"/>
 	</bean>
 	
 	<!-- BANNER (Solo tenemos 1 campaign, así que solo 1) -->
 	<bean id="banner1" class="domain.Banner">
-		<property name="URL" value="http://www.endesa.es"/> 
+		<property name="URL" value="http://thaikitchenonline.com/wp-content/themes/thaikitchen/images/banner2.png"/> 
 		<property name="maxNumber" value="20"/> 
 		<property name="timesShown" value="2"/>
 		<property name="timesShownMonth" value="2"/>
@@ -1810,7 +1810,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="banner2" class="domain.Banner">
-		<property name="URL" value="http://www.endesa.es"/> 
+		<property name="URL" value="http://st2.depositphotos.com/2885805/10592/v/950/depositphotos_105928876-stock-illustration-vegetarian-food-horizontal-banners-set.jpg"/> 
 		<property name="maxNumber" value="20"/> 
 		<property name="timesShown" value="5"/>
 		<property name="timesShownMonth" value="3"/>

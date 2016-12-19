@@ -18,7 +18,7 @@
 
 
 <jstl:if test="${banner != null}">
-	<img src="${banner.URL}"/>
+	<img src="${banner.URL}" height="300"/>
 </jstl:if>
 
 <security:authorize access="isAnonymous()">
