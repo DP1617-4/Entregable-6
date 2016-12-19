@@ -50,9 +50,10 @@
 			onclick="return confirm('<spring:message code="campaign.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 	
-	<input type="button" name="cancel"
+	<jstl:if test="${sponsor.id != 0}">
+		<input type="button" name="cancel"
 		value="<spring:message code="campaign.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
-	<br />
+		onclick="location.href ='campaign/sponsor/list.do';" />
+	</jstl:if>
 	
 </form:form>
