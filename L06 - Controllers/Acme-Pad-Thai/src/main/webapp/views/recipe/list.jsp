@@ -82,6 +82,13 @@
 	<spring:message code="recipe.score" var="scoreHeader" />
 	<display:column property="score" title="${scoreHeader}" sortable="false" />
 	
+	<spring:message code="recipe.category.list" var="categoriesHeader" />
+	<display:column title="${categoriesHeader}" sortable="false" >
+		<jstl:forEach var="category" items="${row.categories}" >
+			-${category.name} <br/>
+		</jstl:forEach>
+	</display:column>
+	
 	<display:column>
 		<a href="comment/list.do?recipeId=${row.id}"><spring:message code="recipe.comment.list"/></a>
 	</display:column>
