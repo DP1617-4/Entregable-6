@@ -1,5 +1,7 @@
 package controllers.administrator;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import controllers.AbstractController;
-
 import services.CategoryService;
-import services.RecipeService;
+import controllers.AbstractController;
 import domain.Category;
-import domain.Contest;
-import domain.Recipe;
-import forms.AddRecipe;
 
 @Controller
 @RequestMapping("/category/administrator")
@@ -25,8 +22,8 @@ public class CategoryAdministratorController extends AbstractController {
 	
 	// Services ---------------------------------------------------------------
 
-	@Autowired
-	private RecipeService recipeService;	
+//	@Autowired
+//	private RecipeService recipeService;	
 	@Autowired
 	private CategoryService categoryService;
 	
@@ -58,63 +55,85 @@ public class CategoryAdministratorController extends AbstractController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/qualify", method = RequestMethod.GET)
-	public ModelAndView create(@RequestParam int contestId) {
-		
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+ 	public ModelAndView list() {
+ 		
+ 		ModelAndView result;
+ 		Collection<Category> categories;
+ 
+ 		categories = categoryService.findAllNotDeleted();
+
+		result = new ModelAndView("category/administrator/list");
+		result.addObject("requestURI", "category/administrator/list.do");
+ 		result.addObject("categories", categories);
+ 		
+ 		return result;
+ 	}
+	
+	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public ModelAndView create() {
+
 		ModelAndView result;
-		Contest contest = contestService.findOne(contestId);
+		Collection<Category> categories = categoryService.findAllNotDeleted();
+		Category newCategory = categoryService.create(null);
 		
-		result = createEditModelAndView(contest);
-		result.addObject("contest", contest);
-		
+		result = createEditModelAndView(newCategory);
+		result.addObject("categories", categories);
+
 		return result;
 	}
 	
-	
-	@RequestMapping(value = "/qualify", method = RequestMethod.POST, params = "save")
-	public ModelAndView addRecipe(@Valid AddRecipe addRecipe,
-			BindingResult binding) {
-
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam int categoryId) {
 		ModelAndView result;
-		Contest contest= contestService.findOne(addRecipe.getContestId());
-		Recipe recipeToQualify = recipeService.findOne(addRecipe.getRecipeId());
+		Category category;
 
-		if (binding.hasErrors()) {
-			result = new ModelAndView("redirect:/contest/list.do");
-		} else {
+		try{
+		
+			category = categoryService.findOne(categoryId);
+			result = createEditModelAndView(category);
+			
+		}catch(Exception oops){
 
-			try {
-				
-				recipeToQualify = recipeService.createCopyForContest(recipeToQualify);
-				contestService.setQualified(contest, recipeToQualify);
-				result = new ModelAndView(
-						"redirect:/contest/list.do");
-
-			} catch (Throwable oops) {
-				result = new ModelAndView(
-						"redirect:/contest/list.do");
-			}
+			
+			result = new ModelAndView("redirect:/category/administrator/list.do");
+		
 		}
 
 		return result;
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@Valid Contest contest, BindingResult binding) {
+	public ModelAndView edit(@Valid Category category, BindingResult binding) {
 		
 		ModelAndView result;
 		
 		if (binding.hasErrors()){
-			result = createEditModelAndView(contest); 
+			result = createEditModelAndView(category); 
 			} else {
 				try {
-					contest = contestService.save(contest);
-					result = new ModelAndView("redirect:/contest/list.do");
+					category = categoryService.save(category);
+					result = new ModelAndView("redirect:/category/administrator/list.do");
 				} catch (Throwable oops) {
-					result = createEditModelAndView(contest, "contest.commit.error");			
+					result = createEditModelAndView(category, "category.commit.error");			
 			}
 		}
 			
+		return result;
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
+	public ModelAndView delete(Category category, BindingResult binding) {
+		ModelAndView result;
+
+		try {
+			categoryService.delete2(category);
+			result = new ModelAndView("redirect:/category/administrator/list.do");
+		} catch (Throwable oops) {
+			result = createEditModelAndView(category, "recipe.commit.error");
+		}
+
 		return result;
 	}
 	
