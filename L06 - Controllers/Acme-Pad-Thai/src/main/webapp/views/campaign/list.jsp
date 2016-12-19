@@ -57,9 +57,18 @@
 	<spring:message code="campaign.starred" var="starredHeader" />
 	<display:column property="starred" title="${starredHeader}" sortable="true" />
 	
-	<spring:message code="campaign.banners" var="bannersHeader" />
+<%-- 	<spring:message code="campaign.banners" var="bannersHeader" />
 	<display:column property="banners" title="${bannersHeader}" sortable="false">
 		<a href="banner/list.do?campaignId=${row.id}"> <spring:message code="campaign.banner.list" /> </a>
+	</display:column> --%>
+	
+	<spring:message code="campaign.banners" var="bannersHeader" />
+	<display:column title="${bannersHeader}" sortable="false" >
+		<jstl:forEach var="banner" items="${row.banners}" >
+			<a href="${banner.URL}" target="_blank">
+				<img src="${banner.URL}" alt="${banner.URL}" height="80"> <br/>
+			</a>
+		</jstl:forEach>
 	</display:column>
 	
 	<security:authorize access="hasRole('ADMIN')">

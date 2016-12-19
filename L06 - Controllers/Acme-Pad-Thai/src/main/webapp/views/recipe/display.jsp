@@ -22,11 +22,9 @@
 <security:authentication property="principal" var ="loggedactor"/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 
+<img src="${banner.URL}" alt="${banner.URL}" height="300">
+
 <h2>${recipe.title}</h2>	
-<div style="float: right;">
-	<b><spring:message code="recipe.banner"/></b>
-	<img src="${banner.URL}" alt="${banner.URL}" height="300">
-</div>
 <h3>${recipe.summary}</h3>
 <p><b>ticker: </b>${recipe.ticker}</P>
 <P><b><spring:message code="recipe.authored"/>:</b> ${recipe.authored}</P>
