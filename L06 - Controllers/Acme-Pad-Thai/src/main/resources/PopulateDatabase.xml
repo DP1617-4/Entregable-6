@@ -1723,7 +1723,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="expirationMonth" value="12"/>
 		<property name="expirationYear" value="19"/>
 		<property name="CVV" value="842"/>
-		<property name="sponsor" ref="sponsor1"/>
 	</bean>
 	
 	<bean id="creditCard2" class="domain.CreditCard">
@@ -1733,7 +1732,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="expirationMonth" value="5"/>
 		<property name="expirationYear" value="21"/>
 		<property name="CVV" value="342"/>
-		<property name="sponsor" ref="sponsor2"/>
 	</bean>
 	
 	<!-- BILL (Solo tenemos 1 sponsor, así que solo 1) -->
