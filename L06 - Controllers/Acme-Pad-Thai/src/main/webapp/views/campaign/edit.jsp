@@ -15,22 +15,18 @@
 	<form:hidden path="deleted"/>
 	<form:hidden path="sponsor"/>
 	<form:hidden path="starred"/>
-	
-	
-	<div><b><em><spring:message code="campaign.date.format" /></em></b></div>
-	<br />
 
 	<form:label path="startDate">
 		<spring:message code="campaign.startDate" />:
 	</form:label>
-	<form:input path="startDate" />
+	<form:input placeholder="dd/MM/yyyy HH:mm" path="startDate" />
 	<form:errors cssClass="error" path="startDate" />
 	<br />
 	
 	<form:label path="endDate">
 		<spring:message code="campaign.endDate" />:
 	</form:label>
-	<form:input path="endDate" />
+	<form:input placeholder="dd/MM/yyyy HH:mm" path="endDate" />
 	<form:errors cssClass="error" path="endDate" />
 	<br />
 	
