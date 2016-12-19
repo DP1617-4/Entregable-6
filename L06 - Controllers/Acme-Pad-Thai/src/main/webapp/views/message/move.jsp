@@ -19,12 +19,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<form:form action="message/actor/edit.do" modelAttribute="message">
+<form:form action="message/actor/move.do" modelAttribute="message">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="sender"/>
-	<form:hidden path="receiver"/>
+	<form:hidden path="recipient"/>
 	<form:hidden path="title"/>	
 	<form:hidden path="body"/>
 	<form:hidden path="moment"/>

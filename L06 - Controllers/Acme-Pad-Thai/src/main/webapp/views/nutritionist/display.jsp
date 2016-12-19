@@ -12,22 +12,31 @@
 
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-name="nutritionist data" requestURI="${requestURI}" id="row">
+name="nutritionist" requestURI="${requestURI}" id="row">
 
-	<spring:message code="nutritionist.name" var=nameHeader/>
+<security:authentication property="principal" var ="loggedactor"/>
+<jstl:set var="user" value="${row}"/> 
+
+	<spring:message code="nutritionist.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="nutritionist.surname" var=surnameHeader/>
+	<spring:message code="nutritionist.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="nutritionist.email" var=emailHeader/>
+	<spring:message code="nutritionist.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="nutritionist.phone" var=phoneHeader/>
+	<spring:message code="nutritionist.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="nutritionist.postalAddress" var=postalAddressHeader/>
+	<spring:message code="nutritionist.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
+	
+	<display:column>
+			<a href="nutritionist/edit.do?nutritionistId=${nutritionist.id}"> <spring:message
+					code="user.edit" />
+			</a>
+		</display:column>
 	
 </display:table>
 
@@ -44,8 +53,3 @@ name="nutritionist data" requestURI="${requestURI}" id="row">
 			code="nutritionist.curricula.create" />
 	</a>
 </jstl:if>
-<br />	
-	<a href="curricula/edit.do?nutritionistId=${requestURI.id}"> <spring:message
-			code="nutritionist.edit" />
-	</a>
-<br />

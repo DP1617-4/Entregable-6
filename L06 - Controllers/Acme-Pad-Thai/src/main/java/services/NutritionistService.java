@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import repositories.NutritionistRepository;
@@ -71,9 +72,18 @@ public class NutritionistService {
 
 			public Nutritionist save(Nutritionist nutritionist){
 				
-				Nutritionist saved = nutritionistRepository.save(nutritionist);
+				Nutritionist saved;
+				// Creamos un codificador de hash para la password.
+				Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+				// Convertimos la pass del usuario a hash.
+				String pass = encoder.encodePassword(nutritionist.getUserAccount()
+						.getPassword(), null);
+				// Creamos una nueva cuenta y le pasamos los parametros.
+				nutritionist.getUserAccount().setPassword(pass);
+				saved = nutritionistRepository.save(nutritionist);
 				
 				return saved;
+				
 				
 			}
 			

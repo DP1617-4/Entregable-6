@@ -7,32 +7,18 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import security.LoginService;
-import security.UserAccount;
+import services.ActorService;
 import services.SocialUserService;
 import services.UserService;
-
-import controllers.AbstractController;
-import domain.Comment;
-import domain.Folder;
-import domain.Ingredient;
-import domain.MasterClass;
-import domain.Quantity;
-import domain.Recipe;
-import domain.Score;
-import domain.SocialIdentity;
+import domain.Actor;
 import domain.SocialUser;
-import domain.Step;
 import domain.User;
-import forms.AddIngredient;
-import forms.AddPicture;
 import forms.FilterString;
 
 @Controller
@@ -43,6 +29,9 @@ public class UserController extends AbstractController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ActorService actorService;
 	
 	@Autowired
 	private SocialUserService socialUserService;
@@ -73,9 +62,11 @@ public class UserController extends AbstractController {
 				.getPrincipal();
 		if (access != "anonymousUser") {
 
-			User principal = userService.findByPrincipal();
-			followed = principal.getFollowed();
-			result.addObject("followed", followed);
+			Actor principal = actorService.findByPrincipal();
+			if(principal instanceof SocialUser){
+				followed = ((SocialUser) principal).getFollowed();
+				result.addObject("followed", followed);
+			}
 		}
 
 		return result;
@@ -150,27 +141,35 @@ public class UserController extends AbstractController {
 	
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int userId) {
+	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int userId, @RequestParam(required = false, defaultValue = "0") int userAccountId) {
 
 		
 		ModelAndView result;
 		User user;
 		
-		if(userId==0){
+		if(userId==0 && userAccountId == 0){
 			
 			user= userService.findByPrincipal();
 		}
-		else{
+		else if(userId!=0){
 			
 			user = userService.findOne(userId);
 		}
+		else{
+			user = userService.findByUserAccountId(userAccountId);
+		}
 
-
-		result = new ModelAndView("user/display");
-		result.addObject("user", user);
+		if(user != null){
+			result = new ModelAndView("user/display");
+			result.addObject("user", user);
+		}
+		else{
+			result = new ModelAndView("redirect:/welcome/index.do");
+		}
 
 		return result;
 	}
+	
 		
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {
@@ -193,7 +192,7 @@ public class UserController extends AbstractController {
 		}
 		else{
 			try{
-				userService.save(user);
+				user = userService.save(user);
 				result = new ModelAndView(
 						"redirect:user/display.do?userId="
 								+ user.getId());

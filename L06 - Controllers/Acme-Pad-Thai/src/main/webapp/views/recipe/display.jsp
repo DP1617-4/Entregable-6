@@ -149,7 +149,7 @@
 	<display:column>
 	<jstl:choose>
 		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
-			<a href="recipe/user/removeIngredient.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
+			<a href="recipe/user/removeIngredient.do?valueId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
@@ -210,8 +210,10 @@
 <a href="comment/list.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.list"/></a>
 
 <security:authorize access="hasAnyRole('USER', 'NUTRITIONIST')">
+	<jstl:if test="${recipeuser.userAccount.username!=loggedactor.username}">
 	<a href="score/socialUser/like.do?recipeId=${recipe.id}"><spring:message code="recipe.like"/></a>&nbsp;&nbsp;
 	<a href="score/socialUser/dislike.do?recipeId=${recipe.id}"><spring:message code="recipe.dislike"/></a><br/>
+	</jstl:if>
 </security:authorize>
 <security:authorize access="hasRole('USER')">
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">

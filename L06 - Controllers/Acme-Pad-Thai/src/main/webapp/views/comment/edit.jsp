@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="comment/edit.do" modelAttribute="comment">
+<form:form action="comment/socialUser/edit.do" modelAttribute="comment">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -51,7 +51,7 @@
 		value="<spring:message code="comment.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="comment.cancel" />"
-		onclick="javascript: relativeRedir('comment/list.do');" />
+		onclick="location.href = 'recipe/list.do';" />&nbsp;
 	<br />
 
 	

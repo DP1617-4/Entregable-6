@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,6 +68,13 @@ public class UserService {
 		public User save(User user){
 			
 			User saved;
+			// Creamos un codificador de hash para la password.
+			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			// Convertimos la pass del usuario a hash.
+			String pass = encoder.encodePassword(user.getUserAccount()
+					.getPassword(), null);
+			// Creamos una nueva cuenta y le pasamos los parametros.
+			user.getUserAccount().setPassword(pass);
 			saved = userRepository.save(user);
 			
 			return saved;
@@ -83,6 +91,14 @@ public class UserService {
 		public User findByPrincipal(){
 			
 			User user = userRepository.findOneByUserAccountId(LoginService.getPrincipal().getId());
+			return user;
+
+		}
+		
+		
+		public User findByUserAccountId(int userAccountId){
+			
+			User user = userRepository.findOneByUserAccountId(userAccountId);
 			return user;
 
 		}

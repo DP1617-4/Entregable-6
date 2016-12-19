@@ -81,7 +81,7 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasAnyRole('NUTRITIONIST')">
+		<security:authorize access="hasRole('NUTRITIONIST')">
 			<li><a class="fNiv"><spring:message	code="master.page.ingredient" /></a>
 				<ul>
 					<li><a href="ingredient/nutritionist/create.do"><spring:message code="master.page.ingredient.create" /></a></li>

@@ -56,6 +56,13 @@ public class ContestService {
 			
 			//Other Bussiness Methods
 			
+			public void setQualified(Contest contest, Recipe recipe){
+				recipe.setContest(contest);
+				recipe = recipeService.save(recipe);
+				contest.getQualified().add(recipe);
+				contest = this.save(contest);
+			}
+			
 			public Collection<Recipe> getContestWinners(Contest contest){
 				Collection<Recipe> winners = new ArrayList<Recipe>();
 				Collection<Recipe> todas = contest.getQualified();
@@ -72,8 +79,6 @@ public class ContestService {
 						winners.add(r);
 					}
 				}
-//				contest.setWinners(winners);
-//				save(contest);
 				return winners;
 			}
 			public void setWon(Contest contest){

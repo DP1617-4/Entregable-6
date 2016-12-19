@@ -27,23 +27,33 @@
 
 	<spring:message code="comment.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
-	<spring:message code="comment.title" var="titleHeader" />
-	<display:column property="text" title="${textHeader}" sortable="true" />
+
 	<spring:message code="comment.text" var="textHeader" />
-	<display:column property="stars" title="${starsHeader}" sortable="true" />
+	<display:column property="text" title="${textHeader}" sortable="true" />
+	
 	<spring:message code="comment.stars" var="starsHeader" />
-	<display:column property="title" title="${titleHeader}" sortable="true" />
+	<display:column property="stars" title="${starsHeader}" sortable="true" />
+
 	<spring:message code="comment.socialUser" var="socialUserHeader" />
 	<display:column title="${socialUserHeader}">
-		<a href="socialUser/display.do?socialUserId=${row.socialUser.id}"><spring:message
+		<a href="user/display.do?userId=${row.socialUser.id}"><spring:message
 				code="comment.socialUser"/> </a>
 	</display:column>
 	
-	<display:column>
-		<a href="recipe/display.do?recipeId=${row.id}"><spring:message
-			code="comment.recipe" /></a>
-	</display:column>
 
 </display:table>
+
+<input type="button" name="back"
+		value="<spring:message code="comment.back" />"
+		onclick="location.href = 'recipe/list.do';" />&nbsp;
+	<br />
+
+<security:authorize access="hasAnyRole('USER','NUTRITIONIST')">
+	<div>
+		<a href="comment/socialUser/edit.do?recipeId=${recipeId}"> <spring:message
+				code="comment.create" />
+		</a>
+	</div>
+</security:authorize>
 
 

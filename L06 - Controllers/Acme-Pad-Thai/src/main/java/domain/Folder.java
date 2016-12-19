@@ -6,14 +6,11 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.NotBlank;
 
 
@@ -74,7 +71,7 @@ public class Folder extends DomainEntity {
 	
 	@Valid
 	@NotNull
-	@ManyToOne(optional = false,  fetch=FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 //	@NotFound(action = NotFoundAction.IGNORE)
 	public Actor getActor() {
 		return actor;
