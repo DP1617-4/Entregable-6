@@ -75,7 +75,7 @@ public class RecipeService {
 		return recipeRepository.findAllByUserId(u.getId());
 	}
 	
-	public Collection<Recipe> findAllByUserFollowed(SocialUser socialUser){
+	public Collection<Recipe> findAllByUserFollowed(){
 		
 		User principal = userService.findByPrincipal(); 
 		Collection<Recipe> result = new ArrayList<Recipe>();
