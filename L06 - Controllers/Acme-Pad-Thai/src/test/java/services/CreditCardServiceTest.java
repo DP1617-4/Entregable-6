@@ -34,7 +34,7 @@ public class CreditCardServiceTest extends AbstractTest{
 	@Test
 	public void testCreate() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 //		CreditCard creditCard = creditCardService.create(sponsor);
 //		Assert.notNull(creditCard.getSponsor());
 		unauthenticate();
