@@ -61,6 +61,11 @@ public class SystemConfigurationService {
 		systemConfigurationRepository.delete(systemConfiguration);
 	}
 	
+	public SystemConfiguration findMain(){
+		SystemConfiguration systemConfiguration = systemConfigurationRepository.findMain();
+		return systemConfiguration;
+	}
+	
 	//Auxiliary methods ---------------------
 	
 	//Our other bussiness methods -----------

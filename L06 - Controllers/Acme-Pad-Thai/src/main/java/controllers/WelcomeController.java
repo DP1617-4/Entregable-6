@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import domain.Actor;
 import domain.Banner;
 import domain.MasterClass;
 
@@ -64,21 +65,22 @@ public class WelcomeController extends AbstractController {
 		masterClasses = masterClassService.findPromoted();
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		result = new ModelAndView("welcome/index");
 		if(principal!="anonymousUser"){
 			
-			name=actorService.findNamePrincipal();
+	 		Actor actor = actorService.findByPrincipal();
+	 		name = actor.getName()+" "+actor.getSurname();
+	 		result.addObject("actor", actor);
 		}
 
 		formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		moment = formatter.format(new Date());
 
-		
-
-		result = new ModelAndView("welcome/index");
 		result.addObject("name", name);
 		result.addObject("moment", moment);
 		result.addObject("banner", banner);
-		result.addObject("masterclasses", masterClasses);
+		result.addObject("masterClasses", masterClasses);
 
 		return result;
 	}

@@ -30,6 +30,23 @@
 	name="masterClasses" requestURI="${requestURI}" id="row">
 	<jstl:set var="masterClasscook" value="${row.cook}"/> 
 	
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+		<jstl:choose>
+			<jstl:when test="${row.promoted}">
+				<a href="masterClass/administrator/demote.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.demote" />
+				</a>
+			</jstl:when>
+			<jstl:otherwise>
+				<a href="masterClass/administrator/promote.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.promote" />
+				</a>
+			</jstl:otherwise>
+		</jstl:choose>
+		</display:column>
+	</security:authorize>
+	
 	<security:authorize access="isAuthenticated()">
 			<display:column>
 				<a href="masterClass/actor/display.do?masterClassId=${row.id}">

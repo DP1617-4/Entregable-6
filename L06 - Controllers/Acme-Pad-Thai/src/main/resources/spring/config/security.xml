@@ -38,8 +38,11 @@
 
 		<security:intercept-url pattern="/security/login.do" access="permitAll" /> 
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
-		<security:intercept-url pattern="/masterClass/list.do" access="permitAll" />  
+		<security:intercept-url pattern="/masterClass/list.do" access="isAnonymous()" />  
 		<security:intercept-url pattern="/masterClass/display.do**" access="permitAll" />  
+		
+		<security:intercept-url pattern="/masterClass/actor/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/learningMaterial/actor/**" access="isAuthenticated()" />   
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" />  
 		
@@ -51,13 +54,21 @@
 		
 		<security:intercept-url pattern="/ingredient/nutritionist/**" access="hasRole('USER')" /> 
 		
-		
+		<security:intercept-url pattern="/cook/administrator/**" access="hasRole('ADMIN')" /> 
 		<security:intercept-url pattern="/recipe/administrator/**" access="hasRole('ADMIN')" />  
+		<security:intercept-url pattern="/masterClass/administrator/**" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/systemConfiguration/administrator/**" access="hasRole('ADMIN')" /> 
+		<security:intercept-url pattern="/administrator/administrator/**" access="hasRole('ADMIN')" /> 
 		
 		<security:intercept-url pattern="/recipe/nutritionist/**" access="hasRole('NUTRITIONIST')" />
 		
 		<security:intercept-url pattern="/recipe/cook/**" access="hasRole('COOK')" /> 
-		 
+		
+		<security:intercept-url pattern="/masterClass/cook/**" access="hasRole('COOK')" />  
+		<security:intercept-url pattern="/presentationMaterial/cook/**" access="hasRole('COOK')" />
+		<security:intercept-url pattern="/videoMaterial/cook/**" access="hasRole('COOK')" />
+		<security:intercept-url pattern="/textMaterial/cook/**" access="hasRole('COOK')" />
+		
 		<security:intercept-url pattern="/recipe/sponsor/**" access="hasRole('SPONSOR')" /> 
 		
 		<security:intercept-url pattern="/recipe/socialuser/**" access="hasAnyRole('USER', 'NUTRITIONIST')" />

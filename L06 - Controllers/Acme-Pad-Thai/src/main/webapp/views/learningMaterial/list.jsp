@@ -96,6 +96,11 @@
 	
 </display:table>
 
+	<input type="button" name="cancel"
+		value="<spring:message code="masterClass.cancel" />"
+		onclick="javascript: window.location.replace('${cancelURI}');" />&nbsp;
+	<br />
+
 <security:authorize access="hasRole('COOK')">
 	<div>
 		<jstl:if test="${learningMaterialcook.userAccount.username==loggedactor}">
