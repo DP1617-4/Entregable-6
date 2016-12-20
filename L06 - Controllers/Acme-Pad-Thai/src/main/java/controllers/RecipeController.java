@@ -18,6 +18,7 @@ import services.BannerService;
 import services.CategoryService;
 import services.IngredientService;
 import services.RecipeService;
+import services.UserService;
 import controllers.AbstractController;
 import domain.Banner;
 import domain.Category;
@@ -25,6 +26,7 @@ import domain.Ingredient;
 import domain.Quantity;
 import domain.Recipe;
 import domain.Step;
+import domain.User;
 import forms.AddIngredient;
 import forms.AddPicture;
 import forms.FilterString;
@@ -52,6 +54,9 @@ public class RecipeController extends AbstractController {
 
 	// Listing ----------------------------------------------------------------
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
  	public ModelAndView list() {
  		
@@ -68,6 +73,25 @@ public class RecipeController extends AbstractController {
  		
  		return result;
  	}
+	
+	@RequestMapping(value = "/listUser", method = RequestMethod.GET)
+	public ModelAndView own(@RequestParam int userId) {
+
+		ModelAndView result;
+		Collection<Recipe> recipes;
+		FilterString filter = new FilterString();
+
+		User u = userService.findOne(userId);
+
+		recipes = recipeService.findAllByUser(u);
+
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/user/listOwn.do");
+		result.addObject("recipes", recipes);
+		result.addObject("filterString", filter);
+
+		return result;
+	}
 	
 	@RequestMapping(value = "/listQualified", method = RequestMethod.GET)
  	public ModelAndView listQualified(@RequestParam int contestId) {
