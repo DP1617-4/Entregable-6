@@ -60,9 +60,9 @@
 				<ul>
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
-						<li><a href="sponsor/campaign/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+						<li><a href="campaign/sponsor/create.do"><spring:message code="master.page.campaign.create" /></a></li>
 					</security:authorize>	
-					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
+					<li><a href="campaign/sponsor/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
 								
 				</ul>
 			</li>
@@ -87,6 +87,15 @@
 					<li><a href="ingredient/nutritionist/create.do"><spring:message code="master.page.ingredient.create" /></a></li>
 					<li><a href="ingredient/nutritionist/list.do"><spring:message code="master.page.ingredient.list" /></a></li>	
 								
+				</ul>
+			</li>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv"><spring:message	code="master.page.category" /></a>
+				<ul>
+					<li><a href="category/administrator/create.do"><spring:message code="master.page.category.create" /></a></li>
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category.list" /></a></li>			
 				</ul>
 			</li>
 		</security:authorize>

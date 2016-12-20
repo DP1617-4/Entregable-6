@@ -141,27 +141,35 @@ public class UserController extends AbstractController {
 	
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int userId) {
+	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int userId, @RequestParam(required = false, defaultValue = "0") int userAccountId) {
 
 		
 		ModelAndView result;
 		User user;
 		
-		if(userId==0){
+		if(userId==0 && userAccountId == 0){
 			
 			user= userService.findByPrincipal();
 		}
-		else{
+		else if(userId!=0){
 			
 			user = userService.findOne(userId);
 		}
+		else{
+			user = userService.findByUserAccountId(userAccountId);
+		}
 
-
-		result = new ModelAndView("user/display");
-		result.addObject("user", user);
+		if(user != null){
+			result = new ModelAndView("user/display");
+			result.addObject("user", user);
+		}
+		else{
+			result = new ModelAndView("redirect:/welcome/index.do");
+		}
 
 		return result;
 	}
+	
 		
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit() {

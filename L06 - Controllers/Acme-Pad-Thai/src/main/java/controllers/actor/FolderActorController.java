@@ -41,7 +41,7 @@ public class FolderActorController extends AbstractController {
 		//Listing
 		
 		@RequestMapping(value = "/list", method = RequestMethod.GET)
-		public ModelAndView list(){
+		public ModelAndView list(@RequestParam(required=false) String message){
 			ModelAndView result;
 			
 			Collection<Folder> folders;
@@ -50,6 +50,7 @@ public class FolderActorController extends AbstractController {
 			
 			result = new ModelAndView("folder/list");
 			result.addObject("folders", folders);
+			result.addObject("errorMessage", message);
 			
 			return result;
 		}

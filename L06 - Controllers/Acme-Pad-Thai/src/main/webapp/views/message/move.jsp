@@ -24,7 +24,7 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="sender"/>
-	<form:hidden path="receiver"/>
+	<form:hidden path="recipient"/>
 	<form:hidden path="title"/>	
 	<form:hidden path="body"/>
 	<form:hidden path="moment"/>

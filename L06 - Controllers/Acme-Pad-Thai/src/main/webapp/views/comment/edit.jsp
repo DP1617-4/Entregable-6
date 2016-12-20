@@ -41,7 +41,15 @@
 	<form:label path="stars">
 		<spring:message code="comment.stars" />:
 	</form:label>
-	<form:input path="stars" />
+	<form:select  path="stars">
+    <form:option value="NONE">--SELECT--</form:option>
+    <form:option value="0">0</form:option>
+    <form:option value="1">1</form:option>
+    <form:option value="2">2</form:option>
+    <form:option value="3">3</form:option>
+    <form:option value="4">4</form:option>
+    <form:option value="5">5</form:option>
+    </form:select>
 	<form:errors cssClass="error" path="stars" />
 	<br />
 
