@@ -7,20 +7,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import repositories.CurriculaRepository;
+import repositories.CurriculumRepository;
 import security.LoginService;
 import security.UserAccount;
-import domain.Curricula;
+import domain.Curriculum;
 import domain.Endorser;
+import domain.Nutritionist;
 
 @Service
 @Transactional
-public class CurriculaService {
+public class CurriculumService {
 
 	
 	//managed repository-------------------
 	@Autowired
-	private CurriculaRepository curriculaRepository;
+	private CurriculumRepository curriculumRepository;
 	
 	//supporting services-------------------
 	@Autowired
@@ -28,46 +29,56 @@ public class CurriculaService {
 	
 	//Basic CRUD methods-------------------
 	
-	public Curricula create(){
+	public Curriculum create(){
 		
-		Curricula created;
-		created = new Curricula();
+		Curriculum created;
+		created = new Curriculum();
 		created.setDeleted(false);
 		created.setNutritionist(nutritionistService.findByPrincipal());	
 		created.setEndorsers(new ArrayList<Endorser>());
 		return created;
 	}
 	
-	public Curricula findOne(int curriculaId){
+	public Curriculum findOne(int curriculumId){
 		
-		Curricula retrieved;
-		retrieved = curriculaRepository.findOne(curriculaId);
+		Curriculum retrieved;
+		retrieved = curriculumRepository.findOne(curriculumId);
 		Assert.isTrue(checkPrincipal(retrieved));
 		return retrieved;
 	}
 
-	public Curricula save(Curricula curricula){
+	public Curriculum save(Curriculum curriculum){
 		
-		Assert.notNull(curricula);
-		Curricula saved = curriculaRepository.save(curricula);
-		nutritionistService.findByPrincipal().setCurricula(saved);
-		Assert.isTrue(checkPrincipal(curricula));
+		Assert.notNull(curriculum);
+		Curriculum saved = curriculumRepository.save(curriculum);
+		nutritionistService.findByPrincipal().setCurriculum(saved);
+		Assert.isTrue(checkPrincipal(curriculum));
 		
 		
 		return saved;
 		
 	}
 	
-	public void delete(Curricula curricula){
+	public void delete(Curriculum curriculum){
 		
-		Assert.isTrue(checkPrincipal(curricula));
-		curriculaRepository.delete(curricula);
+		Assert.isTrue(checkPrincipal(curriculum));
+		curriculumRepository.delete(curriculum);
 		
+	}
+	
+	public Curriculum findByPrincipal(){
+		
+		Nutritionist nutritionist;
+		nutritionist = nutritionistService.findByPrincipal();
+		Curriculum curriculum;
+		curriculum = nutritionist.getCurriculum();
+		
+		return curriculum;
 	}
 	
 	//Auxiliary methods
 	
-	public Boolean checkPrincipal(Curricula c){
+	public Boolean checkPrincipal(Curriculum c){
 		
 //		Nutritionist nutritionist = nutritionistService.findByPrincipal();
 //		Assert.isTrue(c.equals(nutritionist.getCurricula()));

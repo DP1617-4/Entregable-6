@@ -190,10 +190,8 @@ public class MessageServiceTest extends AbstractTest {
 	public void testSpam(){
 		authenticate("user1");
 		Message result;
-		Message sent;
 		Folder spambox;
 		Folder newSpam;
-		Collection<Message> sents;
 		Actor recipient;
 		Actor sender;
 		recipient = actorService.findByPrincipal();
@@ -205,7 +203,7 @@ public class MessageServiceTest extends AbstractTest {
 		result.setTitle("TestA");
 		result.setBody("TestSpam sex");
 		spambox = folderService.findSystemFolder(recipient, "spambox");
-		sent = messageService.send(result);
+		messageService.send(result);
 		authenticate("user1");
 		newSpam = folderService.findSystemFolder(recipient, "spambox");
 

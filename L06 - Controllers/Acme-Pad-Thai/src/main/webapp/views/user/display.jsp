@@ -32,13 +32,13 @@ name="user" requestURI="${requestURI}" id="row">
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 	
 	<display:column>
-		<a href="recipe/list.do?userId=${row.id}"> <spring:message
+		<a href="recipe/listUser.do?userId=${row.id}"> <spring:message
 			code="user.recipes.list" />
 		</a>
 	</display:column>
 	<jstl:if test="${loggedactor == row.userAccount }">
 		<display:column>
-			<a href="user/edit.do?userId=${row.id}"> <spring:message
+			<a href="user/user/edit.do?userId=${row.id}"> <spring:message
 					code="user.edit" />
 			</a>
 		</display:column>

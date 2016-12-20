@@ -4,20 +4,19 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import domain.Curricula;
+import domain.Endorser;
 
 @Component
 @Transactional
-public class CurriculaToStringConverter implements Converter<Curricula, String> {
+public class EndorserToStringConverter implements Converter<Endorser, String> {
 
-	@Override
-	public String convert(Curricula curricula) {
+	public String convert(Endorser endorser) {
 		String result;
 
-		if (curricula == null)
+		if (endorser == null)
 			result = null;
 		else
-			result = String.valueOf(curricula.getId());
+			result = String.valueOf(endorser.getId());
 
 		return result;
 	}

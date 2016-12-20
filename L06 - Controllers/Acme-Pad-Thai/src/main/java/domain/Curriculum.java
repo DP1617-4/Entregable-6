@@ -17,10 +17,10 @@ import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Curricula extends DomainEntity{
+public class Curriculum extends DomainEntity{
 	// Constructors -----------------------------------------------------------
 
-	public Curricula() {
+	public Curriculum() {
 		super();
 	}
 
@@ -86,7 +86,7 @@ public class Curricula extends DomainEntity{
 	private Nutritionist nutritionist;
 
 	@Valid
-	@OneToMany(mappedBy = "curricula", cascade= CascadeType.REMOVE)
+	@OneToMany(mappedBy = "curriculum", cascade= CascadeType.REMOVE)
 	public Collection<Endorser> getEndorsers() {
 		return endorsers;
 	}

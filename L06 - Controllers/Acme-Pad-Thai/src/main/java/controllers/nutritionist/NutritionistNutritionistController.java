@@ -1,4 +1,4 @@
-package controllers;
+package controllers.nutritionist;
 
 import javax.validation.Valid;
 
@@ -12,24 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.NutritionistService;
 import services.SocialUserService;
+import controllers.AbstractController;
 import domain.Nutritionist;
 
 @Controller
-@RequestMapping("/nutritionist")
-public class NutritionistController extends AbstractController {
+@RequestMapping("/nutritionist/nutritionist")
+public class NutritionistNutritionistController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
 
 	@Autowired
 	private NutritionistService nutritionistService;
 	
-	
 	@Autowired
 	private SocialUserService socialUserService;
 
 	// Constructors -----------------------------------------------------------
 
-	public NutritionistController() {
+	public NutritionistNutritionistController() {
 		super();
 	}
 	
@@ -60,53 +60,19 @@ public class NutritionistController extends AbstractController {
 		
 		return result;
 	}
-
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+		
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
 		ModelAndView result;
 		Nutritionist nutritionist;
 
-		nutritionist = nutritionistService.create();
+		nutritionist = nutritionistService.findByPrincipal();		
 		result = createEditModelAndView(nutritionist);
-
-		return result;
-	}
-
-	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int nutritionistId) {
-
 		
-		ModelAndView result;
-		Nutritionist nutritionist;
-		
-		if(nutritionistId==0){
-			
-			nutritionist= nutritionistService.findByPrincipal();
-		}
-		else{
-			
-			nutritionist = nutritionistService.findOne(nutritionistId);
-		}
-
-
-		result = new ModelAndView("nutritionist/display");
 		result.addObject("nutritionist", nutritionist);
 
 		return result;
 	}
-		
-//	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-//	public ModelAndView edit() {
-//		ModelAndView result;
-//		Nutritionist nutritionist;
-//
-//		nutritionist = nutritionistService.findByPrincipal();		
-//		result = createEditModelAndView(nutritionist);
-//		
-//		result.addObject("nutritionist", nutritionist);
-//
-//		return result;
-//	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@Valid Nutritionist nutritionist, BindingResult binding) {
@@ -136,9 +102,9 @@ public class NutritionistController extends AbstractController {
 	}
 	protected ModelAndView createEditModelAndView(Nutritionist nutritionist, String message) {
 		ModelAndView result;
-
-		String requestURI = "nutritionist/edit.do";
 		
+		String requestURI = "nutritionist/nutritionist/edit.do";
+
 		result = new ModelAndView("nutritionist/edit");
 		result.addObject("nutritionist", nutritionist);
 		result.addObject("message", message);
@@ -146,6 +112,5 @@ public class NutritionistController extends AbstractController {
 		
 		return result;
 	}
-	
-}
 
+}

@@ -36,7 +36,7 @@ public class EndorserServiceTest extends AbstractTest{
 
 			authenticate("nutritionist1");
 			Endorser endorser =  endorserService.create();
-			Assert.isTrue(endorser.getCurricula().equals(nutritionistService.findByPrincipal().getCurricula()));
+			Assert.isTrue(endorser.getCurriculum().equals(nutritionistService.findByPrincipal().getCurriculum()));
 			
 			unauthenticate();
 		}
@@ -49,7 +49,7 @@ public class EndorserServiceTest extends AbstractTest{
 			endorser.setName("blae");
 			endorser.setHomePage("http://omfg.org");
 			Endorser saved = endorserService.save(endorser);
-			Assert.isTrue(nutritionistService.findByPrincipal().getCurricula().equals(saved.getCurricula()));
+			Assert.isTrue(nutritionistService.findByPrincipal().getCurriculum().equals(saved.getCurriculum()));
 			
 			unauthenticate();
 		}
@@ -62,7 +62,7 @@ public class EndorserServiceTest extends AbstractTest{
 			endorser.setName("blae");
 			Endorser saved = endorserService.save(endorser);
 			endorserService.delete(saved);
-			Assert.isTrue(!nutritionistService.findByPrincipal().getCurricula().getEndorsers().contains(saved));
+			Assert.isTrue(!nutritionistService.findByPrincipal().getCurriculum().getEndorsers().contains(saved));
 			unauthenticate();
 		}
 	

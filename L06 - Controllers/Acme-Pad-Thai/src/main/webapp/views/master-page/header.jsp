@@ -60,9 +60,9 @@
 				<ul>
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
-						<li><a href="campaign/sponsor/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+						<li><a href="sponsor/campaign/create.do"><spring:message code="master.page.campaign.create" /></a></li>
 					</security:authorize>	
-					<li><a href="campaign/sponsor/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
+					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
 								
 				</ul>
 			</li>
@@ -74,7 +74,7 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="bill/sponsor/list.do"><spring:message code="master.page.bills.list" /></a></li>	
-					</security:authorize>		
+					</security:authorize>
 				</ul>
 			</li>
 		</security:authorize>
@@ -88,12 +88,12 @@
 				</ul>
 			</li>
 		</security:authorize>
-		
+
 		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.category" /></a>
 				<ul>
-					<li><a href="category/administrator/create.do"><spring:message code="master.page.category.create" /></a></li>
-					<li><a href="category/administrator/list.do"><spring:message code="master.page.category.list" /></a></li>			
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category.list" /></a></li>
+					<li><a href="category/administrator/create.do"><spring:message code="master.page.category.create" /></a></li>			
 				</ul>
 			</li>
 		</security:authorize>
@@ -111,6 +111,8 @@
 				</ul>
 			</li>
 		</security:authorize>
+
+
 		
 		<security:authorize access="isAuthenticated()">
 			<li>
@@ -140,7 +142,7 @@
 							<ul>
 								<li class="arrow"></li>
 								<li><a href="nutritionist/display.do"><spring:message code="master.page.nutritionist.display" /></a></li>
-								<li><a href="nutritionist/edit.do"><spring:message code="master.page.nutritionist.edit" /></a></li>
+								<li><a href="nutritionist/nutritionist/edit.do"><spring:message code="master.page.nutritionist.edit" /></a></li>
 								<li><a><spring:message code = "master.page.curricula"/></a>
 									<ul>
 										<li class="arrow"></li>
@@ -156,19 +158,12 @@
 							<ul>
 								<li class="arrow"></li>
 								<li><a href="user/display.do"><spring:message code="master.page.user.display" /></a></li>
-								<li><a href="user/edit.do"><spring:message code="master.page.user.edit" /></a></li>
+								<li><a href="user/user/edit.do"><spring:message code="master.page.user.edit" /></a></li>
 							</ul>
 						</li>
 					</security:authorize>	
 					<security:authorize access="hasRole('SPONSOR')">
-						<li><a><spring:message	code="master.page.sponsor" /></a>
-							<ul>
-								<li class="arrow"></li>
-								<li><a href="creditcard/sponsor/display.do"><spring:message code="master.page.creditcard.display" /></a></li>
-								<li><a href="creditcard/sponsor/create.do"><spring:message code="master.page.creditcard.create" /></a></li>
-								<li><a href="sponsor/display.do"><spring:message code="master.page.sponsor.display" /></a></li>
-								<li><a href="sponsor/edit.do"><spring:message code="master.page.sponsor.edit" /></a></li>
-							</ul>
+						<li><a href="sponsor/display.do"><spring:message code="master.page.sponsor.display"/></a>
 						</li>
 					</security:authorize>	
 					<security:authorize access="hasRole('COOK')">

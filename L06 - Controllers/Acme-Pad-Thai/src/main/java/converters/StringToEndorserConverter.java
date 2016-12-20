@@ -5,24 +5,24 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.CurriculaRepository;
-import domain.Curricula;
+import repositories.EndorserRepository;
+import domain.Endorser;
 
 @Component
 @Transactional
-public class StringToCurriculaConverter implements Converter<String, Curricula> {
+public class StringToEndorserConverter implements Converter<String, Endorser> {
 
 	@Autowired
-	CurriculaRepository curriculaRepository;
+	EndorserRepository endorserRepository;
 
 	@Override
-	public Curricula convert(String text) {
-		Curricula result;
+	public Endorser convert(String text) {
+		Endorser result;
 		int id;
 
 		try {
 			id = Integer.valueOf(text);
-			result = curriculaRepository.findOne(id);
+			result = endorserRepository.findOne(id);
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);
 		}

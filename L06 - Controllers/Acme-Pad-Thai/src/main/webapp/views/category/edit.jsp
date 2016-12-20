@@ -25,6 +25,10 @@
 	<form:hidden path="recipes"/>
 	<form:hidden path="sons"/>
 	<form:hidden path="deleted"/>
+	
+	<jstl:if test="${category.id != 0}">
+		<form:hidden path="father"/>
+	</jstl:if>
 
 	<form:label path="name">
 		<spring:message code="category.name" />:
@@ -50,6 +54,8 @@
 	<form:input path="tag" />
 	<form:errors cssClass="error" path="tag" />
 	<br />
+	
+	<jstl:if test="${category.id == 0}">
 	<form:label path="father">
 		<spring:message code="category.father" />:
 	</form:label>
@@ -58,7 +64,7 @@
 		<form:options items="${categories}" itemValue="id" itemLabel="name"/>
 	</form:select>
 	<form:errors cssClass="error" path="father" />
-
+	</jstl:if>
 	
 
 	<input type="submit" name="save"
@@ -70,7 +76,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="category.cancel" />"
-		onclick="javascript: relativeRedir('category/administrator/list.do');" />
+		onclick="location.href = 'category/administrator/list.do';" />&nbsp;
 	<br />
 
 </form:form>
