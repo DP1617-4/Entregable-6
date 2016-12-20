@@ -32,7 +32,7 @@
 		<value>/views/contest/tiles.xml</value>
 		<value>/views/cook/tiles.xml</value>
 		<value>/views/creditCard/tiles.xml</value>
-		<value>/views/curricula/tiles.xml</value>
+		<value>/views/curriculum/tiles.xml</value>
 		<value>/views/endorser/tiles.xml</value>
 		<value>/views/folder/tiles.xml</value>
 		<value>/views/ingredient/tiles.xml</value>

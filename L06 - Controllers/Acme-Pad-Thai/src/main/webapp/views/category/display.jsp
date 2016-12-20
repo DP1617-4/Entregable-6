@@ -43,6 +43,7 @@ name="category" requestURI="${requestURI}" id="row">
 <br/>
 
 	<a href="category/administrator/edit.do?categoryId=${category.id}"><spring:message code="category.edit"/></a>
+
 <br />
 
 	<a href="category/administrator/list.do"><spring:message code="category.return.list"/></a>
