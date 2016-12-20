@@ -8,34 +8,41 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="nutritionist/edit.do" modelAttribute="nutritionist">
+<form:form action="${requestURI}" modelAttribute="nutritionist">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
 	<form:hidden path="scores" />
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
 	<form:hidden path="enroled" />
 	<form:hidden path="comments" />
+	<form:hidden path="curriculum" />
 	<form:hidden path="followers" />
 	<form:hidden path="followed" />
 	<form:hidden path="userAccount.authorities" />
+	<jstl:if test="${nutritionist.id!=0}">
+	<form:hidden path="userAccount.username" />
+	<form:hidden path="userAccount.password" />
+	</jstl:if>
 	
-	
-	
+	<jstl:if test="${nutritionist.id==0}">
 	<form:label path="userAccount.username">
-      <spring:message code="sponsor.username" />
+      <spring:message code="nutritionist.username" />
     </form:label>
     <form:input path="userAccount.username"/>
     <form:errors cssClass="error" path="userAccount.username"/>
     <br />
     
     <form:label path="userAccount.password">
-      <spring:message code="sponsor.password" />
+      <spring:message code="nutritionist.password" />
     </form:label>
     <form:password path="userAccount.password"/>
     <form:errors cssClass="error" path="userAccount.password"/>
     <br />
+	</jstl:if>
 	
 	<form:label path="name">
 		<spring:message code="nutritionist.name" />:
@@ -73,8 +80,7 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="nutritionist.save" />" 
-		onclick="location.href = 'nutritionist/display.do';" />&nbsp; 
+		value="<spring:message code="nutritionist.save" />" />
 		
 		
 	<jstl:if test="${nutritionist.id != 0}">

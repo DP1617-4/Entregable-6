@@ -31,25 +31,26 @@ name="nutritionist" requestURI="${requestURI}" id="row">
 	
 	<spring:message code="nutritionist.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
-	
+
+	<jstl:if test="${loggedactor == row.userAccount }">
 	<display:column>
-			<a href="nutritionist/edit.do?nutritionistId=${nutritionist.id}"> <spring:message
+			<a href="nutritionist/nutritionist/edit.do?nutritionistId=${nutritionist.id}"> <spring:message
 					code="user.edit" />
 			</a>
 		</display:column>
-	
+	</jstl:if>
 </display:table>
 
 <br/>
 
-<jstl:if test="${nutritionist.curricula != null}">
-	<a href="curricula/display.do?curriculaId=${curriculaHeader}"> <spring:message
-			code="nutritionist.curricula.display" />
+<jstl:if test="${nutritionist.curriculum != null}">
+	<a href="curriculum/nutritionist/display.do?curriculumId=${curriculumHeader}"> <spring:message
+			code="nutritionist.curriculum.display" />
 	</a>
 </jstl:if>
 
-<jstl:if test="${nutritionist.curricula == null}">
-	<a href="curricula/create.do"> <spring:message
-			code="nutritionist.curricula.create" />
+<jstl:if test="${nutritionist.curriculum == null}">
+	<a href="curriculum/nutritionist/create.do"> <spring:message
+			code="nutritionist.curriculum.create" />
 	</a>
 </jstl:if>
