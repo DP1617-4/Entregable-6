@@ -20,31 +20,26 @@
 
 <security:authorize access="hasRole('SPONSOR')">
 	<div>
-		<a href="sponsor/campaign/list.do"> 
-			<spring:message code="campaign.list.own" />
-		</a>
+		<a href="campaign/sponsor/list.do"></a>
 	</div>
 </security:authorize>
 
-<p><spring:message code="campaign.banners" />
-</p>
-
-<display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="campaigns" requestURI="campaign/list.do" id="row">
-	<jstl:set var="loggedsponsor" value=<security:authentication property="principal.username" /> />
-	<jstl:set var="campaignsponsor" value="${row.user}"/>
-	 
+<display:table pagesize="10" class="displaytag" keepStatus="true"
+	name="campaigns" requestURI="campaign/sponsor/list.do" id="row">
+	<security:authentication property="principal" var ="loggedsponsor"/>
+	<jstl:set var="campaignsponsor" value="${row.sponsor}"/>
+	
 	<display:column>
-		<jstl:if test="${campaignsponsor.userAccount==loggedsponsor}">
-			<a href="campaign/edit.do?campaignId=${row.id}">
+		<jstl:if test="${campaignsponsor.userAccount.username==loggedsponsor.username}">
+			<a href="campaign/sponsor/edit.do?campaignId=${row.id}">
 				<spring:message	code="campaign.edit" />
 			</a>
 		</jstl:if>
 	</display:column>
 	
 	<display:column>
-		<jstl:if test="${campaignsponsor.userAccount==loggedsponsor}">
-			<a href="banner/create.do?campaignId=${row.id}">
+		<jstl:if test="${campaignsponsor.userAccount.username==loggedsponsor.username}">
+			<a href="banner/sponsor/create.do?campaignId=${row.id}">
 				<spring:message	code="campaign.addbanners" />
 			</a>
 		</jstl:if>
@@ -52,21 +47,23 @@
 	
 	<!-- Attributes -->
 	<spring:message code="campaign.startDate" var="startDateHeader" />
-	<display:column title="${startDateHeader}" sortable="true" >
-		<fmt:formatDate value="${row.startDate}"pattern ="dd/mm/yyyy"/>
+	<display:column property="startDate" title="${startDateHeader}" sortable="true"  format="{0,date,dd/MM/yyyy HH:mm}">
 	</display:column>
 
 	<spring:message code="campaign.endDate" var="endDateHeader" />
-	<display:column title="${endDateHeader}" sortable="true" >
-		<jstl:out value="<fmt:formatDate value="${row.endDate}"pattern ="dd/mm/yyyy"/>" />
+	<display:column property="endDate" title="${endDateHeader}" sortable="true"  format="{0,date,dd/MM/yyyy HH:mm}">
 	</display:column>
 	
 	<spring:message code="campaign.starred" var="starredHeader" />
 	<display:column property="starred" title="${starredHeader}" sortable="true" />
 	
-	
-	<display:column>
-		<a href="banner/list.do?campaignId=${row.id}"> <spring:message code="campaign.banner.list" /> </a>
+	<spring:message code="campaign.banners" var="bannersHeader" />
+	<display:column title="${bannersHeader}" sortable="false" >
+		<jstl:forEach var="banner" items="${row.banners}" >
+			<a href="${banner.URL}" target="_blank">
+				<img src="${banner.URL}" alt="${banner.URL}" height="80"> <br/>
+			</a>
+		</jstl:forEach>
 	</display:column>
 	
 	<security:authorize access="hasRole('ADMIN')">
@@ -78,7 +75,7 @@
 
 <security:authorize access="hasRole('SPONSOR')">
 <div>
-	<a href="campaign/create.do"> <spring:message
+	<a href="campaign/sponsor/create.do"> <spring:message
 		code="campaign.create" />
 	</a>
 </div>

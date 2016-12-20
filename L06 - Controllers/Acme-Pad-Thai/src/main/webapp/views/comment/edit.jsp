@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="comment/edit.do" modelAttribute="comment">
+<form:form action="comment/socialUser/edit.do" modelAttribute="comment">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -41,7 +41,15 @@
 	<form:label path="stars">
 		<spring:message code="comment.stars" />:
 	</form:label>
-	<form:input path="stars" />
+	<form:select  path="stars">
+    <form:option value="NONE">--SELECT--</form:option>
+    <form:option value="0">0</form:option>
+    <form:option value="1">1</form:option>
+    <form:option value="2">2</form:option>
+    <form:option value="3">3</form:option>
+    <form:option value="4">4</form:option>
+    <form:option value="5">5</form:option>
+    </form:select>
 	<form:errors cssClass="error" path="stars" />
 	<br />
 
@@ -51,7 +59,7 @@
 		value="<spring:message code="comment.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="comment.cancel" />"
-		onclick="javascript: relativeRedir('comment/list.do');" />
+		onclick="location.href = 'recipe/list.do';" />&nbsp;
 	<br />
 
 	

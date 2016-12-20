@@ -204,6 +204,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle Virgilio Mattoni nº 37  1º IZQ" />
 		<property name="folders">
 			<list>
+				<ref bean="spam1"/>
+				<ref bean="inbox1"/>
+				<ref bean="trashbox1"/>
+				<ref bean="outbox1"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount2" />
@@ -230,13 +234,17 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="user2" class="domain.User">
-		<property name="name" value="Álvaro" />
-		<property name="surname" value="Martín" />
+		<property name="name" value="Alvaro" />
+		<property name="surname" value="Martin" />
 		<property name="email" value="alvmargor@alum.us.es" />
 		<property name="phone" value="A355" /> 
 		<property name="postalAddress" value="Un sitio oscuro" />
 		<property name="folders">
 			<list>
+				<ref bean="spam2"/>
+				<ref bean="inbox2"/>
+				<ref bean="trashbox2"/>
+				<ref bean="outbox2"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount7" />
@@ -271,6 +279,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="Cultura" />
 		<property name="folders">
 			<list>
+				<ref bean="spam3"/>
+				<ref bean="inbox3"/>
+				<ref bean="trashbox3"/>
+				<ref bean="outbox3"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount8" />
@@ -305,6 +317,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle alimentos" />
 		<property name="folders">
 			<list>
+				<ref bean="spam4"/>
+				<ref bean="inbox4"/>
+				<ref bean="trashbox4"/>
+				<ref bean="outbox4"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount4" />
@@ -334,6 +350,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle alimentos 2000000" />
 		<property name="folders">
 			<list>
+				<ref bean="spam5"/>
+				<ref bean="inbox5"/>
+				<ref bean="trashbox5"/>
+				<ref bean="outbox5"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount9" />
@@ -364,6 +384,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle de administración" />
 		<property name="folders">
 			<list>
+				<ref bean="spam6"/>
+				<ref bean="inbox6"/>
+				<ref bean="trashbox6"/>
+				<ref bean="outbox6"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount1" />
@@ -377,6 +401,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle delega" />
 		<property name="folders">
 			<list>
+				<ref bean="spam11"/>
+				<ref bean="inbox11"/>
+				<ref bean="trashbox11"/>
+				<ref bean="outbox11"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount12" />
@@ -390,6 +418,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="None" />
 		<property name="folders">
 			<list>
+				<ref bean="spam12"/>
+				<ref bean="inbox12"/>
+				<ref bean="trashbox12"/>
+				<ref bean="outbox12"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount13" />
@@ -406,6 +438,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
   		<property name="creditCard" ref="creditCard1"/>
   		<property name="folders">
 			<list>
+				<ref bean="spam7"/>
+				<ref bean="inbox7"/>
+				<ref bean="trashbox7"/>
+				<ref bean="outbox7"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount5" />
@@ -429,6 +465,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
   		<property name="creditCard" ref="creditCard2"/>
   		<property name="folders">
 			<list>
+				<ref bean="spam10"/>
+				<ref bean="inbox10"/>
+				<ref bean="trashbox10"/>
+				<ref bean="outbox10"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount11" />
@@ -451,6 +491,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle cocina" />
 		<property name="folders">
 			<list>
+				<ref bean="spam8"/>
+				<ref bean="inbox8"/>
+				<ref bean="trashbox8"/>
+				<ref bean="outbox8"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount6" />
@@ -468,6 +512,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="postalAddress" value="calle lavaplatos" />
 		<property name="folders">
 			<list>
+				<ref bean="spam9"/>
+				<ref bean="inbox9"/>
+				<ref bean="trashbox9"/>
+				<ref bean="outbox9"/>
 			</list>
 		</property>
 		<property name="userAccount" ref="userAccount10" />
@@ -562,6 +610,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="cook1" />
 		<property name="messages">
 			<list>
+				<ref bean="message2Received"/>
 			</list>
 		</property>
 	</bean>
@@ -611,7 +660,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<!-- TRASH -->
-	<bean id="trash1" class="domain.Folder">
+	<bean id="trashbox1" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -622,7 +671,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash2" class="domain.Folder">
+	<bean id="trashbox2" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -633,7 +682,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash3" class="domain.Folder">
+	<bean id="trashbox3" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -644,7 +693,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash4" class="domain.Folder">
+	<bean id="trashbox4" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -655,7 +704,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash5" class="domain.Folder">
+	<bean id="trashbox5" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -666,7 +715,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash6" class="domain.Folder">
+	<bean id="trashbox6" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -677,7 +726,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash7" class="domain.Folder">
+	<bean id="trashbox7" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -688,7 +737,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash8" class="domain.Folder">
+	<bean id="trashbox8" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -699,7 +748,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash9" class="domain.Folder">
+	<bean id="trashbox9" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -710,7 +759,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash10" class="domain.Folder">
+	<bean id="trashbox10" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -721,7 +770,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash11" class="domain.Folder">
+	<bean id="trashbox11" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -732,7 +781,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="trash12" class="domain.Folder">
+	<bean id="trashbox12" class="domain.Folder">
 		<property name="name" value="trashbox" />
 		<property name="systemFolder" value="true" />
 		<property name="deleted" value="false" />
@@ -762,6 +811,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="user2" />
 		<property name="messages">
 			<list>
+				
 			</list>
 		</property>
 	</bean>
@@ -828,6 +878,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="cook1" />
 		<property name="messages">
 			<list>
+				<ref bean="message1Received"/>
 			</list>
 		</property>
 	</bean>
@@ -884,6 +935,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="user1" />
 		<property name="messages">
 			<list>
+			 	<ref bean="message1Sent"/>
 			</list>
 		</property>
 	</bean>
@@ -895,6 +947,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="actor" ref="user2" />
 		<property name="messages">
 			<list>
+				<ref bean="message2Sent"/> 
 			</list>
 		</property>
 	</bean>
@@ -1010,34 +1063,35 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<!-- MESSAGE -->	
+	
 	<bean id="message1Sent" class="domain.Message">
 		<property name="title" value="Message1" />
 		<property name="body" value="Very important message" />
 		<property name="moment" value="2016/10/27 22:00" />
 		<property name="priority" value="LOW" />
 		<property name="folder" ref="outbox1" />
-		<property name="sender" ref="user1" />
-		<property name="receiver" ref="user2" />
+		<property name="sender" ref="userAccount2" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
-	
+ 
 	<bean id="message1Received" class="domain.Message">
 		<property name="title" value="Message1" />
 		<property name="body" value="Very important message" />
 		<property name="moment" value="2016/10/27 22:00" />
 		<property name="priority" value="LOW" />
-		<property name="folder" ref="inbox2" />
-		<property name="sender" ref="user1" />
-		<property name="receiver" ref="user2" />
+		<property name="folder" ref="inbox8" />
+		<property name="sender" ref="userAccount2" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
-	
+ 
 	<bean id="message2Sent" class="domain.Message">
 		<property name="title" value="Message2" />
 		<property name="body" value="Very unimportant message sex" />
 		<property name="moment" value="2016/10/28 21:00" />
 		<property name="priority" value="HIGH" />
 		<property name="folder" ref="outbox2" />
-		<property name="sender" ref="user2" />
-		<property name="receiver" ref="cook1" />
+		<property name="sender" ref="userAccount7" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
 	
 	<bean id="message2Received" class="domain.Message">
@@ -1046,10 +1100,10 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="moment" value="2016/10/28 21:00" />
 		<property name="priority" value="HIGH" />
 		<property name="folder" ref="spam8" />
-		<property name="sender" ref="user2" />
-		<property name="receiver" ref="cook1" />
+		<property name="sender" ref="userAccount7" />
+		<property name="recipient" ref="userAccount6" />
 	</bean>
-
+ 
 	<!-- RECIPE -->
 	<bean id="recipe1" class="domain.Recipe">
 		<property name="ticker" value="123456-gitG" />
@@ -1620,7 +1674,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<!-- CURRICULA -->
-	<bean id="curricula1" class="domain.Curricula">
+	<bean id="curriculum1" class="domain.Curriculum">
 		<property name="picture" value="http://www.nutricionistadeportivo.es/wp-content/uploads/2013/11/profesionalitat.jpg"/> 
 		<property name="education" value="Universidad de Sevilla"/> 
 		<property name="experience" value="Nutrigilde"/>
@@ -1635,7 +1689,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="curricula2" class="domain.Curricula">
+	<bean id="curriculum2" class="domain.Curriculum">
 		<property name="picture" value="http://www.dietistas-nutricionistas.com/wp-content/uploads/2014/11/nutricionista1.jpg"/> 
 		<property name="education" value="Universidad de Sevilla"/> 
 		<property name="experience" value="Sevilla Nutrition"/>
@@ -1652,13 +1706,13 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="endorser1" class="domain.Endorser">
 		<property name="name" value="Rodolfo Pérez"/> 
 		<property name="homePage" value="http://www.nutrigilde.es"/> 
-		<property name="curricula" ref="curricula1"></property>
+		<property name="curriculum" ref="curriculum1"></property>
 	</bean>
 	
 	<bean id="endorser2" class="domain.Endorser">
 		<property name="name" value="Rita Margarita"/> 
 		<property name="homePage" value="http://www.comemenos.es"/> 
-		<property name="curricula" ref="curricula1"></property>
+		<property name="curriculum" ref="curriculum1"></property>
 	</bean>
 	
 	<!-- CREDITCARD (Solo tenemos 1 sponsor, así que solo 1) -->	
@@ -1669,7 +1723,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="expirationMonth" value="12"/>
 		<property name="expirationYear" value="19"/>
 		<property name="CVV" value="842"/>
-		<property name="sponsor" ref="sponsor1"/>
 	</bean>
 	
 	<bean id="creditCard2" class="domain.CreditCard">
@@ -1679,7 +1732,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="expirationMonth" value="5"/>
 		<property name="expirationYear" value="21"/>
 		<property name="CVV" value="342"/>
-		<property name="sponsor" ref="sponsor2"/>
 	</bean>
 	
 	<!-- BILL (Solo tenemos 1 sponsor, así que solo 1) -->
@@ -1692,8 +1744,8 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="bill2" class="domain.Bill">
-		<property name="creationDate" value="2016/10/25"/> <!-- En pasado -->
-		<property name="paymentDate" value="2016/10/28"/>
+		<property name="creationDate" value="2016/11/25"/> <!-- En pasado -->
+		<property name="paymentDate"><null/></property>
 		<property name="cost" value="2.0"/> <!-- Propiedad derivada -->
 		<property name="description" value="Factura mensual."/>
 		<property name="sponsor" ref="sponsor1"/>
@@ -1719,7 +1771,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="campaign1" class="domain.Campaign">
 		<property name="startDate" value="2016/10/28"/> <!-- en futuro -->
 		<property name="endDate" value="2017/01/06"/> <!-- en futuro -->
-		<property name="starred" value="false"/>
+		<property name="starred" value="true"/>
 		<property name="deleted" value="false"/>
 		<property name="sponsor" ref="sponsor1"/>
 	</bean>
@@ -1743,14 +1795,14 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="campaign4" class="domain.Campaign">
 		<property name="startDate" value="2016/10/20"/> <!-- en futuro -->
 		<property name="endDate" value="2016/11/06"/> <!-- en futuro -->
-		<property name="starred" value="false"/>
+		<property name="starred" value="true"/>
 		<property name="deleted" value="false"/>
 		<property name="sponsor" ref="sponsor2"/>
 	</bean>
 	
 	<!-- BANNER (Solo tenemos 1 campaign, así que solo 1) -->
 	<bean id="banner1" class="domain.Banner">
-		<property name="URL" value="http://www.endesa.es"/> 
+		<property name="URL" value="http://thaikitchenonline.com/wp-content/themes/thaikitchen/images/banner2.png"/> 
 		<property name="maxNumber" value="20"/> 
 		<property name="timesShown" value="2"/>
 		<property name="timesShownMonth" value="2"/>
@@ -1758,7 +1810,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="banner2" class="domain.Banner">
-		<property name="URL" value="http://www.endesa.es"/> 
+		<property name="URL" value="http://st2.depositphotos.com/2885805/10592/v/950/depositphotos_105928876-stock-illustration-vegetarian-food-horizontal-banners-set.jpg"/> 
 		<property name="maxNumber" value="20"/> 
 		<property name="timesShown" value="5"/>
 		<property name="timesShownMonth" value="3"/>

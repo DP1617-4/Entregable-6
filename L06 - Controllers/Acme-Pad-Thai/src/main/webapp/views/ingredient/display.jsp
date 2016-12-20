@@ -39,11 +39,9 @@
 </security:authorize>
 
 </p>
-<ul>
 	<jstl:forEach var="thisPicture" items="${ingredient.pictures}" >
-		<li><img src="${thisPicture}" alt="${thisPicture}"/></li>
+			<img src="${thisPicture}" alt="${thisPicture}" height="150"> &nbsp; 
 	</jstl:forEach>
-</ul>
 <br/>
 
 <h2><spring:message	code="ingredient.properties" /></h2>
@@ -75,6 +73,12 @@
 	<security:authorize access="hasRole('NUTRITIONIST')">
 	<display:column>
 		<a href="ingredient/nutritionist/removeProperty.do?valueId=${row.id}"><spring:message code="ingredient.property.remove"/></a>
+	</display:column>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('NUTRITIONIST')">
+	<display:column>
+		<a href="ingredient/nutritionist/editValue.do?valueId=${row.id}"><spring:message code="ingredient.edit"/></a>
 	</display:column>
 	</security:authorize>
 	

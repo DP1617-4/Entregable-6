@@ -14,15 +14,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.BannerService;
 import services.CategoryService;
 import services.IngredientService;
 import services.RecipeService;
+import services.UserService;
 import controllers.AbstractController;
+import domain.Banner;
 import domain.Category;
 import domain.Ingredient;
 import domain.Quantity;
 import domain.Recipe;
 import domain.Step;
+import domain.User;
 import forms.AddIngredient;
 import forms.AddPicture;
 import forms.FilterString;
@@ -40,7 +44,8 @@ public class RecipeController extends AbstractController {
 	private IngredientService ingredientService;
 	@Autowired
 	private CategoryService categoryService;
-	
+	@Autowired
+	private BannerService bannerService;
 	// Constructors -----------------------------------------------------------
 	
 	public RecipeController() {
@@ -48,6 +53,9 @@ public class RecipeController extends AbstractController {
 	}
 
 	// Listing ----------------------------------------------------------------
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
  	public ModelAndView list() {
@@ -65,6 +73,25 @@ public class RecipeController extends AbstractController {
  		
  		return result;
  	}
+	
+	@RequestMapping(value = "/listUser", method = RequestMethod.GET)
+	public ModelAndView own(@RequestParam int userId) {
+
+		ModelAndView result;
+		Collection<Recipe> recipes;
+		FilterString filter = new FilterString();
+
+		User u = userService.findOne(userId);
+
+		recipes = recipeService.findAllByUser(u);
+
+		result = new ModelAndView("recipe/list");
+		result.addObject("requestURI", "recipe/user/listOwn.do");
+		result.addObject("recipes", recipes);
+		result.addObject("filterString", filter);
+
+		return result;
+	}
 	
 	@RequestMapping(value = "/listQualified", method = RequestMethod.GET)
  	public ModelAndView listQualified(@RequestParam int contestId) {
@@ -114,6 +141,7 @@ public class RecipeController extends AbstractController {
 		AddIngredient addIngredient = new AddIngredient();
 		Collection<Category> categories = recipe.getCategories();
 		Collection<Category> categoryList = categoryService.findAllNotDeleted();
+		Banner banner = bannerService.findRandomStarBanner();
 		
 		result = new ModelAndView("recipe/display");
 		result.addObject("recipe", recipe);
@@ -124,6 +152,7 @@ public class RecipeController extends AbstractController {
 		result.addObject("addPicture", addPicture);
 		result.addObject("categories", categories);
 		result.addObject("categoryList", categoryList);
+		result.addObject("banner", banner);
 		
 		return result;
 	}

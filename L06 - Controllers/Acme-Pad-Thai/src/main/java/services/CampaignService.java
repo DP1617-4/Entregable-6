@@ -28,12 +28,11 @@ public class CampaignService {
 	private SponsorService sponsorService;
 	
 	//Basic CRUD methods --------------------
-	public Campaign create(Sponsor sponsor) { 
-		Campaign created = new Campaign();
+	public Campaign create() { 
+		Campaign created;
+		Sponsor sponsor = sponsorService.findByPrincipal();
+		created = new Campaign();
 		created.setSponsor(sponsor);
-//		Date moment = new Date(System.currentTimeMillis()-100);
-//		Assert.isTrue(moment.before(created.getStartDate()));
-//		Assert.isTrue(created.getStartDate().before(created.getEndDate()));
 		created.setDeleted(false);
 		created.setStarred(false);
 		created.setBanners(new ArrayList<Banner>());
@@ -71,21 +70,8 @@ public class CampaignService {
 	}
 	
 	//Auxiliary methods ---------------------
-	public boolean activeCampaign(Campaign c) {
-		boolean res = false;
-		Date moment = new Date();
-		if(moment.after(c.getStartDate()) && moment.before(c.getEndDate())) {
-			res = true;
-		}
-		return res;
-	}
-	
-	public boolean campaignPassed(Campaign c) {
-		boolean res = false;
-		Date moment = new Date();
-		if(moment.after(c.getEndDate())) {
-			res = true;
-		}
+	public Collection<Campaign> allCampaigns() {
+		Collection<Campaign> res = campaignRepository.findAll();
 		return res;
 	}
 	
@@ -96,6 +82,14 @@ public class CampaignService {
 	}
 	
 	//Our other bussiness methods -----------
+	public Collection<Campaign> findCampaignsByPrincipal(){
+		Sponsor sponsor;
+		Collection<Campaign> result;
+		sponsor = sponsorService.findByPrincipal();
+		result = campaignRepository.findAllBySponsorId(sponsor.getId());
+		return result;
+	}
+	
 	public Campaign save2(Campaign campaign) { // Requirement 33.1
 		Sponsor sponsor = sponsorService.findByPrincipal();
 		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");
@@ -113,6 +107,24 @@ public class CampaignService {
 		campaign.setDeleted(true);
 		Campaign saved = this.save(campaign);
 		return saved;
+	}
+	
+	public boolean activeCampaign(Campaign c) {
+		boolean res = false;
+		Date moment = new Date();
+		if(moment.after(c.getStartDate()) && moment.before(c.getEndDate())) {
+			res = true;
+		}
+		return res;
+	}
+	
+	public boolean campaignPassed(Campaign c) {
+		boolean res = false;
+		Date moment = new Date();
+		if(moment.after(c.getEndDate())) {
+			res = true;
+		}
+		return res;
 	}
 	
 }

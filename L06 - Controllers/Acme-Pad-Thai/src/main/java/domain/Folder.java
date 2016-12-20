@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -30,7 +31,6 @@ public class Folder extends DomainEntity {
 	private boolean deleted;
 	
 	@NotBlank
-	
 	public String getName() {
 		return name;
 	}
@@ -45,6 +45,7 @@ public class Folder extends DomainEntity {
 	public void setSystemFolder(boolean systemFolder) {
 		this.systemFolder = systemFolder;
 	}
+	
 	@NotNull
 	public boolean getDeleted() {
 		return deleted;
@@ -59,6 +60,7 @@ public class Folder extends DomainEntity {
 	private Actor actor;
 
 	@Valid
+	@NotNull
 	@OneToMany(mappedBy = "folder")
 	public Collection<Message> getMessages() {
 		return messages;
@@ -69,7 +71,8 @@ public class Folder extends DomainEntity {
 	
 	@Valid
 	@NotNull
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//	@NotFound(action = NotFoundAction.IGNORE)
 	public Actor getActor() {
 		return actor;
 	}

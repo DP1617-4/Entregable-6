@@ -46,7 +46,7 @@ public class MessageServiceTest extends AbstractTest {
 		authenticate("user2");
 		result = messageService.create(recipient);
 		sender = actorService.findByPrincipal();
-		Assert.isTrue(result.getReceiver().equals(recipient));
+		Assert.isTrue(result.getRecipient().equals(recipient));
 		Assert.isTrue(result.getSender().equals(sender));
 		unauthenticate();
 		
@@ -56,7 +56,7 @@ public class MessageServiceTest extends AbstractTest {
 		authenticate("user1");
 		Message result;
 		Message sent;
-		Folder inbox;
+		Folder outbox;
 		Collection<Message> sents;
 		Actor recipient;
 		Actor sender;
@@ -65,15 +65,15 @@ public class MessageServiceTest extends AbstractTest {
 		authenticate("user2");
 		result = messageService.create(recipient);
 		sender = actorService.findByPrincipal();
-		Assert.isTrue(result.getReceiver().equals(recipient));
+		Assert.isTrue(result.getRecipient().equals(recipient));
 		Assert.isTrue(result.getSender().equals(sender));
 		result.setTitle("TestM");
 		result.setBody("TestB");
 		sent = messageService.send(result);
 		unauthenticate();
 		authenticate("user1");
-		inbox = folderService.findSystemFolder(recipient, "inbox");
-		sents = messageService.findAllByFolder(inbox.getId());
+		outbox = folderService.findSystemFolder(sender, "outbox");
+		sents = messageService.findAllByFolder(outbox.getId());
 		Assert.isTrue(sents.contains(sent));
 		unauthenticate();
 	}
@@ -87,7 +87,7 @@ public class MessageServiceTest extends AbstractTest {
 		authenticate("user2");
 		result = messageService.create(recipient);
 		sender = actorService.findByPrincipal();
-		Assert.isTrue(result.getReceiver().equals(recipient));
+		Assert.isTrue(result.getRecipient().equals(recipient));
 		Assert.isTrue(result.getSender().equals(sender));
 		try{
 			messageService.send(result);
@@ -190,24 +190,24 @@ public class MessageServiceTest extends AbstractTest {
 	public void testSpam(){
 		authenticate("user1");
 		Message result;
-		Message sent;
 		Folder spambox;
-		Collection<Message> sents;
+		Folder newSpam;
 		Actor recipient;
 		Actor sender;
 		recipient = actorService.findByPrincipal();
 		authenticate("user2");
 		result = messageService.create(recipient);
 		sender = actorService.findByPrincipal();
-		Assert.isTrue(result.getReceiver().equals(recipient));
+		Assert.isTrue(result.getRecipient().equals(recipient));
 		Assert.isTrue(result.getSender().equals(sender));
 		result.setTitle("TestA");
 		result.setBody("TestSpam sex");
-		sent = messageService.send(result);
-		authenticate("user1");
 		spambox = folderService.findSystemFolder(recipient, "spambox");
-		sents = messageService.findAllByFolder(spambox.getId());
-		Assert.isTrue(sents.contains(sent));
+		messageService.send(result);
+		authenticate("user1");
+		newSpam = folderService.findSystemFolder(recipient, "spambox");
+
+		Assert.isTrue(spambox.getMessages().size() < newSpam.getMessages().size());
 		unauthenticate();
 	}
 	

@@ -3,8 +3,6 @@ package domain;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
@@ -52,7 +50,6 @@ public class CreditCard extends DomainEntity{
 		}
 
 		@CreditCardNumber
-		@NotNull
 		@NotBlank
 		public String getCCNumber() {
 			return cCNumber;
@@ -94,22 +91,16 @@ public class CreditCard extends DomainEntity{
 		
 		//Relations
 
-		private Sponsor sponsor;
-
-		@NotNull
-		@Valid	
-		@OneToOne(optional = false)
-		public Sponsor getSponsor() {
-			return sponsor;
-		}
-
-		public void setSponsor(Sponsor sponsor) {
-			this.sponsor = sponsor;
-		}
-		
-		
-		
-		
-		
-
+//		private Sponsor sponsor;
+//
+//		@NotNull
+//		@Valid	
+//		@OneToOne(optional = false)
+//		public Sponsor getSponsor() {
+//			return sponsor;
+//		}
+//
+//		public void setSponsor(Sponsor sponsor) {
+//			this.sponsor = sponsor;
+//		}
 }

@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.CreditCardRepository;
-import security.LoginService;
-import security.UserAccount;
 import domain.CreditCard;
 import domain.Sponsor;
 
@@ -30,10 +28,10 @@ public class CreditCardService {
 	
 	//Basic CRUD methods --------------------
 	public CreditCard create(Sponsor sponsor) {
-		sponsor = sponsorService.findByPrincipal();
-		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");
+//		sponsor = sponsorService.findByPrincipal();
+//		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");
 		CreditCard creditCard = new CreditCard();
-		creditCard.setSponsor(sponsor);
+//		creditCard.setSponsor(sponsor);
 		return creditCard;
 	}
 	
@@ -44,15 +42,18 @@ public class CreditCardService {
 		return retrieved;
 	}
 	
+	public CreditCard findOneToEdit(int creditCardId) {
+		CreditCard res;
+		res = creditCardRepository.findOne(creditCardId);
+		Assert.notNull(res, "That creditcard does not exist");
+		return res;
+	}
+	
 	public Collection<CreditCard> findAll() {
 		return creditCardRepository.findAll();
 	}
 	
 	public CreditCard save(CreditCard creditCard) {
-		UserAccount sponsor = LoginService.getPrincipal();
-		Assert.isTrue(creditCard.getSponsor().getUserAccount().equals(sponsor));
-//		Assert.isTrue(expirationDate(creditCard));
-		
 		CreditCard saved = creditCardRepository.save(creditCard);
 		return saved;
 	}
@@ -76,10 +77,15 @@ public class CreditCardService {
 	}
 	
 	//Our other bussiness methods -----------
+	public CreditCard findCreditCardByPrincipal() {
+		Sponsor sponsor;
+		CreditCard res;
+		sponsor = sponsorService.findByPrincipal();
+		res = sponsor.getCreditCard();
+		return res;
+	}
+	
 	public CreditCard save2(CreditCard creditCard) { // Requirement 33.2
-		UserAccount sponsor;
-		sponsor = LoginService.getPrincipal();
-		Assert.isTrue(creditCard.getSponsor().equals(sponsor));
 		Assert.isTrue(expirationDate(creditCard));
 		CreditCard saved = this.save(creditCard);
 		return saved;

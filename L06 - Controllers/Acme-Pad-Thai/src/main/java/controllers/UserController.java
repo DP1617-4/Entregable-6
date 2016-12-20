@@ -13,25 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import security.LoginService;
-import security.UserAccount;
+import services.ActorService;
 import services.SocialUserService;
 import services.UserService;
-
-import controllers.AbstractController;
-import domain.Comment;
-import domain.Folder;
-import domain.Ingredient;
-import domain.MasterClass;
-import domain.Quantity;
-import domain.Recipe;
-import domain.Score;
-import domain.SocialIdentity;
+import domain.Actor;
 import domain.SocialUser;
-import domain.Step;
 import domain.User;
-import forms.AddIngredient;
-import forms.AddPicture;
 import forms.FilterString;
 
 @Controller
@@ -42,6 +29,9 @@ public class UserController extends AbstractController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ActorService actorService;
 	
 	@Autowired
 	private SocialUserService socialUserService;
@@ -72,9 +62,11 @@ public class UserController extends AbstractController {
 				.getPrincipal();
 		if (access != "anonymousUser") {
 
-			User principal = userService.findByPrincipal();
-			followed = principal.getFollowed();
-			result.addObject("followed", followed);
+			Actor principal = actorService.findByPrincipal();
+			if(principal instanceof SocialUser){
+				followed = ((SocialUser) principal).getFollowed();
+				result.addObject("followed", followed);
+			}
 		}
 
 		return result;
@@ -170,7 +162,26 @@ public class UserController extends AbstractController {
 
 		return result;
 	}
-
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(@Valid User user, BindingResult binding) {
+		ModelAndView result;
+		if(binding.hasErrors()){
+			result = createEditModelAndView(user);
+		}
+		else{
+			try{
+				user = userService.save(user);
+				result = new ModelAndView(
+						"redirect:/user/display.do?userId="
+								+ user.getId());
+			} catch (Throwable oops){
+				result = createEditModelAndView(user, "user.commit.error");
+			}
+		}
+		return result;
+	}
+	
 	protected ModelAndView createEditModelAndView(User user) {
 		ModelAndView result;
 
@@ -180,81 +191,14 @@ public class UserController extends AbstractController {
 	}
 	protected ModelAndView createEditModelAndView(User user, String message) {
 		ModelAndView result;
-		UserAccount userAccount;
-		Collection<Folder> folders;
-		Collection<SocialIdentity> socialIdentities;
-		Collection<MasterClass> enroled;
-		Collection<Recipe> recipes;
-		Collection<SocialUser> followed;
-		Collection<SocialUser> followers;
-		Collection<Score> scores;
-		Collection<Comment> comments;
 
-		if (user.getUserAccount() == null) {
-			userAccount = null;
-		} else {
-			userAccount = user.getUserAccount();
-		}
-
-		if (user.getFolders() == null) {
-			folders = null;
-		} else {
-			folders = user.getFolders();
-		}
-
-		if (user.getSocialIdentities() == null) {
-			socialIdentities = null;
-		} else {
-			socialIdentities = user.getSocialIdentities();
-		}
-
-		if (user.getEnroled() == null) {
-			enroled = null;
-		} else {
-			enroled = user.getEnroled();
-		}
-
-		if (user.getRecipes() == null) {
-			recipes = null;
-		} else {
-			recipes = user.getRecipes();
-		}
-
-		if (user.getFollowed() == null) {
-			followed = null;
-		} else {
-			followed = user.getFollowed();
-		}
-
-		if (user.getFollowers() == null) {
-			followers = null;
-		} else {
-			followers = user.getFollowers();
-		}
-
-		if (user.getComments() == null) {
-			comments = null;
-		} else {
-			comments = user.getComments();
-		}
-
-		if (user.getScores() == null) {
-			scores = null;
-		} else {
-			scores = user.getScores();
-		}
-
+		String requestURI = "user/edit.do";
+		
 		result = new ModelAndView("user/edit");
-		result.addObject("userAccount", userAccount);
-		result.addObject("folders", folders);
-		result.addObject("socialIdentities", socialIdentities);
-		result.addObject("enroled", enroled);
-		result.addObject("recipes", recipes);
-		result.addObject("followed", followed);
-		result.addObject("followers", followers);
-		result.addObject("comments", comments);
-		result.addObject("scores", scores);
-
+		result.addObject("user", user);
+		result.addObject("message", message);
+		result.addObject("requestURI", requestURI);
+		
 		return result;
 	}
 

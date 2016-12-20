@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.transaction.Transactional;
@@ -41,6 +42,14 @@ public class BannerService {
 		return retrieved;
 	}
 	
+	public Banner findOneToEdit(int id){
+		Banner result;
+		result = bannerRepository.findOne(id);
+		Assert.notNull(result);
+		checkPrincipal(result);
+		return result;
+	}
+	
 	public Collection<Banner> findAll(){
 		Collection<Banner> banners;
 		banners = bannerRepository.findAll();
@@ -71,11 +80,20 @@ public class BannerService {
 		return result;
 	}
 	
-
 	//Auxiliary methods ---------------------
 	
 	//Our other bussiness methods -----------
+	public void checkPrincipal(Banner b){
+		sponsorService.findByPrincipal();
+	}
+	
 	public Collection<Banner> paidBanners(int id) {
 		return bannerRepository.numberOfBanners(id);
+	}
+	
+	public Collection<Banner> findAllByCampaign(int campaignId) {
+		Collection<Banner> banner = new ArrayList<Banner>();
+		banner = bannerRepository.findAllByCampaign(campaignId); 
+		return banner;
 	}
 }

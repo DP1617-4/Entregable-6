@@ -18,16 +18,17 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="category/edit.do" modelAttribute="category">
+<form:form action="category/administrator/edit.do" modelAttribute="category">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="recipes"/>
 	<form:hidden path="sons"/>
-	<jstl:if test="${category.id!=0}">
+	<form:hidden path="deleted"/>
+	
+	<jstl:if test="${category.id != 0}">
 		<form:hidden path="father"/>
 	</jstl:if>
-	<form:hidden path="deleted"/>
 
 	<form:label path="name">
 		<spring:message code="category.name" />:
@@ -53,14 +54,17 @@
 	<form:input path="tag" />
 	<form:errors cssClass="error" path="tag" />
 	<br />
-	<jstl:if test="${category.id==0}">
-		<form:label path="father">
-			<spring:message code="category.father" />:
-		</form:label>
-		<form:select path="father" />
-		<form:errors cssClass="error" path="father" />
+	
+	<jstl:if test="${category.id == 0}">
+	<form:label path="father">
+		<spring:message code="category.father" />:
+	</form:label>
+	<form:select id="fatherCategory" path="father" >
+		<form:option value="0" label="----"/>
+		<form:options items="${categories}" itemValue="id" itemLabel="name"/>
+	</form:select>
+	<form:errors cssClass="error" path="father" />
 	</jstl:if>
-
 	
 
 	<input type="submit" name="save"
@@ -72,9 +76,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="category.cancel" />"
-		onclick="javascript: relativeRedir('category/list.do');" />
+		onclick="location.href = 'category/administrator/list.do';" />&nbsp;
 	<br />
-
-	
 
 </form:form>

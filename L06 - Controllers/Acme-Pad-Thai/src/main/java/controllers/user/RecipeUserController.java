@@ -138,15 +138,17 @@ public class RecipeUserController extends AbstractController {
 		ModelAndView result;
 		Recipe recipe;
 
-		recipe = recipeService.findOne(recipeId);
-		if(recipe.getContest().equals(null)){
-			Assert.notNull(recipe);
+		try{
+		
+			recipe = recipeService.findOne(recipeId);
+			Assert.isNull(recipe.getContest());
 			result = createEditModelAndView(recipe);
-		}
-		else{
+			
+		}catch(Exception oops){
+
 			
 			result = new ModelAndView("redirect:/recipe/list.do");
-			result.addObject("message", "recipe.error.access");
+		
 		}
 
 		return result;

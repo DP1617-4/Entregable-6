@@ -22,13 +22,18 @@
 <security:authentication property="principal" var ="loggedactor"/>
 <jstl:set var="recipeuser" value="${recipe.user}"/> 
 
-<h2>${recipe.title}</h2>
+<jstl:if test="${banner != null}">
+	<img src="${banner.URL}" alt="${banner.URL}" height="300">
+</jstl:if>
+
+<h2>${recipe.title}</h2>	
 <h3>${recipe.summary}</h3>
 <p><b>ticker: </b>${recipe.ticker}</P>
 <P><b><spring:message code="recipe.authored"/>:</b> ${recipe.authored}</P>
 <P><b><spring:message code="recipe.updated"/>:</b> ${recipe.updated}</p>
 <P><b><spring:message code="recipe.category.list"/>:</b> 
 
+<security:authorize access="hasRole('USER')">
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	
 <form:form action="recipe/user/addCategory.do" modelAttribute="addIngredient">
@@ -44,6 +49,7 @@
 </form:form>
 	
 </jstl:if>
+</security:authorize>
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 	name="categories" requestURI="recipe/display.do" id="row">
 	<!-- Attributes -->
@@ -63,6 +69,7 @@
 	<spring:message code="recipe.category.tag" var="tagHeader" />
 	<display:column property="tag" title="${tagHeader}" sortable="false" />	
 	
+	<security:authorize access="hasRole('USER')">
 	<jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">
 	<display:column>
 		<form:form action="recipe/user/removeCategory.do" modelAttribute="addIngredient">
@@ -76,6 +83,7 @@
 		</form:form>
 	</display:column>
 	</jstl:if>
+	</security:authorize>
 </display:table>
 </P>
 <h4><spring:message code="recipe.pictures"/></h4>
@@ -141,7 +149,7 @@
 	<display:column>
 	<jstl:choose>
 		<jstl:when test="${recipeuser.userAccount.username==loggedactor.username}">
-			<a href="recipe/user/removeIngredient.do?quantityId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
+			<a href="recipe/user/removeIngredient.do?valueId=${row.id}"><spring:message code="recipe.ingredient.remove"/></a>
 		</jstl:when>
 	</jstl:choose>
 	</display:column>
@@ -202,8 +210,10 @@
 <a href="comment/list.do?recipeId=${recipe.id}"><spring:message code="recipe.comment.list"/></a>
 
 <security:authorize access="hasAnyRole('USER', 'NUTRITIONIST')">
+	<jstl:if test="${recipeuser.userAccount.username!=loggedactor.username}">
 	<a href="score/socialUser/like.do?recipeId=${recipe.id}"><spring:message code="recipe.like"/></a>&nbsp;&nbsp;
 	<a href="score/socialUser/dislike.do?recipeId=${recipe.id}"><spring:message code="recipe.dislike"/></a><br/>
+	</jstl:if>
 </security:authorize>
 <security:authorize access="hasRole('USER')">
 <jstl:if test="${recipeuser.userAccount.username==loggedactor.username}">

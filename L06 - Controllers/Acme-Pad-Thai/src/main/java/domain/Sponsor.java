@@ -43,10 +43,11 @@ public class Sponsor extends Actor{
 	
 	@NotNull
 	@Valid	
-	@OneToOne(optional=false, mappedBy="sponsor", cascade = CascadeType.PERSIST)
+	@OneToOne(optional=false, cascade = CascadeType.ALL)
 	public CreditCard getCreditCard() {
 		return creditCard;
 	}
+	
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
 	}

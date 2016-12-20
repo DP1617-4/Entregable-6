@@ -18,11 +18,13 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="step/edit.do" modelAttribute="step">
+<form:form action="banner/sponsor/edit.do" modelAttribute="banner">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="campaign"/>
+	<form:hidden path="timesShown"/>
+	<form:hidden path="timesShownMonth"/>
 
 	<form:label path="URL">
 		<spring:message code="banner.URL" />:
@@ -36,20 +38,6 @@
 	</form:label>
 	<form:input path="maxNumber" />
 	<form:errors cssClass="error" path="maxNumber" />
-	<br />
-	
-	<form:label path="timesShown">
-		<spring:message code="banner.timesShown" />:
-	</form:label>
-	<form:input path="timesShown" />
-	<form:errors cssClass="error" path="timesShown" />
-	<br />
-	
-	<form:label path="timesShownMonth">
-		<spring:message code="banner.timesShownMonth" />:
-	</form:label>
-	<form:input path="timesShownMonth" />
-	<form:errors cssClass="error" path="timesShownMonth" />
 	<br />
 
 	<input type="submit" name="save"

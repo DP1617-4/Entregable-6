@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="bill/edit.do" modelAttribute="bill">
+<form:form action="bill/sponsor/edit.do" modelAttribute="bill">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -26,7 +26,7 @@
 	
 	<input type="button" name="back"
 		value="<spring:message code="bill.back" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = 'welcome/index.do';" />
 	<br />
 	
 </form:form>

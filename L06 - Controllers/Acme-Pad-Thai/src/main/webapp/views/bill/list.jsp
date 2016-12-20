@@ -21,27 +21,29 @@
 
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="bills" requestURI="bill/list.do" id="row">
-	<jstl:set var="loggedsponsor" value=<security:authentication property="principal.username" /> />
-	<jstl:set var="billsponsor" value="${row.user}"/>
+	name="bills" requestURI="bill/sponsor/list.do" id="row">
+	<security:authentication property="principal" var ="loggedsponsor"/>
+	<jstl:set var="billsponsor" value="${row.sponsor}"/>
+	 
+	 
 	 
 	<display:column>
-		<jstl:if test="${billsponsor.userAccount==loggedsponsor}">
-			<a href="bill/pay.do?billId=${row.id}">
-				<spring:message	code="bill.pay" />
-			</a>
+		<jstl:if test="${row.paymentDate == null}">
+			<jstl:if test="${billsponsor.userAccount.username==loggedsponsor.username}">
+				<a href="bill/sponsor/pay.do?billId=${row.id}">
+					<spring:message	code="bill.pay" />
+				</a>
+			</jstl:if>
 		</jstl:if>
 	</display:column>
 	
 	<!-- Attributes -->
 	<spring:message code="bill.creationDate" var="creationDateHeader" />
-	<display:column title="${creationDateHeader}" sortable="true" >
-		<fmt:formatDate value="${row.creationDate}" pattern="dd/mm/yyyy" />
+	<display:column property="creationDate" title="${creationDateHeader}" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}" >
 	</display:column>
 
 	<spring:message code="bill.paymentDate" var="paymentDateHeader" />
-	<display:column title="${paymentDateHeader}" sortable="true" >
-		<fmt:formatDate value="${row.paymentDate }" pattern="dd/mm/yyyy" />
+	<display:column property="paymentDate" title="${paymentDateHeader}" sortable="true" format="{0,date,dd/MM/yyyy HH:mm}" >
 	</display:column>
 	
 	<spring:message code="bill.cost" var="costHeader" />
@@ -51,9 +53,3 @@
 	<display:column property="description" title="${descriptionHeader}" sortable="false" />
 	
 </display:table>
-
-<%-- <div>
-	<a href="bill/create.do"> <spring:message
-		code="bill.create" />
-	</a>
-</div> --%>

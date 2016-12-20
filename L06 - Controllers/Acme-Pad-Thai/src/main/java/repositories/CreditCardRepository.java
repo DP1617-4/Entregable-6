@@ -7,5 +7,5 @@ import domain.CreditCard;
 
 @Repository
 public interface CreditCardRepository extends JpaRepository<CreditCard, Integer> {
-
+	
 }

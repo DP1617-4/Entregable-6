@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="user/edit.do" modelAttribute="user">
+<form:form action="${RequestURI}" modelAttribute="user">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -17,7 +17,33 @@
 	<form:hidden path="socialIdentities" />
 	<form:hidden path="enroled" />
 	<form:hidden path="recipes" />
-	<form:hidden path="userAccount" />
+	<form:hidden path="comments" />
+	<form:hidden path="followers" />
+	<form:hidden path="followed" />
+	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
+	
+	<jstl:if test="${user.id!=0}">
+	<form:hidden path="userAccount.username" />
+	<form:hidden path="userAccount.password" />
+	</jstl:if>
+	
+	<jstl:if test="${user.id==0}">
+	<form:label path="userAccount.username">
+      <spring:message code="user.username" />
+    </form:label>
+    <form:input path="userAccount.username"/>
+    <form:errors cssClass="error" path="userAccount.username"/>
+    <br />
+    
+    <form:label path="userAccount.password">
+      <spring:message code="user.password" />
+    </form:label>
+    <form:password path="userAccount.password"/>
+    <form:errors cssClass="error" path="userAccount.password"/>
+    <br />
+	</jstl:if>
 	
 	<form:label path="name">
 		<spring:message code="user.name" />:
@@ -55,21 +81,21 @@
 	<br />
 	
 	<input type="submit" name="save"
-		value="<spring:message code="user.save" />" />&nbsp; 
+		value="<spring:message code="user.save" />" 
+		onclick="location.href = 'user/display.do';" />&nbsp; 
+		
 		
 	<jstl:if test="${user.id != 0}">
-		<input type="submit" name="delete"
-		value="<spring:message code="user.delete" />"
-		onclick="return confirm('<spring:message code="user.confirm.delete" />')" />&nbsp;
 		<input type="button" name="cancel"
 		value="<spring:message code="user.cancel" />"
-		onclick="javascript: relativeRedir('user/display.do');" />
+		onclick="location.href = 'user/display.do';" />&nbsp;
+	<br />
 	</jstl:if>
 	
 	<jstl:if test="${user.id == 0}">
-		<input type="button" name="cancel"
+	<input type="button" name="cancel"
 		value="<spring:message code="user.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = 'welcome/index.do';" />&nbsp;
 	</jstl:if>
 	<br />
 	

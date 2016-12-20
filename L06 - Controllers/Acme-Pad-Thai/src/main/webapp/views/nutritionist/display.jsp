@@ -12,40 +12,45 @@
 
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-name="nutritionist data" requestURI="${requestURI}" id="row">
+name="nutritionist" requestURI="${requestURI}" id="row">
 
-	<spring:message code="nutritionist.name" var=nameHeader/>
+<security:authentication property="principal" var ="loggedactor"/>
+<jstl:set var="user" value="${row}"/> 
+
+	<spring:message code="nutritionist.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="nutritionist.surname" var=surnameHeader/>
+	<spring:message code="nutritionist.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="nutritionist.email" var=emailHeader/>
+	<spring:message code="nutritionist.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="nutritionist.phone" var=phoneHeader/>
+	<spring:message code="nutritionist.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="nutritionist.postalAddress" var=postalAddressHeader/>
+	<spring:message code="nutritionist.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
-	
+
+	<jstl:if test="${loggedactor == row.userAccount }">
+	<display:column>
+			<a href="nutritionist/nutritionist/edit.do?nutritionistId=${nutritionist.id}"> <spring:message
+					code="user.edit" />
+			</a>
+		</display:column>
+	</jstl:if>
 </display:table>
 
 <br/>
 
-<jstl:if test="${nutritionist.curricula != null}">
-	<a href="curricula/display.do?curriculaId=${curriculaHeader}"> <spring:message
-			code="nutritionist.curricula.display" />
+<jstl:if test="${nutritionist.curriculum != null}">
+	<a href="curriculum/nutritionist/display.do?curriculumId=${curriculumHeader}"> <spring:message
+			code="nutritionist.curriculum.display" />
 	</a>
 </jstl:if>
 
-<jstl:if test="${nutritionist.curricula == null}">
-	<a href="curricula/create.do"> <spring:message
-			code="nutritionist.curricula.create" />
+<jstl:if test="${nutritionist.curriculum == null}">
+	<a href="curriculum/nutritionist/create.do"> <spring:message
+			code="nutritionist.curriculum.create" />
 	</a>
 </jstl:if>
-<br />	
-	<a href="curricula/edit.do?nutritionistId=${requestURI.id}"> <spring:message
-			code="nutritionist.edit" />
-	</a>
-<br />

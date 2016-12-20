@@ -17,7 +17,6 @@ import domain.Contest;
 import domain.Quantity;
 import domain.Recipe;
 import domain.Score;
-import domain.SocialUser;
 import domain.Step;
 import domain.User;
 
@@ -75,7 +74,7 @@ public class RecipeService {
 		return recipeRepository.findAllByUserId(u.getId());
 	}
 	
-	public Collection<Recipe> findAllByUserFollowed(SocialUser socialUser){
+	public Collection<Recipe> findAllByUserFollowed(){
 		
 		User principal = userService.findByPrincipal(); 
 		Collection<Recipe> result = new ArrayList<Recipe>();
@@ -301,5 +300,12 @@ public class RecipeService {
 		return saved;
 	}
 	
+	public Collection<Recipe> findAllNotQualifiedPrincipal(){
+		User user = userService.findByPrincipal();
+		Collection<Recipe> result;
+		result= recipeRepository.findAllNotQualifiedUser(user);
+		
+		return result;
+	}
 	
 }

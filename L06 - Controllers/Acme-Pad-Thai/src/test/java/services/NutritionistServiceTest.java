@@ -48,7 +48,7 @@ public class NutritionistServiceTest extends AbstractTest{
 		public void testSavePositive(){
 			
 			Nutritionist nutritionist = nutritionistService.create();
-//			Curricula curricula = curriculaService.create();
+//			Curriculum curricula = curriculaService.create();
 //			nutritionist.setCurricula(curricula);
 			nutritionist.setName("Pepa");
 			nutritionist.setEmail("pepa@Yahoo.es");
@@ -67,7 +67,7 @@ public class NutritionistServiceTest extends AbstractTest{
 //			
 //			authenticate("user1");
 //			Nutritionist nutritionist = nutritionistService.create();
-//			Curricula curricula = curriculaService.create();
+//			Curriculum curricula = curriculaService.create();
 //			nutritionist.setCurricula(curricula);
 //			Nutritionist saved = nutritionistService.save(nutritionist);
 //			nutritionistService.delete(saved);
