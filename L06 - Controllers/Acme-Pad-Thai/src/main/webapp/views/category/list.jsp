@@ -18,27 +18,35 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="categories" requestURI="${requestURI}" id="row">
 	
 	<display:column>
-		<a href="admin/category/edit.do?categoryId=${row.id}" ><spring:message code="category.edit"/> </a>
+		<a href="/category/administrator/edit.do?categoryId=${row.id}" ><spring:message code="category.edit"/> </a>
 	</display:column>
 	
 	<!-- Attributes -->
 	
 	<spring:message code="category.name" var="nameHeader" />
 	<display:column property="name" title="${nameHeader}" sortable="true" />
+	
 	<spring:message code="category.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" sortable="true" />
+	
 	<spring:message code="category.picture" var="pictureHeader" />
-	<display:column property="picture" title="${pictureHeader}" sortable="true" />
+	<display:column title="${pictureHeader}" sortable="false" >
+		<img src="${row.picture}" alt="${row.picture}" height="150">
+	</display:column>
+	
 	<spring:message code="category.tag" var="tagHeader" />
 	<display:column property="tag" title="${tagHeader}" sortable="true" />
+	
 	<spring:message code="category.father" var="fatherHeader"/>
 	<display:column title="${fatherHeader}">
-		<a href="category/display.do?categoryId=${row.father.id}"><spring:message code="category.father"/> </a>
+		<a href="category/display.do?categoryId=${row.father.id}"><jstl:out value="${row.father.name}"/></a>
 	</display:column>
+	
 	<spring:message code="category.sons" var="sonsHeader"/>
 	<display:column title="${sonsHeader}">
 		<jstl:forEach items="${row.sons}" var="son">
@@ -51,7 +59,7 @@
 	<!-- Action links -->
 
 <div>
-	<a href="category/create.do"> <spring:message
+	<a href="category/administrator/create.do"> <spring:message
 			code="category.create" />
 	</a>
 </div>

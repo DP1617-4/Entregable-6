@@ -91,6 +91,15 @@
 			</li>
 		</security:authorize>
 		
+		<security:authorize access="hasRole('ADMIN')">
+			<li><a class="fNiv"><spring:message	code="master.page.category" /></a>
+				<ul>
+					<li><a href="category/administrator/create.do"><spring:message code="master.page.category.create" /></a></li>
+					<li><a href="category/administrator/list.do"><spring:message code="master.page.category.list" /></a></li>			
+				</ul>
+			</li>
+		</security:authorize>
+		
 		
 		
 		<security:authorize access="isAnonymous()">
