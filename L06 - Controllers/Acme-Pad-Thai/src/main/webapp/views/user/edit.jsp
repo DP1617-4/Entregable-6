@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="user/edit.do" modelAttribute="user">
+<form:form action="${RequestURI}" modelAttribute="user">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -21,20 +21,29 @@
 	<form:hidden path="followers" />
 	<form:hidden path="followed" />
 	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
 	
+	<jstl:if test="${user.id!=0}">
+	<form:hidden path="userAccount.username" />
+	<form:hidden path="userAccount.password" />
+	</jstl:if>
+	
+	<jstl:if test="${user.id==0}">
 	<form:label path="userAccount.username">
-      <spring:message code="sponsor.username" />
+      <spring:message code="user.username" />
     </form:label>
     <form:input path="userAccount.username"/>
     <form:errors cssClass="error" path="userAccount.username"/>
     <br />
     
     <form:label path="userAccount.password">
-      <spring:message code="sponsor.password" />
+      <spring:message code="user.password" />
     </form:label>
     <form:password path="userAccount.password"/>
     <form:errors cssClass="error" path="userAccount.password"/>
     <br />
+	</jstl:if>
 	
 	<form:label path="name">
 		<spring:message code="user.name" />:

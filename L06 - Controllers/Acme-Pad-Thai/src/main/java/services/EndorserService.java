@@ -27,7 +27,7 @@ public class EndorserService {
 			
 			Endorser created;
 			created = new Endorser();
-			created.setCurricula(nutritionistService.findByPrincipal().getCurricula());
+			created.setCurriculum(nutritionistService.findByPrincipal().getCurriculum());
 			return created;
 		}
 		
@@ -62,7 +62,7 @@ public class EndorserService {
 		public Boolean checkPrincipal(Endorser e){
 			
 			Boolean result = false;
-			UserAccount nutritionistUser = e.getCurricula().getNutritionist().getUserAccount();
+			UserAccount nutritionistUser = e.getCurriculum().getNutritionist().getUserAccount();
 			UserAccount principal = LoginService.getPrincipal();
 			if(nutritionistUser.equals(principal)){
 				result = true;

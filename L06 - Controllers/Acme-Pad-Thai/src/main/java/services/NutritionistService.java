@@ -73,13 +73,20 @@ public class NutritionistService {
 			public Nutritionist save(Nutritionist nutritionist){
 				
 				Nutritionist saved;
-				// Creamos un codificador de hash para la password.
-				Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-				// Convertimos la pass del usuario a hash.
-				String pass = encoder.encodePassword(nutritionist.getUserAccount()
-						.getPassword(), null);
-				// Creamos una nueva cuenta y le pasamos los parametros.
-				nutritionist.getUserAccount().setPassword(pass);
+				if(nutritionist.getUserAccount().getId()==0){
+					// Creamos un codificador de hash para la password.
+					Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+					
+					
+					// Convertimos la pass del usuario a hash.
+					String pass = encoder.encodePassword(nutritionist.getUserAccount()
+							.getPassword(), null);
+					// Creamos una nueva cuenta y le pasamos los parametros.
+					UserAccount userAccount = nutritionist.getUserAccount();
+					nutritionist.setUserAccount(userAccount);
+					nutritionist.getUserAccount().setPassword(pass);
+				}
+		
 				saved = nutritionistRepository.save(nutritionist);
 				
 				return saved;
