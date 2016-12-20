@@ -28,7 +28,7 @@ name="category" requestURI="${requestURI}" id="row">
 	
 	<spring:message code="category.father" var="fatherHeader"/>
 	<display:column title="${fatherHeader}">
-		<a href="category/display.do?categoryId=${row.father.id}"><spring:message code="category.father"/> </a>
+		<a href="category/display.do?categoryId=${row.father.id}"><jstl:out value="${row.father.name}"/></a>
 	</display:column>
 	
 	<spring:message code="category.sons" var="sonsHeader"/>
@@ -42,10 +42,8 @@ name="category" requestURI="${requestURI}" id="row">
 
 <br/>
 
-	<a href="category/edit.do"><spring:message code="category.edit"/></a>
+	<a href="category/administrator/edit.do?categoryId=${category.id}"><spring:message code="category.edit"/></a>
 <br />
 
-<input type="button" name="list"
-		value="<spring:message code="category.return.list" />"
-		onclick="javascript: relativeRedir('category/list.do');" />
-	<br />
+	<a href="category/administrator/list.do"><spring:message code="category.return.list"/></a>
+<br />
