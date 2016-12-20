@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.NutritionistService;
-import services.UserService;
-import services.NutritionistService;
 import services.SocialUserService;
 import controllers.AbstractController;
-import domain.Nutritionist;
 import domain.Nutritionist;
 
 @Controller
@@ -26,9 +23,6 @@ public class NutritionistNutritionistController extends AbstractController {
 
 	@Autowired
 	private NutritionistService nutritionistService;
-	
-	@Autowired
-	private UserService UserService;
 	
 	@Autowired
 	private SocialUserService socialUserService;
