@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import services.CategoryService;
-import services.IngredientService;
-import services.QuantityService;
 import services.RecipeService;
-import services.UserService;
 import controllers.AbstractController;
 import domain.Recipe;
 import forms.FilterString;

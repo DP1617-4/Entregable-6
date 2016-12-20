@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.NutritionistService;
-import services.NutritionistService;
 import services.SocialUserService;
-import domain.Nutritionist;
 import domain.Nutritionist;
 
 @Controller

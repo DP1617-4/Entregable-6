@@ -17,7 +17,6 @@ import domain.Contest;
 import domain.Quantity;
 import domain.Recipe;
 import domain.Score;
-import domain.SocialUser;
 import domain.Step;
 import domain.User;
 
