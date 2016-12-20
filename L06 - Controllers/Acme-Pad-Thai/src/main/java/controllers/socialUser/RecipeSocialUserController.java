@@ -32,7 +32,7 @@ public class RecipeSocialUserController extends AbstractController {
 	// Listing ----------------------------------------------------------------
 
 	@RequestMapping(value = "/listFollowed", method = RequestMethod.GET)
-	public ModelAndView listFollowed(@RequestParam int quantityId) {
+	public ModelAndView listFollowed() {
 
 		ModelAndView result;
 		Collection<Recipe> recipes = recipeService.findAllByUserFollowed();
