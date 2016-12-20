@@ -18,18 +18,22 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<h1>TURN DOWN FOR WHAT</h1>
+
 
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="categories" requestURI="${requestURI}" id="row">
 	
 	<display:column>
-		<a href="/category/administrator/edit.do?categoryId=${row.id}" ><spring:message code="category.edit"/> </a>
+		<a href="category/administrator/edit.do?categoryId=${row.id}" ><spring:message code="category.edit"/> </a>
 	</display:column>
 	
 	<!-- Attributes -->
 	
 	<spring:message code="category.name" var="nameHeader" />
-	<display:column property="name" title="${nameHeader}" sortable="true" />
+	<display:column title="${nameHeader}">
+		<a href="category/administrator/display.do?categoryId=${row.id}"><jstl:out value="${row.name}"/></a>
+	</display:column>
 	
 	<spring:message code="category.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" sortable="true" />
@@ -44,13 +48,13 @@
 	
 	<spring:message code="category.father" var="fatherHeader"/>
 	<display:column title="${fatherHeader}">
-		<a href="category/display.do?categoryId=${row.father.id}"><jstl:out value="${row.father.name}"/></a>
+		<a href="category/administrator/display.do?categoryId=${row.father.id}"><jstl:out value="${row.father.name}"/></a>
 	</display:column>
 	
 	<spring:message code="category.sons" var="sonsHeader"/>
 	<display:column title="${sonsHeader}">
 		<jstl:forEach items="${row.sons}" var="son">
-			<a href="category/display.do?categoryId=${son.id}"><jstl:out value="${son.name}"/> </a>
+			<a href="category/administrator/display.do?categoryId=${son.id}"><jstl:out value="${son.name}"/> </a>
 		</jstl:forEach>
 	</display:column>
 	
