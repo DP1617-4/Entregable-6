@@ -22,7 +22,7 @@ public class AddRecipe {
 		return contestId;
 	}
 	
-	public void setCpmtestId(int contestId){
+	public void setContestId(int contestId){
 		
 		this.contestId=contestId;
 	}
