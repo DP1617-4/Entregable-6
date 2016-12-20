@@ -50,7 +50,6 @@ public class CreditCard extends DomainEntity{
 		}
 
 		@CreditCardNumber
-		@NotNull
 		@NotBlank
 		public String getCCNumber() {
 			return cCNumber;

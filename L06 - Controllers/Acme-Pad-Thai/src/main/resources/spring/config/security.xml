@@ -53,7 +53,7 @@
 				
 		<security:intercept-url pattern="/bill/sponsor/**" access="hasRole('SPONSOR')" />
 		<security:intercept-url pattern="/bill/administrator/**" access="hasRole('ADMIN')" />
-		
+
 		<security:intercept-url pattern="/creditCard/sponsor/**" access="hasRole('SPONSOR')" />
 
 		<security:intercept-url pattern="/contest/**" access="permitAll" />
