@@ -13,7 +13,7 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="curricula" />
+	<form:hidden path="curriculum" />
 	
 	<form:label path="name">
 		<spring:message code="endorser.name" />:
@@ -38,7 +38,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="endorser.cancel" />"
-		onclick="javascript: relativeRedir('curricula/display.do');" />
+		onclick="javascript: relativeRedir('curriculum/display.do');" />
 	<br />
 	
 	

@@ -44,15 +44,15 @@ public class Endorser extends DomainEntity{
 		
 		//Relationships
 		
-		private Curricula curricula;
+		private Curriculum curriculum;
 
 		@Valid
 		@ManyToOne(optional = false)
-		public Curricula getCurricula() {
-			return curricula;
+		public Curriculum getCurriculum() {
+			return curriculum;
 		}
-		public void setCurricula(Curricula curricula) {
-			this.curricula = curricula;
+		public void setCurriculum(Curriculum curriculum) {
+			this.curriculum = curriculum;
 		}
 
 }

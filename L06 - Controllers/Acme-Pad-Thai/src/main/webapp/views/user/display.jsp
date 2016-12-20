@@ -38,7 +38,7 @@ name="user" requestURI="${requestURI}" id="row">
 	</display:column>
 	<jstl:if test="${loggedactor == row.userAccount }">
 		<display:column>
-			<a href="user/edit.do?userId=${row.id}"> <spring:message
+			<a href="user/user/edit.do?userId=${row.id}"> <spring:message
 					code="user.edit" />
 			</a>
 		</display:column>

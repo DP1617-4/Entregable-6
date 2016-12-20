@@ -68,13 +68,15 @@ public class UserService {
 		public User save(User user){
 			
 			User saved;
-			// Creamos un codificador de hash para la password.
-			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-			// Convertimos la pass del usuario a hash.
-			String pass = encoder.encodePassword(user.getUserAccount()
-					.getPassword(), null);
-			// Creamos una nueva cuenta y le pasamos los parametros.
-			user.getUserAccount().setPassword(pass);
+			if(user.getUserAccount().getId()==0){
+				// Creamos un codificador de hash para la password.
+				Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+				// Convertimos la pass del usuario a hash.
+				String pass = encoder.encodePassword(user.getUserAccount()
+						.getPassword(), null);
+				// Creamos una nueva cuenta y le pasamos los parametros.
+				user.getUserAccount().setPassword(pass);
+			}
 			saved = userRepository.save(user);
 			
 			return saved;
@@ -94,8 +96,7 @@ public class UserService {
 			return user;
 
 		}
-		
-		
+
 		public User findByUserAccountId(int userAccountId){
 			
 			User user = userRepository.findOneByUserAccountId(userAccountId);

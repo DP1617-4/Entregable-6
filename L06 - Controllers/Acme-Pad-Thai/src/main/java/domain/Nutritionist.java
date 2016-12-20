@@ -20,17 +20,17 @@ public class Nutritionist extends SocialUser{
 		
 		//Relations
 		
-		private Curricula curricula;
+		private Curriculum curriculum;
 
 		@Valid
 		@OneToOne(optional = true, mappedBy= "nutritionist", cascade = CascadeType.REMOVE)
-		public Curricula getCurricula() {
-			return curricula;
+		public Curriculum getCurriculum() {
+			return curriculum;
 		}
 
 
-		public void setCurricula(Curricula curricula) {
-			this.curricula = curricula;
+		public void setCurriculum(Curriculum curriculum) {
+			this.curriculum = curriculum;
 		}
 		
 	}
