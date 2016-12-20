@@ -16,13 +16,13 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="cook/edit.do" modelAttribute="cook">
+<form:form action="${requestURI}" modelAttribute="cook">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="userAccount.authorities" />
 	<form:hidden path="folders"/>
-	<form:hidden path="masterclasses"/>
+	<form:hidden path="masterClasses"/>
 	<form:hidden path="enroled"/>
 	
 	<form:label path="name">
@@ -82,8 +82,7 @@
 		value="<spring:message code="cook.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="cook.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="javascript: relativeRedir('${cancelURI}');" />
 	<br />
-	
 	
 </form:form>
