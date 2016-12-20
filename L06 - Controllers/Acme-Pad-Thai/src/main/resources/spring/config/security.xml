@@ -58,6 +58,7 @@
 		
 		<security:intercept-url pattern="/banner/**" access="hasRole('SPONSOR')" />
 		
+		<security:intercept-url pattern="/bill/**" access="hasRole('SPONSOR')" />
 
 		<security:intercept-url pattern="/contest/list.do" access="permitAll" />
 		

@@ -75,6 +75,20 @@ public class BillSponsorController extends AbstractController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/pay", method = RequestMethod.GET)
+	public ModelAndView payBill(@RequestParam int billId) {
+		ModelAndView result;
+		Bill bill;
+
+		bill = billService.findOneToEdit(billId);
+		Assert.notNull(bill);
+		billService.payBill(bill);
+		bill = billService.save(bill);
+		
+		result = new ModelAndView("redirect: list.do");
+
+		return result;
+	}
 	
 	// Ancillary methods ------------------------------------------------------
 	protected ModelAndView createEditModelAndView(Bill b) {

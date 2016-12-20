@@ -73,10 +73,8 @@
 				<ul>
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
-						<li><a href="sponsor/campaign/create.do"><spring:message code="master.page.campaign.create" /></a></li>
-					</security:authorize>	
-					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
-								
+						<li><a href="bill/sponsor/list.do"><spring:message code="master.page.bills.list" /></a></li>	
+					</security:authorize>		
 				</ul>
 			</li>
 		</security:authorize>
