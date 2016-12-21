@@ -12,7 +12,7 @@ import domain.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query ("select min(u.recipes.size), avg(u.recipes.size), max(u.recipes.size) from User u")
-	Collection<Integer> selectMinAvgMaxRecipesInUsers();
+	Double[] selectMinAvgMaxRecipesInUsers();
 	
 	@Query ("select u from User u where u.recipes.size = (select max(u.recipes.size) from User u)")
 	User selectUserWithMostRecipes();
@@ -23,5 +23,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("select u from User u where u.userAccount.id = ?1")
 	User findOneByUserAccountId(int userAccountId);
 	
+	@Query("select distinct r.user from Score s, Score s1 join s.recipe r where s.likes=True group by r.user order by count(distinct s)/(count(distinct s1)-count(distinct s))")
+	Collection<User> findAllUsersByRecipeLikesAndDislikes();
 	
 }
