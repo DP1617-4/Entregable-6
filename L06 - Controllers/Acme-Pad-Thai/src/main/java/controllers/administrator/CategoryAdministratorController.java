@@ -48,7 +48,7 @@ public class CategoryAdministratorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Category category, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("category/administrator/edit");
+		result = new ModelAndView("category/edit");
 		result.addObject("category", category);
 		result.addObject("message", message);
 
@@ -63,7 +63,7 @@ public class CategoryAdministratorController extends AbstractController {
  
  		categories = categoryService.findAllNotDeleted();
 
-		result = new ModelAndView("category/administrator/list");
+		result = new ModelAndView("category/list");
 		result.addObject("requestURI", "category/administrator/list.do");
  		result.addObject("categories", categories);
  		
@@ -78,7 +78,7 @@ public class CategoryAdministratorController extends AbstractController {
 
 		category = categoryService.findOne(categoryId);
 		
-		result = new ModelAndView("category/administrator/display");
+		result = new ModelAndView("category/display");
 		result.addObject("category", category);
 		
 		return result;

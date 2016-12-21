@@ -24,7 +24,7 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-				<a href="contest/admin/edit.do?contestId=${row.id}">
+				<a href="contest/administrator/edit.do?contestId=${row.id}">
 					<spring:message	code="contest.edit" />
 				</a>
 		</display:column>
@@ -45,8 +45,6 @@
 				<form:errors cssClass="error" path="recipeId" />
 				<input type="submit" name="save"
 					value="<spring:message code="contest.save" />" />&nbsp;
-
-	
 
 			</form:form>
 		</display:column>
@@ -77,7 +75,7 @@
 	<!-- Action links -->
 <security:authorize access="hasRole('ADMIN')">
 	<div>
-		<a href="contest/admin/create.do"> <spring:message
+		<a href="contest/administrator/create.do"> <spring:message
 				code="contest.create" />
 		</a>
 	</div>
