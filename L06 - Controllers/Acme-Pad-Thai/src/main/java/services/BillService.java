@@ -92,13 +92,8 @@ public class BillService {
 		sponsor = sponsorService.findByPrincipal();
 		Assert.isTrue(b.getSponsor().equals(sponsor));
 	}
-<<<<<<< HEAD
-
-	public Double[][][] calculateAvgDevPaidAndUnpaidBills() {
-=======
 	
 	public Double[] calculateAvgDevPaidAndUnpaidBills() {
->>>>>>> refs/remotes/origin/master
 		return billRepository.calculateAvgDevPaidAndUnpaidBills();
 	}
 
