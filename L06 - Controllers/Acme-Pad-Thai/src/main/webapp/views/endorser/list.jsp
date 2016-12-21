@@ -16,7 +16,7 @@
 	<!-- Action links -->
 
 	<display:column>
-			<a href="endorser/edit.do?endorserId=${row.id}">
+			<a href="endorser/nutritionist/edit.do?endorserId=${row.id}">
 				<spring:message	code="endorser.edit" />
 			</a>
 	</display:column>
@@ -35,7 +35,7 @@
 
 <br/>
 
-<a href="endorser/create.do"> <spring:message
+<a href="endorser/nutritionist/create.do"> <spring:message
 code="endorser.create" />
 </a>
 

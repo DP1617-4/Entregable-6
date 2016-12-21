@@ -28,7 +28,7 @@ name="curriculum" requestURI="${requestURI}" id="row">
 </display:table>
 <br/>
 
-<a href="endorser/list.do"> 
+<a href="endorser/nutritionist/list.do"> 
 <spring:message code="curriculum.endorser.list" />
 </a>
 <br/>

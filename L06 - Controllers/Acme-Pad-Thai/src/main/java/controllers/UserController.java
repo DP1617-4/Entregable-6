@@ -72,33 +72,7 @@ public class UserController extends AbstractController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/follow", method = RequestMethod.GET)
-	public ModelAndView follow(@RequestParam int userId){
-		
-		ModelAndView result;
-		User followed;
-		followed = userService.findOne(userId);
-		socialUserService.follow(followed);
-		
-		result = new ModelAndView("redirect:list.do");
-		
-		
-		return result;
-	}
-	
-	@RequestMapping(value = "/unfollow", method = RequestMethod.GET)
-	public ModelAndView unfollow(@RequestParam int userId){
-		
-		ModelAndView result;
-		User unfollowed;
-		unfollowed = userService.findOne(userId);
-		socialUserService.unfollow(unfollowed);
-		
-		result = new ModelAndView("redirect:list.do");
-		
-		
-		return result;
-	}
+
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {

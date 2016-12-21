@@ -54,10 +54,11 @@
 				</security:authorize>
 			</ul>
 		</li>	
-		<li><a class="fNiv"><spring:message code="master.page.users"/></a>
+		<li><a class="fNiv"><spring:message code="master.page.social.users"/></a>
 			<ul>
 				<li class="arrow"></li>
 				<li><a href="user/list.do"><spring:message code="master.page.users.list"/></a></li>
+				<li><a href="nutritionist/list.do"><spring:message code="master.page.nutritionists.list"/></a></li>
 			</ul>
 		</li>	
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
@@ -73,15 +74,14 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasRole('ADMIN')">
-			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
+		<security:authorize access="hasAnyRole('ADMIN')">
+			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a></li>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>	
 				</ul>
-			</li>
+		
 		</security:authorize>
-
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
 				<ul>
