@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="contest/edit.do" modelAttribute="contest">
+<form:form action="contest/administrator/edit.do" modelAttribute="contest">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -26,22 +26,35 @@
 	<form:hidden path="winners"/>
 	<form:hidden path="deleted"/>
 
+	<jstl:if test="${contest.id != 0}">
+		<form:hidden path="title"/>
+	</jstl:if>
+	<jstl:if test="${contest.id != 0}">
+		<form:hidden path="openingTime"/>
+	</jstl:if>
+
+	<jstl:if test="${contest.id == 0}">
 	<form:label path="title">
 		<spring:message code="contest.title" />:
 	</form:label>
 	<form:input path="title" />
 	<form:errors cssClass="error" path="title" />
+	</jstl:if>
 	<br />
+	
+	<jstl:if test="${contest.id == 0}">
 	<form:label path="openingTime">
 		<spring:message code="contest.openingTime" />:
 	</form:label>
-	<form:input path="openingTime" />
+	<form:input placeholder="dd/MM/yyyy HH:mm" path="openingTime" />
 	<form:errors cssClass="error" path="openingTime" />
+	</jstl:if>
 	<br />
+	
 	<form:label path="closingTime">
 		<spring:message code="contest.closingTime" />:
 	</form:label>
-	<form:input path="closingTime" />
+	<form:input placeholder="dd/MM/yyyy HH:mm" path="closingTime" />
 	<form:errors cssClass="error" path="closingTime" />
 	<br />
 
@@ -55,7 +68,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="contest.cancel" />"
-		onclick="javascript: relativeRedir('contest/list.do');" />
+		onclick="location.href = 'contest/list.do';" />&nbsp;
 	<br />
 
 	
