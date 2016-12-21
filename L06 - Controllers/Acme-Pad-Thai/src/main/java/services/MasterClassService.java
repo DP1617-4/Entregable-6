@@ -169,9 +169,9 @@ public class MasterClassService {
 		return result;
 	}
 	
-	public Double[][] calculateAvgPromotedAndDemotedMasterClassesPerCook(){
+	public Double[] calculateAvgPromotedAndDemotedMasterClassesPerCook(){
 		adminService.checkAdministrator();
-		Double[][] result;
+		Double[] result;
 		result = masterClassRepository.calculateAvgPromotedAndDemotedMasterClassesPerCook();
 		return result;
 	}

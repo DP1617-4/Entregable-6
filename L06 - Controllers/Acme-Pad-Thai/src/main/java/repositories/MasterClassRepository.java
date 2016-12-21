@@ -17,7 +17,7 @@ public interface MasterClassRepository extends JpaRepository<MasterClass, Intege
 	Collection<Cook> findCooksOrderByPromotedMasterClasses();
 	
 	@Query("select count(mcp)*1.0/(select count(c) from Cook c), (select count(mcd) from MasterClass mcd where mcd.promoted=false)*1.0/(select count(c) from Cook c) from MasterClass mcp where mcp.promoted=true")
-	Double[][] calculateAvgPromotedAndDemotedMasterClassesPerCook();
+	Double[] calculateAvgPromotedAndDemotedMasterClassesPerCook();
 	
 	@Query("select count(l)*1.0/(select count(m) from MasterClass m) from LearningMaterial l group by l.class")
 	Double calculateAvgLearningMaterialsPerMasterClass();

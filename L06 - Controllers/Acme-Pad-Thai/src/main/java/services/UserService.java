@@ -130,7 +130,7 @@ public class UserService {
 
 		//Our other bussiness methods
 		
-		public Collection<Integer> selectMinAvgMaxRecipesInUsers(){
+		public Double[] selectMinAvgMaxRecipesInUsers(){
 			
 			return userRepository.selectMinAvgMaxRecipesInUsers();
 		}
@@ -144,5 +144,11 @@ public class UserService {
 			
 			return userRepository.selectAllUsersDescendingNumberOfFollowers();
 		}
+		
+		public Collection<User> findAllUsersByRecipeLikesAndDislikes(){
+			
+			return userRepository.findAllUsersByRecipeLikesAndDislikes();
+		}
+
 		
 }
