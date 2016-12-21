@@ -1739,7 +1739,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="creditCard1" class="domain.CreditCard">
 		<property name="holderName" value="Francis"/>
 		<property name="brandName" value="VISA"/>
-		<property name="cCNumber" value="1111222244446666"/>
+		<property name="creditCardNumber" value="1111222244446666"/>
 		<property name="expirationMonth" value="12"/>
 		<property name="expirationYear" value="19"/>
 		<property name="CVV" value="842"/>
@@ -1748,7 +1748,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="creditCard2" class="domain.CreditCard">
 		<property name="holderName" value="Ajax"/>
 		<property name="brandName" value="VISA"/>
-		<property name="cCNumber" value="3333555577779999"/>
+		<property name="creditCardNumber" value="3333555577779999"/>
 		<property name="expirationMonth" value="5"/>
 		<property name="expirationYear" value="21"/>
 		<property name="CVV" value="342"/>

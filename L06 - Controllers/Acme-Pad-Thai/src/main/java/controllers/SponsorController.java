@@ -74,7 +74,12 @@ public class SponsorController extends AbstractController {
 		} else {
 			try {
 				sponsorService.save(sponsor);
-				result = new ModelAndView("redirect:../security/login.do");
+				if (sponsor.getId() == 0) {
+					result = new ModelAndView("redirect:../security/login.do");
+				} else {
+					result = new ModelAndView("redirect: display.do");
+				}
+				
 			} catch (Throwable oops){
 				result = createEditModelAndView(sponsor, "sponsor.commit.error");
 			}

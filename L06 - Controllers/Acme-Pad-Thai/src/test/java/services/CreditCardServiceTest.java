@@ -87,7 +87,7 @@ public class CreditCardServiceTest extends AbstractTest{
 		CreditCard creditCard = sponsor.getCreditCard();
 		creditCard.setHolderName("Francis");
 		creditCard.setBrandName("VISA");
-		creditCard.setCCNumber("1111222244446666");
+		creditCard.setCreditCardNumber("1111222244446666");
 		creditCard.setExpirationMonth(12);
 		creditCard.setExpirationYear(19);
 		creditCard.setCVV(842);
@@ -104,7 +104,7 @@ public class CreditCardServiceTest extends AbstractTest{
 		CreditCard creditCard = creditCardService.create(sponsor);
 		creditCard.setHolderName(null);
 		creditCard.setBrandName("VISA");
-		creditCard.setCCNumber("1111222244446666");
+		creditCard.setCreditCardNumber("1111222244446666");
 		creditCard.setExpirationMonth(12);
 		creditCard.setExpirationYear(19);
 		creditCard.setCVV(842);

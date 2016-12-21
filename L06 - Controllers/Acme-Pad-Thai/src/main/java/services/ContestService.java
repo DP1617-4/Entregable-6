@@ -2,12 +2,14 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.ContestRepository;
 import domain.Contest;
@@ -41,15 +43,25 @@ public class ContestService {
 			}
 
 			public Contest save(Contest contest){
-				
 				Contest saved;
+				Contest previous;
+				Date cTime = new Date();
+				if(contest.getId() != 0){
+					previous = findOne(contest.getId());
+					if(previous.getOpeningTime() != contest.getOpeningTime())
+						Assert.isTrue(cTime.before(contest.getOpeningTime()) && cTime.before(previous.getOpeningTime()));
+					if(previous.getClosingTime() != contest.getClosingTime())
+						Assert.isTrue(cTime.before(contest.getClosingTime()) && cTime.before(previous.getClosingTime()));
+					if(previous.getTitle() != contest.getTitle())
+						Assert.isTrue(contest.getQualified().isEmpty());
+				}
 				saved = contestRepository.save(contest);
 				return saved;
 				
 			}
 			
 			public void delete(Contest contest){
-				
+				Assert.isTrue(contest.getQualified().isEmpty());
 				contestRepository.delete(contest);
 				
 			}

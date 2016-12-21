@@ -159,7 +159,7 @@ public class ContestServiceTest extends AbstractTest {
 	
 	@Test
 	public void testMinAvgMaxRecipesQualifiedForContest(){
-		Collection<Double> result = contestService.getMinAvgMaxRecipesQualifiedForContest();
+		Double[] result = contestService.getMinAvgMaxRecipesQualifiedForContest();
 		Assert.notEmpty(result);
 	}
 	

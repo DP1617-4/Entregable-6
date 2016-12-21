@@ -16,7 +16,8 @@
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <form:form action="sponsor/edit.do" modelAttribute="sponsor">
@@ -24,6 +25,8 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
 	<form:hidden path="enroled" />
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
@@ -32,19 +35,25 @@
 	<form:hidden path="campaigns" />
 	<form:hidden path="bills" />
 
-	<form:label path="userAccount.username">
-		<td><spring:message code="sponsor.username" /></td>
-	</form:label>
-	<td><form:input path="userAccount.username" /></td>
-	<form:errors cssClass="error" path="userAccount.username" />
-	<br />
+	<jstl:if test="${sponsor.id == 0}">
+		<form:label path="userAccount.username">
+			<td><spring:message code="sponsor.username" /></td>
+		</form:label>
+		<td><form:input path="userAccount.username" /></td>
+		<form:errors cssClass="error" path="userAccount.username" />
+		<br />
+		<form:label path="userAccount.password">
+			<spring:message code="sponsor.password" />
+		</form:label>
+		<form:password path="userAccount.password" />
+		<form:errors cssClass="error" path="userAccount.password" />
+		<br />
+	</jstl:if>
 
-	<form:label path="userAccount.password">
-		<spring:message code="sponsor.password" />
-	</form:label>
-	<form:password path="userAccount.password" />
-	<form:errors cssClass="error" path="userAccount.password" />
-	<br />
+	<jstl:if test="${sponsor.id != 0}">
+		<form:hidden path="userAccount.username" />
+		<form:hidden path="userAccount.password" />
+	</jstl:if>
 
 	<form:label path="name">
 		<spring:message code="sponsor.name" />:
@@ -94,42 +103,42 @@
 					code="sponsor.creditCard.create" /></font></b>
 	</div>
 	<br />
-	
+
 	<form:label path="creditCard.holderName">
 		<spring:message code="sponsor.creditCard.holderName" />:
 	</form:label>
 	<form:input path="creditCard.holderName" />
 	<form:errors cssClass="error" path="creditCard.holderName" />
 	<br />
-	
+
 	<form:label path="creditCard.brandName">
 		<spring:message code="sponsor.creditCard.brandName" />:
 	</form:label>
 	<form:input path="creditCard.brandName" />
 	<form:errors cssClass="error" path="creditCard.brandName" />
 	<br />
-	
-	<form:label path="creditCard.cCNumber">
+
+	<form:label path="creditCard.creditCardNumber">
 		<spring:message code="sponsor.creditCard.cCNumber" />:
 	</form:label>
-	<form:input path="creditCard.cCNumber" />
-	<form:errors cssClass="error" path="creditCard.cCNumber" />
+	<form:input path="creditCard.creditCardNumber" />
+	<form:errors cssClass="error" path="creditCard.creditCardNumber" />
 	<br />
-	
+
 	<form:label path="creditCard.expirationMonth">
 		<spring:message code="sponsor.creditCard.expirationMonth" />:
 	</form:label>
 	<form:input path="creditCard.expirationMonth" />
 	<form:errors cssClass="error" path="creditCard.expirationMonth" />
 	<br />
-	
+
 	<form:label path="creditCard.expirationYear">
 		<spring:message code="sponsor.creditCard.expirationYear" />:
 	</form:label>
 	<form:input path="creditCard.expirationYear" />
 	<form:errors cssClass="error" path="creditCard.expirationYear" />
 	<br />
-	
+
 	<form:label path="creditCard.CVV">
 		<spring:message code="sponsor.creditCard.CVV" />:
 	</form:label>
