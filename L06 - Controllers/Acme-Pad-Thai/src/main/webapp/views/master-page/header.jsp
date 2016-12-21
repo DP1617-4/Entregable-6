@@ -77,12 +77,12 @@
 		</security:authorize>
 		
 		<security:authorize access="hasAnyRole('ADMIN')">
-			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a></li>
+			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>	
 				</ul>
-		
+			</li>	
 		</security:authorize>
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
@@ -170,8 +170,8 @@
 								<li><a><spring:message code = "master.page.curricula"/></a>
 									<ul>
 										<li class="arrow"></li>
-										<li><a href="curricula/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
-										<li><a href="curricula/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
+										<li><a href="curriculum/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
+										<li><a href="curriculum/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
 									</ul>
 								</li>	
 							</ul>

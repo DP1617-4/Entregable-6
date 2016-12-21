@@ -50,7 +50,7 @@ public class CategoryAdministratorController extends AbstractController {
 		
 		result = new ModelAndView("category/edit");
 		result.addObject("category", category);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}

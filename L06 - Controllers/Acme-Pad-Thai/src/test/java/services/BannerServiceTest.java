@@ -84,4 +84,13 @@ public class BannerServiceTest extends AbstractTest{
 		unauthenticate();
 	}
 	
+	@Test
+	public void testFindRandomBanner(){
+		Banner result;
+		result = bannerService.findRandomBanner(false);
+		System.out.println(result.getTimesShownMonth());
+		result = bannerService.findRandomBanner(false);
+		System.out.println(result.getTimesShownMonth());
+	}
+	
 }

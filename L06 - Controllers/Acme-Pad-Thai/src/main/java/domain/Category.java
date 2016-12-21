@@ -92,7 +92,7 @@ public class Category extends DomainEntity {
 		this.recipes = recipes;
 	}
 	@Valid
-	@OneToMany(cascade = CascadeType.ALL, mappedBy= "father")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy= "father")
 	public Collection<Category> getSons() {
 		return sons;
 	}

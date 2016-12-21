@@ -45,7 +45,7 @@ public class QuantityServiceTest extends AbstractTest {
 	public void testCreatePositive() {
 		Quantity quantity =  quantityService.create();
 		Assert.isNull(quantity.getUnit());
-		Assert.isTrue(quantity.getQuantity()==0.0);
+		Assert.isTrue(quantity.getQuantityn()==0.0);
 		}
 	
 	@Test
@@ -77,7 +77,7 @@ public class QuantityServiceTest extends AbstractTest {
 		
 		Quantity quantity =  quantityService.create();
 		
-		quantity.setQuantity(2.1);
+		quantity.setQuantityn(2.1);
 		quantity.setUnit("grams");
 		quantity.setIngredient(savedIngredient);
 		quantity.setRecipe(savedRecipe);
@@ -131,7 +131,7 @@ public class QuantityServiceTest extends AbstractTest {
 		
 		Quantity quantity =  quantityService.create();
 		
-		quantity.setQuantity(2.1);
+		quantity.setQuantityn(2.1);
 		quantity.setUnit("grams");
 		quantity.setIngredient(savedIngredient);
 		quantity.setRecipe(savedRecipe);
@@ -175,7 +175,7 @@ public class QuantityServiceTest extends AbstractTest {
 		
 		Quantity quantity =  quantityService.create();
 		
-		quantity.setQuantity(2.1);
+		quantity.setQuantityn(2.1);
 		quantity.setUnit("grams");
 		quantity.setIngredient(savedIngredient);
 		quantity.setRecipe(savedRecipe);
@@ -183,7 +183,7 @@ public class QuantityServiceTest extends AbstractTest {
 		
 		Quantity copy = quantityService.createCopy(saved);
 		
-		Assert.isTrue(saved.getQuantity()==copy.getQuantity());
+		Assert.isTrue(saved.getQuantityn()==copy.getQuantityn());
 		Assert.isTrue(saved.getUnit().equals(copy.getUnit()));
 		Assert.isTrue(saved.getIngredient().equals(copy.getIngredient()));
 		

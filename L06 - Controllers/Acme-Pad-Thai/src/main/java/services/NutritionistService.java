@@ -19,7 +19,6 @@ import domain.Nutritionist;
 import domain.Score;
 import domain.SocialIdentity;
 import domain.SocialUser;
-import domain.User;
 
 @Service
 @Transactional

@@ -5,7 +5,6 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,17 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import domain.Actor;
 import domain.Endorser;
-import domain.Endorser;
-import domain.SocialUser;
-import domain.User;
-import forms.FilterString;
-
 import services.EndorserService;
-import services.IngredientService;
-import services.PropertyService;
-import services.ValueService;
+
 
 @Controller
 @RequestMapping("/endorser/nutritionist")
@@ -33,12 +24,7 @@ public class EndorserNutritionistController {
 
 		@Autowired
 		private EndorserService endorserService;	
-		@Autowired
-		private IngredientService ingredientService;
-		@Autowired
-		private PropertyService propertyService;
-		@Autowired
-		private ValueService valueService;
+	
 		// Constructors -----------------------------------------------------------
 		
 		public EndorserNutritionistController() {
@@ -72,23 +58,7 @@ public class EndorserNutritionistController {
 			return result;
 		}
 		
-		protected ModelAndView createEditModelAndView(Endorser endorser) {
-			ModelAndView result;
-
-			result = createEditModelAndView(endorser, null);
-
-			return result;
-		}
-
-		protected ModelAndView createEditModelAndView(Endorser endorser, String message) {
-			ModelAndView result;
-
-			result = new ModelAndView("endorser/edit");
-			result.addObject("endorser", endorser);
-			result.addObject("message", message);
-
-			return result;
-		}
+		
 		
 		@RequestMapping(value = "/edit", method = RequestMethod.GET)
 		public ModelAndView edit(@RequestParam int endorserId) {
@@ -129,7 +99,7 @@ public class EndorserNutritionistController {
 
 			try {
 				endorserService.delete(endorser);
-				result = new ModelAndView("redirect:/nutritionist/display.do");
+				result = new ModelAndView("redirect:/endorser/nutritionist/list.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(endorser, "endorser.commit.error");
 			}
@@ -137,4 +107,22 @@ public class EndorserNutritionistController {
 			return result;
 		}
 
+		
+		protected ModelAndView createEditModelAndView(Endorser endorser) {
+			ModelAndView result;
+
+			result = createEditModelAndView(endorser, null);
+
+			return result;
+		}
+
+		protected ModelAndView createEditModelAndView(Endorser endorser, String message) {
+			ModelAndView result;
+
+			result = new ModelAndView("endorser/edit");
+			result.addObject("endorser", endorser);
+			result.addObject("errorMessage", message);
+
+			return result;
+		}
 }

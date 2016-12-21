@@ -114,6 +114,9 @@ public class BillService {
 		Collection<Sponsor> sponsors;
 		Collection<Bill> bills = new ArrayList<Bill>();
 		Bill temporal;
+		int timesShown;
+		int totalTimes;
+		int timesMonth;
 		sponsors = sponsorService.findAll();
 		for (Sponsor s : sponsors) {
 			cost = billRepository.computeBillCost(s.getId());
@@ -124,7 +127,11 @@ public class BillService {
 			banners = bannerService.paidBanners(s.getId());
 			for (Banner b : banners) {
 				description += b.getURL() + " ";
+				timesMonth = b.getTimesShownMonth();
+				timesShown = b.getTimesShown();
+				totalTimes = timesMonth + timesShown;
 				b.setTimesShownMonth(0);
+				b.setTimesShown(totalTimes);
 				bannerService.save(b);
 			}
 			bill.setDescription(description);

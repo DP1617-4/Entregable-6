@@ -116,7 +116,7 @@ public class RecipeUserController extends AbstractController {
 
 		result = new ModelAndView("recipe/edit");
 		result.addObject("recipe", recipe);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}

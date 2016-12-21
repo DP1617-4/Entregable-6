@@ -10,10 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 import utilities.AbstractTest;
 import domain.Bill;
-import domain.Sponsor;
 
-//TODO: this file provides an incomplete template; complete it with the appropriate annotations and method implementations.
-//TODO: do not forget to add appropriate sectioning comments, e.g., "System under test" and "Tests".
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,7 +30,7 @@ public class BillServiceTest extends AbstractTest{
 	@Test
 	public void testCreate() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 		billService.create();
 		unauthenticate();
 	}
@@ -41,7 +38,7 @@ public class BillServiceTest extends AbstractTest{
 	@Test
 	public void testSave() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 		Bill bill = billService.create();
 		bill.setDescription("Esto es un bill");
 		Bill saved = billService.save(bill);
@@ -53,7 +50,7 @@ public class BillServiceTest extends AbstractTest{
 	@Test
 	public void testSaveNegative() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 		Bill bill = billService.create();
 		bill.setDescription(null);
 		try {
@@ -67,7 +64,7 @@ public class BillServiceTest extends AbstractTest{
 	@Test
 	public void testDelete() {
 		authenticate("sponsor1");
-		Sponsor sponsor = sponsorService.findOne(20);
+		sponsorService.findOne(20);
 		Bill bill = billService.create();
 		bill.setDescription("Esto es un bill");
 		Bill saved = billService.save(bill);

@@ -103,7 +103,7 @@ public class CreditCardSponsorController extends AbstractController {
 		ModelAndView result;
 		result = new ModelAndView("creditcard/edit");
 		result.addObject("creditCard", c);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		return result;
 	}
 }

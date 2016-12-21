@@ -63,7 +63,7 @@ public class QuantityService {
 		
 		Quantity copied = new Quantity();
 		copied.setIngredient(quantity.getIngredient());
-		copied.setQuantity(quantity.getQuantity());
+		copied.setQuantityn(quantity.getQuantityn());
 		copied.setUnit(quantity.getUnit());
 		
 		return copied;

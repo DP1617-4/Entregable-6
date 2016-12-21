@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
-import services.SocialUserService;
 import services.UserService;
 import domain.Actor;
 import domain.SocialUser;
@@ -33,8 +32,7 @@ public class UserController extends AbstractController {
 	@Autowired
 	private ActorService actorService;
 	
-	@Autowired
-	private SocialUserService socialUserService;
+	
 
 	// Constructors -----------------------------------------------------------
 
@@ -170,7 +168,7 @@ public class UserController extends AbstractController {
 		
 		result = new ModelAndView("user/edit");
 		result.addObject("user", user);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", requestURI);
 		
 		return result;

@@ -8,7 +8,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="${RequestURI}" modelAttribute="user">
+<form:form action="${requestURI}" modelAttribute="user">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -36,6 +36,7 @@
     <form:input path="userAccount.username"/>
     <form:errors cssClass="error" path="userAccount.username"/>
     <br />
+    <br />
     
     <form:label path="userAccount.password">
       <spring:message code="user.password" />
@@ -43,6 +44,8 @@
     <form:password path="userAccount.password"/>
     <form:errors cssClass="error" path="userAccount.password"/>
     <br />
+    <br />
+    
 	</jstl:if>
 	
 	<form:label path="name">
@@ -51,35 +54,37 @@
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
 	<br />
+	<br />
 	
 	<form:label path="surname">
 		<spring:message code="user.surname" />:
 	</form:label>
-	<form:textarea path="surname" />
+	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
+	<br />
 	<br />
 	
 	<form:label path="email">
 		<spring:message code="user.email" />:
 	</form:label>
-	<form:textarea path="email" />
+	<form:input path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
-	
+	<br />
 	<form:label path="postalAddress">
 		<spring:message code="user.postalAddress" />:
 	</form:label>
 	<form:textarea path="postalAddress" />
 	<form:errors cssClass="error" path="postalAddress" />
 	<br />
-	
+	<br />
 	<form:label path="phone">
 		<spring:message code="user.phone" />:
 	</form:label>
-	<form:textarea path="phone" />
+	<form:input path="phone" />
 	<form:errors cssClass="error" path="phone" />
 	<br />
-	
+	<br />
 	<input type="submit" name="save"
 		value="<spring:message code="user.save" />" 
 		onclick="location.href = 'user/display.do';" />&nbsp; 

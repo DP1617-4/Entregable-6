@@ -51,7 +51,7 @@ public class ContestUserController extends AbstractController {
 		
 		result = new ModelAndView("contest/qualify");
 		result.addObject("contest", contest);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}
