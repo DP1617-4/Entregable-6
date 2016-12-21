@@ -61,6 +61,8 @@
 	<display:table pagesize="10" class="displaytag" keepStatus="true"
 		name="learningMaterials" requestURI="${requestURI}" id="row">
 		
+		<security:authorize access="hasRole('COOK')">
+		<security:authentication property="principal.username" var ="loggedactor"/>
 		<jstl:if test="${learningMaterialcook.userAccount.username==loggedactor}">
 		<display:column>
 			<jstl:choose>
@@ -82,6 +84,7 @@
 			</jstl:choose>	
 		</display:column>
 		</jstl:if>
+		</security:authorize>
 		
 		<spring:message code="masterClass.learningMaterial.type" var="bodyHeader" />
 		<display:column title="${bodyHeader}" sortable="false">

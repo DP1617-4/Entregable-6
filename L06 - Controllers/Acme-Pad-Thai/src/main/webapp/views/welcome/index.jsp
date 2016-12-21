@@ -33,43 +33,90 @@
 
 <p><spring:message code="welcome.promoted.classes"/></p>
 
+
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="masterclasses" requestURI="welcome/index.do" id="row">
+	name="masterClasses" requestURI="${requestURI}" id="row">
+	<jstl:set var="masterClasscook" value="${row.cook}"/> 
+	
+	<security:authorize access="hasRole('ADMIN')">
+		<display:column>
+		<jstl:choose>
+			<jstl:when test="${row.promoted}">
+				<a href="masterClass/administrator/demote.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.demote" />
+				</a>
+			</jstl:when>
+			<jstl:otherwise>
+				<a href="masterClass/administrator/promote.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.promote" />
+				</a>
+			</jstl:otherwise>
+		</jstl:choose>
+		</display:column>
+	</security:authorize>
+	
 	<security:authorize access="isAuthenticated()">
-		<security:authentication property="principal.username" var ="loggedactor"/>
-		<jstl:set var="masterclasscook" value="${row.cook}"/> 
-		<jstl:if test="${masterclasscook.userAccount.username==loggedactor}">
 			<display:column>
-				<a href="masterclass/edit.do?masterclassId=${row.id}">
-					<spring:message	code="welcome.masterclass.edit" />
+				<a href="masterClass/actor/display.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.view" />
 				</a>
 			</display:column>
+	</security:authorize>
+	<security:authorize access="isAnonymous()">
 			<display:column>
-				<a href="learningmaterial/create.do?masterclassId=${row.id}">
-					<spring:message code="welcome.masterclass.add.material"/>
+				<a href="masterClass/display.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.view" />
 				</a>
 			</display:column>
-		</jstl:if>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('COOK')">
+	<security:authentication property="principal.username" var ="loggedactor"/>
+		<display:column>
+			<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
+				<a href="masterClass/cook/edit.do?masterClassId=${row.id}">
+					<spring:message	code="masterClass.edit" />
+				</a>
+			</jstl:if>
+		</display:column>
 	</security:authorize>
 
 	
 	<!-- Attributes -->
 
-	<spring:message code="welcome.masterclass.title" var="titleHeader" />
+	<spring:message code="masterClass.title" var="titleHeader" />
 	<display:column property="title" title="${titleHeader}" sortable="true" />
 	
-	<spring:message code="welcome.masterclass.description" var="descriptionHeader" />
+	<spring:message code="masterClass.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" sortable="false" />
 	
-	<spring:message code="welcome.masterclass.promoted" var="promotedHeader" />
+	<spring:message code="masterClass.promoted" var="promotedHeader" />
 	<display:column property="promoted" title="${promotedHeader}" sortable="true" />
 	
-	<display:column>
-		<a href="learningMaterial/list.do?masterclassId=${row.id}"><spring:message code="welcome.masterclass.materials.list"/></a>
-	</display:column>
+	<security:authorize access="isAuthenticated()">
+	<security:authentication property="principal.username" var ="loggedactor"/>
+		<display:column>
+			<jstl:set var="canEnrol" value="true"/> 
+			<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
+				<jstl:set var="canEnrol" value="false"/> 
+			</jstl:if>
+			<jstl:forEach items="${actor.enroled}" var="masterClass">
+				<jstl:if test="${masterClass.id==row.id}">
+					<jstl:set var="canEnrol" value="false"/> 
+				</jstl:if>
+			</jstl:forEach>
+			<jstl:if test="${canEnrol}">
+				<a href="masterClass/actor/enrol.do?masterClassId=${row.id}"><spring:message code="masterClass.enroll"/></a>
+			</jstl:if>
+		</display:column>
+		
+		<display:column>
+			<jstl:if test="${!canEnrol}">
+				<a href="learningMaterial/actor/list.do?masterClassId=${row.id}"><spring:message code="masterClass.materials.list"/></a>
+			</jstl:if>
+		</display:column>
 	
-	<display:column>
-		<a href="masterclass/enrol.do"><spring:message code="welcome.masterclass.enroll"/></a>
-	</display:column>
-
+	</security:authorize>
+	
+	
 </display:table>
