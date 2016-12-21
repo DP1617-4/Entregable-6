@@ -19,6 +19,7 @@ import domain.Nutritionist;
 import domain.Score;
 import domain.SocialIdentity;
 import domain.SocialUser;
+import domain.User;
 
 @Service
 @Transactional
@@ -104,6 +105,23 @@ public class NutritionistService {
 				
 				return nutritionistRepository.findAll();
 			}
+
+			public Collection<Nutritionist> findAllFiltered(String filter){
+			
+			Collection<Nutritionist> result = new ArrayList<Nutritionist>();
+			Collection<Nutritionist> all = this.findAll();
+			
+			
+			for(Nutritionist u:all){
+				
+				if(u.getName().contains(filter)||u.getSurname().contains(filter)||u.getEmail().contains(filter)||u.getEnroled().contains(filter)
+						||u.getPhone().contains(filter)){
+					
+					result.add(u);
+				}
+			}
+			return result;
+		}
 			
 			//Auxiliary methods
 

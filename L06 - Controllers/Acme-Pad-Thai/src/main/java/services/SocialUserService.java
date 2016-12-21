@@ -91,6 +91,7 @@ public class SocialUserService {
 				SocialUser socialUser = findByPrincipal();
 				socialUser.getFollowed().remove(unfollowed);
 				save(socialUser);
+				save(unfollowed);
 			}
 			
 //			public void comment(Comment comment){

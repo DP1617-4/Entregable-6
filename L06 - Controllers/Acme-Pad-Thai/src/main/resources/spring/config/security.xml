@@ -66,9 +66,11 @@
 		<security:intercept-url pattern="/contest/administrator/**" access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/contest/user/**" access="hasRole('USER')" />
 		
-		<security:intercept-url pattern="/user/list.do**" access="permitAll" />
+		<security:intercept-url pattern="/user/**" access="permitAll" />
 		<security:intercept-url pattern="/user/user/**" access="hasRole('USER')" />
-		<security:intercept-url pattern="/user/create.do" access="isAnonymous()" />		
+		<security:intercept-url pattern="/user/create.do" access="isAnonymous()" />	
+		<security:intercept-url pattern="/user/socialuser/**" access="hasAnyRole('NUTRITIONIST', 'USER')" />	
+		<security:intercept-url pattern="/user/socialuser/list.do" access="permitAll()" />
 
 		
 		<security:intercept-url pattern="/ingredient/**" access="permitAll" />
@@ -80,8 +82,14 @@
 		<security:intercept-url pattern="/sponsor/create.do" access="isAnonymous()" />
 
 		
+		<security:intercept-url pattern="/nutritionist/**" access="permitAll" />
 		<security:intercept-url pattern="/nutritionist/create.do" access="isAnonymous()" />
 		<security:intercept-url pattern="/nutritionist/nutritionist/**" access="hasRole('NUTRITIONIST')" />
+		<security:intercept-url pattern="/nutritionist/socialuser/**" access="hasAnyRole('NUTRITIONIST', 'USER')" />
+		<security:intercept-url pattern="/nutritionist/socialuser/list.do" access="permitAll()" />
+		
+		<security:intercept-url pattern="/curriculum/nutritionist/**" access="hasRole('NUTRITIONIST')" />
+		<security:intercept-url pattern="/endorser/nutritionist/**" access="hasRole('NUTRITIONIST')" />
 		
 		<security:intercept-url pattern="/step/user/**" access="hasRole('USER')" />
 		

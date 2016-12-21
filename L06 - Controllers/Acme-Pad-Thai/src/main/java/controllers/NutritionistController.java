@@ -1,8 +1,11 @@
 package controllers;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.ActorService;
 import services.NutritionistService;
 import services.SocialUserService;
+import domain.Actor;
 import domain.Nutritionist;
+import domain.SocialUser;
+import forms.FilterString;
 
 @Controller
 @RequestMapping("/nutritionist")
@@ -23,9 +30,11 @@ public class NutritionistController extends AbstractController {
 	@Autowired
 	private NutritionistService nutritionistService;
 	
-	
 	@Autowired
 	private SocialUserService socialUserService;
+	
+	@Autowired
+	private ActorService actorService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -33,33 +42,34 @@ public class NutritionistController extends AbstractController {
 		super();
 	}
 	
-	@RequestMapping(value = "/follow", method = RequestMethod.GET)
-	public ModelAndView follow(@RequestParam int nutritionistId){
-		
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listNutritionists() {
+
 		ModelAndView result;
-		Nutritionist followed;
-		followed = nutritionistService.findOne(nutritionistId);
-		socialUserService.follow(followed);
-		
-		result = new ModelAndView("redirect:list.do");
-		
-		
+		Collection<Nutritionist> nutritionists;
+		Collection<SocialUser> followed;
+		FilterString filter = new FilterString();
+
+		nutritionists = nutritionistService.findAll();
+
+		result = new ModelAndView("nutritionist/list");
+		result.addObject("requestURI", "/nutritionist/list.do");
+		result.addObject("nutritionists", nutritionists);
+		result.addObject("filterString", filter);
+		Object access = SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal();
+		if (access != "anonymousUser") {
+
+			Actor principal = actorService.findByPrincipal();
+			if(principal instanceof SocialUser){
+				followed = ((SocialUser) principal).getFollowed();
+				result.addObject("followed", followed);
+			}
+		}
+
 		return result;
 	}
-	
-	@RequestMapping(value = "/unfollow", method = RequestMethod.GET)
-	public ModelAndView unfollow(@RequestParam int nutritionistId){
-		
-		ModelAndView result;
-		Nutritionist unfollowed;
-		unfollowed = nutritionistService.findOne(nutritionistId);
-		socialUserService.unfollow(unfollowed);
-		
-		result = new ModelAndView("redirect:list.do");
-		
-		
-		return result;
-	}
+
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
@@ -146,6 +156,33 @@ public class NutritionistController extends AbstractController {
 		
 		return result;
 	}
+	
+	@RequestMapping(value = "/filter", method = RequestMethod.POST, params = "filterButton")
+	public ModelAndView filterNutritionists(@Valid FilterString filterString,
+			BindingResult binding) {
+
+		ModelAndView result;
+		Collection<Nutritionist> nutritionists;
+		String filter = filterString.getFilter();
+		if (binding.hasErrors()) {
+			result = new ModelAndView("redirect:list.do");
+		} else {
+
+			try {
+				nutritionists = nutritionistService.findAllFiltered(filter);
+				result = new ModelAndView("nutritionist/list");
+				result.addObject("requestURI", "nutritionist/list.do");
+				result.addObject("nutritionists", nutritionists);
+				result.addObject("filterString", filterString);
+
+			} catch (Throwable oops) {
+				result = new ModelAndView("redirect:list.do");
+			}
+		}
+
+		return result;
+	}
+
 	
 }
 
