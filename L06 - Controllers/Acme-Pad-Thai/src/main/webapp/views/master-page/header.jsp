@@ -66,9 +66,11 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="campaign/sponsor/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+						<li><a href="campaign/sponsor/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
 					</security:authorize>	
-					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
-								
+					<security:authorize access="hasRole('ADMIN')">
+						<li><a href="campaign/administrator/list.do"><spring:message code="master.page.campaign.list" /></a></li>
+					</security:authorize>
 				</ul>
 			</li>
 		</security:authorize>
@@ -77,7 +79,9 @@
 			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>	
+					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>
+				</ul>	
+		</security:authorize>
 
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
@@ -86,9 +90,10 @@
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="bill/sponsor/list.do"><spring:message code="master.page.bills.list" /></a></li>	
 					</security:authorize>
-          <security:authorize access="hasRole('ADMIN')">
-						<li><a href="bill/administrator/generate.do">placeholder</a></li>	
-            <li><a href="bill/administrator/mail.do">placeholder</a></li>	
+          			<security:authorize access="hasRole('ADMIN')">
+          				<li><a href="bill/administrator/list.do"><spring:message code="master.page.bills.list"/></a></li>
+						<li><a href="bill/administrator/compute.do"><spring:message code="master.page.administrator.compute"/></a></li>	
+            			<li><a href="bill/administrator/mail.do"><spring:message code="master.page.administrator.email"/></a></li>	
 					</security:authorize>
 				</ul>
 			</li>

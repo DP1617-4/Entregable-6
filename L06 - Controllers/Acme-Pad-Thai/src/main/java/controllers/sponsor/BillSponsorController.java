@@ -37,44 +37,25 @@ public class BillSponsorController extends AbstractController {
  	public ModelAndView list() {
  		ModelAndView result;
  		Collection<Bill> bills;
+ 		String requestURI= "bill/sponsor/list.do";
  		Sponsor sponsor = sponsorService.findByPrincipal();
  
  		bills = billService.findAllByPrincipal();
  		
 		result = new ModelAndView("bill/list");
-		result.addObject("requestURI", "bill/list.do");
+		result.addObject("requestURI", requestURI);
  		result.addObject("bills", bills);
  		result.addObject("sponsor", sponsor);
+ 		
  		
  		return result;
  	}
 	
 	// Creation ---------------------------------------------------------------
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
-		ModelAndView result;
-		Sponsor sponsor = sponsorService.findByPrincipal();
-		Bill bill = billService.create(sponsor);
-		
-		result = createEditModelAndView(bill);
-		result.addObject("bill", bill);
-		
-		return result;
-	}
 	
 	// Edition ----------------------------------------------------------------
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam int billId) {
-		ModelAndView result;
-		Bill bill;
-
-		bill = billService.findOneToEdit(billId);
-		Assert.notNull(bill);
-		result = createEditModelAndView(bill);
-
-		return result;
-	}
 	
+	// Other methods ----------------------------------------------------------
 	@RequestMapping(value = "/pay", method = RequestMethod.GET)
 	public ModelAndView payBill(@RequestParam int billId) {
 		ModelAndView result;

@@ -34,7 +34,7 @@ public class BillServiceTest extends AbstractTest{
 	public void testCreate() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		billService.create(sponsor);
+		billService.create();
 		unauthenticate();
 	}
 	
@@ -42,7 +42,7 @@ public class BillServiceTest extends AbstractTest{
 	public void testSave() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		Bill bill = billService.create(sponsor);
+		Bill bill = billService.create();
 		bill.setDescription("Esto es un bill");
 		Bill saved = billService.save(bill);
 		Collection<Bill> allBills = billService.findAll();
@@ -54,7 +54,7 @@ public class BillServiceTest extends AbstractTest{
 	public void testSaveNegative() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		Bill bill = billService.create(sponsor);
+		Bill bill = billService.create();
 		bill.setDescription(null);
 		try {
 			billService.save(bill);
@@ -68,13 +68,25 @@ public class BillServiceTest extends AbstractTest{
 	public void testDelete() {
 		authenticate("sponsor1");
 		Sponsor sponsor = sponsorService.findOne(20);
-		Bill bill = billService.create(sponsor);
+		Bill bill = billService.create();
 		bill.setDescription("Esto es un bill");
 		Bill saved = billService.save(bill);
 		billService.delete(saved);
 		Collection<Bill> allBills = billService.findAll();
 		Assert.isTrue(!allBills.contains(saved));
 		unauthenticate();
+	}
+	
+	@Test
+	public void testCompute() {
+		authenticate("admin1");
+		Collection<Bill> bills;
+		
+		bills = billService.computeProcedureMonthlyBills();
+		for(Bill b: bills){
+			System.out.println(b.getCost());
+			System.out.println(b.getDescription());
+		}
 	}
 	
 }

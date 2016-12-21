@@ -18,7 +18,7 @@ public interface BillRepository extends JpaRepository<Bill, Integer> {
 	Double computeBillCost(int id);
 	
 	@Query("select b from Bill b where b.paymentDate is null")
-	Collection<Bill> generateBills();
+	Collection<Bill> unpaidBills();
 	
 	@Query("select b from Sponsor s join s.bills b where s.id = ?1")
 	Collection<Bill> findBillBySponsor(int id);
