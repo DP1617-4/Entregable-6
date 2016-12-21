@@ -1744,8 +1744,8 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="bill2" class="domain.Bill">
-		<property name="creationDate" value="2016/10/25"/> <!-- En pasado -->
-		<property name="paymentDate" value="2016/10/28"/>
+		<property name="creationDate" value="2016/11/25"/> <!-- En pasado -->
+		<property name="paymentDate"><null/></property>
 		<property name="cost" value="2.0"/> <!-- Propiedad derivada -->
 		<property name="description" value="Factura mensual."/>
 		<property name="sponsor" ref="sponsor1"/>

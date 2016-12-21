@@ -37,11 +37,9 @@ public class CreditCardSponsorController extends AbstractController {
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {
 		ModelAndView result;
-
-		CreditCard credit;
+		
 		Sponsor sponsor = sponsorService.findByPrincipal();
-
-		credit = creditCardService.findCreditCardByPrincipal();
+		CreditCard credit = creditCardService.findCreditCardByPrincipal();
 
 		result = new ModelAndView("creditCard/list");
 		result.addObject("creditCard", credit);

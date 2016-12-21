@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -79,12 +80,17 @@ public class CookService {
 	}
 	
 	public Cook save(Cook cook){
-		Cook result;
+		Cook result;		
+		
 		if(cook.getId()<=0){
 			adminService.checkAdministrator();
-		}
-		else
+			String password = cook.getUserAccount().getPassword();
+			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			password = encoder.encodePassword(password, null);
+			cook.getUserAccount().setPassword(password);
+		}else{
 			checkPrincipal(cook);
+		}
 		result = cookRepository.save(cook);
 		if(cook.getId() <= 0)
 			folderService.initFolders(result);
