@@ -73,7 +73,7 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasAnyRole('ADMIN')">
+		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -81,7 +81,6 @@
 				</ul>
 			</li>
 		</security:authorize>
-					
 
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>

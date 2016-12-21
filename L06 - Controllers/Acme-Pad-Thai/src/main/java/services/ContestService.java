@@ -91,13 +91,8 @@ public class ContestService {
 				save(contest);
 			}
 			
-			public Collection<Double> getMinAvgMaxRecipesQualifiedForContest(){
-				Collection<Double> result = new ArrayList<Double>();
-				Double[] aux = contestRepository.getMinAvgMaxRecipesQualifiedForContest();
-				for(int i=0;i<aux.length;i++){
-					
-					result.add(aux[i]);
-				}
+			public Double[] getMinAvgMaxRecipesQualifiedForContest(){
+				Double[] result = contestRepository.getMinAvgMaxRecipesQualifiedForContest();
 				return result;
 			}
 			

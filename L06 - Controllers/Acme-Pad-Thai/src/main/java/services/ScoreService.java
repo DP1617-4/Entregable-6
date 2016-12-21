@@ -72,6 +72,14 @@ public Collection<Recipe> findAllBySocialUser(int socialUserId){
 		
 		return result;
 	}
+
+public Score findScoreExistant(int socialUserId, int recipeId){
+	
+	Score result;
+	result= scoreRepository.findScoreExistant(socialUserId, recipeId);
+	
+	return result;
+}
 	
 	
 

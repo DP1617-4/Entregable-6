@@ -7,6 +7,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
 import services.BannerService;
 import services.CategoryService;
 import services.IngredientService;
 import services.RecipeService;
+import services.ScoreService;
+import services.SocialUserService;
 import services.UserService;
 import controllers.AbstractController;
 import domain.Banner;
@@ -25,6 +31,7 @@ import domain.Category;
 import domain.Ingredient;
 import domain.Quantity;
 import domain.Recipe;
+import domain.SocialUser;
 import domain.Step;
 import domain.User;
 import forms.AddIngredient;
@@ -46,6 +53,10 @@ public class RecipeController extends AbstractController {
 	private CategoryService categoryService;
 	@Autowired
 	private BannerService bannerService;
+	@Autowired
+	private ScoreService scoreService;
+	@Autowired
+	private SocialUserService socialUserService;
 	// Constructors -----------------------------------------------------------
 	
 	public RecipeController() {
@@ -133,8 +144,31 @@ public class RecipeController extends AbstractController {
 		ModelAndView result;
 		Recipe recipe;
 		Collection<Ingredient> ingredientlist = ingredientService.findAllNotDeleted();
-
+		
+		SocialUser principal;
+	
 		recipe = recipeService.findOne(recipeId);
+		boolean scored = false;
+		Object principalContext = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(principalContext!="anonymousUser"){
+			UserAccount userAccount = LoginService.getPrincipal();
+			for(Authority a: userAccount.getAuthorities()){
+				if(a.getAuthority().equals(Authority.USER)||a.getAuthority().equals(Authority.NUTRITIONIST)){
+					
+					principal = socialUserService.findByPrincipal();
+					
+						if(scoreService.findScoreExistant(principal.getId(), recipeId)!=null){
+							
+							scored = true;
+						}
+					}
+			}
+		}
+		
+		
+		
+		
 		Collection<Quantity> quantities = recipe.getQuantities();
 		Collection<Step> steps = recipe.getSteps();
 		AddPicture addPicture = new AddPicture();
@@ -153,6 +187,7 @@ public class RecipeController extends AbstractController {
 		result.addObject("categories", categories);
 		result.addObject("categoryList", categoryList);
 		result.addObject("banner", banner);
+		result.addObject("scored", scored);
 		
 		return result;
 	}

@@ -102,11 +102,11 @@ public class SponsorService {
 	}
 
 	// Our other bussiness methods -----------
-	public Double[][][] calculateMinAvgMaxFromCampaignsOfSponsors() {
+	public Double[] calculateMinAvgMaxFromCampaignsOfSponsors() {
 		return sponsorRepository.calculateMinAvgMaxFromCampaignsOfSponsors();
 	}
 
-	public Double[][][] calculateMinAvgMaxFromCampaignsOfSponsorsByDate() {
+	public Double[] calculateMinAvgMaxFromCampaignsOfSponsorsByDate() {
 		return sponsorRepository
 				.calculateMinAvgMaxFromCampaignsOfSponsorsByDate();
 	}
