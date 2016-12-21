@@ -117,8 +117,8 @@ public class CookService {
 	}
 	
 	//Business Methods
-	public Collection<Double> calculateMinMaxAvgDevFromMasterClassesOfCooks() {
-		Collection<Double> result;
+	public Double[] calculateMinMaxAvgDevFromMasterClassesOfCooks() {
+		Double[] result;
 		result = cookRepository.calculateMinMaxAvgDevFromMasterClassesOfCooks();
 		return result;
 	}

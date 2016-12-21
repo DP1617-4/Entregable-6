@@ -18,5 +18,8 @@ public interface ScoreRepository extends JpaRepository<Score, Integer>{
 	
 	@Query("Select s from Score s where s.socialUser.id = ?1")
 	Collection<Recipe> findAllBySocialUser(int socialUserId);
+	
+	@Query("select s from Score s where s.socialUser.id = ?1 and s.recipe.id = ?2")
+	Score findScoreExistant(int socialUserId, int recipeId);
 
 }

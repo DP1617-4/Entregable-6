@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.RecipeService;
+import services.SocialUserService;
 import controllers.AbstractController;
 import domain.Recipe;
+import domain.Score;
 import forms.FilterString;
 
 @Controller
@@ -22,6 +24,9 @@ public class RecipeSocialUserController extends AbstractController {
 
 	@Autowired
 	private RecipeService recipeService;
+	
+	@Autowired
+	private SocialUserService socialUserService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -43,5 +48,36 @@ public class RecipeSocialUserController extends AbstractController {
  		result.addObject("filterString", filter);
 		return result;
 	}
+	
+	@RequestMapping(value = "/like", method = RequestMethod.GET)
+	public ModelAndView like(@RequestParam int recipeId) {
+
+		ModelAndView result;
+		Score score;
+		Recipe recipe;
+		recipe = recipeService.findOne(recipeId);
+		score = socialUserService.like(recipe);
+		recipe = recipeService.save(recipe);
+		
+		result = new ModelAndView("redirect:/recipe/display.do?recipeId=" + recipe.getId());
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/dislike", method = RequestMethod.GET)
+	public ModelAndView dislike(@RequestParam int recipeId) {
+
+		ModelAndView result;
+		Score score;
+		Recipe recipe;
+		recipe = recipeService.findOne(recipeId);
+		score = socialUserService.dislike(recipe);
+		recipe = recipeService.save(recipe);
+		
+		result = new ModelAndView("redirect:/recipe/display.do?recipeId=" + recipe.getId());
+		
+		return result;
+	}
+	
 
 }

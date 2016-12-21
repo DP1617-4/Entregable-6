@@ -1,9 +1,12 @@
 package controllers.administrator;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ContestService;
 import controllers.AbstractController;
 import domain.Contest;
+import domain.Recipe;
 
 @Controller
 @RequestMapping("/contest/administrator")
@@ -46,23 +50,12 @@ public class ContestAdministratorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Contest contest, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("contest/administrator/edit");
+		result = new ModelAndView("contest/edit");
 		result.addObject("contest", contest);
 		result.addObject("message", message);
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
- 	public ModelAndView list() {
- 		
- 		ModelAndView result;
-
-		result = new ModelAndView("contest/administrator/list");
-		result.addObject("requestURI", "contest/administrator/list.do");
- 		
- 		return result;
- 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
@@ -124,6 +117,20 @@ public class ContestAdministratorController extends AbstractController {
 		} catch (Throwable oops) {
 			result = createEditModelAndView(contest, "contest.commit.error");
 		}
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/getWinners", method = RequestMethod.GET)
+	public ModelAndView payBill(@RequestParam int contestId) {
+		ModelAndView result;
+		Contest contest;
+
+		contest = contestService.findOne(contestId);
+		Assert.notNull(contest);
+		contestService.setWon(contest);
+		
+		result = new ModelAndView("redirect:/contest/list.do");
 
 		return result;
 	}

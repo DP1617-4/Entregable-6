@@ -24,11 +24,21 @@
 	<!-- Action links -->
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-				<a href="contest/admin/edit.do?contestId=${row.id}">
+				<a href="contest/administrator/edit.do?contestId=${row.id}">
 					<spring:message	code="contest.edit" />
 				</a>
 		</display:column>
 	</security:authorize>
+	<display:column>
+		<security:authorize access="hasRole('ADMIN')">
+			<jstl:if test="${empty row.winners}">
+				<a href="contest/administrator/getWinners.do?contestId=${row.id}">
+					<spring:message	code="contest.getWinners" />
+				</a>
+			</jstl:if>
+		</security:authorize>
+	</display:column>
+	
 	<security:authorize access="hasRole('USER')">
 		<display:column>
 			<form:form action="contest/user/qualify.do" modelAttribute="addRecipe">
@@ -45,8 +55,6 @@
 				<form:errors cssClass="error" path="recipeId" />
 				<input type="submit" name="save"
 					value="<spring:message code="contest.save" />" />&nbsp;
-
-	
 
 			</form:form>
 		</display:column>
@@ -77,7 +85,7 @@
 	<!-- Action links -->
 <security:authorize access="hasRole('ADMIN')">
 	<div>
-		<a href="contest/admin/create.do"> <spring:message
+		<a href="contest/administrator/create.do"> <spring:message
 				code="contest.create" />
 		</a>
 	</div>
