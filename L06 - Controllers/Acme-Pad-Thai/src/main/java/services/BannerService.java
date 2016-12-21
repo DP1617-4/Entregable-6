@@ -57,8 +57,6 @@ public class BannerService {
 	}
 	
 	public Banner save(Banner banner) {
-		Sponsor sponsor = sponsorService.findByPrincipal();
-		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");
 		Banner saved;
 		saved = bannerRepository.save(banner);
 		return saved;

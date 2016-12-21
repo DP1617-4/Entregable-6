@@ -67,9 +67,17 @@
 	</display:column>
 	
 	<security:authorize access="hasRole('ADMIN')">
+		<jstl:if test="${row.starred==true}">
 		<display:column>
-			<a href="banner/star.do?campaignId=${row.id}"><spring:message code="campaign.star" /></a>
+			<a href="campaign/administrator/star.do?campaignId=${row.id}"><spring:message code="campaign.nostar" /></a>
 		</display:column>
+		</jstl:if>
+		
+		<jstl:if test="${row.starred==false}">
+		<display:column>
+			<a href="campaign/administrator/star.do?campaignId=${row.id}"><spring:message code="campaign.star" /></a>
+		</display:column>
+		</jstl:if>
 	</security:authorize>
 </display:table>
 

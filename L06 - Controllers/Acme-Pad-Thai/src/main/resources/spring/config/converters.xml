@@ -34,6 +34,9 @@
 		<bean class="converters.BannerToStringConverter" />
 		<bean class="converters.StringToBannerConverter" />
 		
+		<bean class="converters.BillToStringConverter" />
+		<bean class="converters.StringToBillConverter" />
+		
 		<bean class="converters.CampaignToStringConverter" />
 		<bean class="converters.StringToCampaignConverter" />
 		

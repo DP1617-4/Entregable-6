@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Bill extends DomainEntity{
 
 	
-	// Constructors -----------------------------------------------------------
+			// Constructors -----------------------------------------------------------
 
 			public Bill() {
 				super();
@@ -60,7 +60,6 @@ public class Bill extends DomainEntity{
 			}
 
 			@NotBlank
-			
 			public String getDescription() {
 				return description;
 			}
