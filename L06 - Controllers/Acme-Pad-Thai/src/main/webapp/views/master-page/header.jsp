@@ -81,6 +81,7 @@
 				</ul>
 			</li>
 		</security:authorize>
+
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
 				<ul>

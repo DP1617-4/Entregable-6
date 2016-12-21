@@ -33,7 +33,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>{
 	@Query("select c.winners from Contest c where c.id=?1")
 	Collection<Recipe> findAllWinners(int contestId);
 
-	@Query("select r from Recipe r where r.contest = null and r.user = ?1")
-	Collection<Recipe> findAllNotQualifiedUser(User user);
+	@Query("select r from Recipe r where r.contest = null and r.user.id = ?1")
+	Collection<Recipe> findAllNotQualifiedUser(int userId);
 	
 }
