@@ -35,8 +35,8 @@ name="sponsor" requestURI="${requestURI}" id="row">
 	<spring:message code="sponsor.creditCard.brandName" var="brandName"/>
 	<display:column property="creditCard.brandName" title="${brandName}"/>
 	
-<%-- 	<spring:message code="sponsor.creditCard.cCNumber" var="cCNumber"/>
-	<display:column property="creditCard.cCNumber" title="${cCNumber}"/> --%>
+	<spring:message code="sponsor.creditCard.cCNumber" var="cCNumber"/>
+	<display:column property="creditCard.creditCardNumber" title="${cCNumber}"/>
 	
 	<spring:message code="sponsor.creditCard.expirationMonth" var="expirationMonth"/>
 	<display:column property="creditCard.expirationMonth" title="${expirationMonth}"/>

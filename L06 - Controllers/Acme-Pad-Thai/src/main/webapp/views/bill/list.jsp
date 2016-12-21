@@ -20,8 +20,8 @@
 
 
 
-<display:table pagesize="5" class="displaytag" keepStatus="true"
-	name="bills" requestURI="bill/sponsor/list.do" id="row">
+<display:table pagesize="10" class="displaytag" keepStatus="true"
+	name="bills" requestURI="${requestURI}" id="row">
 	<security:authentication property="principal" var ="loggedsponsor"/>
 	<jstl:set var="billsponsor" value="${row.sponsor}"/>
 	 

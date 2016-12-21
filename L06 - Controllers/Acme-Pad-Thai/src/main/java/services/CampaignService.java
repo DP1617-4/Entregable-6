@@ -27,6 +27,9 @@ public class CampaignService {
 	@Autowired
 	private SponsorService sponsorService;
 	
+	@Autowired
+	private AdministratorService adminService;
+	
 	//Basic CRUD methods --------------------
 	public Campaign create() { 
 		Campaign created;
@@ -43,7 +46,6 @@ public class CampaignService {
 		Campaign result;
 		result = campaignRepository.findOne(campaignId);
 		Assert.notNull(result);
-		checkPrincipalSponsor(result);
 		return result;
 	}
 	
@@ -60,6 +62,13 @@ public class CampaignService {
 	public Campaign save(Campaign campaign) {
 		Campaign result;
 		checkPrincipalSponsor(campaign);
+		result = campaignRepository.save(campaign);
+		return result;
+	}
+	
+	public Campaign saveAdmin(Campaign campaign) {
+		Campaign result;
+		adminService.checkAdministrator();
 		result = campaignRepository.save(campaign);
 		return result;
 	}
@@ -127,4 +136,11 @@ public class CampaignService {
 		return res;
 	}
 	
+	public void modifyStarred(Campaign c) {
+		if(c.getStarred() == false) {
+			c.setStarred(true);
+		} else {
+			c.setStarred(false);
+		}
+	}
 }

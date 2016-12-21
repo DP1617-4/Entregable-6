@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import repositories.MessageRepository;
+import security.LoginService;
+import security.UserAccount;
 import domain.Actor;
 import domain.Folder;
 import domain.Message;
 import domain.SystemConfiguration;
-
-import repositories.MessageRepository;
-import security.LoginService;
-import security.UserAccount;
 
 @Service
 @Transactional
@@ -42,6 +41,8 @@ public class MessageService {
 	
 	@Autowired
 	private SystemConfigurationService sysConfService;
+	
+	
 	
 	//CRUD
 
