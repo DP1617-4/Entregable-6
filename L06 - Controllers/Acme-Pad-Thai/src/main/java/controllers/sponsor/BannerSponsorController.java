@@ -71,8 +71,7 @@ public class BannerSponsorController extends AbstractController {
 			try {
 				bannerService.save(b);
 				result = new ModelAndView(
-						"redirect:/campaign/sponsor/edit.do?campaignId="
-								+ b.getCampaign().getId());
+						"redirect:/campaign/sponsor/list.do");
 			} catch (Throwable oops) {
 				result = createEditModelAndView(b, "banner.commit.error");
 			}

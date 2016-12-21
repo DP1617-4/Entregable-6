@@ -48,7 +48,7 @@ public class CategoryAdministratorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Category category, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("category/edit");
+		result = new ModelAndView("category/administrator/edit");
 		result.addObject("category", category);
 		result.addObject("message", message);
 
@@ -70,6 +70,19 @@ public class CategoryAdministratorController extends AbstractController {
  		return result;
  	}
 	
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ModelAndView display(@RequestParam int categoryId) {
+		
+		ModelAndView result;
+		Category category;
+
+		category = categoryService.findOne(categoryId);
+		
+		result = new ModelAndView("category/administrator/display");
+		result.addObject("category", category);
+		
+		return result;
+	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
@@ -128,10 +141,10 @@ public class CategoryAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			categoryService.delete2(category);
+			categoryService.delete(category);
 			result = new ModelAndView("redirect:/category/administrator/list.do");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(category, "recipe.commit.error");
+			result = createEditModelAndView(category, "category.commit.error");
 		}
 
 		return result;

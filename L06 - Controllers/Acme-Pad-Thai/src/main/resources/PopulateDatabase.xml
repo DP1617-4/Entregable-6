@@ -1674,7 +1674,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<!-- CURRICULA -->
-	<bean id="curricula1" class="domain.Curricula">
+	<bean id="curriculum1" class="domain.Curriculum">
 		<property name="picture" value="http://www.nutricionistadeportivo.es/wp-content/uploads/2013/11/profesionalitat.jpg"/> 
 		<property name="education" value="Universidad de Sevilla"/> 
 		<property name="experience" value="Nutrigilde"/>
@@ -1689,7 +1689,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		</property>
 	</bean>
 	
-	<bean id="curricula2" class="domain.Curricula">
+	<bean id="curriculum2" class="domain.Curriculum">
 		<property name="picture" value="http://www.dietistas-nutricionistas.com/wp-content/uploads/2014/11/nutricionista1.jpg"/> 
 		<property name="education" value="Universidad de Sevilla"/> 
 		<property name="experience" value="Sevilla Nutrition"/>
@@ -1706,13 +1706,13 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="endorser1" class="domain.Endorser">
 		<property name="name" value="Rodolfo Pérez"/> 
 		<property name="homePage" value="http://www.nutrigilde.es"/> 
-		<property name="curricula" ref="curricula1"></property>
+		<property name="curriculum" ref="curriculum1"></property>
 	</bean>
 	
 	<bean id="endorser2" class="domain.Endorser">
 		<property name="name" value="Rita Margarita"/> 
 		<property name="homePage" value="http://www.comemenos.es"/> 
-		<property name="curricula" ref="curricula1"></property>
+		<property name="curriculum" ref="curriculum1"></property>
 	</bean>
 	
 	<!-- CREDITCARD (Solo tenemos 1 sponsor, así que solo 1) -->	
@@ -1744,8 +1744,8 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="bill2" class="domain.Bill">
-		<property name="creationDate" value="2016/10/25"/> <!-- En pasado -->
-		<property name="paymentDate" value="2016/10/28"/>
+		<property name="creationDate" value="2016/11/25"/> <!-- En pasado -->
+		<property name="paymentDate"><null/></property>
 		<property name="cost" value="2.0"/> <!-- Propiedad derivada -->
 		<property name="description" value="Factura mensual."/>
 		<property name="sponsor" ref="sponsor1"/>

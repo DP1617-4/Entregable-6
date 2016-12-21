@@ -10,6 +10,8 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
+
+
 <spring:message code="user.filter"/>
 <form:form action="user/filter.do" modelAttribute="filterString">
 

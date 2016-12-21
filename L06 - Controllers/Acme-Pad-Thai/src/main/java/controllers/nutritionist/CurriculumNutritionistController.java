@@ -13,16 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import controllers.AbstractController;
 
 import domain.Curriculum;
-import domain.Nutritionist;
-import domain.Recipe;
-
-import services.CategoryService;
 import services.CurriculumService;
-import services.IngredientService;
-import services.NutritionistService;
-import services.QuantityService;
-import services.RecipeService;
-import services.UserService;
 
 @Controller
 @RequestMapping("/curriculum/nutritionist")
@@ -32,8 +23,7 @@ public class CurriculumNutritionistController extends AbstractController {
 
 	@Autowired
 	private CurriculumService curriculumService;
-	@Autowired
-	private NutritionistService nutritionistService;
+	
 
 	// Constructors -----------------------------------------------------------
 
