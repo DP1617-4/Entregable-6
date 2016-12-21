@@ -46,23 +46,12 @@ public class ContestAdministratorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Contest contest, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("contest/administrator/edit");
+		result = new ModelAndView("contest/edit");
 		result.addObject("contest", contest);
 		result.addObject("message", message);
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
- 	public ModelAndView list() {
- 		
- 		ModelAndView result;
-
-		result = new ModelAndView("contest/administrator/list");
-		result.addObject("requestURI", "contest/administrator/list.do");
- 		
- 		return result;
- 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {

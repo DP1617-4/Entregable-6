@@ -18,9 +18,6 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<h1>TURN DOWN FOR WHAT</h1>
-
-
 <display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="categories" requestURI="${requestURI}" id="row">
 	

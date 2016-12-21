@@ -12,6 +12,7 @@ import services.ContestService;
 import services.RecipeService;
 import domain.Contest;
 import domain.Recipe;
+import domain.Score;
 import forms.AddRecipe;
 
 @Controller
@@ -42,7 +43,20 @@ public class ContestController extends AbstractController {
  		contests = contestService.findAllNotDeleted();
  		AddRecipe addRecipe = new AddRecipe();
  		Collection<Recipe> recipes = recipeService.findAllNotQualifiedPrincipal();
- 		
+ 		int puntuacion = 0;
+ 		for(Recipe r : recipes){
+ 			for(Score s : r.getScores()){
+ 				if(puntuacion < 5){
+	 				if(s.getLikes()==true){
+	 					puntuacion++;
+	 				} else {
+	 					recipes.remove(r);
+	 				}
+ 				} else {
+ 					break;
+ 				}
+ 			}
+ 		}
  		
 		result = new ModelAndView("contest/list");
 		result.addObject("requestURI", "contest/list.do");
