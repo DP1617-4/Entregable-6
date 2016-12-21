@@ -64,7 +64,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="socialidentity.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = ('socialIdentity/actor/list.do');" />
 	<br />
 
 	

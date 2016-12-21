@@ -211,8 +211,10 @@
 
 <security:authorize access="hasAnyRole('USER', 'NUTRITIONIST')">
 	<jstl:if test="${recipeuser.userAccount.username!=loggedactor.username}">
-	<a href="score/socialUser/like.do?recipeId=${recipe.id}"><spring:message code="recipe.like"/></a>&nbsp;&nbsp;
-	<a href="score/socialUser/dislike.do?recipeId=${recipe.id}"><spring:message code="recipe.dislike"/></a><br/>
+	<jstl:if test="${scored==false}">
+		<a href="recipe/socialuser/like.do?recipeId=${recipe.id}"><spring:message code="recipe.like"/></a>&nbsp;&nbsp;
+		<a href="recipe/socialuser/dislike.do?recipeId=${recipe.id}"><spring:message code="recipe.dislike"/></a><br/>
+	</jstl:if>
 	</jstl:if>
 </security:authorize>
 <security:authorize access="hasRole('USER')">

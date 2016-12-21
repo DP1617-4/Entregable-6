@@ -1123,6 +1123,9 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			<list>
 				<ref bean="score1"></ref>
 				<ref bean="score2"></ref>
+				<ref bean="score4"></ref>
+				<ref bean="score5"></ref>
+				<ref bean="score6"></ref>
 			</list>
 		</property>
 		<property name="steps" >
@@ -1165,7 +1168,6 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="user" ref="user1" />
 		<property name="scores" >
 			<list>
-				<ref bean="score2"></ref>
 				<ref bean="score3"></ref>
 			</list>
 		</property>
@@ -1496,6 +1498,24 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 		<property name="recipe" ref="recipe2"/>
 	</bean>
 	
+	<bean id="score4" class="domain.Score">
+		<property name="likes" value="true" />
+		<property name="socialUser" ref="nutritionist1"/>
+		<property name="recipe" ref="recipe1"/>
+	</bean>
+	
+	<bean id="score5" class="domain.Score">
+		<property name="likes" value="true" />
+		<property name="socialUser" ref="nutritionist2"/>
+		<property name="recipe" ref="recipe1"/>
+	</bean>
+	
+	<bean id="score6" class="domain.Score">
+		<property name="likes" value="true" />
+		<property name="socialUser" ref="user2"/>
+		<property name="recipe" ref="recipe1"/>
+	</bean>
+	
 	<!-- STEP -->
 	<bean id="step1" class="domain.Step">
 		<property name="description" value="Introduce la lasaña en el horno a 180º durante 20 minutos." />
@@ -1667,7 +1687,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<!--  Scores para las recetas copiadas -->
-	<bean id="score6" class="domain.Score">
+	<bean id="score7" class="domain.Score">
 		<property name="likes" value="true" />
 		<property name="socialUser" ref="user3"/>
 		<property name="recipe" ref="recipe1copy"/>

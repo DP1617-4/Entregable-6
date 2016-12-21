@@ -75,12 +75,18 @@
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasAnyRole('ADMIN')">
+		<security:authorize access="hasRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
 				<ul>
 					<li class="arrow"></li>
+<<<<<<< HEAD
 					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>
 				</ul>	
+=======
+					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>	
+				</ul>
+			</li>
+>>>>>>> refs/remotes/origin/master
 		</security:authorize>
 
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
