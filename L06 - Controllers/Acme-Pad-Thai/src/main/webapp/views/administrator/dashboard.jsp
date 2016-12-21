@@ -60,7 +60,7 @@
 </table>
 
 
-<spring:message	code="administrator.contest.most.qualified.recipes" /> <a href="contest/display.do?userId=${contestWithMostQualifiedRecipes.id }">${contestWithMostQualifiedRecipes.title}</a><br/>
+<spring:message	code="administrator.contest.most.qualified.recipes" /> <a href="contest/display.do?contestId=${contestWithMostQualifiedRecipes.id }">${contestWithMostQualifiedRecipes.title}</a><br/>
 
 <table>
 <thead>

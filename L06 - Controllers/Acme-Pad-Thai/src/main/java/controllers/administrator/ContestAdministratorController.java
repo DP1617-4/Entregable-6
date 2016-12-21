@@ -52,7 +52,7 @@ public class ContestAdministratorController extends AbstractController {
 		
 		result = new ModelAndView("contest/edit");
 		result.addObject("contest", contest);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}
@@ -112,7 +112,7 @@ public class ContestAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			contestService.delete2(contest);
+			contestService.delete(contest);
 			result = new ModelAndView("redirect:/contest/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(contest, "contest.commit.error");
