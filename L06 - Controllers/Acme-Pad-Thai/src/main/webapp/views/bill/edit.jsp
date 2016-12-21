@@ -26,7 +26,7 @@
 	
 	<input type="button" name="back"
 		value="<spring:message code="bill.back" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = 'welcome/index.do';" />
 	<br />
 	
 </form:form>
