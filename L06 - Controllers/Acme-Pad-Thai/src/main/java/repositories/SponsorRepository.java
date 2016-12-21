@@ -12,10 +12,10 @@ import domain.Sponsor;
 public interface SponsorRepository extends JpaRepository<Sponsor, Integer> {
 	
 	@Query("select min(s.campaigns.size), avg(s.campaigns.size), max(s.campaigns.size) from Sponsor s")
-	Double[][][] calculateMinAvgMaxFromCampaignsOfSponsors();
+	Double[] calculateMinAvgMaxFromCampaignsOfSponsors();
 	
 	@Query("select min(s.campaigns.size), avg(s.campaigns.size), max(s.campaigns.size) from Sponsor s join s.campaigns c where CURRENT_DATE between c.startDate and c.endDate")
-	Double[][][] calculateMinAvgMaxFromCampaignsOfSponsorsByDate();
+	Double[] calculateMinAvgMaxFromCampaignsOfSponsorsByDate();
 	
 	@Query("select s.companyName from Sponsor s group by s.companyName order by s.campaigns.size DESC")
 	Collection<String> findCompaniesNameOfSponsors();

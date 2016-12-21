@@ -82,7 +82,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="message.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="location.href = ('folder/actor/list.do');" />
 	<br />
 
 	

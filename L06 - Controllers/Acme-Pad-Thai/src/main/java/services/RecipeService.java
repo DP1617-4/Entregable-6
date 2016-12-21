@@ -174,25 +174,13 @@ public class RecipeService {
 		return result;
 	}
 	
-	public Collection<Double> getAvgStdStepsPerRecipe(){
-		
-		Collection<Double> result = new ArrayList<Double>();
-		Double[] aux = recipeRepository.getAvgStdStepsPerRecipe();
-		for(int i=0;i<aux.length;i++){
-			
-			result.add(aux[i]);
-		}
+	public Double[] getAvgStdStepsPerRecipe(){
+		Double[] result = recipeRepository.getAvgStdStepsPerRecipe();
 		return result;
 	}
 	
-	public Collection<Double> getAvgStdIngredientsPerRecipe(){
-		
-		Collection<Double> result = new ArrayList<Double>();
-		Double[] aux = recipeRepository.getAvgStdIngredientsPerRecipe();
-		for(int i=0;i<aux.length;i++){
-			
-			result.add(aux[i]);
-		}
+	public Double[] getAvgStdIngredientsPerRecipe(){
+		Double[] result = recipeRepository.getAvgStdIngredientsPerRecipe();
 		return result;
 	}
 	
@@ -303,7 +291,7 @@ public class RecipeService {
 	public Collection<Recipe> findAllNotQualifiedPrincipal(){
 		User user = userService.findByPrincipal();
 		Collection<Recipe> result;
-		result= recipeRepository.findAllNotQualifiedUser(user);
+		result= recipeRepository.findAllNotQualifiedUser(user.getId());
 		
 		return result;
 	}

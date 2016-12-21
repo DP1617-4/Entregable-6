@@ -91,7 +91,7 @@ public class BillService {
 		Assert.isTrue(b.getSponsor().equals(sponsor));
 	}
 	
-	public Double[][][] calculateAvgDevPaidAndUnpaidBills() {
+	public Double[] calculateAvgDevPaidAndUnpaidBills() {
 		return billRepository.calculateAvgDevPaidAndUnpaidBills();
 	}
 
