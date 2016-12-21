@@ -29,6 +29,16 @@
 				</a>
 		</display:column>
 	</security:authorize>
+	<display:column>
+		<security:authorize access="hasRole('ADMIN')">
+			<jstl:if test="${empty row.winners}">
+				<a href="contest/administrator/getWinners.do?contestId=${row.id}">
+					<spring:message	code="contest.getWinners" />
+				</a>
+			</jstl:if>
+		</security:authorize>
+	</display:column>
+	
 	<security:authorize access="hasRole('USER')">
 		<display:column>
 			<form:form action="contest/user/qualify.do" modelAttribute="addRecipe">

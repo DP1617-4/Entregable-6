@@ -303,7 +303,7 @@ public class RecipeService {
 	public Collection<Recipe> findAllNotQualifiedPrincipal(){
 		User user = userService.findByPrincipal();
 		Collection<Recipe> result;
-		result= recipeRepository.findAllNotQualifiedUser(user);
+		result= recipeRepository.findAllNotQualifiedUser(user.getId());
 		
 		return result;
 	}
