@@ -57,8 +57,6 @@ public class BannerService {
 	}
 	
 	public Banner save(Banner banner) {
-		Sponsor sponsor = sponsorService.findByPrincipal();
-		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");
 		Banner saved;
 		saved = bannerRepository.save(banner);
 		return saved;
@@ -68,15 +66,26 @@ public class BannerService {
 		bannerRepository.delete(banner);
 	}
 	
+	
+	
 
-	public Banner findRandomStarBanner(){
+	public Banner findRandomBanner(boolean star){
 		Banner result;
 		Collection<Banner> banners;
-		banners = bannerRepository.findRandomStarBanner();
+		if(star)
+			banners = bannerRepository.findRandomStarBanner();
+		else
+			banners = bannerRepository.findRandomBanner();
 		if(banners.isEmpty())
 			result = null;
-		else
+		else{
 			result = banners.iterator().next();
+			int tsm = result.getTimesShownMonth();
+			tsm ++;
+			result.setTimesShownMonth(tsm);
+			save(result);
+		}
+		
 		return result;
 	}
 	

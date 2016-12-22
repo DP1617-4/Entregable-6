@@ -101,7 +101,7 @@ public class SystemConfigurationAdministratorController extends AbstractControll
 		
 		result = new ModelAndView("systemConfiguration/edit");
 		result.addObject("systemConfiguration", systemConfiguration);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "systemConfiguration/administrator/edit.do");
 		result.addObject("cancelURI", "welcome/index.do");
 

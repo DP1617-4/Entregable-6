@@ -21,8 +21,12 @@ public class StringToCurriculumConverter implements Converter<String, Curriculum
 		int id;
 
 		try {
-			id = Integer.valueOf(text);
-			result = curriculumRepository.findOne(id);
+			if(text == "")
+				result = null;
+			else{
+				id = Integer.valueOf(text);
+				result = curriculumRepository.findOne(id);
+			}
 		} catch (Throwable oops) {
 			throw new IllegalArgumentException(oops);
 		}

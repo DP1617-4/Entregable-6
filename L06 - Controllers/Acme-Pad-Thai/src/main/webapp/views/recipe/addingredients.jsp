@@ -25,11 +25,11 @@
 	<form:hidden path="ingredient"/>
 	<form:hidden path="recipe"/>
 
-	<form:label path="quantity">
+	<form:label path="quantityn">
 		<spring:message code="recipe.quantity" />:
 	</form:label>
-	<form:input path="quantity" />
-	<form:errors cssClass="error" path="quantity" />
+	<form:input type="number" path="quantityn" />
+	<form:errors cssClass="error" path="quantityn" />
 	<br />
 	
 	<form:label path="unit">

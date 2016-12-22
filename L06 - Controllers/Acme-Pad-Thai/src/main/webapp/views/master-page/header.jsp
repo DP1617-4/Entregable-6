@@ -54,10 +54,11 @@
 				</security:authorize>
 			</ul>
 		</li>	
-		<li><a class="fNiv"><spring:message code="master.page.users"/></a>
+		<li><a class="fNiv"><spring:message code="master.page.social.users"/></a>
 			<ul>
 				<li class="arrow"></li>
 				<li><a href="user/list.do"><spring:message code="master.page.users.list"/></a></li>
+				<li><a href="nutritionist/list.do"><spring:message code="master.page.nutritionists.list"/></a></li>
 			</ul>
 		</li>	
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
@@ -66,22 +67,23 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="campaign/sponsor/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+						<li><a href="campaign/sponsor/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
 					</security:authorize>	
-					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
-								
+					<security:authorize access="hasRole('ADMIN')">
+						<li><a href="campaign/administrator/list.do"><spring:message code="master.page.campaign.list" /></a></li>
+					</security:authorize>
 				</ul>
 			</li>
 		</security:authorize>
 		
-		<security:authorize access="hasRole('ADMIN')">
+		<security:authorize access="hasAnyRole('ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>	
 				</ul>
-			</li>
+			</li>	
 		</security:authorize>
-
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
 				<ul>
@@ -89,9 +91,10 @@
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="bill/sponsor/list.do"><spring:message code="master.page.bills.list" /></a></li>	
 					</security:authorize>
-          <security:authorize access="hasRole('ADMIN')">
-						<li><a href="bill/administrator/generate.do">placeholder</a></li>	
-            <li><a href="bill/administrator/mail.do">placeholder</a></li>	
+          			<security:authorize access="hasRole('ADMIN')">
+          				<li><a href="bill/administrator/list.do"><spring:message code="master.page.bills.list"/></a></li>
+						<li><a href="bill/administrator/compute.do"><spring:message code="master.page.administrator.compute"/></a></li>	
+            			<li><a href="bill/administrator/mail.do"><spring:message code="master.page.administrator.email"/></a></li>	
 					</security:authorize>
 				</ul>
 			</li>
@@ -167,8 +170,8 @@
 								<li><a><spring:message code = "master.page.curricula"/></a>
 									<ul>
 										<li class="arrow"></li>
-										<li><a href="curricula/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
-										<li><a href="curricula/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
+										<li><a href="curriculum/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
+										<li><a href="curriculum/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
 									</ul>
 								</li>	
 							</ul>

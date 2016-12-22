@@ -77,7 +77,7 @@ public class CookAdministratorController extends AbstractController {
 		
 		result = new ModelAndView("cook/edit");
 		result.addObject("cook", cook);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "cook/administrator/edit.do");
 		result.addObject("cancelURI", "user/list.do");
 

@@ -13,7 +13,6 @@ import services.RecipeService;
 import services.SocialUserService;
 import controllers.AbstractController;
 import domain.Recipe;
-import domain.Score;
 import forms.FilterString;
 
 @Controller
@@ -53,10 +52,9 @@ public class RecipeSocialUserController extends AbstractController {
 	public ModelAndView like(@RequestParam int recipeId) {
 
 		ModelAndView result;
-		Score score;
 		Recipe recipe;
 		recipe = recipeService.findOne(recipeId);
-		score = socialUserService.like(recipe);
+		socialUserService.like(recipe);
 		recipe = recipeService.save(recipe);
 		
 		result = new ModelAndView("redirect:/recipe/display.do?recipeId=" + recipe.getId());
@@ -68,10 +66,10 @@ public class RecipeSocialUserController extends AbstractController {
 	public ModelAndView dislike(@RequestParam int recipeId) {
 
 		ModelAndView result;
-		Score score;
+		
 		Recipe recipe;
 		recipe = recipeService.findOne(recipeId);
-		score = socialUserService.dislike(recipe);
+		socialUserService.dislike(recipe);
 		recipe = recipeService.save(recipe);
 		
 		result = new ModelAndView("redirect:/recipe/display.do?recipeId=" + recipe.getId());

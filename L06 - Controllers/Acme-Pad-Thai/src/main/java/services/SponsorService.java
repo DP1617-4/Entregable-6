@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -68,13 +69,15 @@ public class SponsorService {
 	}
 
 	public Sponsor save(Sponsor sponsor) {
-		// Creamos un codificador de hash para la password.
-		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		// Convertimos la pass del usuario a hash.
-		String pass = encoder.encodePassword(sponsor.getUserAccount()
-				.getPassword(), null);
-		// Creamos una nueva cuenta y le pasamos los parametros.
-		sponsor.getUserAccount().setPassword(pass);
+		if(sponsor.getUserAccount().getId()==0){
+			// Creamos un codificador de hash para la password.
+			Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+			// Convertimos la pass del usuario a hash.
+			String pass = encoder.encodePassword(sponsor.getUserAccount()
+					.getPassword(), null);
+			// Creamos una nueva cuenta y le pasamos los parametros.
+			sponsor.getUserAccount().setPassword(pass);
+		}
 		Sponsor saved = sponsorRepository.save(sponsor);
 		if (sponsor.getId() <= 0)
 			folderService.initFolders(saved);
@@ -107,8 +110,24 @@ public class SponsorService {
 	}
 
 	public Double[] calculateMinAvgMaxFromCampaignsOfSponsorsByDate() {
-		return sponsorRepository
-				.calculateMinAvgMaxFromCampaignsOfSponsorsByDate();
+		List<Long> aux =  sponsorRepository.calculateMinAvgMaxFromCampaignsOfSponsorsByDate();
+		Double[] result;
+		Double min = aux.get(0).doubleValue();
+		Double max = min;
+		Double avg = min;
+		Double total = 0.0;
+		for(Long d:aux){
+			if(d < min){
+				min = d.doubleValue();
+			}
+			if(d > max){
+				max = d.doubleValue();
+			}
+			total+=d;
+		}
+		avg = (total)/aux.size();
+		result = new Double[]{min,avg,max};
+		return result;
 	}
 
 	public Collection<String> findCompaniesNameOfSponsors() {

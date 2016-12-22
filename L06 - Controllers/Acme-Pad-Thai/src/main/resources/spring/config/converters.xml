@@ -22,8 +22,6 @@
 			Add your own converters using entries of the following form: 
 			<bean class="converters.Class1ToClass2" /> 
 		-->
-		<bean class="converters.AuthorityToStringConverter" />
-		<bean class="converters.StringToAuthorityConverter" />
 		
 		<bean class="converters.ActorToStringConverter" />
 		<bean class="converters.StringToActorConverter" />
@@ -33,6 +31,9 @@
 		
 		<bean class="converters.BannerToStringConverter" />
 		<bean class="converters.StringToBannerConverter" />
+		
+		<bean class="converters.BillToStringConverter" />
+		<bean class="converters.StringToBillConverter" />
 		
 		<bean class="converters.CampaignToStringConverter" />
 		<bean class="converters.StringToCampaignConverter" />
@@ -69,6 +70,9 @@
 		
 		<bean class="converters.MessageToStringConverter" />
 		<bean class="converters.StringToMessageConverter" />
+		
+		<bean class="converters.NutritionistToStringConverter" />
+		<bean class="converters.StringToNutritionistConverter" />
 		
 		<bean class="converters.PropertyToStringConverter" />
 		<bean class="converters.StringToPropertyConverter" />

@@ -61,7 +61,7 @@ public class WelcomeController extends AbstractController {
 		Banner banner;
 		Collection<MasterClass> masterClasses;
 
-		banner = bannerService.findRandomStarBanner();
+		banner = bannerService.findRandomBanner(true);
 		masterClasses = masterClassService.findPromoted();
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

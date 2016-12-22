@@ -64,7 +64,7 @@ public class MessageActorController extends AbstractController{
 		}catch(Throwable oops){
 			
 			result = new ModelAndView("redirect:/folder/actor/list.do");
-			result.addObject("message", "message.folder.wrong");
+			result.addObject("errorMessage", "message.folder.wrong");
 			
 		}
 		

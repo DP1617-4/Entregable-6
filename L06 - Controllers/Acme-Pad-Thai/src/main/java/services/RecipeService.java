@@ -12,17 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import repositories.RecipeRepository;
+import security.LoginService;
+import security.UserAccount;
 import domain.Comment;
 import domain.Contest;
 import domain.Quantity;
 import domain.Recipe;
 import domain.Score;
+import domain.SocialUser;
 import domain.Step;
 import domain.User;
-
-import repositories.RecipeRepository;
-import security.LoginService;
-import security.UserAccount;
 
 
 
@@ -76,7 +76,7 @@ public class RecipeService {
 	
 	public Collection<Recipe> findAllByUserFollowed(){
 		
-		User principal = userService.findByPrincipal(); 
+		SocialUser principal = socialUserService.findByPrincipal(); 
 		Collection<Recipe> result = new ArrayList<Recipe>();
 		Collection<User> followed = socialUserService.findAllFollowed(principal);
 		

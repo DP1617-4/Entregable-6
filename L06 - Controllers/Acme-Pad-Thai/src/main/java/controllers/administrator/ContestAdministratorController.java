@@ -1,7 +1,5 @@
 package controllers.administrator;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ContestService;
 import controllers.AbstractController;
 import domain.Contest;
-import domain.Recipe;
 
 @Controller
 @RequestMapping("/contest/administrator")
@@ -52,7 +49,7 @@ public class ContestAdministratorController extends AbstractController {
 		
 		result = new ModelAndView("contest/edit");
 		result.addObject("contest", contest);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}
@@ -112,7 +109,7 @@ public class ContestAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		try {
-			contestService.delete2(contest);
+			contestService.delete(contest);
 			result = new ModelAndView("redirect:/contest/list.do");
 		} catch (Throwable oops) {
 			result = createEditModelAndView(contest, "contest.commit.error");

@@ -1,5 +1,7 @@
 package services;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,6 +59,8 @@ public class EndorserService {
 		}
 		
 		
+		
+		
 		//Auxiliary methods
 
 		public Boolean checkPrincipal(Endorser e){
@@ -71,6 +75,13 @@ public class EndorserService {
 			
 		}
 		//Our other bussiness methods
+
+		public Collection<Endorser> findAll() {
+			
+			return endorserRepository.findAll();
+		}
+
+		
 		
 
 }

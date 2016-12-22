@@ -20,16 +20,16 @@ public class Value extends DomainEntity {
 	
 	//Attributes
 	
-	private double value;
+	private double valuen;
 
 	@Min(0)
 	@NotNull
-	public double getValue() {
-		return value;
+	public double getValuen() {
+		return valuen;
 	}
 
-	public void setValue(double value) {
-		this.value = value;
+	public void setValuen(double valuen) {
+		this.valuen = valuen;
 	}
 	
 	//Relationships

@@ -18,7 +18,7 @@
 	
 	<!-- User accounts -->
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin1" />
+		<property name="username" value="admin" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
 			<list>
@@ -64,30 +64,6 @@
 			</list>
 		</property>
 	</bean>
-
-	<bean id="userAccount3" class="security.UserAccount">
-		<property name="username" value="super" />
-		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="USER" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="COOK" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="SPONSOR" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="NUTRITIONIST" />
-				</bean>
-			</list>
-		</property>
-	</bean>
 	
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="nutritionist1" />
@@ -115,7 +91,7 @@
 	
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="sponsor1" />
-		<property name="password" value="08391c959fc8bd0b672c596c4d6bcdcd" />
+		<property name="password" value="42c63ad66d4dc07ed17753772bef96d6" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -127,7 +103,7 @@
 	
 	<bean id="userAccount6" class="security.UserAccount">
 		<property name="username" value="cook1" />
-		<property name="password" value="e3e90fd6d2a7c4661a1a3acf2f60bc6d" />
+		<property name="password" value="21c4ffc0cb0f29298351f18b3e468c6a" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -175,7 +151,7 @@
 	
 	<bean id="userAccount13" class="security.UserAccount">
 		<property name="username" value="system" />
-		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="password" value="54b53072540eeeb8f8e9343e71f28176" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -1260,7 +1236,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 				<ref bean="category2" />
 			</list>
 		</property>
-		<property name="father" ref="category1"/>
+		<property name="father"><null/></property>
 		<property name="deleted" value="false"/>
 	</bean>
 	
@@ -1310,7 +1286,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 			<list>
 			</list>
 		</property>
-		<property name="father" ref="category3"/>
+		<property name="father"><null/></property>
 		<property name="deleted" value="false"/>
 	</bean>
 
@@ -1414,47 +1390,47 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	
 	<!-- VALUE -->
 	<bean id="value1" class="domain.Value">
-		<property name="value" value="0.16" />
+		<property name="valuen" value="0.16" />
 		<property name="ingredient" ref="ingredient1"/>
 		<property name="property" ref="property1"/>
 	</bean>
 	
 	<bean id="value2" class="domain.Value">
-		<property name="value" value="341.0" />
+		<property name="valuen" value="341.0" />
 		<property name="ingredient" ref="ingredient1"/>
 		<property name="property" ref="property2"/>
 	</bean>
 	
 	<bean id="value3" class="domain.Value">
-		<property name="value" value="0.0" />
+		<property name="valuen" value="0.0" />
 		<property name="ingredient" ref="ingredient3"/>
 		<property name="property" ref="property3"/>
 	</bean>
 
 	<!-- QUANTITY -->
 	<bean id="quantity1" class="domain.Quantity">
-		<property name="quantity" value="400.0"/> 
+		<property name="quantityn" value="400.0"/> 
 		<property name="unit" value="grams"/>
 		<property name="recipe" ref="recipe2"/>
 		<property name="ingredient" ref="ingredient1"/>
 	</bean>
 	
 	<bean id="quantity2" class="domain.Quantity">
-		<property name="quantity" value="200.0"/> 
+		<property name="quantityn" value="200.0"/> 
 		<property name="unit" value="millilitres"/>
 		<property name="recipe" ref="recipe2"/>
 		<property name="ingredient" ref="ingredient2"/>
 	</bean>
 	
 	<bean id="quantity3" class="domain.Quantity">
-		<property name="quantity" value="1.0"/> 
+		<property name="quantityn" value="1.0"/> 
 		<property name="unit" value="kilograms"/>
 		<property name="recipe" ref="recipe1"/>
 		<property name="ingredient" ref="ingredient3"/>
 	</bean>
 	
 	<bean id="quantity4" class="domain.Quantity">
-		<property name="quantity" value="1.0"/> 
+		<property name="quantityn" value="1.0"/> 
 		<property name="unit" value="kilograms"/>
 		<property name="recipe" ref="recipe3"/>
 		<property name="ingredient" ref="ingredient3"/>
@@ -1739,7 +1715,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="creditCard1" class="domain.CreditCard">
 		<property name="holderName" value="Francis"/>
 		<property name="brandName" value="VISA"/>
-		<property name="cCNumber" value="1111222244446666"/>
+		<property name="creditCardNumber" value="1111222244446666"/>
 		<property name="expirationMonth" value="12"/>
 		<property name="expirationYear" value="19"/>
 		<property name="CVV" value="842"/>
@@ -1748,7 +1724,7 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	<bean id="creditCard2" class="domain.CreditCard">
 		<property name="holderName" value="Ajax"/>
 		<property name="brandName" value="VISA"/>
-		<property name="cCNumber" value="3333555577779999"/>
+		<property name="creditCardNumber" value="3333555577779999"/>
 		<property name="expirationMonth" value="5"/>
 		<property name="expirationYear" value="21"/>
 		<property name="CVV" value="342"/>
