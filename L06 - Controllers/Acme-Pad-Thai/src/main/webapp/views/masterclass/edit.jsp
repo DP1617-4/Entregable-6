@@ -44,6 +44,15 @@
 	<jstl:choose>
 		<jstl:when test="${display}">
 			<fieldset>
+				<legend><spring:message code="masterClass.cook" /></legend>
+				${masterClass.cook.surname}, ${masterClass.cook.name}
+			</fieldset>
+		</jstl:when>
+	</jstl:choose>
+	
+	<jstl:choose>
+		<jstl:when test="${display}">
+			<fieldset>
 			<legend><spring:message code="masterClass.description" /></legend>
 			${masterClass.title}
 			</fieldset>
@@ -57,15 +66,6 @@
 	</jstl:choose>
 	<form:errors cssClass="error" path="description" />
 	<br />
-	
-	<jstl:choose>
-		<jstl:when test="${display}">
-			<fieldset>
-				<legend>Placeholder</legend>
-				${masterClass.cook.surname}, ${masterClass.cook.name}
-			</fieldset>
-		</jstl:when>
-	</jstl:choose>
 	
 	<display:table pagesize="10" class="displaytag" keepStatus="true"
 		name="learningMaterials" requestURI="${requestURI}" id="row">

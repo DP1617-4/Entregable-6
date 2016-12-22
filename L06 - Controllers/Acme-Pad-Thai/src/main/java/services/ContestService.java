@@ -26,9 +26,13 @@ public class ContestService {
 			//supporting services-------------------
 			@Autowired
 			private RecipeService recipeService;
+
+			@Autowired
+			private AdministratorService administratorService;
 			//Basic CRUD methods-------------------
 			
 			public Contest create(){
+				administratorService.checkAdministrator();
 				
 				Contest created;
 				created = new Contest();
@@ -36,13 +40,14 @@ public class ContestService {
 			}
 			
 			public Contest findOne(int contestId){
-				
+				administratorService.checkAdministrator();				
 				Contest retrieved;
 				retrieved = contestRepository.findOne(contestId);
 				return retrieved;
 			}
 
 			public Contest save(Contest contest){
+				administratorService.checkAdministrator();
 				Contest saved;
 				Contest previous;
 				Date cTime = new Date();
@@ -61,6 +66,7 @@ public class ContestService {
 			}
 			
 			public void delete(Contest contest){
+				administratorService.checkAdministrator();
 				Assert.isTrue(contest.getQualified().isEmpty());
 				contestRepository.delete(contest);
 				
