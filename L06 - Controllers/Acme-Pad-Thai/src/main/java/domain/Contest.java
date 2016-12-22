@@ -8,6 +8,8 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -31,6 +33,7 @@ public class Contest extends DomainEntity {
 	private Date openingTime;
 	private Date closingTime;
 	private boolean deleted;
+	private boolean closed;
 	
 	@NotBlank
 	public String getTitle() {
@@ -55,17 +58,30 @@ public class Contest extends DomainEntity {
 	public void setClosingTime(Date closingTime) {
 		this.closingTime = closingTime;
 	}
-	@NotNull
+	
+	
 	public boolean getDeleted() {
 		return deleted;
 	}
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
+	
+	@Transient
+	public boolean getClosed() {
+		return closed;
+	}
+	public void setClosed(boolean closed) {
+		this.closed = closed;
+	}
+	
 
 	
 	//Relationships
 	
+	
+
+
 	private Collection<Recipe> qualified;
 	private Collection<Recipe> winners;
 
@@ -85,5 +101,16 @@ public class Contest extends DomainEntity {
 	}
 	public void setWinners(Collection<Recipe> winners) {
 		this.winners = winners;
+	}
+	
+	
+	
+	@PostLoad
+	protected void initClosed(){
+		boolean aux = false;
+		Date cTime = new Date();
+		if(cTime.after(closingTime))
+			aux = true;
+		this.closed = aux;
 	}
 }

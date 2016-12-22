@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import repositories.PropertyRepository;
 import domain.Property;
@@ -60,7 +61,7 @@ public class PropertyService {
 		//Other Bussiness Methods
 		
 		public Property delete2(Property property){
-			
+			Assert.isTrue(property.getValues().isEmpty());
 			property.setDeleted(true);
 			Property saved = this.save(property);
 			return saved;

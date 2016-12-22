@@ -101,7 +101,7 @@ public class SponsorController extends AbstractController {
 		ModelAndView result;
 		result = new ModelAndView("sponsor/edit");
 		result.addObject("sponsor", sponsor);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "security/login.do");
 		result.addObject("cancelURI", "welcome/index.do");
 		return result;

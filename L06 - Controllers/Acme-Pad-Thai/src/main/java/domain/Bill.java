@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
@@ -60,6 +61,7 @@ public class Bill extends DomainEntity{
 			}
 
 			@NotBlank
+			@Column(length=100000000)
 			public String getDescription() {
 				return description;
 			}

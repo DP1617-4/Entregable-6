@@ -107,7 +107,7 @@ public class NutritionistNutritionistController extends AbstractController {
 
 		result = new ModelAndView("nutritionist/edit");
 		result.addObject("nutritionist", nutritionist);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", requestURI);
 		
 		return result;

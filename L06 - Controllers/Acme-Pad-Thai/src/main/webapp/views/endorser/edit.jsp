@@ -9,7 +9,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="endorser/edit.do" modelAttribute="endorser">
+<form:form action="endorser/nutritionist/edit.do" modelAttribute="endorser">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -38,7 +38,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="endorser.cancel" />"
-		onclick="javascript: relativeRedir('curriculum/display.do');" />
+		onclick="javascript: relativeRedir('curriculum/nutritionist/display.do');" />
 	<br />
 	
 	

@@ -58,7 +58,7 @@ public class CurriculumNutritionistController extends AbstractController {
 
 		result = new ModelAndView("curriculum/edit");
 		result.addObject("curriculum", curriculum);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}

@@ -1,4 +1,4 @@
-package controllers.administrator;
+package controllers.cook;
 
 import javax.validation.Valid;
 
@@ -8,79 +8,79 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import services.CookService;
 
+import services.CookService;
 import controllers.AbstractController;
 import domain.Cook;
 
 @Controller
-@RequestMapping("/cook/administrator")
-public class CookAdministratorController extends AbstractController {
+@RequestMapping("/cook/cook")
+public class CookCookController extends AbstractController {
 
 	// Services ---------------------------------------------------------------
-
+	
 	@Autowired
-	private CookService cookService;
+	CookService cookService;
 
 	// Constructors -----------------------------------------------------------
 
-	public CookAdministratorController() {
+	public CookCookController() {
 		super();
 	}
 
 	// Listing ----------------------------------------------------------------
-
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit() {
 		ModelAndView result;
 		Cook cook;
 
-		cook = cookService.create();
+		cook = cookService.findByPrincipal();		
 		result = createEditModelAndView(cook);
+		
+		result.addObject("cook", cook);
 
 		return result;
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@Valid Cook cook, BindingResult binding) {
-		
+	public ModelAndView save(@Valid Cook cook, BindingResult binding) {
 		ModelAndView result;
-		
-		if (binding.hasErrors()) {
+		if(binding.hasErrors()){
 			result = createEditModelAndView(cook);
-		} else {
-				try {
-					cookService.save(cook);
-					result = new ModelAndView("redirect:../../user/list.do");					
-				} catch (Throwable oops) {
-					result = createEditModelAndView(cook, "cook.commit.error");
-				}
+		}
+		else{
+			try{
+				cook = cookService.save(cook);
+				result = new ModelAndView(
+						"redirect:/cook/display.do?cookId="
+								+ cook.getId());
+			} catch (Throwable oops){
+				result = createEditModelAndView(cook, "cook.commit.error");
+			}
 		}
 		return result;
 	}
 	
+
 	
 	protected ModelAndView createEditModelAndView(Cook cook) {
 		ModelAndView result;
 
 		result = createEditModelAndView(cook, null);
-		result.addObject("requestURI", "cook/administrator/edit.do");
-		result.addObject("cancelURI", "user/list.do");
-		
+
 		return result;
-	}	
-	
-	
-	
+	}
 	protected ModelAndView createEditModelAndView(Cook cook, String message) {
 		ModelAndView result;
 		
+		String requestURI = "cook/cook/edit.do";
+
 		result = new ModelAndView("cook/edit");
 		result.addObject("cook", cook);
 		result.addObject("errorMessage", message);
-		result.addObject("requestURI", "cook/administrator/edit.do");
-		result.addObject("cancelURI", "user/list.do");
-
+		result.addObject("requestURI", requestURI);
+		
 		return result;
 	}
 

@@ -46,7 +46,7 @@ public class IngredientNutritionistController extends AbstractController {
 		super();
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
- 	public ModelAndView list() {
+ 	public ModelAndView list(@RequestParam(required=false) String errorMessage) {
  		
  		ModelAndView result;
  		Collection<Recipe> recipes;
@@ -62,6 +62,7 @@ public class IngredientNutritionistController extends AbstractController {
  		result.addObject("filterString", filter);
  		result.addObject("properties", properties);
  		result.addObject("ingredients", ingredients);
+ 		result.addObject("errorMessage", errorMessage);
  		
  		return result;
  	}
@@ -79,7 +80,7 @@ public class IngredientNutritionistController extends AbstractController {
 
 		result = new ModelAndView("ingredient/edit");
 		result.addObject("ingredient", ingredient);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}
@@ -140,7 +141,7 @@ public class IngredientNutritionistController extends AbstractController {
 			
 			result = new ModelAndView("redirect:/ingredient/nutritionist/list.do");
 		} catch (Throwable oops) {
-			result = createEditModelAndView(ingredient, "ingredient.commit.error");
+			result = createEditModelAndView(ingredient, "ingredient.delete.error");
 		}
 
 		return result;
@@ -274,10 +275,15 @@ public class IngredientNutritionistController extends AbstractController {
 	public ModelAndView deleteProperty(@RequestParam int propertyId) {
 
 		ModelAndView result;
+		try{
 		Property property = propertyService.findOne(propertyId);
 		propertyService.delete2(property);
 		result = new ModelAndView(
 				"redirect:list.do");
+		}catch(Throwable oops){
+			result = new ModelAndView("redirect:list.do");
+			result.addObject("errorMessage", "property.delete.error");
+		}
 		return result;
 	}
 	

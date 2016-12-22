@@ -104,6 +104,7 @@ public class CampaignService {
 		Assert.notNull(sponsor,"Dear user, you are not a sponsor.");
 		Assert.isTrue(!campaignPassed(campaign));
 		Assert.isTrue(!activeCampaign(campaign));
+		Assert.isTrue(campaign.getEndDate().after(campaign.getStartDate()));
 		Campaign saved = this.save(campaign);
 		return saved;
 	}

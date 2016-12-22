@@ -109,7 +109,7 @@ public class UserUserController extends AbstractController {
 
 		result = new ModelAndView("user/edit");
 		result.addObject("user", user);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", requestURI);
 		
 		return result;

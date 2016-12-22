@@ -48,6 +48,14 @@ public class CategoryService {
 			
 			public void delete(Category category){
 				Assert.isTrue(category.getRecipes().isEmpty(),"Solo pueden borrarse categorías sin recetas.");
+				Category son;
+				if(!category.getSons().isEmpty()){
+					for(Category c: category.getSons()){
+						son = c;
+						son.setFather(null);
+						save(son);
+					}
+				}
 				categoryRepository.delete(category);
 				
 			}

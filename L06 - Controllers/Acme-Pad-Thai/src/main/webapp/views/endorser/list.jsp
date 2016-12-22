@@ -16,7 +16,7 @@
 	<!-- Action links -->
 
 	<display:column>
-			<a href="endorser/edit.do?endorserId=${row.id}">
+			<a href="endorser/nutritionist/edit.do?endorserId=${row.id}">
 				<spring:message	code="endorser.edit" />
 			</a>
 	</display:column>
@@ -27,7 +27,9 @@
 	<display:column property="name" title="${nameHeader}" sortable="true" />
 
 	<spring:message code="endorser.homePage" var="homePageHeader" />
-	<display:column property="homePage" title="${homePageHeader}" sortable="true"/>
+	<display:column title="${homePageHeader}" sortable="true">
+		<a href="${row.homePage}">${row.homePage} </a>
+	</display:column>
 
 </display:table>
 
@@ -35,7 +37,7 @@
 
 <br/>
 
-<a href="endorser/create.do"> <spring:message
+<a href="endorser/nutritionist/create.do"> <spring:message
 code="endorser.create" />
 </a>
 

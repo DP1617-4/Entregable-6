@@ -126,7 +126,7 @@ public class SocialIdentityActorController extends AbstractController {
 
 			result = new ModelAndView("socialIdentity/edit");
 			result.addObject("socialIdentity", socialIdentity);
-			result.addObject("message", message);
+			result.addObject("errorMessage", message);
 
 			return result;
 		}
