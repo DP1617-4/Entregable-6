@@ -19,13 +19,11 @@
 <form:form action="${requestURI}" modelAttribute="cook">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="userAccount.id" />
-	<form:hidden path="userAccount.version" />
+	<form:hidden path="userAccount" />
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
 	<form:hidden path="enroled" />
 	<form:hidden path="masterClasses" />
-	<form:hidden path="userAccount.authorities" />
 	
 	<form:label path="name">
 		<spring:message code="cook.name" />:
@@ -67,7 +65,7 @@
 		value="<spring:message code="cook.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="cook.cancel" />"
-		onclick="javascript: relativeRedir('${cancelURI}');" />
+		onclick="javascript: window.location.replace('${cancelURI}');" />
 	<br />
 	
 </form:form>

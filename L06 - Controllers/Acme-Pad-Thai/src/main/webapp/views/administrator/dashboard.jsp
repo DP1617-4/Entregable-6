@@ -60,7 +60,7 @@
 </table>
 
 
-<spring:message	code="administrator.contest.most.qualified.recipes" /> <a href="contest/display.do?contestId=${contestWithMostQualifiedRecipes.id }">${contestWithMostQualifiedRecipes.title}</a><br/>
+<spring:message	code="administrator.contest.most.qualified.recipes" /> ${contestWithMostQualifiedRecipes.title}<br/>
 
 <table>
 <thead>
@@ -280,7 +280,7 @@
 	<display:column>
 	<jstl:set var="user" value="${row.id}"/> 
 	
-			<a href="user/display.do?userId=${row.id}">
+			<a href="sponsor/display.do?sponsorId=${row.id}">
 				<spring:message	code="administrator.user.display" />
 			</a>
 	
@@ -378,7 +378,7 @@
 	<display:column>
 	<jstl:set var="user" value="${row.id}"/> 
 	
-			<a href="user/display.do?userId=${row.id}">
+			<a href="cook/display.do?cookId=${row.id}">
 				<spring:message	code="administrator.user.display" />
 			</a>
 	

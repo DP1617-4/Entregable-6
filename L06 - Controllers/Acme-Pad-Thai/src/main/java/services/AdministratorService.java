@@ -68,10 +68,9 @@ public class AdministratorService {
 
 
 	public Administrator findByPrincipal(){
-				
-			    UserAccount userAccount = LoginService.getPrincipal();
-			    Administrator administrator;
-				administrator = administratorRepository.findOneByUserAccountId(userAccount.getId());
-				return administrator;
-			}
+		UserAccount userAccount = LoginService.getPrincipal();
+		Administrator administrator;
+		administrator = administratorRepository.findOneByUserAccountId(userAccount.getId());
+		return administrator;
+	}
 }

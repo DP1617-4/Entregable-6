@@ -42,12 +42,13 @@ name="nutritionist" requestURI="${requestURI}" id="row">
 </display:table>
 
 <br/>
-
-<jstl:if test="${nutritionist.curriculum != null}">
-	<a href="curriculum/nutritionist/display.do?curriculumId=${curriculumHeader}"> <spring:message
-			code="nutritionist.curriculum.display" />
-	</a>
-</jstl:if>
+<security:authorize access="hasRole('NUTRITIONIST')">
+	<jstl:if test="${nutritionist.curriculum != null}">
+		<a href="curriculum/nutritionist/display.do?curriculumId=${nutritionist.curriculum.id}"> <spring:message
+				code="nutritionist.curriculum.display" />
+		</a>
+	</jstl:if>
+</security:authorize>
 
 <jstl:if test="${nutritionist.curriculum == null}">
 	<a href="curriculum/nutritionist/create.do"> <spring:message

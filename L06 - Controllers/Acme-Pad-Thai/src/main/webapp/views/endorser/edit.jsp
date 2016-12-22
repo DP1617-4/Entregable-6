@@ -38,7 +38,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="endorser.cancel" />"
-		onclick="javascript: relativeRedir('curriculum/nutritionist/display.do');" />
+		onclick="javascript:  window.location.replace('curriculum/nutritionist/display.do');" />
 	<br />
 	
 	
