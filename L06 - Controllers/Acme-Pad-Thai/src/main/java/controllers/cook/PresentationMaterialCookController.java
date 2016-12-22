@@ -103,9 +103,6 @@ public class PresentationMaterialCookController extends AbstractController {
 		ModelAndView result;
 
 		result = createEditModelAndView(presentationMaterial, null);
-		result.addObject("requestURI", "presentationMaterial/cook/edit.do");
-		result.addObject("cancelURI", "masterClass/cook/edit.do?masterClassId="+presentationMaterial.getMasterClass().getId());
-		
 		return result;
 	}	
 	

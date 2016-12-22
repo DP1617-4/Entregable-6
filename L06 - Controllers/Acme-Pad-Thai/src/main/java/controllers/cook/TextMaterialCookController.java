@@ -71,7 +71,7 @@ public class TextMaterialCookController extends AbstractController {
 		ModelAndView result;
 		
 		if (binding.hasErrors()) {
-			result = createEditModelAndView(textMaterial);
+			result = createEditModelAndView(textMaterial, binding.getFieldError(arg0));
 		} else {
 				try {
 					textMaterialService.save(textMaterial);
@@ -103,8 +103,6 @@ public class TextMaterialCookController extends AbstractController {
 		ModelAndView result;
 
 		result = createEditModelAndView(textMaterial, null);
-		result.addObject("requestURI", "textMaterial/cook/edit.do");
-		result.addObject("cancelURI", "masterClass/cook/edit.do?masterClassId="+textMaterial.getMasterClass().getId());
 		
 		return result;
 	}	

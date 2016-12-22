@@ -130,7 +130,7 @@
 </jstl:if>
 </security:authorize>
 
-<display:table pagesize="10" class="displaytag" keepStatus="true"
+<display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="quantities" requestURI="recipe/display.do" id="row">
 	<!-- Attributes -->
 	
@@ -177,15 +177,18 @@
 </security:authorize>
 
 
-<display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="steps" requestURI="recipe/display.do" id="row">
+<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="steps" requestURI="recipe/display.do" id="row" defaultsort="1" defaultorder="ascending">
 	<!-- Attributes -->
+	
+	<spring:message code="recipe.step.number" var="numberHeader" />
+	<display:column property="stepNumber" title="${numberHeader}" sortable="true" />
 	
 	<spring:message code="recipe.step.description" var="descriptionHeader" />
 	<display:column property="description" title="${descriptionHeader}" sortable="false" />
 	
 	<spring:message code="recipe.step.hints" var="hintsHeader" />
-	<display:column property="hints" title="${hintsHeader}" sortable="true" />
+	<display:column property="hints" title="${hintsHeader}" sortable="false" />
 	
 	<spring:message code="recipe.step.pictures" var="picturesHeader" />
 	<display:column title="${picturesHeader}" sortable="false" >

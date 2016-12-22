@@ -51,7 +51,7 @@ public class CookAdministratorController extends AbstractController {
 		} else {
 				try {
 					cookService.save(cook);
-					result = new ModelAndView("redirect:../../user/list.do");					
+					result = new ModelAndView("redirect:/welcome/index.do");					
 				} catch (Throwable oops) {
 					result = createEditModelAndView(cook, "cook.commit.error");
 				}
@@ -64,8 +64,6 @@ public class CookAdministratorController extends AbstractController {
 		ModelAndView result;
 
 		result = createEditModelAndView(cook, null);
-		result.addObject("requestURI", "cook/administrator/edit.do");
-		result.addObject("cancelURI", "user/list.do");
 		
 		return result;
 	}	
@@ -79,7 +77,7 @@ public class CookAdministratorController extends AbstractController {
 		result.addObject("cook", cook);
 		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "cook/administrator/edit.do");
-		result.addObject("cancelURI", "user/list.do");
+		result.addObject("cancelURI", "welcome/index.do");
 
 		return result;
 	}

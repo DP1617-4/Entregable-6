@@ -41,7 +41,7 @@
 
 
 
-<display:table pagesize="10" class="displaytag" keepStatus="true"
+<display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="recipes" requestURI="${requestURI}" id="row">
 	<security:authentication property="principal" var ="loggedactor"/>
 	<security:authorize access="hasRole('USER')">

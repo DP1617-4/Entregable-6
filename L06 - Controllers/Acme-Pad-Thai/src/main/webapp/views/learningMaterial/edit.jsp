@@ -42,7 +42,7 @@
 	<form:label path="attachment">
 		<spring:message code="learningMaterial.attachment" />:
 	</form:label>
-	<form:textarea path="attachment" />
+	<form:input path="attachment" />
 	<form:errors cssClass="error" path="attachment" />
 	<br />
 	
@@ -59,7 +59,7 @@
 				<form:label path="path">
 					<spring:message code="learningMaterial.path" />:
 				</form:label>
-				<form:textarea path="path" />
+				<form:input path="path" />
 				<form:errors cssClass="error" path="path" />
 				<br/>
 			</jstl:when>
@@ -67,7 +67,7 @@
 				<form:label path="identifier">
 					<spring:message code="learningMaterial.identifier" />:
 				</form:label>
-				<form:textarea path="identifier" />
+				<form:input path="identifier" />
 				<form:errors cssClass="error" path="identifier" />
 				<br/>
 			</jstl:when>
