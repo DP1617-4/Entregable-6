@@ -112,7 +112,7 @@ public class VideoMaterialCookController extends AbstractController {
 	protected ModelAndView createEditModelAndView(VideoMaterial videoMaterial, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("learningMaterial/edit");
+		result = new ModelAndView("videoMaterial/edit");
 		result.addObject("learningMaterial", videoMaterial);
 		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "videoMaterial/cook/edit.do");

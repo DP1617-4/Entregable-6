@@ -111,7 +111,7 @@ public class PresentationMaterialCookController extends AbstractController {
 	protected ModelAndView createEditModelAndView(PresentationMaterial presentationMaterial, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("learningMaterial/edit");
+		result = new ModelAndView("presentationMaterial/edit");
 		result.addObject("learningMaterial", presentationMaterial);
 		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "presentationMaterial/cook/edit.do");
