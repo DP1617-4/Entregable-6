@@ -14,28 +14,28 @@
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 name="cook" requestURI="${requestURI}" id="row">
 
-	<spring:message code="cook.name" var=nameHeader/>
+	<spring:message code="cook.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="cook.surname" var=surnameHeader/>
+	<spring:message code="cook.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="cook.email" var=emailHeader/>
+	<spring:message code="cook.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="cook.phone" var=phoneHeader/>
+	<spring:message code="cook.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="cook.postalAddress" var=postalAddressHeader/>
+	<spring:message code="cook.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 	
 </display:table>
 
-<br/>
+<security:authorize access="hasRole('COOK')">
+	<br/>
+	<a href="masterClass/list.do?cookId=${cook.id}"><spring:message code="cook.list.master.classes"/></a>
 
-	<a href="masterclass/list.do?cookId=${cook.id}"><spring:message code="cook.list.master.classes"/></a>
-
-<br />
-	<a href="cook/edit.do"><spring:message code="cook.edit"/></a>
-	
+	<br />
+	<a href="cook/cook/edit.do"><spring:message code="cook.edit"/></a>
+</security:authorize>
 <br />

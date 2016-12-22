@@ -23,6 +23,7 @@
 	<form:hidden path="followers" />
 	<form:hidden path="followed" />
 	<form:hidden path="userAccount.authorities" />
+	
 	<jstl:if test="${nutritionist.id!=0}">
 	<form:hidden path="userAccount.username" />
 	<form:hidden path="userAccount.password" />
