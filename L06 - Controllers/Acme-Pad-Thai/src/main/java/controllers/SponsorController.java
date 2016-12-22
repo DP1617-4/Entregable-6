@@ -8,6 +8,7 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.SponsorService;
@@ -28,13 +29,22 @@ public class SponsorController extends AbstractController {
 
 	// Listing ----------------------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int sponsorId) {
+
 		ModelAndView result;
+		Sponsor sponsor;
 		
-		Sponsor sponsor = sponsorService.findByPrincipal();
+		if(sponsorId==0){
+			
+			sponsor= sponsorService.findByPrincipal();
+		}
+		else{
+			
+			sponsor = sponsorService.findOne(sponsorId);
+		}
+
 
 		result = new ModelAndView("sponsor/display");
-		result.addObject("requestURI", "sponsor/display.do");
 		result.addObject("sponsor", sponsor);
 
 		return result;

@@ -20,12 +20,10 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="userAccount.id" />
-	<form:hidden path="userAccount.version" />
+	<form:hidden path="userAccount" />
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
 	<form:hidden path="enroled" />
-	<form:hidden path="userAccount.authorities" />
 	
 	<form:label path="name">
 		<spring:message code="administrator.name" />:
@@ -66,7 +64,7 @@
 		value="<spring:message code="administrator.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="administrator.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="javascript: window.location.replace('welcome/index.do');" />
 	<br />
 	
 	

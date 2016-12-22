@@ -48,5 +48,6 @@ name="sponsor" requestURI="${requestURI}" id="row">
 	<display:column property="creditCard.CVV" title="${CVV}"/>
 	
 </display:table>
-
+<security:authorize access="hasRole('SPONSOR')">
 	<a href="sponsor/edit.do"><spring:message code="sponsor.edit"/></a>
+</security:authorize>

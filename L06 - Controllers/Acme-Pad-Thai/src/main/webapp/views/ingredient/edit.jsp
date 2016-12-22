@@ -50,7 +50,7 @@
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="ingredient.cancel" />"
-		onclick="location.href = 'ingredient/list.do';" />&nbsp;
+		onclick="location.href = 'ingredient/nutritionist/list.do';" />&nbsp;
 	<br />
 
 	
