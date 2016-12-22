@@ -269,7 +269,7 @@
 </tbody>
 </table>
 
-<spring:message	code="administrator.sponsor.not.managing" />
+<spring:message	code="administrator.sponsor.not.managing" /><br/>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 	name="sponsorNotManagedCampaign3Months" requestURI="${requestURI}" id="row">
@@ -344,12 +344,13 @@
 <table>
 <thead>
 	<tr>
-		<th colspan = "3"><spring:message	code="administrator.masterClass.per.cook" /></th>
+		<th colspan = "4"><spring:message	code="administrator.masterClass.per.cook" /></th>
 	</tr>
 	<tr>
 		<th><spring:message	code="administrator.min" /></th>
 		<th><spring:message	code="administrator.average" /></th>
 		<th><spring:message	code="administrator.max" /></th>
+		<th><spring:message	code="administrator.stddev" /></th>
 	</tr>
 </thead>
 <tbody>
@@ -357,6 +358,7 @@
 		<td>${masterClassesPerCook[0]}</td>
 		<td>${masterClassesPerCook[1]}</td>
 		<td>${masterClassesPerCook[2]}</td>
+		<td>${masterClassesPerCook[3]}</td>
 	</tr>
 </tbody>
 </table>
