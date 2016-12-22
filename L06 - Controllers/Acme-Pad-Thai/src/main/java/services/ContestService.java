@@ -55,6 +55,7 @@ public class ContestService {
 					if(previous.getTitle() != contest.getTitle())
 						Assert.isTrue(contest.getQualified().isEmpty());
 				}
+				Assert.isTrue(contest.getOpeningTime().before(contest.getClosingTime()));
 				saved = contestRepository.save(contest);
 				return saved;
 				
