@@ -69,7 +69,7 @@
 	
 	<spring:message code="recipe.username" var="usernameHeader" />
 	<display:column title="${usernameHeader }">
-		<a href="user/display.do?userId=${recipeuser.id}">${row.user.name}</a>
+		<a href="user/display.do?userId=${row.user.id}">${row.user.name}</a>
 	</display:column>
 	
 	<spring:message code="recipe.authored" var="authoredHeader" />
