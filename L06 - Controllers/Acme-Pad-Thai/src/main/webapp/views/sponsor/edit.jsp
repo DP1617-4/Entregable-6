@@ -42,11 +42,13 @@
 		<td><form:input path="userAccount.username" /></td>
 		<form:errors cssClass="error" path="userAccount.username" />
 		<br />
+		<br />
 		<form:label path="userAccount.password">
 			<spring:message code="sponsor.password" />
 		</form:label>
 		<form:password path="userAccount.password" />
 		<form:errors cssClass="error" path="userAccount.password" />
+		<br />
 		<br />
 	</jstl:if>
 
@@ -61,35 +63,35 @@
 	<form:input path="name" />
 	<form:errors cssClass="error" path="name" />
 	<br />
-
+	<br />
 	<form:label path="surname">
 		<spring:message code="sponsor.surname" />:
 	</form:label>
 	<form:textarea path="surname" />
 	<form:errors cssClass="error" path="surname" />
 	<br />
-
+	<br />
 	<form:label path="email">
 		<spring:message code="sponsor.email" />:
 	</form:label>
 	<form:textarea path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
-
+	<br />
 	<form:label path="postalAddress">
 		<spring:message code="sponsor.postalAddress" />:
 	</form:label>
 	<form:textarea path="postalAddress" />
 	<form:errors cssClass="error" path="postalAddress" />
 	<br />
-
+	<br />
 	<form:label path="phone">
 		<spring:message code="sponsor.phone" />:
 	</form:label>
 	<form:textarea path="phone" />
 	<form:errors cssClass="error" path="phone" />
 	<br />
-
+	<br />
 	<form:label path="companyName">
 		<spring:message code="sponsor.companyName" />:
 	</form:label>
@@ -110,35 +112,35 @@
 	<form:input path="creditCard.holderName" />
 	<form:errors cssClass="error" path="creditCard.holderName" />
 	<br />
-
+	<br />v
 	<form:label path="creditCard.brandName">
 		<spring:message code="sponsor.creditCard.brandName" />:
 	</form:label>
 	<form:input path="creditCard.brandName" />
 	<form:errors cssClass="error" path="creditCard.brandName" />
 	<br />
-
+	<br />
 	<form:label path="creditCard.creditCardNumber">
 		<spring:message code="sponsor.creditCard.cCNumber" />:
 	</form:label>
 	<form:input path="creditCard.creditCardNumber" />
 	<form:errors cssClass="error" path="creditCard.creditCardNumber" />
 	<br />
-
+	<br />
 	<form:label path="creditCard.expirationMonth">
 		<spring:message code="sponsor.creditCard.expirationMonth" />:
 	</form:label>
 	<form:input path="creditCard.expirationMonth" />
 	<form:errors cssClass="error" path="creditCard.expirationMonth" />
 	<br />
-
+	<br />
 	<form:label path="creditCard.expirationYear">
 		<spring:message code="sponsor.creditCard.expirationYear" />:
 	</form:label>
 	<form:input path="creditCard.expirationYear" />
 	<form:errors cssClass="error" path="creditCard.expirationYear" />
 	<br />
-
+	<br />
 	<form:label path="creditCard.CVV">
 		<spring:message code="sponsor.creditCard.CVV" />:
 	</form:label>

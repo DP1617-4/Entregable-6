@@ -10,46 +10,48 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<spring:message code="user.filter"/>
-<form:form action="user/filter.do" modelAttribute="filterString">
+
+
+<spring:message code="nutritionist.filter"/>
+<form:form action="nutritionist/filter.do" modelAttribute="filterString">
 
 	<form:input path="filter"/>
 	<form:errors cssClass="error" path="filter" />
 	
 	<input type="submit" name="filterButton"
-	value ="<spring:message code="user.filter.button"/>" />
+	value ="<spring:message code="nutritionist.filter.button"/>" />
 
 </form:form>
 
 <display:table pagesize="10" class="displaytag" keepStatus="true"
-	name="users" requestURI="${requestURI}" id="row">
+	name="nutritionists" requestURI="${requestURI}" id="row">
 	
 	<!-- Action links -->
 
 	<security:authentication property="principal" var ="loggedactor"/>
 	<display:column>
-	<jstl:set var="user" value="${row.id}"/> 
+	<jstl:set var="nutritionist" value="${row.id}"/> 
 	
-			<a href="user/display.do?userId=${row.id}">
-				<spring:message	code="user.display" />
+			<a href="nutritionist/display.do?nutritionistId=${row.id}">
+				<spring:message	code="nutritionist.display" />
 			</a>
 	
 	</display:column>
 
 	<security:authorize access="hasAnyRole('NUTRITIONIST', 'USER')">
 	 <display:column>	
-		<jstl:if test="${loggedactor != row.userAccount }">		
+		<jstl:if test="${loggedactor != row.userAccount}">		
 			<jstl:choose>
 				<jstl:when test="${followed.contains(row)}">
-					<spring:message code="user.unfollow"/>.
-					<a href="user/socialuser/unfollow.do?userId=${row.id}">
-						<spring:message code="user.unfollow.change"/>
+					<spring:message code="nutritionist.unfollow"/>.
+					<a href="nutritionist/socialuser/unfollow.do?nutritionistId=${row.id}">
+						<spring:message code="nutritionist.unfollow.change"/>
 					</a> 
 				</jstl:when>
 				<jstl:otherwise>
-					<spring:message code="user.follow"/>.					
-					<a href="user/socialuser/follow.do?userId=${row.id}">
-						<spring:message code="user.follow.change"/>
+					<spring:message code="nutritionist.follow"/>.					
+					<a href="nutritionist/socialuser/follow.do?nutritionistId=${row.id}">
+						<spring:message code="nutritionist.follow.change"/>
 					</a>	
 				</jstl:otherwise>
 			</jstl:choose>
@@ -59,26 +61,20 @@
 	
 	<!-- Attributes -->
 	
-	<spring:message code="user.name" var="nameHeader"/>
+	<spring:message code="nutritionist.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="user.surname" var="surnameHeader"/>
+	<spring:message code="nutritionist.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="user.email" var="emailHeader"/>
+	<spring:message code="nutritionist.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="user.phone" var="phoneHeader"/>
+	<spring:message code="nutritionist.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="user.postalAddress" var="postalAddressHeader"/>
+	<spring:message code="nutritionist.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 
 </display:table>
-
-<br/>
-<security:authorize access="hasAnyRole('NUTRITIONIST', 'USER')">
-	<a href="recipe/socialuser/listFollowed.do">
-						<spring:message code="user.recipes.followed"/>
-	</a> 
-</security:authorize>
+ 

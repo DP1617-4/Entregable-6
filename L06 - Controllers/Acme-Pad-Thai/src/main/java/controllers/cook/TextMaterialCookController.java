@@ -116,7 +116,7 @@ public class TextMaterialCookController extends AbstractController {
 		
 		result = new ModelAndView("learningMaterial/edit");
 		result.addObject("learningMaterial", textMaterial);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "textMaterial/cook/edit.do");
 		result.addObject("cancelURI", "learningMaterial/actor/list.do?masterClassId="+textMaterial.getMasterClass().getId());
 

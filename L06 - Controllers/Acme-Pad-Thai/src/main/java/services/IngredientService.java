@@ -9,6 +9,8 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
 import repositories.IngredientRepository;
 import domain.Ingredient;
 
@@ -62,7 +64,7 @@ public class IngredientService {
 		//Other Bussiness Methods
 		
 		public Ingredient delete2(Ingredient ingredient){
-			
+			Assert.isTrue(ingredient.getQuantities().isEmpty());
 			ingredient.setDeleted(true);
 			Ingredient saved = this.save(ingredient);
 			return saved;

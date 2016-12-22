@@ -175,7 +175,7 @@ public class RecipeController extends AbstractController {
 		AddIngredient addIngredient = new AddIngredient();
 		Collection<Category> categories = recipe.getCategories();
 		Collection<Category> categoryList = categoryService.findAllNotDeleted();
-		Banner banner = bannerService.findRandomStarBanner();
+		Banner banner = bannerService.findRandomBanner(false);
 		
 		result = new ModelAndView("recipe/display");
 		result.addObject("recipe", recipe);

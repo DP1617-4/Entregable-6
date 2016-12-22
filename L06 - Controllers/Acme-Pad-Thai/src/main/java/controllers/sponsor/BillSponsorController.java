@@ -89,7 +89,7 @@ public class BillSponsorController extends AbstractController {
 		
 		result = new ModelAndView("bill/edit");
 		result.addObject("bill", b);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "bill/sponsor/edit.do");
 		result.addObject("cancelURI", "bill/sponsor/list.do");
 

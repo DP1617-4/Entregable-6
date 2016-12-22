@@ -164,14 +164,10 @@ public class MessageService {
 	public Boolean checkSpam(Message message){
 		Boolean result = false;
 		Collection<String> keywords;
-		SystemConfiguration sysConf = sysConfService.findAll().iterator().next();
+		SystemConfiguration sysConf = sysConfService.findMain();
 		keywords = sysConf.getKeywords();
 		for(String s: keywords){
-			if(message.getBody().toLowerCase().contains(s.toLowerCase())){
-				result = true;
-				break;
-			}
-			else if(message.getTitle().contains(s)){
+			if(message.getBody().toLowerCase().contains(s.toLowerCase()) || message.getTitle().toLowerCase().contains(s)){
 				result = true;
 				break;
 			}

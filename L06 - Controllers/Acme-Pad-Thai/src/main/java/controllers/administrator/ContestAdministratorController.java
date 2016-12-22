@@ -1,7 +1,5 @@
 package controllers.administrator;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ContestService;
 import controllers.AbstractController;
 import domain.Contest;
-import domain.Recipe;
 
 @Controller
 @RequestMapping("/contest/administrator")

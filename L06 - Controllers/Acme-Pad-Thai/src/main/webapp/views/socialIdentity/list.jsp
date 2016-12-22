@@ -34,7 +34,7 @@
 
 	<spring:message code="socialidentity.picture" var="pictureHeader" />
 	<display:column title="${pictureHeader}" sortable="false">
-		<img src="${row.picture}" height="150px" width="150px" />
+		<img src="${row.picture}" height="150px"  />
 	</display:column>
 
 	<spring:message code="socialidentity.network.link" var="linkHeader" />
