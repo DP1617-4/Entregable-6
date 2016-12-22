@@ -80,7 +80,6 @@ public class NutritionistController extends AbstractController {
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int nutritionistId) {
-
 		
 		ModelAndView result;
 		Nutritionist nutritionist;

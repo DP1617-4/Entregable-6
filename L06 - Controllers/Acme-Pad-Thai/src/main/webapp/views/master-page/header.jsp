@@ -36,7 +36,7 @@
 				<li class="arrow"></li>
 				<li><a href="contest/list.do"><spring:message code="master.page.contest.list"/></a>
 				<security:authorize access="hasRole('ADMIN')">
-					<li><a href="contest/admin/create.do"><spring:message code="master.page.contest.create"/></a> </li>
+					<li><a href="contest/administrator/create.do"><spring:message code="master.page.contest.create"/></a> </li>
 				</security:authorize>
 			</ul>
 		</li>
