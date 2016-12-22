@@ -157,7 +157,7 @@
 								<li><a href="administrator/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 								<li><a href="cook/administrator/create.do"><spring:message code="master.page.cook.create" /></a></li>
 								<li><a href="administrator/display.do"><spring:message code="master.page.administrator.display" /></a></li>
-								<li><a href="administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
+								<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 							</ul>
 						</li>
 					</security:authorize>
@@ -195,7 +195,7 @@
 							<ul>
 								<li class="arrow"></li>
 								<li><a href="cook/display.do"><spring:message code="master.page.cook.display" /></a></li>
-								<li><a href="cook/edit.do"><spring:message code="master.page.cook.edit" /></a></li>
+								<li><a href="cook/cook/edit.do"><spring:message code="master.page.cook.edit" /></a></li>
 							</ul>
 						</li>
 					</security:authorize>			
