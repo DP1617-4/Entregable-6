@@ -14,28 +14,26 @@
 <display:table pagesize="10" class="displaytag" keepStatus="true"
 name="administrator" requestURI="${requestURI}" id="row">
 
-	<spring:message code="administrator.name" var=nameHeader/>
+	<spring:message code="administrator.name" var="nameHeader"/>
 	<display:column property="name" title="${nameHeader}"/>
 	
-	<spring:message code="administrator.surname" var=surnameHeader/>
+	<spring:message code="administrator.surname" var="surnameHeader"/>
 	<display:column property="surname" title="${surnameHeader}"/>
 	
-	<spring:message code="administrator.email" var=emailHeader/>
+	<spring:message code="administrator.email" var="emailHeader"/>
 	<display:column property="email" title="${emailHeader}"/>
 	
-	<spring:message code="administrator.phone" var=phoneHeader/>
+	<spring:message code="administrator.phone" var="phoneHeader"/>
 	<display:column property="phone" title="${phoneHeader}"/>
 	
-	<spring:message code="administrator.postalAddress" var=postalAddressHeader/>
+	<spring:message code="administrator.postalAddress" var="postalAddressHeader"/>
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 	
 </display:table>
 
 <br/>
 
-
-
 <br />
-	<a href="administrator/edit.do"><spring:message code="administrator.edit"/></a>
+	<a href="administrator/administrator/edit.do"><spring:message code="administrator.edit"/></a>
 	
 <br />
