@@ -83,9 +83,3 @@
 	</security:authorize>
 	
 </display:table>
-
-<security:authorize access="hasRole('NUTRITIONIST')">
-<a href="ingredient/nutritionist/delete.do?ingredientId=${ingredient.id}">
-	<spring:message	code="ingredient.delete" />
-</a>
-</security:authorize>

@@ -20,7 +20,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="sponsor/edit.do" modelAttribute="sponsor">
+<form:form action="${requestURI}" modelAttribute="sponsor">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -67,14 +67,14 @@
 	<form:label path="surname">
 		<spring:message code="sponsor.surname" />:
 	</form:label>
-	<form:textarea path="surname" />
+	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
 	<br />
 	<br />
 	<form:label path="email">
 		<spring:message code="sponsor.email" />:
 	</form:label>
-	<form:textarea path="email" />
+	<form:input path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
 	<br />
@@ -88,14 +88,14 @@
 	<form:label path="phone">
 		<spring:message code="sponsor.phone" />:
 	</form:label>
-	<form:textarea path="phone" />
+	<form:input path="phone" />
 	<form:errors cssClass="error" path="phone" />
 	<br />
 	<br />
 	<form:label path="companyName">
 		<spring:message code="sponsor.companyName" />:
 	</form:label>
-	<form:textarea path="companyName" />
+	<form:input path="companyName" />
 	<form:errors cssClass="error" path="companyName" />
 	<br />
 

@@ -49,5 +49,5 @@ name="sponsor" requestURI="${requestURI}" id="row">
 	
 </display:table>
 <security:authorize access="hasRole('SPONSOR')">
-	<a href="sponsor/edit.do"><spring:message code="sponsor.edit"/></a>
+	<a href="sponsor/sponsor/edit.do"><spring:message code="sponsor.edit"/></a>
 </security:authorize>

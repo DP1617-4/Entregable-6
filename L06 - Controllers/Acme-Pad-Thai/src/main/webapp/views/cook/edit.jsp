@@ -19,11 +19,36 @@
 <form:form action="${requestURI}" modelAttribute="cook">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="userAccount" />
+	<form:hidden path="userAccount.authorities" />
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
 	<form:hidden path="folders" />
 	<form:hidden path="socialIdentities" />
 	<form:hidden path="enroled" />
 	<form:hidden path="masterClasses" />
+	<jstl:if test="${cook.id != 0}">
+		<form:hidden path="userAccount.username" />
+		<form:hidden path="userAccount.password" />
+	</jstl:if>
+	
+	<jstl:if test="${cook.id == 0}">
+		<form:label path="userAccount.username">
+			<td><spring:message code="sponsor.username" /></td>
+		</form:label>
+		<td><form:input path="userAccount.username" /></td>
+		<form:errors cssClass="error" path="userAccount.username" />
+		<br />
+		<br />
+		<form:label path="userAccount.password">
+			<spring:message code="sponsor.password" />
+		</form:label>
+		<form:password path="userAccount.password" />
+		<form:errors cssClass="error" path="userAccount.password" />
+		<br />
+		<br />
+	</jstl:if>
+
+	
 	
 	<form:label path="name">
 		<spring:message code="cook.name" />:

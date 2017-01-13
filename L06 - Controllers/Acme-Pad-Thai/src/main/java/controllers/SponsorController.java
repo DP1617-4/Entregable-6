@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CreditCardService;
 import services.SponsorService;
 import domain.Sponsor;
 
@@ -21,6 +22,9 @@ public class SponsorController extends AbstractController {
 	// Services ---------------------------------------------------------------
 	@Autowired
 	private SponsorService sponsorService;
+	
+	@Autowired
+	private CreditCardService creditCardService;
 	
 	// Constructors -----------------------------------------------------------
 	public SponsorController() {
@@ -83,12 +87,17 @@ public class SponsorController extends AbstractController {
 			result = createEditModelAndView(sponsor);
 		} else {
 			try {
-				sponsorService.save(sponsor);
-				if (sponsor.getId() == 0) {
-					result = new ModelAndView("redirect:../security/login.do");
-				} else {
-					result = new ModelAndView("redirect: display.do");
+				if (creditCardService.expirationDate(sponsor.getCreditCard())){
+					sponsorService.save(sponsor);
+					if (sponsor.getId() == 0) {
+						result = new ModelAndView("redirect:../security/login.do");
+					} else {
+						result = new ModelAndView("redirect: display.do");
+					}
 				}
+				else
+					result = createEditModelAndView(sponsor, "sponsor.credit.card.wrong");
+				
 				
 			} catch (Throwable oops){
 				result = createEditModelAndView(sponsor, "sponsor.commit.error");
@@ -101,18 +110,19 @@ public class SponsorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Sponsor sponsor) {
 		ModelAndView result;
 		result = createEditModelAndView(sponsor, null);
-		result.addObject("requestURI", "security/login.do");
-		result.addObject("cancelURI", "welcome/index.do");
 		return result;
 	}
 
 	protected ModelAndView createEditModelAndView(Sponsor sponsor,
 			String message) {
 		ModelAndView result;
+		
+		String requestURI = "sponsor/edit.do";
+		
 		result = new ModelAndView("sponsor/edit");
 		result.addObject("sponsor", sponsor);
 		result.addObject("errorMessage", message);
-		result.addObject("requestURI", "security/login.do");
+		result.addObject("requestURI", requestURI);
 		result.addObject("cancelURI", "welcome/index.do");
 		return result;
 	}
