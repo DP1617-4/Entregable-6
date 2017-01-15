@@ -23,6 +23,7 @@
 	<form:hidden path="followers" />
 	<form:hidden path="followed" />
 	<form:hidden path="userAccount.authorities" />
+	
 	<jstl:if test="${nutritionist.id!=0}">
 	<form:hidden path="userAccount.username" />
 	<form:hidden path="userAccount.password" />
@@ -54,14 +55,14 @@
 	<form:label path="surname">
 		<spring:message code="nutritionist.surname" />:
 	</form:label>
-	<form:textarea path="surname" />
+	<form:input path="surname" />
 	<form:errors cssClass="error" path="surname" />
 	<br />
 	
 	<form:label path="email">
 		<spring:message code="nutritionist.email" />:
 	</form:label>
-	<form:textarea path="email" />
+	<form:input path="email" />
 	<form:errors cssClass="error" path="email" />
 	<br />
 	
@@ -75,7 +76,7 @@
 	<form:label path="phone">
 		<spring:message code="nutritionist.phone" />:
 	</form:label>
-	<form:textarea path="phone" />
+	<form:input path="phone" />
 	<form:errors cssClass="error" path="phone" />
 	<br />
 	

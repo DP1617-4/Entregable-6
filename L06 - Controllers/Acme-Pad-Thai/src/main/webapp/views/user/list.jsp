@@ -75,7 +75,8 @@
 	<display:column property="postalAddress" title="${postalAddressHeader}"/>
 
 </display:table>
- </br>
+
+<br/>
 <security:authorize access="hasAnyRole('NUTRITIONIST', 'USER')">
 	<a href="recipe/socialuser/listFollowed.do">
 						<spring:message code="user.recipes.followed"/>

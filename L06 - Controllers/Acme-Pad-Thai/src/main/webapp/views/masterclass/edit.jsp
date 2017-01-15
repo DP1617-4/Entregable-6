@@ -44,6 +44,15 @@
 	<jstl:choose>
 		<jstl:when test="${display}">
 			<fieldset>
+				<legend><spring:message code="masterClass.cook" /></legend>
+				${masterClass.cook.surname}, ${masterClass.cook.name}
+			</fieldset>
+		</jstl:when>
+	</jstl:choose>
+	
+	<jstl:choose>
+		<jstl:when test="${display}">
+			<fieldset>
 			<legend><spring:message code="masterClass.description" /></legend>
 			${masterClass.title}
 			</fieldset>
@@ -132,12 +141,13 @@
 	<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
 		<input type="submit" name="save"
 			value="<spring:message code="masterClass.save" />"  />&nbsp; 
-	
-		<jstl:if test="${masterClass.id != 0}">	
+		
+			<jstl:if test="${masterClass.id != 0}">	
+			<jstl:if test="${!display}">
 			<input type="submit" name="delete"
 				value="<spring:message code="masterClass.delete" />"
 				onclick="return confirm('<spring:message code="masterClass.confirm.delete" />')" />&nbsp;	
-			
+			</jstl:if>
 			<input type="button" name="newTextMaterial"
 				value="<spring:message code="masterClass.add.textMaterial" />"
 				onclick="javascript: window.location.replace('textMaterial/cook/create.do?masterClassId=${masterClass.id}');" />&nbsp;

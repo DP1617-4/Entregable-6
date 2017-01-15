@@ -14,17 +14,15 @@ import security.UserAccount;
 @Service
 @Transactional
 public class AdministratorService {
-
-	
-	//Constructor
-	
-	public AdministratorService(){
-		super();
-	}
 	
 	//Managed Repository
 	@Autowired
-	private AdministratorRepository adminRepository;
+	private AdministratorRepository administratorRepository;
+	
+	//Constructor
+	public AdministratorService(){
+		super();
+	}
 	
 	@Autowired
 	private FolderService folderService;
@@ -33,7 +31,7 @@ public class AdministratorService {
 	
 	public Administrator findSystem(){
 		Administrator result;
-		result = adminRepository.findSystem();
+		result = administratorRepository.findSystem();
 		return result;
 	}
 	
@@ -56,9 +54,23 @@ public class AdministratorService {
 	
 	public Administrator save(Administrator administrator){
 		Administrator result;
-		result = adminRepository.save(administrator);
+		result = administratorRepository.save(administrator);
 		if(administrator.getId() <= 0)
 			folderService.initFolders(result);
 		return result;
+	}
+	
+	public Administrator findOne(int id){
+		Administrator result;
+		result = administratorRepository.findOne(id);
+		return result;
+	}
+
+
+	public Administrator findByPrincipal(){
+		UserAccount userAccount = LoginService.getPrincipal();
+		Administrator administrator;
+		administrator = administratorRepository.findOneByUserAccountId(userAccount.getId());
+		return administrator;
 	}
 }

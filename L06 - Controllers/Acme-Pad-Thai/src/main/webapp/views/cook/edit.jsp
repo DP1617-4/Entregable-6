@@ -17,13 +17,38 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <form:form action="${requestURI}" modelAttribute="cook">
-
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="userAccount.authorities" />
-	<form:hidden path="folders"/>
-	<form:hidden path="masterClasses"/>
-	<form:hidden path="enroled"/>
+	<form:hidden path="userAccount.id" />
+	<form:hidden path="userAccount.version" />
+	<form:hidden path="folders" />
+	<form:hidden path="socialIdentities" />
+	<form:hidden path="enroled" />
+	<form:hidden path="masterClasses" />
+	<jstl:if test="${cook.id != 0}">
+		<form:hidden path="userAccount.username" />
+		<form:hidden path="userAccount.password" />
+	</jstl:if>
+	
+	<jstl:if test="${cook.id == 0}">
+		<form:label path="userAccount.username">
+			<td><spring:message code="sponsor.username" /></td>
+		</form:label>
+		<td><form:input path="userAccount.username" /></td>
+		<form:errors cssClass="error" path="userAccount.username" />
+		<br />
+		<br />
+		<form:label path="userAccount.password">
+			<spring:message code="sponsor.password" />
+		</form:label>
+		<form:password path="userAccount.password" />
+		<form:errors cssClass="error" path="userAccount.password" />
+		<br />
+		<br />
+	</jstl:if>
+
+	
 	
 	<form:label path="name">
 		<spring:message code="cook.name" />:
@@ -59,30 +84,13 @@
 	<form:textarea path="phone" />
 	<form:errors cssClass="error" path="phone" />
 	<br />
-	
-	
-	
-	<jstl:if test="${cook.id == 0}">
-	<form:label path="userAccount.username">
-      <spring:message code="cook.username" />
-    </form:label>
-    <form:input path="userAccount.username"/>
-    <form:errors cssClass="error" path="userAccount.username"/>
-    <br />
-    
-    <form:label path="userAccount.password">
-      <spring:message code="cook.password" />
-    </form:label>
-    <form:password path="userAccount.password"/>
-    <form:errors cssClass="error" path="userAccount.password"/>
-    </jstl:if>
     <br />
 	
 	<input type="submit" name="save"
 		value="<spring:message code="cook.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="cook.cancel" />"
-		onclick="javascript: relativeRedir('${cancelURI}');" />
+		onclick="javascript: window.location.replace('${cancelURI}');" />
 	<br />
 	
 </form:form>

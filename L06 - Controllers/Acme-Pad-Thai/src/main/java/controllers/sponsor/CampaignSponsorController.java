@@ -99,10 +99,6 @@ public class CampaignSponsorController extends AbstractController {
 			} catch (Throwable oops) {
 				result = createEditModelAndView(campaign,
 						"campaign.commit.error");
-
-				Collection<Banner> banners = bannerService
-						.findAllByCampaign(campaign.getId());
-				result.addObject("banners", banners);
 			}
 		}
 		return result;
@@ -122,10 +118,6 @@ public class CampaignSponsorController extends AbstractController {
 
 		} catch (Throwable oops) {
 			result = createEditModelAndView(campaign, "campaign.commit.error");
-
-			Collection<Banner> banners = bannerService
-					.findAllByCampaign(campaign.getId());
-			result.addObject("banners", banners);
 		}
 		return result;
 	}
@@ -147,7 +139,7 @@ public class CampaignSponsorController extends AbstractController {
 
 		result = new ModelAndView("campaign/edit");
 		result.addObject("campaign", campaign);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "campaign/sponsor/edit.do");
 		result.addObject("cancelURI", "campaign/sponsor/list.do");
 

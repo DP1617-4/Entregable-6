@@ -35,8 +35,8 @@ name="sponsor" requestURI="${requestURI}" id="row">
 	<spring:message code="sponsor.creditCard.brandName" var="brandName"/>
 	<display:column property="creditCard.brandName" title="${brandName}"/>
 	
-<%-- 	<spring:message code="sponsor.creditCard.cCNumber" var="cCNumber"/>
-	<display:column property="creditCard.cCNumber" title="${cCNumber}"/> --%>
+	<spring:message code="sponsor.creditCard.cCNumber" var="cCNumber"/>
+	<display:column property="creditCard.creditCardNumber" title="${cCNumber}"/>
 	
 	<spring:message code="sponsor.creditCard.expirationMonth" var="expirationMonth"/>
 	<display:column property="creditCard.expirationMonth" title="${expirationMonth}"/>
@@ -48,5 +48,6 @@ name="sponsor" requestURI="${requestURI}" id="row">
 	<display:column property="creditCard.CVV" title="${CVV}"/>
 	
 </display:table>
-
-	<a href="sponsor/edit.do"><spring:message code="sponsor.edit"/></a>
+<security:authorize access="hasRole('SPONSOR')">
+	<a href="sponsor/sponsor/edit.do"><spring:message code="sponsor.edit"/></a>
+</security:authorize>

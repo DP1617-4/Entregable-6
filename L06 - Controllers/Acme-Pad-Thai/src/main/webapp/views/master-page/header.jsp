@@ -36,7 +36,7 @@
 				<li class="arrow"></li>
 				<li><a href="contest/list.do"><spring:message code="master.page.contest.list"/></a>
 				<security:authorize access="hasRole('ADMIN')">
-					<li><a href="contest/admin/create.do"><spring:message code="master.page.contest.create"/></a> </li>
+					<li><a href="contest/administrator/create.do"><spring:message code="master.page.contest.create"/></a> </li>
 				</security:authorize>
 			</ul>
 		</li>
@@ -67,20 +67,22 @@
 					<li class="arrow"></li>
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="campaign/sponsor/create.do"><spring:message code="master.page.campaign.create" /></a></li>
+						<li><a href="campaign/sponsor/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
 					</security:authorize>	
-					<li><a href="campaign/list.do"><spring:message code="master.page.campaign.list" /></a></li>	
-								
+					<security:authorize access="hasRole('ADMIN')">
+						<li><a href="campaign/administrator/list.do"><spring:message code="master.page.campaign.list" /></a></li>
+					</security:authorize>
 				</ul>
 			</li>
 		</security:authorize>
 		
 		<security:authorize access="hasAnyRole('ADMIN')">
-			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a></li>
+			<li><a class="fNiv"><spring:message	code="master.page.system.configuration" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="systemConfiguration/administrator/edit.do"><spring:message code="master.page.system.configuration.edit" /></a></li>	
 				</ul>
-		
+			</li>	
 		</security:authorize>
 		<security:authorize access="hasAnyRole('SPONSOR', 'ADMIN')">
 			<li><a class="fNiv"><spring:message	code="master.page.bills" /></a>
@@ -89,9 +91,10 @@
 					<security:authorize access="hasRole('SPONSOR')">
 						<li><a href="bill/sponsor/list.do"><spring:message code="master.page.bills.list" /></a></li>	
 					</security:authorize>
-          <security:authorize access="hasRole('ADMIN')">
-						<li><a href="bill/administrator/generate.do">placeholder</a></li>	
-            <li><a href="bill/administrator/mail.do">placeholder</a></li>	
+          			<security:authorize access="hasRole('ADMIN')">
+          				<li><a href="bill/administrator/list.do"><spring:message code="master.page.bills.list"/></a></li>
+						<li><a href="bill/administrator/compute.do"><spring:message code="master.page.administrator.compute"/></a></li>	
+            			<li><a href="bill/administrator/mail.do"><spring:message code="master.page.administrator.email"/></a></li>	
 					</security:authorize>
 				</ul>
 			</li>
@@ -154,7 +157,7 @@
 								<li><a href="administrator/administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 								<li><a href="cook/administrator/create.do"><spring:message code="master.page.cook.create" /></a></li>
 								<li><a href="administrator/display.do"><spring:message code="master.page.administrator.display" /></a></li>
-								<li><a href="administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
+								<li><a href="administrator/administrator/edit.do"><spring:message code="master.page.administrator.edit" /></a></li>
 							</ul>
 						</li>
 					</security:authorize>
@@ -167,8 +170,8 @@
 								<li><a><spring:message code = "master.page.curricula"/></a>
 									<ul>
 										<li class="arrow"></li>
-										<li><a href="curricula/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
-										<li><a href="curricula/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
+										<li><a href="curriculum/nutritionist/display.do"><spring:message code="master.page.curricula.display" /></a></li>
+										<li><a href="curriculum/nutritionist/edit.do"><spring:message code="master.page.curricula.edit" /></a></li>
 									</ul>
 								</li>	
 							</ul>
@@ -192,7 +195,7 @@
 							<ul>
 								<li class="arrow"></li>
 								<li><a href="cook/display.do"><spring:message code="master.page.cook.display" /></a></li>
-								<li><a href="cook/edit.do"><spring:message code="master.page.cook.edit" /></a></li>
+								<li><a href="cook/cook/edit.do"><spring:message code="master.page.cook.edit" /></a></li>
 							</ul>
 						</li>
 					</security:authorize>			

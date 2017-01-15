@@ -50,7 +50,7 @@ public class CommentSocialUserController extends AbstractController {
 		
 		result = new ModelAndView("comment/edit");
 		result.addObject("comment", comment);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}

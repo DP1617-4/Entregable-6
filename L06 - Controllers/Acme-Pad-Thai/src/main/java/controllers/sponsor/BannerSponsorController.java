@@ -111,7 +111,7 @@ public class BannerSponsorController extends AbstractController {
 
 		result = new ModelAndView("banner/edit");
 		result.addObject("banner", b);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "banner/sponsor/edit.do");
 		result.addObject("cancelURI", "banner/sponsor/list.do?campaignId="
 				+ b.getCampaign().getId());

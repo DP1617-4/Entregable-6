@@ -30,12 +30,12 @@
 	<form:errors cssClass="error" path="endDate" />
 	<br />
 	
-	<form:label path="starred">
+<%-- 	<form:label path="starred">
 		<spring:message code="campaign.starred" />:
 	</form:label>
 	<form:input path="starred" />
 	<form:errors cssClass="error" path="starred" />
-	<br />
+	<br /> --%>
 	
 	<input type="submit" name="save"
 		value="<spring:message code="campaign.save" />" />&nbsp; 

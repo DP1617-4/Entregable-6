@@ -8,8 +8,10 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import services.CreditCardService;
 import services.SponsorService;
 import domain.Sponsor;
 
@@ -21,6 +23,9 @@ public class SponsorController extends AbstractController {
 	@Autowired
 	private SponsorService sponsorService;
 	
+	@Autowired
+	private CreditCardService creditCardService;
+	
 	// Constructors -----------------------------------------------------------
 	public SponsorController() {
 		super();
@@ -28,13 +33,22 @@ public class SponsorController extends AbstractController {
 
 	// Listing ----------------------------------------------------------------
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int sponsorId) {
+
 		ModelAndView result;
+		Sponsor sponsor;
 		
-		Sponsor sponsor = sponsorService.findByPrincipal();
+		if(sponsorId==0){
+			
+			sponsor= sponsorService.findByPrincipal();
+		}
+		else{
+			
+			sponsor = sponsorService.findOne(sponsorId);
+		}
+
 
 		result = new ModelAndView("sponsor/display");
-		result.addObject("requestURI", "sponsor/display.do");
 		result.addObject("sponsor", sponsor);
 
 		return result;
@@ -73,8 +87,18 @@ public class SponsorController extends AbstractController {
 			result = createEditModelAndView(sponsor);
 		} else {
 			try {
-				sponsorService.save(sponsor);
-				result = new ModelAndView("redirect:../security/login.do");
+				if (creditCardService.expirationDate(sponsor.getCreditCard())){
+					sponsorService.save(sponsor);
+					if (sponsor.getId() == 0) {
+						result = new ModelAndView("redirect:../security/login.do");
+					} else {
+						result = new ModelAndView("redirect: display.do");
+					}
+				}
+				else
+					result = createEditModelAndView(sponsor, "sponsor.credit.card.wrong");
+				
+				
 			} catch (Throwable oops){
 				result = createEditModelAndView(sponsor, "sponsor.commit.error");
 			}
@@ -86,18 +110,19 @@ public class SponsorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(Sponsor sponsor) {
 		ModelAndView result;
 		result = createEditModelAndView(sponsor, null);
-		result.addObject("requestURI", "security/login.do");
-		result.addObject("cancelURI", "welcome/index.do");
 		return result;
 	}
 
 	protected ModelAndView createEditModelAndView(Sponsor sponsor,
 			String message) {
 		ModelAndView result;
+		
+		String requestURI = "sponsor/edit.do";
+		
 		result = new ModelAndView("sponsor/edit");
 		result.addObject("sponsor", sponsor);
-		result.addObject("message", message);
-		result.addObject("requestURI", "security/login.do");
+		result.addObject("errorMessage", message);
+		result.addObject("requestURI", requestURI);
 		result.addObject("cancelURI", "welcome/index.do");
 		return result;
 	}

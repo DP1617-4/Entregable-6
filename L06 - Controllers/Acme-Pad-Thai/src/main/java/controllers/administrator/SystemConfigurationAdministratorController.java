@@ -54,9 +54,13 @@ public class SystemConfigurationAdministratorController extends AbstractControll
 		ModelAndView result;
 		SystemConfiguration systemConfiguration = systemConfigurationService.findMain();
 		systemConfiguration.setFee(fee);
-		systemConfigurationService.save(systemConfiguration);
-		
-		result = new ModelAndView("redirect:edit.do");
+		try{
+			systemConfigurationService.save(systemConfiguration);
+			result = new ModelAndView("redirect:edit.do");
+		} catch(Throwable oops){
+			result = createEditModelAndView(systemConfiguration, "systemConfiguration.negative");
+			
+		}
 		return result;
 	}
 	
@@ -67,9 +71,14 @@ public class SystemConfigurationAdministratorController extends AbstractControll
 		Collection<String> words = systemConfiguration.getKeywords();
 		words.add(keyword);
 		systemConfiguration.setKeywords(words);
-		systemConfigurationService.save(systemConfiguration);
+		try{
+			systemConfigurationService.save(systemConfiguration);
+			result = new ModelAndView("redirect:edit.do");
+		} catch(Throwable oops){
+			result = createEditModelAndView(systemConfiguration, "systemConfiguration.duplicate");
+			
+		}
 
-		result = new ModelAndView("redirect:edit.do");
 		return result;
 	}
 	
@@ -101,7 +110,7 @@ public class SystemConfigurationAdministratorController extends AbstractControll
 		
 		result = new ModelAndView("systemConfiguration/edit");
 		result.addObject("systemConfiguration", systemConfiguration);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "systemConfiguration/administrator/edit.do");
 		result.addObject("cancelURI", "welcome/index.do");
 

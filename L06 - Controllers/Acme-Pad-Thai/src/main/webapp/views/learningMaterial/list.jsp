@@ -98,16 +98,22 @@
 
 	<input type="button" name="cancel"
 		value="<spring:message code="masterClass.cancel" />"
-		onclick="javascript: window.location.replace('${cancelURI}');" />&nbsp;
-	<br />
-
-<security:authorize access="hasRole('COOK')">
-	<div>
-		<jstl:if test="${learningMaterialcook.userAccount.username==loggedactor}">
-			<a href="cook/learningMaterial/create.do"> <spring:message
-				code="learningMaterial.create" />
-			</a>
-		</jstl:if>
+		onclick="javascript: window.location.replace('masterClass/actor/list.do');" />&nbsp;
 		
-	</div>
-</security:authorize>
+	<security:authorize access="hasRole('COOK')">
+	<security:authentication property="principal.username" var ="loggedactor"/>
+	<jstl:set var="masterClasscook" value="${row.masterClass.cook}"/> 
+	<jstl:if test="${masterClasscook.userAccount.username==loggedactor}">
+		<jstl:if test="${masterClass.id != 0}">	
+			<input type="button" name="newTextMaterial"
+				value="<spring:message code="masterClass.add.textMaterial" />"
+				onclick="javascript: window.location.replace('textMaterial/cook/create.do?masterClassId=${row.masterClass.id}');" />&nbsp;
+			<input type="button" name="cancel"
+				value="<spring:message code="masterClass.add.presentationMaterial" />"
+				onclick="javascript: window.location.replace('presentationMaterial/cook/create.do?masterClassId=${row.masterClass.id}');" />&nbsp;
+			<input type="button" name="cancel"
+				value="<spring:message code="masterClass.add.videoMaterial" />"
+				onclick="javascript: window.location.replace('videoMaterial/cook/create.do?masterClassId=${row.masterClass.id}');" />&nbsp;
+		</jstl:if>
+	</jstl:if>
+	</security:authorize>

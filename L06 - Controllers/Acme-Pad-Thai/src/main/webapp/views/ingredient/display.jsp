@@ -68,7 +68,7 @@
 	<display:column property="property.name" title="${propertyHeader}" sortable="false" />
 	
 	<spring:message code="ingredient.property.value" var="valueHeader" />
-	<display:column property="value" title="${valueHeader}" sortable="false" />
+	<display:column property="valuen" title="${valueHeader}" sortable="false" />
 	
 	<security:authorize access="hasRole('NUTRITIONIST')">
 	<display:column>
@@ -83,9 +83,3 @@
 	</security:authorize>
 	
 </display:table>
-
-<security:authorize access="hasRole('NUTRITIONIST')">
-<a href="ingredient/nutritionist/delete.do?ingredientId=${ingredient.id}">
-	<spring:message	code="ingredient.delete" />
-</a>
-</security:authorize>

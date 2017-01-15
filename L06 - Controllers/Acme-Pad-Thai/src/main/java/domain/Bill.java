@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
@@ -18,7 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Bill extends DomainEntity{
 
 	
-	// Constructors -----------------------------------------------------------
+			// Constructors -----------------------------------------------------------
 
 			public Bill() {
 				super();
@@ -60,7 +61,7 @@ public class Bill extends DomainEntity{
 			}
 
 			@NotBlank
-			
+			@Column(length=100000000)
 			public String getDescription() {
 				return description;
 			}

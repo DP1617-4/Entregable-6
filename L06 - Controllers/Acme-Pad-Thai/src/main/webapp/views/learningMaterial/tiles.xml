@@ -21,9 +21,19 @@
 		<put-attribute name="body" value="/views/learningMaterial/list.jsp" />
 	</definition>
 	
-	<definition name="learningMaterial/edit" extends="master.page">	
-		<put-attribute name="title" value="Edit learning Material" />
-		<put-attribute name="body" value="/views/learningMaterial/edit.jsp" />
+	<definition name="textMaterial/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar material de texto" />
+		<put-attribute name="body" value="/views/learningMaterial/editt.jsp" />
+	</definition>
+	
+	<definition name="videoMaterial/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar material de video" />
+		<put-attribute name="body" value="/views/learningMaterial/editv.jsp" />
+	</definition>
+	
+	<definition name="presentationMaterial/edit" extends="master.page">	
+		<put-attribute name="title" value="Editar material de presentación" />
+		<put-attribute name="body" value="/views/learningMaterial/editp.jsp" />
 	</definition>
 	
 </tiles-definitions>

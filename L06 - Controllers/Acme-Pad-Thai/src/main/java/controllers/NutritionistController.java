@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ActorService;
 import services.NutritionistService;
-import services.SocialUserService;
 import domain.Actor;
 import domain.Nutritionist;
 import domain.SocialUser;
@@ -29,9 +28,6 @@ public class NutritionistController extends AbstractController {
 
 	@Autowired
 	private NutritionistService nutritionistService;
-	
-	@Autowired
-	private SocialUserService socialUserService;
 	
 	@Autowired
 	private ActorService actorService;
@@ -84,7 +80,6 @@ public class NutritionistController extends AbstractController {
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display(@RequestParam(required = false, defaultValue = "0") int nutritionistId) {
-
 		
 		ModelAndView result;
 		Nutritionist nutritionist;
@@ -151,7 +146,7 @@ public class NutritionistController extends AbstractController {
 		
 		result = new ModelAndView("nutritionist/edit");
 		result.addObject("nutritionist", nutritionist);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 		result.addObject("requestURI", requestURI);
 		
 		return result;

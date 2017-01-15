@@ -25,11 +25,11 @@
 	<form:hidden path="ingredient"/>
 	<form:hidden path="property"/>
 
-	<form:label path="value">
+	<form:label path="valuen">
 		<spring:message code="ingredient.value" />:
 	</form:label>
-	<form:input path="value" />
-	<form:errors cssClass="error" path="value" />
+	<form:input type="number" path="valuen" />
+	<form:errors cssClass="error" path="valuen" />
 	<br />
 	
 	<input type="submit" name="save"

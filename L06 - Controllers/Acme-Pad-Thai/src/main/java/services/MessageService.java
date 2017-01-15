@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import repositories.MessageRepository;
+import security.LoginService;
+import security.UserAccount;
 import domain.Actor;
 import domain.Folder;
 import domain.Message;
 import domain.SystemConfiguration;
-
-import repositories.MessageRepository;
-import security.LoginService;
-import security.UserAccount;
 
 @Service
 @Transactional
@@ -42,6 +41,8 @@ public class MessageService {
 	
 	@Autowired
 	private SystemConfigurationService sysConfService;
+	
+	
 	
 	//CRUD
 
@@ -70,7 +71,6 @@ public class MessageService {
 		return result;
 	}
 	
-//		Welp, it was needed
 	public Message findOne(int messageId){
 		Message result;
 		
@@ -163,14 +163,10 @@ public class MessageService {
 	public Boolean checkSpam(Message message){
 		Boolean result = false;
 		Collection<String> keywords;
-		SystemConfiguration sysConf = sysConfService.findAll().iterator().next();
+		SystemConfiguration sysConf = sysConfService.findMain();
 		keywords = sysConf.getKeywords();
 		for(String s: keywords){
-			if(message.getBody().toLowerCase().contains(s.toLowerCase())){
-				result = true;
-				break;
-			}
-			else if(message.getTitle().contains(s)){
+			if(message.getBody().toLowerCase().contains(s.toLowerCase()) || message.getTitle().toLowerCase().contains(s)){
 				result = true;
 				break;
 			}

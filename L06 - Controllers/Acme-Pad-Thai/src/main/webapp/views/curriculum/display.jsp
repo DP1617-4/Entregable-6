@@ -14,7 +14,9 @@
 name="curriculum" requestURI="${requestURI}" id="row">
 
 	<spring:message code="curriculum.picture" var="pictureHeader"/>
-	<display:column property="picture" title="${pictureHeader}"/>
+	<display:column title="${pictureHeader}">
+		<img src="${row.picture}" height="150px"/>
+	</display:column>
 	
 	<spring:message code="curriculum.education" var="educationHeader"/>
 	<display:column property="education" title="${educationHeader}"/>

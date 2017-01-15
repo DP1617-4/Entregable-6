@@ -41,7 +41,7 @@
 
 
 
-<display:table pagesize="10" class="displaytag" keepStatus="true"
+<display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="recipes" requestURI="${requestURI}" id="row">
 	<security:authentication property="principal" var ="loggedactor"/>
 	<security:authorize access="hasRole('USER')">
@@ -69,7 +69,7 @@
 	
 	<spring:message code="recipe.username" var="usernameHeader" />
 	<display:column title="${usernameHeader }">
-		<a href="user/display.do?userId=${recipeuser.id}">${row.user.name}</a>
+		<a href="user/display.do?userId=${row.user.id}">${row.user.name}</a>
 	</display:column>
 	
 	<spring:message code="recipe.authored" var="authoredHeader" />

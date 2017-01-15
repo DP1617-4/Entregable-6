@@ -27,7 +27,9 @@
 	<display:column property="name" title="${nameHeader}" sortable="true" />
 
 	<spring:message code="endorser.homePage" var="homePageHeader" />
-	<display:column property="homePage" title="${homePageHeader}" sortable="true"/>
+	<display:column title="${homePageHeader}" sortable="true">
+		<a href="${row.homePage}">${row.homePage} </a>
+	</display:column>
 
 </display:table>
 

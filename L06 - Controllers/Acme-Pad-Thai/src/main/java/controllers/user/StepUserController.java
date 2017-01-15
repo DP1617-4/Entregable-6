@@ -52,7 +52,7 @@ public class StepUserController extends AbstractController {
 		
 		result = new ModelAndView("step/edit");
 		result.addObject("step", step);
-		result.addObject("message", message);
+		result.addObject("errorMessage", message);
 
 		return result;
 	}

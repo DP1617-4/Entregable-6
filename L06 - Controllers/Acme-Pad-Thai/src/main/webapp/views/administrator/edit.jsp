@@ -16,12 +16,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="administrator/edit.do" modelAttribute="administrator">
+<form:form action="${requestURI }" modelAttribute="administrator">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="userAccount.authorities" />
-	<form:hidden path="folders"/>
+	<form:hidden path="userAccount" />
+	<form:hidden path="folders" />
+	<form:hidden path="socialIdentities" />
+	<form:hidden path="enroled" />
 	
 	<form:label path="name">
 		<spring:message code="administrator.name" />:
@@ -58,29 +60,11 @@
 	<form:errors cssClass="error" path="phone" />
 	<br />
 	
-	
-	
-	<jstl:if test="${administrator.id == 0}">
-	<form:label path="userAccount.username">
-      <spring:message code="administrator.username" />
-    </form:label>
-    <form:input path="userAccount.username"/>
-    <form:errors cssClass="error" path="userAccount.username"/>
-    <br />
-    
-    <form:label path="userAccount.password">
-      <spring:message code="administrator.password" />
-    </form:label>
-    <form:password path="userAccount.password"/>
-    <form:errors cssClass="error" path="userAccount.password"/>
-    </jstl:if>
-    <br />
-	
 	<input type="submit" name="save"
 		value="<spring:message code="administrator.save" />" />&nbsp; 
 	<input type="button" name="cancel"
 		value="<spring:message code="administrator.cancel" />"
-		onclick="javascript: relativeRedir('welcome/index.do');" />
+		onclick="javascript: window.location.replace('welcome/index.do');" />
 	<br />
 	
 	

@@ -42,14 +42,14 @@
 
 	<input type="submit" name="save"
 		value="<spring:message code="banner.save" />" />&nbsp; 
-	<jstl:if test="${campaign.id != 0}">
+	<jstl:if test="${banner.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="banner.delete" />"
 			onclick="return confirm('<spring:message code="banner.confirm.delete" />')" />&nbsp;
 	</jstl:if>
 	<input type="button" name="cancel"
 		value="<spring:message code="banner.cancel" />"
-		onclick="javascript: relativeRedir('campaign/list.do');" />
+		onclick="javascript: window.location.replace('welcome/index.do');" />
 	<br />
 
 </form:form>

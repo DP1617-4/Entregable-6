@@ -63,14 +63,16 @@ public class CreditCardService {
 	}
 	
 	//Auxiliary methods ---------------------
-	private boolean expirationDate(CreditCard creditCard) {
+	public boolean expirationDate(CreditCard creditCard) {
 		boolean res = false;
 		Calendar moment = new GregorianCalendar();
-		if(creditCard.getExpirationYear() == moment.get(Calendar.YEAR)) {
+		int year = creditCard.getExpirationYear();
+		year += 2000;
+		if(year == moment.get(Calendar.YEAR)) {
 			if (creditCard.getExpirationMonth() >= moment.get(Calendar.MONTH)) {
 				res = true;
 			}
-		} else if (creditCard.getExpirationYear() > moment.get(Calendar.YEAR)) {
+		} else if (year > moment.get(Calendar.YEAR)) {
 			res = true;
 		}
 		return res;
