@@ -61,6 +61,13 @@ public class ActorService {
 		return result;
 	}
 	
+	public Actor findByUserAccount(int userAccountId){
+		Actor result;
+		result = actorRepository.findByUserAccount(userAccountId);
+		
+		return result;
+	}
+	
 	public Actor findByPrincipal(){
 		Actor result;
 		UserAccount userAccount;
@@ -111,23 +118,18 @@ public class ActorService {
 		Actor result;
 		if(actor instanceof User){
 			result = userService.save((User) actor);
-		}else{
-			if(actor instanceof Nutritionist){
-				result = nutritionistService.save((Nutritionist) actor);
-			}else{
-
-				if(actor instanceof Administrator){
-					result = administratorService.save((Administrator) actor);
-				}else{
-
-					if(actor instanceof Sponsor){
-						result = sponsorService.save((Sponsor) actor);
-					}else{
-						result = cookService.save((Cook) actor);
-						
-					}
-				}
-			}
+		}
+		else if(actor instanceof Nutritionist){
+			result = nutritionistService.save((Nutritionist) actor);
+		}
+		else if(actor instanceof Administrator){
+			result = administratorService.save((Administrator) actor);
+		}
+		else if(actor instanceof Sponsor){
+			result = sponsorService.save((Sponsor) actor);
+		}
+		else{
+			result = cookService.save((Cook) actor);	
 		}
 		return result;
 	}

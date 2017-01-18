@@ -98,7 +98,7 @@ public class MasterClassActorController extends AbstractController {
 		try{
 			masterClassService.enrol(masterClassId);
 		}catch(IllegalArgumentException e){
-			result.addObject("error", "masterClass.enrol.error");
+			result.addObject("errorMessage", "masterClass.enrol.error");
 		}
 		
 		return result;

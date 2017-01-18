@@ -62,6 +62,7 @@ public class CampaignService {
 	public Campaign save(Campaign campaign) {
 		Campaign result;
 		checkPrincipalSponsor(campaign);
+		Assert.isTrue(campaign.getStartDate().before(campaign.getEndDate()));
 		result = campaignRepository.save(campaign);
 		return result;
 	}

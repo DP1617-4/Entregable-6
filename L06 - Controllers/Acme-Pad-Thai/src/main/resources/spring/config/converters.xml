@@ -65,6 +65,18 @@
 		<bean class="converters.IngredientToStringConverter" />
 		<bean class="converters.StringToIngredientConverter" />
 		
+		<bean class="converters.LearningMaterialToStringConverter" />
+		<bean class="converters.StringToLearningMaterialConverter" />
+		
+		<bean class="converters.PresentationMaterialToStringConverter" />
+		<bean class="converters.StringToPresentationMaterialConverter" />
+		
+		<bean class="converters.TextMaterialToStringConverter" />
+		<bean class="converters.StringToTextMaterialConverter" />
+		
+		<bean class="converters.VideoMaterialToStringConverter" />
+		<bean class="converters.StringToVideoMaterialConverter" />
+		
 		<bean class="converters.MasterClassToStringConverter" />
 		<bean class="converters.StringToMasterClassConverter" />
 		

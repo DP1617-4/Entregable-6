@@ -8,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -53,6 +54,7 @@ public class Step extends DomainEntity {
 	}
 	
 	@NotNull
+	@Min(0)
 	public int getStepNumber() {
 		return stepNumber;
 	}

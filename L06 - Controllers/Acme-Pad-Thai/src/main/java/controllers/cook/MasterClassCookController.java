@@ -136,8 +136,6 @@ public class MasterClassCookController extends AbstractController {
 		ModelAndView result;
 
 		result = createEditModelAndView(masterClass, null);
-		result.addObject("requestURI", "masterClass/cook/edit.do");
-		result.addObject("cancelURI", "masterClass/cook/listOwn.do");
 		
 		return result;
 	}	

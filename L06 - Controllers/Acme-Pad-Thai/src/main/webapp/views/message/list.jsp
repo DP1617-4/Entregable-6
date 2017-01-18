@@ -21,7 +21,7 @@
 
 <h1> ${folder.name}</h1>
 
-<display:table pagesize="10" class="displaytag" keepStatus="true"
+<display:table pagesize="5" class="displaytag" keepStatus="true"
 	name="messages" requestURI="${requestURI}" id="row">
 	
 	<!-- Action links -->
@@ -55,13 +55,13 @@
 	
 	<spring:message code="message.sender" var="senderHeader"/>
 	<display:column title="${senderHeader}">
-		<a href="user/display.do?userAccountId=${row.sender.id}"> <spring:message code="message.sender"/></a>
+		<a href="actor/display.do?userAccountId=${row.sender.id}"> <spring:message code="message.sender"/></a>
 	</display:column>
 	
 	
 	<spring:message code="message.recipient" var="recipientHeader"/>
 	<display:column title="${recipientHeader}">
-		<a href="user/display.do?userAccountId=${row.recipient.id }"> <spring:message code ="message.recipient" /> </a>
+		<a href="actor/display.do?userAccountId=${row.recipient.id }"> <spring:message code ="message.recipient" /> </a>
 	</display:column> 
 	
 

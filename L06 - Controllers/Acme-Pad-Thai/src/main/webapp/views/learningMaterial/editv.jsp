@@ -18,7 +18,7 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="${requestURI}" modelAttribute="learningMaterial">
+<form:form action="${requestURI}" modelAttribute="videoMaterial">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -42,42 +42,24 @@
 	<form:label path="attachment">
 		<spring:message code="learningMaterial.attachment" />:
 	</form:label>
-	<form:textarea path="attachment" />
+	<form:input path="attachment" />
 	<form:errors cssClass="error" path="attachment" />
 	<br />
 	
-	<jstl:choose>
-			<jstl:when test="${learningMaterial.getClass().name == 'domain.TextMaterial'}">
-				<form:label path="body">
-					<spring:message code="learningMaterial.body" />:
-				</form:label>
-				<form:textarea path="body" />
-				<form:errors cssClass="error" path="body" />
-				<br/>
-			</jstl:when>
-			<jstl:when test="${learningMaterial.getClass().name == 'domain.PresentationMaterial'}">
-				<form:label path="path">
-					<spring:message code="learningMaterial.path" />:
-				</form:label>
-				<form:textarea path="path" />
-				<form:errors cssClass="error" path="path" />
-				<br/>
-			</jstl:when>
-			<jstl:when test="${learningMaterial.getClass().name == 'domain.VideoMaterial'}">
-				<form:label path="identifier">
-					<spring:message code="learningMaterial.identifier" />:
-				</form:label>
-				<form:textarea path="identifier" />
-				<form:errors cssClass="error" path="identifier" />
-				<br/>
-			</jstl:when>
-		</jstl:choose>
+	
+	<form:label path="identifier">
+		<spring:message code="learningMaterial.identifier" />:
+	</form:label>
+	<form:input path="identifier" />
+	<form:errors cssClass="error" path="identifier" />
+	<br/>
+
 	
 	
 	<input type="submit" name="save"
 	value="<spring:message code="learningMaterial.save" />" />&nbsp; 
 			
-	<jstl:if test="${learningMaterial.id != 0}">
+	<jstl:if test="${videoMaterial.id != 0}">
 		<input type="submit" name="delete"
 			value="<spring:message code="learningMaterial.delete" />"
 			onclick="return confirm('<spring:message code="learningMaterial.confirm.delete" />')" />&nbsp;
