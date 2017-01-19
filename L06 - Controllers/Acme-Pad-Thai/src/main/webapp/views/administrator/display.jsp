@@ -33,7 +33,8 @@ name="administrator" requestURI="${requestURI}" id="row">
 
 <br/>
 
-<br />
+<<security:authorize access="hasRole('ADMIN')">
+	<br />
 	<a href="administrator/administrator/edit.do"><spring:message code="administrator.edit"/></a>
-	
+</security:authorize>
 <br />

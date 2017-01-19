@@ -71,7 +71,6 @@ public class MessageService {
 		return result;
 	}
 	
-//		Welp, it was needed
 	public Message findOne(int messageId){
 		Message result;
 		

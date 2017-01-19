@@ -276,16 +276,16 @@ public class IngredientNutritionistController extends AbstractController {
 
 		ModelAndView result;
 		try{
-		Property property = propertyService.findOne(propertyId);
-		propertyService.delete2(property);
-		result = new ModelAndView(
-				"redirect:list.do");
+			Property property = propertyService.findOne(propertyId);
+			propertyService.delete2(property);
+			result = new ModelAndView("redirect:list.do");
 		}catch(Throwable oops){
 			result = new ModelAndView("redirect:list.do");
 			result.addObject("errorMessage", "property.delete.error");
 		}
 		return result;
 	}
+	
 	
 	@RequestMapping(value = "/createProperty", method = RequestMethod.POST, params = "createProperty")
 	public ModelAndView editValue(@Valid FilterString filterString, BindingResult binding) {

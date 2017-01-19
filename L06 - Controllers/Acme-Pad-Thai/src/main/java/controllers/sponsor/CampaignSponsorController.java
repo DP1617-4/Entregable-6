@@ -99,10 +99,6 @@ public class CampaignSponsorController extends AbstractController {
 			} catch (Throwable oops) {
 				result = createEditModelAndView(campaign,
 						"campaign.commit.error");
-
-				Collection<Banner> banners = bannerService
-						.findAllByCampaign(campaign.getId());
-				result.addObject("banners", banners);
 			}
 		}
 		return result;
@@ -122,10 +118,6 @@ public class CampaignSponsorController extends AbstractController {
 
 		} catch (Throwable oops) {
 			result = createEditModelAndView(campaign, "campaign.commit.error");
-
-			Collection<Banner> banners = bannerService
-					.findAllByCampaign(campaign.getId());
-			result.addObject("banners", banners);
 		}
 		return result;
 	}
