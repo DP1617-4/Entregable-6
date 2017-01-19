@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 
@@ -23,6 +24,7 @@ public class User extends SocialUser {
 	//Relationships
 	
 	private Collection<Recipe> recipes;
+	private Placeholder placeholder;
 	
 	@Valid
 	@OneToMany(mappedBy = "user")
@@ -31,5 +33,14 @@ public class User extends SocialUser {
 	}
 	public void setRecipes(Collection<Recipe> recipes) {
 		this.recipes = recipes;
+	}
+	
+	@Valid
+	@ManyToOne()
+	public Placeholder getPlaceholder(){
+		return placeholder;
+	}
+	public void setPlaceholder(Placeholder placeholder){
+		this.placeholder = placeholder;
 	}
 }
