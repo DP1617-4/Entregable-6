@@ -1,5 +1,6 @@
 package forms;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 
@@ -13,6 +14,7 @@ public class AddPicture {
 	private int id;
 	
 	@URL
+	@NotBlank
 	public String getPicture() {
 		return picture;
 	}

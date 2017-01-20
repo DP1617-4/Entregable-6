@@ -98,7 +98,7 @@
 
 	<input type="button" name="cancel"
 		value="<spring:message code="masterClass.cancel" />"
-		onclick="javascript: window.location.replace('${cancelURI}');" />&nbsp;
+		onclick="javascript: window.location.replace('masterClass/actor/list.do');" />&nbsp;
 		
 	<security:authorize access="hasRole('COOK')">
 	<security:authentication property="principal.username" var ="loggedactor"/>

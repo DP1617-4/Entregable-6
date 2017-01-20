@@ -1806,6 +1806,38 @@ CUANDO CREAMOS LA ASOCIACIÓN DESDE EL OTRO LADO.-->
 	</bean>
 	
 	<bean id="banner2" class="domain.Banner">
+		<property name="URL" value="https://static.vecteezy.com/system/resources/previews/000/110/129/original/free-super-sale-banner-vector.jpg"/> 
+		<property name="maxNumber" value="20"/> 
+		<property name="timesShown" value="2"/>
+		<property name="timesShownMonth" value="2"/>
+		<property name="campaign" ref="campaign1"/>
+	</bean>
+	
+	<bean id="banner3" class="domain.Banner">
+		<property name="URL" value="https://engineering.talis.com/articles/host-everything-for-free-almost/Free-100.jpg"/> 
+		<property name="maxNumber" value="20"/> 
+		<property name="timesShown" value="2"/>
+		<property name="timesShownMonth" value="2"/>
+		<property name="campaign" ref="campaign1"/>
+	</bean>
+	
+	<bean id="banner4" class="domain.Banner">
+		<property name="URL" value="http://www.freedigitalphotos.net/images/img/homepage/golf-1-top-82328.jpg"/> 
+		<property name="maxNumber" value="20"/> 
+		<property name="timesShown" value="2"/>
+		<property name="timesShownMonth" value="2"/>
+		<property name="campaign" ref="campaign1"/>
+	</bean>
+	
+	<bean id="banner5" class="domain.Banner">
+		<property name="URL" value="http://able-manchester.co.uk/wp-content/uploads/2015/05/free.jpg"/> 
+		<property name="maxNumber" value="20"/> 
+		<property name="timesShown" value="2"/>
+		<property name="timesShownMonth" value="2"/>
+		<property name="campaign" ref="campaign1"/>
+	</bean>
+	
+	<bean id="banner6" class="domain.Banner">
 		<property name="URL" value="http://st2.depositphotos.com/2885805/10592/v/950/depositphotos_105928876-stock-illustration-vegetarian-food-horizontal-banners-set.jpg"/> 
 		<property name="maxNumber" value="20"/> 
 		<property name="timesShown" value="5"/>

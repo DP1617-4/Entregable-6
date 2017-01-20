@@ -103,8 +103,6 @@ public class VideoMaterialCookController extends AbstractController {
 		ModelAndView result;
 
 		result = createEditModelAndView(videoMaterial, null);
-		result.addObject("requestURI", "videoMaterial/cook/edit.do");
-		result.addObject("cancelURI", "masterClass/cook/edit.do?masterClassId="+videoMaterial.getMasterClass().getId());
 		
 		return result;
 	}	
@@ -114,8 +112,8 @@ public class VideoMaterialCookController extends AbstractController {
 	protected ModelAndView createEditModelAndView(VideoMaterial videoMaterial, String message) {
 		ModelAndView result;
 		
-		result = new ModelAndView("learningMaterial/edit");
-		result.addObject("learningMaterial", videoMaterial);
+		result = new ModelAndView("videoMaterial/edit");
+		result.addObject("videoMaterial", videoMaterial);
 		result.addObject("errorMessage", message);
 		result.addObject("requestURI", "videoMaterial/cook/edit.do");
 		result.addObject("cancelURI", "learningMaterial/actor/list.do?masterClassId="+videoMaterial.getMasterClass().getId());
