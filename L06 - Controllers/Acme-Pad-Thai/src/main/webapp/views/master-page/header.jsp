@@ -53,7 +53,16 @@
 					<li><a href="masterClass/cook/create.do"><spring:message code="master.page.master.class.create"/></a> </li>
 				</security:authorize>
 			</ul>
-		</li>	
+		</li>
+		<security:authorize access="isAuthenticated()">
+			<li><a class="fNiv"><spring:message code="master.page.placeholder"/></a>
+				<ul>
+					<li class="arrow"></li>
+						<li><a href="placeholder/actor/list.do"><spring:message code="master.page.placeholder.list"/></a></li>
+						<li><a href="placeholder/actor/create.do"><spring:message code="master.page.placeholder.create"/></a> </li>
+				</ul>
+			</li>
+		</security:authorize>
 		<li><a class="fNiv"><spring:message code="master.page.social.users"/></a>
 			<ul>
 				<li class="arrow"></li>
