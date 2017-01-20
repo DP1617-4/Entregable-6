@@ -40,6 +40,9 @@
 		<value>/views/masterClass/messages</value>
 		<value>/views/message/messages</value>
 		<value>/views/nutritionist/messages</value>
+		
+		<value>/views/placeholder/messages</value>
+		
 		<value>/views/property/messages</value>
 		<value>/views/recipe/messages</value>
 		<value>/views/socialIdentity/messages</value>

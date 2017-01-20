@@ -86,6 +86,9 @@
 		<bean class="converters.NutritionistToStringConverter" />
 		<bean class="converters.StringToNutritionistConverter" />
 		
+		<bean class="converters.PlaceholderToStringConverter" />
+		<bean class="converters.StringToPlaceholderConverter" />
+		
 		<bean class="converters.PropertyToStringConverter" />
 		<bean class="converters.StringToPropertyConverter" />
 		

@@ -40,6 +40,9 @@
 		<value>/views/masterClass/tiles.xml</value>
 		<value>/views/message/tiles.xml</value>
 		<value>/views/nutritionist/tiles.xml</value>
+		
+		<value>/views/placeholder/tiles.xml</value>
+		
 		<value>/views/property/tiles.xml</value>
 		<value>/views/recipe/tiles.xml</value>
 		<value>/views/socialIdentity/tiles.xml</value>
